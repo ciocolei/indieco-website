@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Premier Services — IndieCo</title>
+<meta name="description" content="Premier packages for founders, executives, investors, and thought leaders."/>
+<link rel="stylesheet" href="../css/base.css"/>
+<link rel="stylesheet" href="../css/nav.css"/>
+<style>
+body { background: var(--white); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: 140px 0 80px;
+  border-bottom: 0.5px solid var(--rule);
+}
+.page-header-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 1.2rem;
+}
+.page-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+/* ── SERVICE BLOCK ── */
+.sv { padding: 5rem 0; }
+.sv-block {
+  padding: 3rem 2.5rem;
+  border: 0.5px solid var(--rule);
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  transition: border-color 0.35s, box-shadow 0.35s, transform 0.3s, background 0.35s;
+}
+.sv-block::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.sv-block:hover {
+  border-color: #d8d8d8;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+  background: var(--cream-warm);
+  transform: translateY(-2px);
+}
+.sv-block:hover::before { transform: scaleY(1); }
+.sv-block:hover .sv-title { letter-spacing: 0.06em; }
+.sv-highlight {
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 0.9rem;
+  transition: color 0.3s;
+}
+.sv-block:hover .sv-highlight { color: var(--gold-dark); }
+.sv-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin-bottom: 1.1rem;
+  transition: letter-spacing 0.4s;
+}
+.sv-desc {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+.sv-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.sv-item {
+  font-size: 12.5px;
+  color: var(--ink-ghost);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
+}
+.sv-item::before {
+  content: '';
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--rule);
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.sv-block:hover .sv-item { color: var(--ink-soft); }
+.sv-block:hover .sv-item::before { background: var(--gold); }
+.sv-outcome {
+  font-size: 12.5px;
+  color: var(--ink-ghost);
+  line-height: 1.8;
+  border-left: 1px solid var(--rule);
+  padding-left: 1.2rem;
+  margin-top: 1.5rem;
+  transition: border-color 0.3s, color 0.3s;
+}
+.sv-block:hover .sv-outcome { border-color: var(--gold); color: var(--ink-mute); }
+.sv-badge {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--ink);
+  padding: 4px 10px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.sv-premier:hover .sv-badge { opacity: 1; transform: translateY(0); }
+
+/* ── CLIENT RESULTS ── */
+.cl { padding: 5rem 0; border-top: 0.5px solid var(--rule); }
+.cl-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.cl-title em { font-style: italic; }
+.cl-sub {
+  font-size: 12px; font-weight: 200;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  margin-bottom: 3.5rem;
+}
+.stat-row {
+  display: flex; gap: 0;
+  margin-bottom: 3rem;
+  border-top: 0.5px solid var(--rule);
+  padding-top: 1.5rem;
+}
+.stat-item {
+  flex: 1;
+  padding-right: 1.5rem;
+  cursor: default;
+  transition: transform 0.3s;
+}
+.stat-item:hover { transform: translateY(-3px); }
+.stat-number {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 2rem;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.clients-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.client-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem 1.1rem 0;
+  border-bottom: 0.5px solid var(--rule);
+  position: relative;
+  cursor: default;
+  transition: background 0.25s, padding-left 0.25s;
+  overflow: hidden;
+}
+.client-row::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 0.5px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.client-row:nth-child(even) {
+  padding-right: 0;
+  padding-left: 1.5rem;
+  border-left: 0.5px solid var(--rule);
+}
+.client-row:hover { background: var(--cream); }
+.client-row:hover::after { transform: scaleX(1); }
+.client-row:hover .client-name { letter-spacing: 0.07em; }
+.client-name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: var(--ink);
+  transition: letter-spacing 0.35s;
+}
+.client-accolade {
+  font-size: 9.5px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  text-align: right;
+  line-height: 1.7;
+  max-width: 140px;
+}
+.client-accolade .highlight { color: var(--ink); font-weight: 400; }
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  background: var(--ink);
+  padding: 5rem 0;
+  text-align: center;
+  margin-top: 2rem;
+}
+.cta-banner h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  color: #f5f0e8;
+  margin-bottom: 2rem;
+}
+.cta-banner h2 em { font-style: italic; color: var(--gold); }
+.btn-gold {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 14px 32px;
+  transition: background 0.2s;
+}
+.btn-gold:hover { background: var(--gold-light); }
+
+@media (max-width: 560px) {
+  .sv-list { grid-template-columns: 1fr; }
+  .sv-block { padding: 2rem 1.5rem; }
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-row:nth-child(even) { padding-left: 0; border-left: none; }
+  .stat-row { flex-wrap: wrap; gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="page-wrap">
+  <!-- PAGE HEADER -->
+  <div class="page-header fade-up">
+    <p class="page-header-eyebrow">IndieCo Services</p>
+    <h1>Premier Packages For Founders,<br>Executives, Investors, and Thought Leaders.</h1>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="sv">
+
+    <!-- PREMIER -->
+    <div class="sv-block sv-premier fade-up">
+      <span class="sv-badge">Premier</span>
+      <div class="sv-highlight">Premier Authority Build</div>
+      <h2 class="sv-title">Legacy Authority System</h2>
+      <p class="sv-desc">Our most exclusive engagement. Designed for industry leaders building something that outlives them, positions them globally, and opens doors at the highest level.<br><br>This is not marketing. This is legacy engineering — where your name becomes infrastructure.</p>
+      <div class="sv-list">
+        <div class="sv-item">Complete Authority Ecosystem</div>
+        <div class="sv-item">Premium Bestseller Campaign</div>
+        <div class="sv-item">60+ Global Podcast Interviews</div>
+        <div class="sv-item">10+ Top-Tier Media Placements</div>
+        <div class="sv-item">300+ Verified Reviews</div>
+        <div class="sv-item">Full Book Funnel</div>
+        <div class="sv-item">10,000+ Book Sales Campaign</div>
+        <div class="sv-item">Speaking Positioning</div>
+        <div class="sv-item">Launch Development (optional)</div>
+        <div class="sv-item">Long-term Brand & IP Strategy</div>
+      </div>
+    </div>
+
+    <!-- MID TIER -->
+    <div class="sv-block fade-up" style="transition-delay:0.1s">
+      <div class="sv-highlight">Scaled Authority</div>
+      <h2 class="sv-title">Industry Authority Engine</h2>
+      <p class="sv-desc">For founders, executives, and investors ready to become the name in their space — not just visible, but undeniable.<br><br>We transform your book into a sustained visibility engine that compounds over time.</p>
+      <div class="sv-list">
+        <div class="sv-item">Everything in Lifestyle Author</div>
+        <div class="sv-item">30–60 Podcast Interviews</div>
+        <div class="sv-item">10 Premium Media Features</div>
+        <div class="sv-item">100+ Verified Reviews</div>
+        <div class="sv-item">Expanded Bestseller Campaign</div>
+        <div class="sv-item">Authority Positioning Strategy</div>
+      </div>
+      <div class="sv-outcome">Recognizable industry presence. Consistent cross-platform visibility. Trust built at scale. Increased inbound speaking, partnerships, and deal flow.</div>
+    </div>
+
+    <!-- ENTRY -->
+    <div class="sv-block fade-up" style="transition-delay:0.2s">
+      <div class="sv-highlight">Foundational Authority</div>
+      <h2 class="sv-title">Lifestyle Author System</h2>
+      <p class="sv-desc">For founders, creators, and operators who want authority without full-scale media domination.<br><br>Build a powerful personal brand that attracts opportunities — while maintaining flexibility and focus on your core business.</p>
+      <div class="sv-list">
+        <div class="sv-item">Full-Service Publishing</div>
+        <div class="sv-item">Amazon Bestseller Campaign</div>
+        <div class="sv-item">15 Podcast Interviews</div>
+        <div class="sv-item">50–100 Verified Reviews</div>
+        <div class="sv-item">Light Book Funnel</div>
+      </div>
+      <div class="sv-outcome">A published, positioned book. Consistent inbound opportunities. A credibility asset working quietly in the background.</div>
+    </div>
+
+  </section>
+
+  <!-- CLIENT RESULTS -->
+  <section class="cl">
+    <div class="section-label">Client Results</div>
+    <h2 class="cl-title fade-up">Published. <em>Celebrated.</em><br>Bestselling.</h2>
+    <p class="cl-sub">A selection of titles launched through our campaigns</p>
+
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-number">1,500+</div><div class="stat-label">Campaigns</div></div>
+      <div class="stat-item"><div class="stat-number">WSJ</div><div class="stat-label">Wall St. Journal</div></div>
+      <div class="stat-item"><div class="stat-number">NYT</div><div class="stat-label">New York Times</div></div>
+      <div class="stat-item"><div class="stat-number">USA</div><div class="stat-label">USA Today</div></div>
+    </div>
+
+    <div class="clients-grid">
+      <div class="client-row"><span class="client-name">Kai-Fu Lee</span><span class="client-accolade"><span class="highlight">USA Today · WSJ</span><br>NYT Bestseller</span></div>
+      <div class="client-row"><span class="client-name">Naomi Whittel</span><span class="client-accolade"><span class="highlight">USA Today · WSJ</span><br>NYT Bestseller</span></div>
+      <div class="client-row"><span class="client-name">Reid Hoffman</span><span class="client-accolade"><span class="highlight">WSJ</span><br>Bestseller</span></div>
+      <div class="client-row"><span class="client-name">Justin Donald</span><span class="client-accolade"><span class="highlight">#1 WSJ</span><br>USA Today</span></div>
+      <div class="client-row"><span class="client-name">Jeremy Harbour</span><span class="client-accolade"><span class="highlight">WSJ</span><br>Bestseller</span></div>
+      <div class="client-row"><span class="client-name">Robert Glazer</span><span class="client-accolade"><span class="highlight">#1 WSJ</span><br>USA Today</span></div>
+      <div class="client-row"><span class="client-name">Steve & Karen Anderson</span><span class="client-accolade"><span class="highlight">USA Today · WSJ</span><br>Bestseller</span></div>
+      <div class="client-row"><span class="client-name">Gene Fredrick</span><span class="client-accolade"><span class="highlight">USA Today</span><br>Bestseller</span></div>
+      <div class="client-row"><span class="client-name">Carl Barney</span><span class="client-accolade"><span class="highlight">#2 Success Mag</span><br>#8 USA Today</span></div>
+      <div class="client-row"><span class="client-name">Mel Robbins</span><span class="client-accolade"><span class="highlight">NYT · WSJ</span><br>Bestseller</span></div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="page-wrap">
+    <h2 class="fade-up">Ready to build your<br><em>authority ecosystem?</em></h2>
+    <a href="work-with-us.html" class="btn-gold fade-up">Work with us →</a>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="../js/nav.js"></script>
+</body>
+</html>
