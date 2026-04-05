@@ -1,6 +1,6 @@
 # IndieCo Website
 
-A 7-page static website for IndieCo — PR & Media Advisory. No framework, no build step. Pure HTML/CSS/JS — deploy anywhere.
+A 7-page static website for IndieCo.
 
 ---
 
@@ -27,7 +27,7 @@ indieco/
 
 ---
 
-## 🚀 Deploy to GitHub Pages
+## Deploy to GitHub Pages
 
 ### Step 1 — Push to GitHub
 
