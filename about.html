@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About Us — IndieCo</title>
+<meta name="description" content="IndieCo is a public relations and media advisory built for independent authority."/>
+<link rel="stylesheet" href="../css/base.css"/>
+<link rel="stylesheet" href="../css/nav.css"/>
+<style>
+/* ── HERO ── */
+.ab-hero {
+  position: relative;
+  padding: 140px 24px 100px;
+  text-align: center;
+  overflow: hidden;
+  background: var(--cream);
+}
+canvas#ab-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+}
+.ab-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.ab-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 24px;
+}
+.ab-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: 1.05;
+  font-weight: 400;
+}
+.ab-headline em { font-style: italic; }
+.ab-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--rule);
+  margin: 32px auto 0;
+}
+
+/* ── BODY ── */
+.ab-body {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+}
+.ab-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 20px;
+}
+.ab-statement {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.25;
+}
+.ab-copy {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+.ab-copy p + p { margin-top: 1.4em; }
+
+/* ── STATS ── */
+.ab-stats {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  padding: 0 24px 80px;
+}
+.ab-stat {
+  background: var(--white);
+  border: 0.5px solid var(--rule);
+  padding: 36px 28px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ab-stat:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+.ab-stat-num {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.ab-stat-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* ── CALENDLY ── */
+.calendly-section {
+  background: var(--white);
+  padding: 80px 24px;
+  border-top: 0.5px solid var(--rule);
+}
+.calendly-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.calendly-header { margin-bottom: 3rem; }
+.calendly-header h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+}
+.calendly-header p {
+  font-size: 13.5px;
+  color: var(--ink-mute);
+  line-height: 1.8;
+  max-width: 480px;
+}
+.calendly-embed {
+  border: 0.5px solid var(--rule);
+  min-height: 700px;
+}
+
+/* ── FAQ ── */
+.faq-wrap { background: var(--cream); padding: 0 24px; }
+.faq {
+  font-family: var(--font-sans);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 5rem 0;
+}
+.faq-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 0.5px solid var(--rule);
+  padding-bottom: 1.25rem;
+  margin-bottom: 3.5rem;
+}
+.faq-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--ink-ghost);
+}
+.faq-h {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.faq-h em { font-style: italic; }
+.faq-item { border-top: 0.5px solid var(--rule); overflow: hidden; }
+.faq-item:last-child { border-bottom: 0.5px solid var(--rule); }
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.25;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+.faq-question:hover { opacity: 0.65; }
+.faq-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  margin-top: 3px;
+}
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--ink-ghost);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.faq-icon::before { width: 18px; height: 0.5px; top: 50%; left: 0; transform: translateY(-50%); }
+.faq-icon::after  { width: 0.5px; height: 18px; left: 50%; top: 0; transform: translateX(-50%); }
+.faq-item.open .faq-icon::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+.faq-answer-inner { padding: 0 0 1.75rem; }
+.faq-answer p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-mute);
+  line-height: 1.9;
+}
+.faq-answer p + p { margin-top: 0.85em; }
+
+/* ── SUPPORTERS ── */
+.supporters {
+  background: var(--ink);
+  padding: 80px 0;
+  text-align: center;
+  overflow: hidden;
+}
+.supporters-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+.supporters-marquee { width: 100%; overflow: hidden; position: relative; }
+.supporters-track {
+  display: flex;
+  gap: 80px;
+  width: max-content;
+  animation: scroll-fwd 28s linear infinite;
+}
+.supporters-track span {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  white-space: nowrap;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+.supporters-track span:hover { color: rgba(255,255,255,0.8); }
+.supporters-marquee::before,
+.supporters-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.supporters-marquee::before { left: 0; background: linear-gradient(to right, var(--ink), transparent); }
+.supporters-marquee::after  { right: 0; background: linear-gradient(to left, var(--ink), transparent); }
+@keyframes scroll-fwd { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+@media (max-width: 768px) {
+  .ab-body { grid-template-columns: 1fr; gap: 40px; }
+}
+</style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<div class="ab-hero">
+  <canvas id="ab-canvas"></canvas>
+  <div class="ab-hero-inner">
+    <p class="ab-eyebrow">About Us</p>
+    <h1 class="ab-headline">We do not publish books.<br>We engineer <em>authority<br>ecosystems.</em></h1>
+    <div class="ab-rule"></div>
+  </div>
+</div>
+
+<!-- BODY COPY -->
+<div class="ab-body fade-up">
+  <div>
+    <p class="ab-label">Who we are</p>
+    <h2 class="ab-statement">A public relations and media advisory built for <em>independent authority.</em></h2>
+  </div>
+  <div class="ab-copy">
+    <p>IndieCo is a public relations and media advisory founded in 2020, operating across Manila and New York City. A book is not the goal. A keynote is not the goal. Authority is.</p>
+    <p>We believe that the world's most important ideas live inside people who have not yet been given the stage. Our mission is to change that — by building the infrastructure that turns expertise into influence, and influence into revenue.</p>
+    <p>Through fresh strategic thinking, a world-class speaker network, and a transformative peer community, we take the most enthusiastic minds in any field and make them impossible to ignore.</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="ab-stats">
+  <div class="ab-stat fade-up">
+    <div class="ab-stat-num" id="stat1">5+</div>
+    <div class="ab-stat-label">Years in publishing</div>
+  </div>
+  <div class="ab-stat fade-up" style="transition-delay:0.1s">
+    <div class="ab-stat-num" id="stat2">4,000+</div>
+    <div class="ab-stat-label">Client stories</div>
+  </div>
+  <div class="ab-stat fade-up" style="transition-delay:0.2s">
+    <div class="ab-stat-num" id="stat3">10M+</div>
+    <div class="ab-stat-label">Books sold</div>
+  </div>
+  <div class="ab-stat fade-up" style="transition-delay:0.3s">
+    <div class="ab-stat-num">25+</div>
+    <div class="ab-stat-label">Countries served</div>
+  </div>
+</div>
+
+<!-- CALENDLY BOOKING -->
+<section class="calendly-section">
+  <div class="calendly-inner">
+    <div class="calendly-header fade-up">
+      <p class="section-label">Book a session</p>
+      <h2>Schedule a private<br><em>1:1 consultation.</em></h2>
+      <p>Select a time below to speak directly with our team about your goals, your story, and the platform you want to build.</p>
+    </div>
+    <div class="calendly-inline-widget calendly-embed"
+         data-url="https://calendly.com/indieco/1-1-working-session-with-leah"
+         style="min-width:320px;height:700px;">
+    </div>
+  </div>
+</section>
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<!-- FAQ -->
+<div class="faq-wrap">
+  <div class="faq">
+    <div class="faq-top">
+      <span class="faq-eyebrow">FAQ</span>
+      <span class="faq-eyebrow">IndieCo</span>
+    </div>
+    <h2 class="faq-h fade-up">Frequently asked<br><em>questions.</em></h2>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How long does engagement with IndieCo take?
+        <span class="faq-icon"></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Initial engagements are thoughtfully designed to unfold over three (3) to eighteen (18) months, depending on the scope and the caliber of placements pursued.</p>
+        <p>Clients who continue with us are invited into an annual membership — a more enduring partnership dedicated to sustained visibility, strategic positioning, and long-term growth.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How much does it cost?
+        <span class="faq-icon"></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Our fees are deliberately calibrated to the scope, depth, and ambition of each engagement. Individual clients typically invest between US$5,000–$25,000.</p>
+        <p>For corporate partnerships, investment levels are structured on a bespoke basis, reflecting the scale, complexity, and strategic objectives of the collaboration.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Do you work with clients globally?
+        <span class="faq-icon"></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>Yes — we support clients globally. Our team has worked with clients across multiple continents and coordinate travel and logistics wherever the stage or engagement is. 300+ clients across 25+ countries, backed by over six years of proven publishing and global placement expertise.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What makes IndieCo different?
+        <span class="faq-icon"></span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">
+        <p>We are not a traditional PR agency. We don't issue press releases and hope for the best. We build the full infrastructure — the book, the stage, the media record, the credibility ecosystem — that turns your expertise into a durable public presence.</p>
+        <p>Every engagement is bespoke. We only work with people we believe in.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORTERS -->
+<section class="supporters">
+  <p class="supporters-title">Supported by</p>
+  <div class="supporters-marquee">
+    <div class="supporters-track" id="supporters-track"></div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../js/nav.js"></script>
+<script>
+/* CANVAS */
+(function(){
+  const cv = document.getElementById('ab-canvas');
+  const ctx = cv.getContext('2d');
+  function resize(){ cv.width=cv.offsetWidth; cv.height=cv.offsetHeight; }
+  resize();
+  window.addEventListener('resize',resize);
+  const sparkles=Array.from({length:50},()=>({
+    x:Math.random()*cv.width, y:Math.random()*cv.height,
+    r:Math.random()*1.5+0.5, opacity:Math.random(), fade:Math.random()*0.02+0.005
+  }));
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    sparkles.forEach(s=>{
+      s.opacity+=s.fade;
+      if(s.opacity>=1||s.opacity<=0)s.fade*=-1;
+      ctx.fillStyle=`rgba(0,0,0,${s.opacity*0.12})`;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* STAT COUNTUP */
+(function(){
+  function countUp(el, target, suffix, dur){
+    const start=performance.now();
+    function step(now){
+      const p=Math.min((now-start)/dur,1);
+      const val=Math.floor(p*target);
+      el.textContent=val.toLocaleString()+suffix;
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        countUp(document.getElementById('stat1'),5,'+',1400);
+        countUp(document.getElementById('stat2'),4000,'+',1800);
+        countUp(document.getElementById('stat3'),10,'M+',1600);
+        obs.disconnect();
+      }
+    });
+  },{threshold:0.3});
+  const statsEl=document.querySelector('.ab-stats');
+  if(statsEl)obs.observe(statsEl);
+})();
+
+/* SUPPORTERS */
+(function(){
+  const names=['National Research Council of the Philippines','Entrepreneurs\' Organization Philippines','Stanford ASES','Young Southeast Asian Leaders Initiative','UPSCale Innovation Hub','Project Urduja','QBO Innovation','Chegg.Org Foundation'];
+  const track=document.getElementById('supporters-track');
+  [...names,...names].forEach(name=>{
+    const s=document.createElement('span');
+    s.textContent=name;
+    track.appendChild(s);
+  });
+})();
+
+/* FAQ */
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const answer=item.querySelector('.faq-answer');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el=>{
+    el.classList.remove('open');
+    el.querySelector('.faq-answer').style.maxHeight='0';
+  });
+  if(!isOpen){
+    item.classList.add('open');
+    answer.style.maxHeight=answer.scrollHeight+'px';
+  }
+}
+</script>
+</body>
+</html>
