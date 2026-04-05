@@ -1,0 +1,116 @@
+/* ═══════════════════════════════════════════════
+   INDIECO — BASE STYLES & DESIGN TOKENS
+   ═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant+Garant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&family=DM+Sans:wght@200;300;400&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Palette */
+  --ink:          #111;
+  --ink-soft:     #5a5550;
+  --ink-mute:     #9e9890;
+  --ink-ghost:    #c4bdb4;
+  --cream:        #f7f6f2;
+  --cream-warm:   #fdf9f5;
+  --white:        #ffffff;
+  --sand:         #f0ede7;
+  --rule:         #eaeaea;
+  --rule-soft:    #ede9e4;
+  --gold:         #b8976a;
+  --gold-light:   #d4bc9b;
+  --gold-dark:    #8a6830;
+  --dark:         #0e0d0b;
+  --dark-surface: #1c1a18;
+
+  /* Type */
+  --font-serif:   'Cormorant Garamond', serif;
+  --font-garant:  'Cormorant Garant', serif;
+  --font-sans:    'Jost', sans-serif;
+  --font-dm:      'DM Sans', sans-serif;
+
+  /* Spacing */
+  --page-max:     820px;
+  --page-pad:     2rem;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; }
+
+/* ── PAGE WRAPPER ── */
+.page-wrap {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+
+/* ── SECTION UTILITY ── */
+.section-label {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: var(--rule);
+  max-width: 60px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; }
+
+/* ── GOLD RULE ── */
+.gold-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem 0;
+}
+
+/* ── FADE UP ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
