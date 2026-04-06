@@ -10,7 +10,6 @@
     { label: 'Premier',         href: '/pages/premier-services.html' },
     { label: 'Standard',         href: '/pages/standard-services.html' },
     { label: 'Store',            href: '/pages/store.html' },
-    { label: 'Podcast',      href: '/pages/podcast.html' },
     { label: 'Work With Us',     href: '/pages/work-with-us.html', cta: true },
   ];
 
