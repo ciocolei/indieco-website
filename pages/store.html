@@ -8,16 +8,10 @@
 <link rel="stylesheet" href="../css/nav.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@800;900&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --red: #C8372B;
-  --skin-bg: #f7f2ec;
-  --skin-mid: #ede4d8;
-  --skin-border: #ddd4c4;
-  --skin-text: #2e2620;
-  --skin-muted: #8c7b6b;
-  --skin-faint: #b5a492;
-  --skin-accent: #9c7f5e;
-}
+/* store.html — page-specific styles only.
+   Base tokens, skin palette, font imports, fade-up,
+   and footer.skin variant all live in base.css.     */
+:root { --red: #C8372B; }
 body { background: var(--skin-bg); color: var(--skin-text); }
 
 /* ── STORE HEADER ── */
@@ -133,14 +127,72 @@ body { background: var(--skin-bg); color: var(--skin-text); }
 .btn-product { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--skin-accent); border-bottom: 0.5px solid var(--skin-accent); padding-bottom: 2px; transition: color 0.2s; }
 .btn-product:hover { color: var(--skin-text); border-color: var(--skin-text); }
 
-/* FOOTER OVERRIDE */
-.footer-wrap { background: var(--skin-bg) !important; border-top-color: var(--skin-border) !important; }
-.footer-logo { color: var(--skin-text) !important; }
-.footer-tagline { color: var(--skin-faint) !important; }
-.footer-link { color: var(--skin-muted) !important; }
-.footer-link:hover { color: var(--skin-text) !important; }
-.footer-copy { color: var(--skin-faint) !important; }
-.footer-locations { color: var(--skin-accent) !important; }
+/* ── PLATFORM CARD ── */
+.product-card--platform {
+  border-color: var(--skin-accent);
+  background: linear-gradient(160deg, var(--skin-bg) 60%, rgba(156,127,94,0.06) 100%);
+  position: relative;
+}
+.product-card--platform::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 0.5px solid var(--skin-accent);
+  pointer-events: none;
+}
+.platform-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.product-badge--platform {
+  background: var(--skin-text);
+  color: var(--skin-bg);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  margin-bottom: 0;
+}
+.platform-pip {
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--skin-accent);
+  font-weight: 300;
+  border: 0.5px solid rgba(156,127,94,0.4);
+  padding: 3px 9px;
+}
+.platform-perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 1rem 0 1.4rem;
+}
+.platform-perk {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--skin-muted);
+  background: rgba(156,127,94,0.08);
+  padding: 4px 10px;
+  font-weight: 300;
+  white-space: nowrap;
+}
+.btn-product--platform {
+  color: var(--skin-text) !important;
+  border-color: var(--skin-text) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.12em !important;
+}
+.btn-product--platform:hover {
+  color: var(--skin-bg) !important;
+  border-color: var(--skin-text) !important;
+  background: var(--skin-text) !important;
+}
+
+/* Footer skin variant is handled globally by base.css .footer-wrap.skin */
 
 @media (max-width: 768px) {
   .book-layout { grid-template-columns: 1fr; gap: 48px; }
@@ -178,8 +230,8 @@ body { background: var(--skin-bg); color: var(--skin-text); }
               <div class="cover-desc-block">
                 <p>A COLLECTION OF HEARTFELT ESSAYS</p>
                 <p>JOURNEYED FROM PERSONAL REFLECTION</p>
-                <p>ON THE LOCAL TEDX STAGE TO THE</p>
-                <p>GLOBAL TEDX PLATFORM</p>
+                <p>ON THE LOCAL STAGE TO THE</p>
+                <p>GLOBAL SPEAKING PLATFORM</p>
               </div>
               <div style="line-height:0.88;margin-top:2px">
                 <span class="cover-word-dark cover-word-to">TO</span>
@@ -187,8 +239,8 @@ body { background: var(--skin-bg); color: var(--skin-text); }
               </div>
             </div>
             <div class="face face-back">
-              <div class="back-quote">"The best TEDx talks are great personal essays — told with voice, argument, structure, and above all, vulnerability."</div>
-              <div class="back-label">Leah Cioco · TEDx Organizer · 5 Events · 105+ Speakers</div>
+              <div class="back-quote">"The best platform talks are great personal essays — told with voice, argument, structure, and above all, vulnerability."</div>
+              <div class="back-label">Leah Cioco · Stage Curator · 5 Events · 105+ Speakers</div>
             </div>
           </div>
         </div>
@@ -198,16 +250,16 @@ body { background: var(--skin-bg); color: var(--skin-text); }
 
       <!-- BOOK INFO -->
       <div class="book-info fade-up">
-        <p class="book-eyebrow">Leah Cioco · TEDx Organizer & Curator</p>
+        <p class="book-eyebrow">Leah Cioco · Stage Curator & Event Organizer</p>
         <h1 class="book-title">From Stage<br>to Screen</h1>
         <p class="book-subtitle">An anthology, 2023–2026</p>
         <div class="book-rule"></div>
 
         <div class="book-copy">
-          <p>TED stands for Technology, Entertainment, Design. TEDx, the independently organized offshoot launched in 2009, was built on a single premise: that great ideas should not be confined to any one city, institution, or industry.</p>
-          <div class="book-pull">"The best TEDx talks are great personal essays."</div>
-          <p>I've organized and/or been part of five TEDx events over five years, working with over 105 speakers, fellow organizers, and enthusiasts. This anthology gathers 55 TEDx talks delivered between 2023 and 2026, written by speakers I've personally worked with — scientists, artists, entrepreneurs, educators, activists, and simply people with something to say.</p>
-          <p>A good TEDx talk, like a good personal essay, begins with perspective. It requires voice, argument, and structure, but above all, vulnerability. You have to be willing to tell the truth, even if that truth feels too small or too strange to matter.</p>
+          <p>The most enduring ideas don't live in boardrooms or behind paywalls. They belong on stages — spoken aloud, in front of people willing to listen. Independent speaking platforms, built and run by local communities around the world, were created on a single premise: that great ideas should not be confined to any one city, institution, or industry.</p>
+          <div class="book-pull">"The best platform talks are great personal essays."</div>
+          <p>I've organized and/or been part of five independent speaking events over five years, working with over 105 speakers, fellow organizers, and enthusiasts. This anthology gathers 55 talks delivered between 2023 and 2026, written by speakers I've personally worked with — scientists, artists, entrepreneurs, educators, activists, and simply people with something to say.</p>
+          <p>A good platform talk, like a good personal essay, begins with perspective. It requires voice, argument, and structure, but above all, vulnerability. You have to be willing to tell the truth, even if that truth feels too small or too strange to matter.</p>
         </div>
 
         <div class="book-meta">
@@ -233,25 +285,546 @@ body { background: var(--skin-bg); color: var(--skin-text); }
         <span class="product-badge">Course</span>
         <div class="product-name">Authority Blueprint</div>
         <p class="product-desc">A self-paced course for professionals who want to build a credible public profile without a full agency engagement.</p>
-        <span class="btn-product">Notify me</span>
+        <button class="btn-product notify-trigger" data-product="Authority Blueprint">Notify me</button>
       </div>
       <div class="product-card fade-up" style="transition-delay:0.1s">
         <span class="product-badge">Workshop</span>
-        <div class="product-name">Talk Like TED</div>
-        <p class="product-desc">An intensive one-day workshop on narrative structure, idea articulation, and stage presence for first-time speakers.</p>
-        <span class="btn-product">Notify me</span>
+        <div class="product-name">Speak to Power</div>
+        <p class="product-desc">An intensive one-day workshop on narrative structure, idea articulation, and stage presence — for first-time speakers ready to command curated, high-caliber rooms.</p>
+        <button class="btn-product notify-trigger" data-product="Speak to Power Workshop">Notify me</button>
       </div>
       <div class="product-card fade-up" style="transition-delay:0.2s">
         <span class="product-badge">Template Kit</span>
         <div class="product-name">Press Kit Builder</div>
         <p class="product-desc">A curated collection of templates for speaker bios, media one-sheets, and O1A immigration evidence portfolios.</p>
-        <span class="btn-product">Notify me</span>
+        <button class="btn-product notify-trigger" data-product="Press Kit Builder">Notify me</button>
+      </div>
+      <div class="product-card product-card--platform fade-up" style="transition-delay:0.3s">
+        <div class="platform-badge-row">
+          <span class="product-badge product-badge--platform">Platform</span>
+          <span class="platform-pip">Early Access</span>
+        </div>
+        <div class="product-name">IndieCo App</div>
+        <p class="product-desc">Join the waitlist and gain access to exclusive events across Manila and New York — curated for founders, authors, and emerging authorities building in public.</p>
+        <div class="platform-perks">
+          <span class="platform-perk">Private member events</span>
+          <span class="platform-perk">Manila &amp; New York</span>
+          <span class="platform-perk">Authority tools</span>
+        </div>
+        <button class="btn-product btn-product--platform notify-trigger" data-product="IndieCo App &amp; Platform">Join the waitlist →</button>
       </div>
     </div>
   </section>
 </div>
 
-<div id="footer-placeholder"></div>
+<!-- ═══════════════════════════════════════════════
+     NOTIFY ME MODAL
+     ═══════════════════════════════════════════════ -->
+<div id="notify-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="notify-title">
+  <div id="notify-modal">
+    <button id="notify-close" aria-label="Close">&times;</button>
+
+    <!-- DEFAULT STATE -->
+    <div id="notify-form-wrap">
+      <p id="notify-eyebrow">Early Access</p>
+      <h2 id="notify-title">You'll be the<br><em>first to know.</em></h2>
+      <p id="notify-subtitle">Leave your email and we'll reach out the moment <span id="notify-product-name"></span> is available.</p>
+
+      <form id="notify-form" novalidate>
+        <input type="hidden" name="product" id="notify-product-input"/>
+        <div class="notify-field">
+          <label class="notify-label" for="notify-email">Email address <sup>*</sup></label>
+          <input
+            type="email"
+            id="notify-email"
+            name="email"
+            placeholder="you@yourco.com"
+            autocomplete="email"
+            required
+          />
+          <div id="notify-email-error" class="notify-field-error" aria-live="polite"></div>
+        </div>
+        <div class="notify-field">
+          <label class="notify-label" for="notify-name">Your name <sup>*</sup></label>
+          <input
+            type="text"
+            id="notify-name"
+            name="name"
+            placeholder="Sofia Reyes"
+            autocomplete="name"
+            required
+          />
+          <div id="notify-name-error" class="notify-field-error" aria-live="polite"></div>
+        </div>
+        <div id="notify-submit-error" class="notify-submit-error" role="alert"></div>
+        <button type="submit" id="notify-submit">
+          <span id="notify-btn-text">Join the waitlist →</span>
+        </button>
+        <p class="notify-fine">No spam. One email when it launches.</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="notify-success" aria-live="polite">
+      <div class="notify-check">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="10.5" stroke="var(--skin-accent)"/>
+          <polyline points="6,11 9.5,14.5 16,8" stroke="var(--skin-accent)" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 id="notify-success-title">You're on the list.</h2>
+      <p id="notify-success-body">We'll be in touch when <strong id="notify-success-product"></strong> launches. Check your inbox for a confirmation.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ── NOTIFY BUTTON UPGRADE ── */
+button.btn-product {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-sans, 'Jost', sans-serif);
+}
+
+/* ── OVERLAY ── */
+#notify-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(14,13,11,0.55);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: overlayIn 0.25s ease both;
+}
+#notify-overlay.open {
+  display: flex;
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── MODAL ── */
+#notify-modal {
+  background: var(--skin-bg, #f7f2ec);
+  border: 0.5px solid var(--skin-border, #ddd4c4);
+  max-width: 440px;
+  width: 100%;
+  padding: 3rem 2.5rem 2.5rem;
+  position: relative;
+  animation: modalIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#notify-close {
+  position: absolute;
+  top: 1.1rem; right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--skin-faint, #b5a492);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+  padding: 4px;
+}
+#notify-close:hover { color: var(--skin-text, #2e2620); }
+
+#notify-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--skin-accent, #9c7f5e);
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+}
+
+#notify-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--skin-text, #2e2620);
+  line-height: 1.1;
+  margin-bottom: 0.85rem;
+}
+#notify-title em { font-style: italic; }
+
+#notify-subtitle {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--skin-muted, #8c7b6b);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+/* ── FIELDS ── */
+.notify-field { margin-bottom: 1.1rem; }
+.notify-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--skin-muted, #8c7b6b);
+  margin-bottom: 7px;
+}
+.notify-label sup { color: var(--skin-accent, #9c7f5e); }
+#notify-modal input[type="email"],
+#notify-modal input[type="text"] {
+  width: 100%;
+  background: rgba(255,255,255,0.6);
+  border: 0.5px solid var(--skin-border, #ddd4c4);
+  color: var(--skin-text, #2e2620);
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  padding: 13px 14px;
+  outline: none;
+  border-radius: 0;
+  appearance: none;
+  transition: border-color 0.25s, background 0.25s;
+}
+#notify-modal input:focus {
+  border-color: var(--skin-accent, #9c7f5e);
+  background: #fff;
+}
+#notify-modal input.invalid {
+  border-color: #b05a45;
+}
+#notify-modal input::placeholder { color: var(--skin-faint, #b5a492); }
+.notify-field-error {
+  font-size: 10.5px;
+  color: #b05a45;
+  margin-top: 5px;
+  min-height: 14px;
+  letter-spacing: 0.03em;
+}
+.notify-submit-error {
+  font-size: 11px;
+  color: #b05a45;
+  padding: 9px 12px;
+  border-left: 1.5px solid #b05a45;
+  background: rgba(176,90,69,0.04);
+  margin-bottom: 1rem;
+  display: none;
+  letter-spacing: 0.03em;
+}
+
+/* ── SUBMIT BUTTON ── */
+#notify-submit {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 14px;
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--skin-bg, #f7f2ec);
+  background: var(--skin-text, #2e2620);
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, opacity 0.2s;
+}
+#notify-submit:hover { background: var(--skin-accent, #9c7f5e); }
+#notify-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.notify-fine {
+  font-size: 10px;
+  color: var(--skin-faint, #b5a492);
+  text-align: center;
+  margin-top: 0.85rem;
+  letter-spacing: 0.06em;
+}
+
+/* ── SUCCESS STATE ── */
+#notify-success {
+  display: none;
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+  animation: fadeSlideUp 0.4s ease both;
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.notify-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+#notify-success-title {
+  font-family: var(--font-serif, 'Cormorant Garamond', serif);
+  font-size: 1.9rem;
+  font-weight: 300;
+  color: var(--skin-text, #2e2620);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+}
+#notify-success-body {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--skin-muted, #8c7b6b);
+  line-height: 1.8;
+}
+#notify-success-body strong {
+  color: var(--skin-text, #2e2620);
+  font-weight: 400;
+}
+
+@media (max-width: 480px) {
+  #notify-modal { padding: 2rem 1.5rem 2rem; }
+  #notify-title { font-size: 1.65rem; }
+}
+</style>
+
+<div id="footer-placeholder" data-skin="true"></div>
 <script src="../js/nav.js"></script>
+<script src="../js/forms.js"></script>
+<script>
+/* ═══════════════════════════════════════════════
+   INDIECO STORE — NOTIFY ME WAITLIST
+   ═══════════════════════════════════════════════
+
+   INTEGRATION — choose ONE mode and fill in the URL:
+
+   MODE: 'sheets'     → Uses submitToSheets() from forms.js
+                        Same Google Apps Script as your intake forms.
+                        Set APPS_SCRIPT_URL in forms.js — no change needed here.
+
+   MODE: 'mailchimp'  → Mailchimp Marketing API via a serverless proxy.
+                        See MAILCHIMP SETUP below.
+
+   MODE: 'formspree'  → https://formspree.io — zero backend, free tier.
+                        Create a form, paste URL as WAITLIST_ENDPOINT.
+
+   ── MAILCHIMP SETUP ──────────────────────────
+   Mailchimp's API key must NEVER be exposed in frontend code.
+   You need a one-function serverless proxy. Two easy options:
+
+   Option 1 — Cloudflare Worker (free, < 5 min):
+     a. Go to dash.cloudflare.com → Workers → Create Worker
+     b. Paste this worker code:
+
+        export default {
+          async fetch(request) {
+            if (request.method !== 'POST') return new Response('Method not allowed', { status: 405 });
+            const body = await request.json();
+            const MAILCHIMP_API_KEY = 'YOUR_MAILCHIMP_API_KEY';   // ← paste here
+            const LIST_ID           = 'YOUR_AUDIENCE_ID';          // ← paste here
+            const DATACENTER        = 'us21';                       // ← your MC datacenter (e.g. us21)
+            const url = `https://${DATACENTER}.api.mailchimp.com/3.0/lists/${LIST_ID}/members`;
+            const mc = await fetch(url, {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${MAILCHIMP_API_KEY}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email_address: body.email,
+                status: 'subscribed',
+                merge_fields: { FNAME: body.name || '', PRODUCT: body.product || '' },
+                tags: [body.product || 'Waitlist'],
+              }),
+            });
+            const result = await mc.json();
+            return new Response(JSON.stringify(result), {
+              headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            });
+          }
+        };
+
+     c. Deploy → copy the worker URL → paste as WAITLIST_ENDPOINT below.
+     d. Set WAITLIST_MODE = 'mailchimp'
+
+   Option 2 — Netlify Function (if you deploy on Netlify):
+     Same logic, just wrap in a Netlify serverless function.
+     See: https://docs.netlify.com/functions/overview/
+
+   ── AUDIENCE & TAGS ──────────────────────────
+   Each product submission sends a tag matching the product name
+   (e.g. "Authority Blueprint", "Speak to Power Workshop").
+   In Mailchimp: Audience → Tags → filter by tag to segment per product.
+
+   ═══════════════════════════════════════════════ */
+
+  const WAITLIST_ENDPOINT = 'YOUR_ENDPOINT_HERE';
+  // For 'sheets' mode: leave blank — uses APPS_SCRIPT_URL from forms.js automatically.
+  // For 'mailchimp': paste your Cloudflare Worker URL here.
+  // For 'formspree': paste your Formspree endpoint here.
+
+  const WAITLIST_MODE = 'sheets';
+  // Options: 'sheets' | 'mailchimp' | 'formspree'
+
+  /* ── DOM refs ── */
+  const overlay    = document.getElementById('notify-overlay');
+  const modal      = document.getElementById('notify-modal');
+  const closeBtn   = document.getElementById('notify-close');
+  const form       = document.getElementById('notify-form');
+  const emailInput = document.getElementById('notify-email');
+  const nameInput  = document.getElementById('notify-name');
+  const productInput = document.getElementById('notify-product-input');
+  const submitBtn  = document.getElementById('notify-submit');
+  const btnText    = document.getElementById('notify-btn-text');
+  const formWrap   = document.getElementById('notify-form-wrap');
+  const successDiv = document.getElementById('notify-success');
+  const emailErr   = document.getElementById('notify-email-error');
+  const nameErr    = document.getElementById('notify-name-error');
+  const submitErr  = document.getElementById('notify-submit-error');
+  const productNameSpan  = document.getElementById('notify-product-name');
+  const successProductEl = document.getElementById('notify-success-product');
+
+  /* ── Open modal ── */
+  document.querySelectorAll('.notify-trigger').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var product = btn.getAttribute('data-product') || 'this product';
+      productInput.value    = product;
+      productNameSpan.textContent  = product;
+      successProductEl.textContent = product;
+
+      // Reset state
+      form.style.display    = '';
+      formWrap.style.display = '';
+      successDiv.style.display = 'none';
+      emailInput.value = '';
+      nameInput.value  = '';
+      clearErrors();
+      submitErr.style.display = 'none';
+      submitBtn.disabled = false;
+      btnText.textContent = 'Join the waitlist →';
+
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      setTimeout(function(){ emailInput.focus(); }, 100);
+
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  /* ── Close modal ── */
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  /* ── Validation ── */
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
+  }
+  function clearErrors() {
+    emailErr.textContent = '';
+    nameErr.textContent  = '';
+    emailInput.classList.remove('invalid');
+    nameInput.classList.remove('invalid');
+  }
+  function validate() {
+    clearErrors();
+    var ok = true;
+    if (!nameInput.value.trim()) {
+      nameErr.textContent = 'Please enter your name.';
+      nameInput.classList.add('invalid');
+      ok = false;
+    }
+    if (!emailInput.value.trim()) {
+      emailErr.textContent = 'Please enter your email address.';
+      emailInput.classList.add('invalid');
+      ok = false;
+    } else if (!isValidEmail(emailInput.value)) {
+      emailErr.textContent = 'Please enter a valid email (e.g. you@yourco.com).';
+      emailInput.classList.add('invalid');
+      ok = false;
+    }
+    return ok;
+  }
+
+  /* ── Submit ── */
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!validate()) return;
+
+    // Dev mode — endpoint not configured
+    if (!WAITLIST_ENDPOINT || WAITLIST_ENDPOINT === 'YOUR_ENDPOINT_HERE') {
+      console.warn('IndieCo Waitlist: WAITLIST_ENDPOINT not configured. Simulating success.');
+      console.table({
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        product: productInput.value,
+        _submitted_at: new Date().toISOString()
+      });
+      showSuccess();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    btnText.textContent = 'Joining…';
+    submitErr.style.display = 'none';
+
+    var payload = {
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      product: productInput.value,
+      _submitted_at: new Date().toISOString(),
+      _page: window.location.pathname
+    };
+
+    try {
+      if (WAITLIST_MODE === 'sheets') {
+        // Delegates to submitToSheets() in forms.js — uses APPS_SCRIPT_URL automatically.
+        await submitToSheets(payload);
+      } else if (WAITLIST_MODE === 'mailchimp' || WAITLIST_MODE === 'formspree') {
+        // CORS-enabled POST — for Cloudflare Worker proxy or Formspree
+        var resp = await fetch(WAITLIST_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!resp.ok) throw new Error('Server error ' + resp.status);
+      }
+      showSuccess();
+    } catch (err) {
+      console.error('Waitlist submission error:', err);
+      submitBtn.disabled = false;
+      btnText.textContent = 'Join the waitlist →';
+      submitErr.textContent = 'Something went wrong. Please email us directly at contact@indieco.com.co';
+      submitErr.style.display = 'block';
+    }
+  });
+
+  /* ── Show success state ── */
+  function showSuccess() {
+    formWrap.style.display = 'none';
+    successDiv.style.display = 'block';
+  }
+
+  /* ── Live email validation on blur ── */
+  emailInput.addEventListener('blur', function() {
+    if (emailInput.value && !isValidEmail(emailInput.value)) {
+      emailErr.textContent = 'Please enter a valid email address.';
+      emailInput.classList.add('invalid');
+    } else {
+      emailErr.textContent = '';
+      emailInput.classList.remove('invalid');
+    }
+  });
+</script>
 </body>
 </html>
