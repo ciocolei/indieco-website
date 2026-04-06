@@ -8,6 +8,19 @@
 <link rel="stylesheet" href="css/base.css"/>
 <link rel="stylesheet" href="css/nav.css"/>
 <style>
+/* ════════════════════════════════════════
+   FADE-UP ANIMATION SYSTEM
+════════════════════════════════════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── HERO ── */
 .hero {
   position: relative;
@@ -81,6 +94,7 @@ canvas#hero-bg {
   padding: 14px 28px;
   animation: fadeUp 0.8s 1s both;
   transition: background 0.2s;
+  text-decoration: none;
 }
 .hero-cta:hover { background: #d4bc9b; }
 .hero-location {
@@ -91,6 +105,10 @@ canvas#hero-bg {
   letter-spacing: 0.32em;
   color: rgba(245,240,232,0.2);
   text-transform: uppercase;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
 }
 
 /* ── MARQUEE ── */
@@ -262,6 +280,246 @@ canvas#hero-bg {
   margin-bottom: 3.5rem;
 }
 
+/* ════════════════════════════════════════
+   CYCLE — ROTATING CONSTELLATION
+════════════════════════════════════════ */
+.cy-out {
+  padding: 5rem 0 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--white, #fff);
+}
+.cy-eyebrow {
+  font-family: var(--font-jost, 'Jost', sans-serif);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--ink-ghost, #aaa);
+  margin-bottom: 2.5rem;
+}
+.cy-wrap {
+  position: relative;
+  width: 440px;
+  height: 440px;
+  max-width: min(440px, 92vw);
+}
+.cy-ring {
+  position: absolute;
+  inset: 0;
+  animation: cy-spin 28s linear infinite;
+}
+.cy-ring:hover { animation-play-state: paused; }
+.cy-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.cy-inner {
+  animation: cy-counter 28s linear infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.cy-ring:hover .cy-inner { animation-play-state: paused; }
+.cy-num {
+  font-family: var(--font-jost, 'Jost', sans-serif);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--ink-ghost, #bbb);
+  font-weight: 300;
+}
+.cy-name {
+  font-family: var(--font-garant, 'Cormorant Garant', serif);
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--ink, #111);
+  white-space: nowrap;
+  line-height: 1.15;
+}
+.cy-tick {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #333;
+  margin-top: 2px;
+  opacity: 0.35;
+}
+.cy-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+.cy-brand {
+  font-family: var(--font-garant, 'Cormorant Garant', serif);
+  font-size: 1.25rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--ink, #111);
+}
+.cy-rule {
+  width: 22px;
+  height: 0.5px;
+  background: #ccc;
+  margin: 8px auto;
+}
+.cy-sub {
+  font-family: var(--font-jost, 'Jost', sans-serif);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-ghost, #bbb);
+  font-weight: 300;
+}
+@keyframes cy-spin    { to { transform: rotate(360deg); } }
+@keyframes cy-counter { to { transform: rotate(-360deg); } }
+
+/* ════════════════════════════════════════
+   USE CASES
+════════════════════════════════════════ */
+:root {
+  --uc-cream: #FAF8F5;
+  --uc-sand: #F0EDE7;
+  --uc-stone: #D9D4CC;
+  --uc-mink: #A89F97;
+  --uc-ink: #1C1A18;
+  --uc-soft: #7A746E;
+  --uc-active-bg: #EDE9E3;
+  --uc-active-border: #A89F97;
+}
+.uc {
+  padding: 6rem 0 5rem;
+}
+.uc-header { margin-bottom: 3.5rem; }
+.uc-sup {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--uc-mink);
+  margin-bottom: 1.25rem;
+  display: block;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+}
+.uc-h {
+  font-family: var(--font-garant, 'Cormorant Garant', serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--uc-ink);
+  max-width: 520px;
+}
+.uc-h em { font-style: italic; }
+.uc-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--uc-soft);
+  margin-top: 1rem;
+  line-height: 1.7;
+  max-width: 440px;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+}
+.uc-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+.uc-cat {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--uc-soft);
+  padding: 6px 14px;
+  border: 0.5px solid var(--uc-stone);
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+}
+.uc-cat:hover,
+.uc-cat.active {
+  background: var(--uc-ink);
+  color: var(--uc-cream);
+  border-color: var(--uc-ink);
+}
+.uc-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 6px;
+  align-items: flex-start;
+}
+.uc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--uc-soft);
+  padding: 9px 16px;
+  border: 0.5px solid var(--uc-stone);
+  background: var(--uc-sand);
+  cursor: pointer;
+  transition: all 0.22s;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+}
+.uc-tag:hover {
+  background: var(--uc-active-bg);
+  border-color: var(--uc-active-border);
+  color: var(--uc-ink);
+}
+.uc-tag.lit {
+  background: var(--uc-ink);
+  border-color: var(--uc-ink);
+  color: var(--uc-cream);
+}
+.uc-tag.dim { opacity: 0.35; }
+.uc-tag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--uc-mink);
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.uc-tag.lit .uc-tag-dot { background: var(--uc-cream); }
+.uc-detail {
+  margin-top: 2.5rem;
+  padding: 1.75rem 2rem;
+  border: 0.5px solid var(--uc-stone);
+  background: #fff;
+  min-height: 80px;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.uc-detail.show { opacity: 1; }
+.uc-detail-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--uc-mink);
+  margin-bottom: 8px;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+}
+.uc-detail-text {
+  font-family: var(--font-garant, 'Cormorant Garant', serif);
+  font-size: 1.25rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--uc-ink);
+  line-height: 1.5;
+}
+
 /* ── CTA STRIP ── */
 .cta-strip {
   background: var(--ink);
@@ -294,9 +552,11 @@ canvas#hero-bg {
   color: var(--dark);
   padding: 16px 36px;
   transition: background 0.2s;
+  text-decoration: none;
 }
 .btn-primary:hover { background: var(--gold-light); }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 760px) {
   .hero { padding: 0 1.5rem; }
   .hero-location { left: 1.5rem; }
@@ -308,6 +568,10 @@ canvas#hero-bg {
   }
   .intro-pillar:nth-child(2),
   .intro-pillar:nth-child(3) { padding-left: 0; }
+  .cy-wrap { width: 92vw; height: 92vw; }
+}
+@media (max-width: 540px) {
+  .uc { padding: 4rem 1.5rem 3.5rem; }
 }
 </style>
 </head>
@@ -409,6 +673,45 @@ canvas#hero-bg {
   </section>
 </div>
 
+<!-- ══ CYCLE — ANIMATED CONSTELLATION ══ -->
+<div class="cy-out">
+  <p class="cy-eyebrow fade-up">The Journey</p>
+  <div class="cy-wrap fade-up" style="transition-delay:0.15s">
+    <svg id="cy-svg" style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 440 440"></svg>
+    <div class="cy-ring" id="cy-ring"></div>
+    <div class="cy-center">
+      <div class="cy-brand">IndieCo</div>
+      <div class="cy-rule"></div>
+      <div class="cy-sub">Six stages</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ USE CASES ══ -->
+<div class="page-wrap">
+  <section class="uc">
+    <div class="uc-header fade-up">
+      <span class="uc-sup">IndieCo — Platform Use Cases</span>
+      <h2 class="uc-h">What our clients<br>use IndieCo <em>for.</em></h2>
+      <p class="uc-sub">From immigration to influence. Tap any use case to learn more.</p>
+    </div>
+    <div class="uc-filter fade-up" style="transition-delay:0.1s">
+      <button class="uc-cat active" onclick="filterTags('all',this)">All</button>
+      <button class="uc-cat" onclick="filterTags('visibility',this)">Visibility</button>
+      <button class="uc-cat" onclick="filterTags('publishing',this)">Publishing</button>
+      <button class="uc-cat" onclick="filterTags('speaking',this)">Speaking</button>
+      <button class="uc-cat" onclick="filterTags('media',this)">Media</button>
+      <button class="uc-cat" onclick="filterTags('legal',this)">Immigration</button>
+      <button class="uc-cat" onclick="filterTags('revenue',this)">Revenue</button>
+    </div>
+    <div class="uc-cloud fade-up" style="transition-delay:0.2s" id="uc-cloud"></div>
+    <div class="uc-detail" id="uc-detail">
+      <p class="uc-detail-label">Use case</p>
+      <p class="uc-detail-text" id="uc-detail-text"></p>
+    </div>
+  </section>
+</div>
+
 <!-- CTA STRIP -->
 <div class="cta-strip">
   <div class="cta-strip-inner">
@@ -423,7 +726,9 @@ canvas#hero-bg {
 
 <script src="js/nav.js"></script>
 <script>
-/* CANVAS BG */
+/* ════════════════════════════════════════
+   CANVAS BG — HERO
+════════════════════════════════════════ */
 (function(){
   const c = document.getElementById('hero-bg');
   const ctx = c.getContext('2d');
@@ -451,7 +756,9 @@ canvas#hero-bg {
   draw();
 })();
 
-/* MARQUEE */
+/* ════════════════════════════════════════
+   MARQUEE
+════════════════════════════════════════ */
 (function(){
   const words=['Creation','Authority','Influence','Scale','Revenue','Legacy'];
   const track = document.getElementById('mq-track');
@@ -460,7 +767,9 @@ canvas#hero-bg {
   track.innerHTML=html;
 })();
 
-/* TYPEWRITER */
+/* ════════════════════════════════════════
+   TYPEWRITER — HERO
+════════════════════════════════════════ */
 (function(){
   const phrases=[
     {title:'IndieCo'},
@@ -497,6 +806,139 @@ canvas#hero-bg {
     }
   }
   loop();
+})();
+
+/* ════════════════════════════════════════
+   CYCLE — ROTATING CONSTELLATION
+════════════════════════════════════════ */
+(function(){
+  const stages=[['01','Idea'],['02','Book'],['03','Bestseller'],['04','Media'],['05','Speaking'],['06','Revenue']];
+  const cx=220,cy=220,r=160,n=stages.length;
+  const svg=document.getElementById('cy-svg');
+  const ring=document.getElementById('cy-ring');
+
+  function ns(t){ return document.createElementNS('http://www.w3.org/2000/svg',t); }
+  function attr(el,o){ Object.entries(o).forEach(([k,v])=>el.setAttribute(k,v)); return el; }
+
+  /* Dashed orbit ring */
+  svg.appendChild(attr(ns('circle'),{cx,cy,r,fill:'none',stroke:'#111','stroke-width':'0.5',opacity:'0.12','stroke-dasharray':'4 8'}));
+  /* Inner reference ring */
+  svg.appendChild(attr(ns('circle'),{cx,cy,r:54,fill:'none',stroke:'#111','stroke-width':'0.5',opacity:'0.1'}));
+
+  /* Connector lines between nodes */
+  const pts=stages.map((_,i)=>{
+    const a=(i/n)*2*Math.PI-Math.PI/2;
+    return [cx+r*Math.cos(a), cy+r*Math.sin(a)];
+  });
+  pts.forEach(([x1,y1],i)=>{
+    const [x2,y2]=pts[(i+1)%n];
+    svg.appendChild(attr(ns('line'),{x1,y1,x2,y2,stroke:'#111','stroke-width':'0.5',opacity:'0.08'}));
+  });
+
+  /* Dot + label nodes */
+  stages.forEach(([num,name],i)=>{
+    const a=(i/n)*2*Math.PI-Math.PI/2;
+    const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a);
+    svg.appendChild(attr(ns('circle'),{cx:x,cy:y,r:2.5,fill:'#333',opacity:'0.45'}));
+    const node=document.createElement('div');
+    node.className='cy-node';
+    node.style.cssText=`left:${x}px;top:${y}px`;
+    node.innerHTML=`<div class="cy-inner"><span class="cy-num">${num}</span><span class="cy-name">${name}</span><span class="cy-tick"></span></div>`;
+    ring.appendChild(node);
+  });
+})();
+
+/* ════════════════════════════════════════
+   USE CASES
+════════════════════════════════════════ */
+const tags=[
+  {label:"O1A Visa Documentation",cat:"legal",desc:"We build comprehensive O1A extraordinary ability portfolios — compiling media coverage, published works, speaking records, and peer recognition into a compelling case file."},
+  {label:"Book Publishing",cat:"publishing",desc:"From manuscript strategy to final print — we guide you through the full publishing process with editorial rigour and market positioning built in from day one."},
+  {label:"Bestseller Strategy",cat:"publishing",desc:"We engineer launch campaigns that drive coordinated sales velocity across key retail windows to achieve bestseller rankings that stick."},
+  {label:"Thought Leadership Positioning",cat:"visibility",desc:"We define, articulate, and amplify the intellectual framework only you can own — giving your expertise a shape the world can recognize."},
+  {label:"Keynote Speaking Placement",cat:"speaking",desc:"We place you on global conference stages, industry summits, and main-stage keynote slots aligned to your field and ambitions."},
+  {label:"Media Feature Campaigns",cat:"media",desc:"We secure editorial features, podcast appearances, and press coverage in publications that compound your credibility over time."},
+  {label:"PR & Press Strategy",cat:"media",desc:"Strategic, not scattershot. We build press narratives that position you as a primary source, not just a comment."},
+  {label:"Personal Brand Architecture",cat:"visibility",desc:"We design the full brand framework — voice, positioning, visual direction, and content strategy — for leaders building a public profile."},
+  {label:"LinkedIn Authority Building",cat:"visibility",desc:"We develop and execute a LinkedIn content and presence strategy that grows your following and converts visibility into inbound opportunities."},
+  {label:"Podcast Tour Strategy",cat:"media",desc:"We book you onto the top podcasts in your industry and prepare you to deliver memorable, shareable conversations."},
+  {label:"Speaking Bio & Kit",cat:"speaking",desc:"We craft speaker bios, one-sheets, and media kits that command the attention of event organizers and booking teams."},
+  {label:"Award & Recognition Submissions",cat:"legal",desc:"We identify and prepare submissions for industry awards, fellowships, and recognition programs that strengthen your authority portfolio."},
+  {label:"Academic & Research Publishing",cat:"publishing",desc:"We assist experts in translating research and expertise into accessible books and published thought pieces that reach mainstream audiences."},
+  {label:"TEDx Application Support",cat:"speaking",desc:"We develop your TED idea worth spreading, write your application narrative, and prepare you for the curation process."},
+  {label:"Executive Visibility Strategy",cat:"visibility",desc:"For C-suite leaders who need a public presence aligned with their business — we build the full platform without the noise."},
+  {label:"Founder Authority Building",cat:"visibility",desc:"We help founders turn company credibility into personal authority — so your story scales beyond your startup."},
+  {label:"Revenue Ecosystem Design",cat:"revenue",desc:"We map and build the monetization architecture behind your authority — courses, advisory roles, speaking fees, licensing, and more."},
+  {label:"Course & IP Monetization",cat:"revenue",desc:"We structure your expertise into scalable digital products — from signature frameworks to online courses and licensing models."},
+  {label:"Speaking Fee Positioning",cat:"revenue",desc:"We help you move from free talks to paid keynotes by building the credibility infrastructure that justifies premium fees."},
+  {label:"Advisory Board Placements",cat:"revenue",desc:"We position you for advisory and board roles with companies and organizations aligned to your expertise and ambitions."},
+  {label:"Book Proposal Writing",cat:"publishing",desc:"We write compelling, market-ready book proposals that open doors with traditional publishers and literary agents."},
+  {label:"Literary Agent Introduction",cat:"publishing",desc:"We connect you with the right literary agents and publishers through warm introductions backed by a polished proposal."},
+  {label:"Media Training",cat:"media",desc:"We prepare you to own every interview — on camera, on stage, or on air — with confidence and message precision."},
+  {label:"Crisis Communication & Reputation",cat:"media",desc:"When your narrative needs protecting or correcting, we craft the strategy and messaging that controls the story."},
+  {label:"Global Conference Strategy",cat:"speaking",desc:"We identify the top-tier global conferences in your field and map a multi-year speaking trajectory that builds your international profile."},
+  {label:"Ghostwriting & Editorial",cat:"publishing",desc:"We write in your voice — articles, op-eds, LinkedIn posts, and book chapters — with the quality and precision your expertise deserves."},
+  {label:"Op-Ed Placement",cat:"media",desc:"We write and place op-eds in major publications — giving your perspective a platform that reaches decision-makers and influencers."},
+  {label:"Documentary & Media Production",cat:"media",desc:"For clients ready for long-form storytelling, we develop and produce short documentaries and video content that deepen authority."},
+  {label:"Immigration Evidence Portfolio",cat:"legal",desc:"We compile and frame the full body of evidence needed for immigration petitions — including critical role letters, peer testimonials, and media records."},
+  {label:"Extraordinary Ability Case Building",cat:"legal",desc:"We work alongside immigration attorneys to build the narrative and evidentiary file that demonstrates extraordinary ability across EB-1A and O1A categories."},
+  {label:"National Interest Waiver Support",cat:"legal",desc:"We document your impact and contributions in a format that supports NIW petitions — making the case for your national and global significance."},
+  {label:"EB-1A Green Card Documentation",cat:"legal",desc:"We build the authority record — publications, media, speaking, awards — that strengthens EB-1A extraordinary ability green card applications."},
+  {label:"Expert Witness Profile Building",cat:"legal",desc:"We develop public records and citations that support your designation as a recognized expert in legal and regulatory proceedings."},
+  {label:"Consulting Practice Launch",cat:"revenue",desc:"We help established experts launch consulting practices with a clear positioning, offer structure, and visibility strategy from day one."},
+  {label:"Brand Partnership Strategy",cat:"revenue",desc:"We position you for commercial partnerships with brands and organizations that align with your platform and values."},
+  {label:"University & Academic Positioning",cat:"speaking",desc:"We build the public profile that supports adjunct faculty appointments, visiting scholar invitations, and academic speaking engagements."},
+  {label:"Retreat & Workshop Facilitation",cat:"revenue",desc:"We help thought leaders design and market premium in-person retreats and workshops that command high-ticket pricing."},
+  {label:"Newsletter & Community Building",cat:"visibility",desc:"We develop the editorial strategy and launch plan for newsletters and online communities that turn an audience into a loyal following."},
+  {label:"Content Strategy & Calendar",cat:"visibility",desc:"We build a 90-day rolling content strategy across platforms — ensuring consistent, on-brand visibility without the burnout."},
+  {label:"Influencer & Creator Economy Entry",cat:"visibility",desc:"For experts transitioning into the creator economy, we build the bridge from professional credibility to platform-native influence."},
+  {label:"International Market Expansion",cat:"speaking",desc:"We extend your platform beyond your home market — securing speaking, media, and publishing opportunities across Asia, Europe, and the Americas."},
+  {label:"Legacy & Impact Documentation",cat:"publishing",desc:"We help senior leaders and retiring executives capture their body of work in published form — memoirs, legacy books, and impact reports."},
+  {label:"Investor & Fundraising Narrative",cat:"visibility",desc:"We help founders and fund managers build the thought leadership presence that attracts LPs, investors, and strategic partners."},
+];
+
+const cloud      = document.getElementById('uc-cloud');
+const detail     = document.getElementById('uc-detail');
+const detailText = document.getElementById('uc-detail-text');
+
+function renderTags(filter){
+  cloud.innerHTML='';
+  tags.forEach(t=>{
+    const el=document.createElement('button');
+    el.className='uc-tag'+(filter!=='all'&&t.cat!==filter?' dim':'');
+    el.innerHTML=`<span class="uc-tag-dot"></span>${t.label}`;
+    el.onclick=()=>selectTag(el,t);
+    cloud.appendChild(el);
+  });
+}
+function selectTag(el,t){
+  document.querySelectorAll('.uc-tag').forEach(x=>x.classList.remove('lit'));
+  el.classList.add('lit');
+  detailText.textContent=t.desc;
+  detail.classList.add('show');
+}
+function filterTags(cat,btn){
+  document.querySelectorAll('.uc-cat').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTags(cat);
+  detail.classList.remove('show');
+}
+renderTags('all');
+
+/* ════════════════════════════════════════
+   SCROLL ANIMATIONS — fade-up
+════════════════════════════════════════ */
+(function(){
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 })();
 </script>
 </body>
