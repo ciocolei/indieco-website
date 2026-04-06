@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<!-- ── SEO ── -->
+<title>The IndieCo Podcast — Conversations on Authority, Influence & Revenue</title>
+<meta name="description" content="The IndieCo Podcast features founders, executives, and experts who have turned their story into authority, influence, and revenue. New episodes weekly."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.indieco.com.co/pages/podcast.html"/>
+
+<!-- ── Open Graph ── -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="The IndieCo Podcast — Conversations on Authority, Influence & Revenue"/>
+<meta property="og:description" content="Weekly conversations with founders, executives, and industry experts on building authority, influence, and revenue."/>
+<meta property="og:url" content="https://www.indieco.com.co/pages/podcast.html"/>
+<meta property="og:site_name" content="IndieCo"/>
+
+<!-- ── Podcast Schema ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "PodcastSeries",
+  "name": "The IndieCo Podcast",
+  "description": "Conversations with founders, executives, and experts on authority, influence, and revenue.",
+  "url": "https://www.indieco.com.co/pages/podcast.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "IndieCo",
+    "url": "https://www.indieco.com.co"
+  }
+}
+</script>
+
+<link rel="stylesheet" href="../css/base.css"/>
+<link rel="stylesheet" href="../css/nav.css"/>
+
+<style>
+/* ── PODCAST HERO ── */
+.pod-hero {
+  background: var(--dark);
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 3rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.pod-hero-noise {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(184,151,106,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 70%, rgba(184,151,106,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.pod-hero-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 2rem;
+  animation: fadeUp 0.6s 0.2s both;
+}
+.pod-hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(184,151,106,0.7);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.6s 0.3s both;
+}
+.pod-hero-h {
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #f5f0e8;
+  margin-bottom: 2rem;
+  max-width: 780px;
+  animation: fadeUp 0.7s 0.4s both;
+}
+.pod-hero-h em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.pod-hero-body {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(245,240,232,0.45);
+  max-width: 440px;
+  margin-bottom: 3rem;
+  animation: fadeUp 0.7s 0.55s both;
+}
+.pod-hero-actions {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.7s both;
+}
+.btn-gold {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  background: var(--gold);
+  color: var(--dark);
+  padding: 14px 32px;
+  transition: background 0.2s;
+  display: inline-block;
+}
+.btn-gold:hover { background: var(--gold-light); }
+.btn-ghost {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(245,240,232,0.55);
+  padding: 14px 32px;
+  border: 0.5px solid rgba(245,240,232,0.15);
+  transition: color 0.2s, border-color 0.2s;
+  display: inline-block;
+}
+.btn-ghost:hover {
+  color: #f5f0e8;
+  border-color: rgba(245,240,232,0.35);
+}
+.pod-hero-location {
+  position: absolute;
+  top: 6rem;
+  right: 3rem;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.15);
+  writing-mode: vertical-rl;
+}
+
+/* ── STATS BAR ── */
+.pod-stats {
+  background: var(--gold);
+  padding: 1.2rem 3rem;
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.pod-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.pod-stat-val {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+}
+.pod-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(14,13,11,0.55);
+}
+
+/* ── FEATURED EPISODE ── */
+.featured-ep {
+  padding: 6rem 0;
+  border-bottom: 0.5px solid var(--rule);
+}
+.featured-ep-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.featured-badge {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.featured-badge::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 0.5px;
+  background: var(--gold);
+}
+.featured-ep-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.featured-ep-title em { font-style: italic; }
+.featured-ep-meta {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+.featured-ep-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ink-mute);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+.featured-ep-player {
+  background: var(--sand);
+  border: 0.5px solid var(--rule);
+  padding: 1.75rem 2rem;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.featured-ep-player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.ep-placeholder {
+  text-align: center;
+}
+.ep-placeholder-play {
+  width: 56px;
+  height: 56px;
+  border: 0.5px solid var(--rule);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+.ep-placeholder-play svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--ink-ghost);
+  margin-left: 3px;
+}
+.ep-placeholder-text {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+}
+
+/* ── EPISODE GRID ── */
+.ep-grid-section { padding: 6rem 0; }
+.ep-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 0.5px solid var(--rule);
+  padding-bottom: 1.25rem;
+  margin-bottom: 3rem;
+}
+.ep-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 0;
+  border-top: 0.5px solid var(--rule);
+  border-left: 0.5px solid var(--rule);
+}
+.ep-card {
+  padding: 2.25rem 1.75rem;
+  border-right: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  transition: background 0.25s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.ep-card:hover { background: var(--sand); }
+.ep-card-num {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--ink-ghost);
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ep-card-num-val {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--rule);
+  line-height: 1;
+}
+.ep-card-guest {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.ep-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 0.9rem;
+  flex: 1;
+}
+.ep-card-title em { font-style: italic; }
+.ep-card-desc {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--ink-mute);
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+.ep-card-meta {
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--ink-ghost);
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+.ep-card-tag {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  border: 0.5px solid var(--rule);
+  padding: 3px 9px;
+  margin-top: 0.75rem;
+  align-self: flex-start;
+}
+
+/* ── GUEST CTA ── */
+.guest-cta {
+  background: var(--cream);
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  padding: 6rem 0;
+}
+.guest-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.guest-cta-h {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+.guest-cta-h em { font-style: italic; }
+.guest-cta-body {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ink-mute);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+.guest-cta-criteria {
+  list-style: none;
+  margin-bottom: 2.5rem;
+}
+.guest-cta-criteria li {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  padding: 0.65rem 0;
+  border-bottom: 0.5px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.guest-cta-criteria li::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* ── EMAIL CAPTURE ── */
+.email-capture {
+  background: var(--ink);
+  padding: 5rem 3rem;
+  text-align: center;
+}
+.email-capture-inner {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.email-capture-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.3);
+  margin-bottom: 1.5rem;
+}
+.email-capture-h {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  color: #f5f0e8;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+.email-capture-h em { font-style: italic; color: var(--gold-light); }
+.email-capture-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(245,240,232,0.4);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+.email-form {
+  display: flex;
+  gap: 0;
+  max-width: 420px;
+  margin: 0 auto 1rem;
+}
+.email-form input[type="email"] {
+  flex: 1;
+  background: rgba(245,240,232,0.06);
+  border: 0.5px solid rgba(245,240,232,0.12);
+  border-right: none;
+  padding: 13px 18px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: #f5f0e8;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.email-form input[type="email"]::placeholder { color: rgba(245,240,232,0.25); }
+.email-form input[type="email"]:focus { border-color: rgba(184,151,106,0.4); }
+.email-form button {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 13px 24px;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.email-form button:hover { background: var(--gold-light); }
+.email-form-note {
+  font-size: 10.5px;
+  color: rgba(245,240,232,0.2);
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 860px) {
+  .pod-hero { padding: 0 1.5rem 4rem; }
+  .pod-hero-location { display: none; }
+  .pod-stats { padding: 1.2rem 1.5rem; gap: 1.5rem; }
+  .featured-ep-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .ep-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .guest-cta-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .email-form { flex-direction: column; }
+  .email-form input[type="email"] { border-right: 0.5px solid rgba(245,240,232,0.12); border-bottom: none; }
+}
+@media (max-width: 540px) {
+  .ep-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV (dark mode) -->
+<div id="nav-placeholder" data-dark="true"></div>
+
+<!-- HERO -->
+<section class="pod-hero">
+  <div class="pod-hero-noise"></div>
+  <div class="pod-hero-rule"></div>
+  <p class="pod-hero-eyebrow">The IndieCo Podcast &nbsp;·&nbsp; Est. 2020</p>
+  <h1 class="pod-hero-h">The conversations<br>that build <em>lasting</em><br>authority.</h1>
+  <p class="pod-hero-body">Every week, we sit with founders, executives, and industry experts who have turned their expertise into influence. No fluff. No panels. One conversation — recorded for the record.</p>
+  <div class="pod-hero-actions">
+    <a href="#episodes" class="btn-gold">Browse episodes →</a>
+    <a href="podcast-guest.html" class="btn-ghost">Apply to be a guest</a>
+  </div>
+  <span class="pod-hero-location">Manila — New York</span>
+</section>
+
+<!-- STATS BAR -->
+<div class="pod-stats">
+  <div class="pod-stat">
+    <span class="pod-stat-val">4,000+</span>
+    <span class="pod-stat-label">Clients served</span>
+  </div>
+  <div class="pod-stat">
+    <span class="pod-stat-val">10M+</span>
+    <span class="pod-stat-label">Books sold</span>
+  </div>
+  <div class="pod-stat">
+    <span class="pod-stat-val">5+</span>
+    <span class="pod-stat-label">Years in publishing</span>
+  </div>
+  <div class="pod-stat">
+    <span class="pod-stat-val">Global</span>
+    <span class="pod-stat-label">Authority placements</span>
+  </div>
+</div>
+
+<!-- FEATURED EPISODE -->
+<div class="page-wrap">
+  <section class="featured-ep">
+    <div class="featured-ep-inner">
+      <div>
+        <p class="featured-badge">Latest episode</p>
+        <p class="featured-ep-meta">
+          <span>Ep. 001</span>
+          <span>·</span>
+          <span>April 2026</span>
+          <span>·</span>
+          <span>58 min</span>
+        </p>
+        <h2 class="featured-ep-title fade-up">The difference between<br>visibility and <em>authority.</em></h2>
+        <p class="featured-ep-body">Most founders are building in public — but building toward the wrong thing. In this episode, Leah Cioco breaks down the authority ecosystem: why a book is not the goal, how media compounds over time, and the exact framework that takes experts from invisible to indispensable.</p>
+        <a href="podcast-guest.html" class="btn-gold fade-up">Apply to be a guest →</a>
+      </div>
+      <div class="featured-ep-player fade-up">
+        <!--
+          REPLACE THIS with your actual embed.
+          Spotify: <iframe src="https://open.spotify.com/embed/episode/ID" ...>
+          YouTube: <iframe src="https://www.youtube.com/embed/ID" ...>
+          Buzzsprout: <iframe src="https://www.buzzsprout.com/..." ...>
+        -->
+        <div class="ep-placeholder">
+          <div class="ep-placeholder-play">
+            <svg viewBox="0 0 16 16"><polygon points="3,1 13,8 3,15"/></svg>
+          </div>
+          <p class="ep-placeholder-text">Episode embed coming soon</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- EPISODE GRID -->
+<div class="page-wrap">
+  <section class="ep-grid-section" id="episodes">
+    <div class="ep-grid-header">
+      <span class="intro-eyebrow">All episodes</span>
+      <span class="intro-eyebrow">Updated weekly</span>
+    </div>
+
+    <div class="ep-grid">
+
+      <!-- Episode template — duplicate and fill for each new episode -->
+      <article class="ep-card fade-up" itemscope itemtype="https://schema.org/PodcastEpisode">
+        <div class="ep-card-num">
+          <span>Ep. 001</span>
+          <span class="ep-card-num-val">01</span>
+        </div>
+        <p class="ep-card-guest">Leah Cioco</p>
+        <h3 class="ep-card-title" itemprop="name">The difference between visibility and <em>authority.</em></h3>
+        <p class="ep-card-desc" itemprop="description">Why building in public is not enough — and what the authority ecosystem actually looks like from the inside.</p>
+        <div class="ep-card-meta">
+          <span itemprop="datePublished">April 2026</span>
+          <span>·</span>
+          <span>58 min</span>
+        </div>
+        <span class="ep-card-tag">Authority</span>
+      </article>
+
+      <article class="ep-card fade-up" style="transition-delay:0.08s" itemscope itemtype="https://schema.org/PodcastEpisode">
+        <div class="ep-card-num">
+          <span>Ep. 002</span>
+          <span class="ep-card-num-val">02</span>
+        </div>
+        <p class="ep-card-guest">Guest Name</p>
+        <h3 class="ep-card-title" itemprop="name">Your episode title goes <em>here.</em></h3>
+        <p class="ep-card-desc" itemprop="description">A short, SEO-optimized description of what this conversation covers. One or two crisp sentences.</p>
+        <div class="ep-card-meta">
+          <span itemprop="datePublished">Coming soon</span>
+          <span>·</span>
+          <span>60 min</span>
+        </div>
+        <span class="ep-card-tag">Publishing</span>
+      </article>
+
+      <article class="ep-card fade-up" style="transition-delay:0.16s" itemscope itemtype="https://schema.org/PodcastEpisode">
+        <div class="ep-card-num">
+          <span>Ep. 003</span>
+          <span class="ep-card-num-val">03</span>
+        </div>
+        <p class="ep-card-guest">Guest Name</p>
+        <h3 class="ep-card-title" itemprop="name">Your episode title goes <em>here.</em></h3>
+        <p class="ep-card-desc" itemprop="description">A short, SEO-optimized description of what this conversation covers. One or two crisp sentences.</p>
+        <div class="ep-card-meta">
+          <span itemprop="datePublished">Coming soon</span>
+          <span>·</span>
+          <span>60 min</span>
+        </div>
+        <span class="ep-card-tag">Media</span>
+      </article>
+
+      <!-- ADD MORE EPISODE CARDS HERE following the same pattern -->
+
+    </div>
+  </section>
+</div>
+
+<!-- GUEST APPLICATION CTA -->
+<section class="guest-cta">
+  <div class="page-wrap">
+    <div class="guest-cta-inner">
+      <div class="fade-up">
+        <p class="section-label">Be a guest</p>
+        <h2 class="guest-cta-h">Your story belongs<br>on <em>record.</em></h2>
+        <p class="guest-cta-body">We invite founders, executives, and industry experts for a complimentary one-hour recorded conversation. No pitch. No agenda except yours.</p>
+        <ul class="guest-cta-criteria">
+          <li>Founder, executive, investor, or recognized expert</li>
+          <li>A story, framework, or perspective worth recording</li>
+          <li>Ready to be seen as the authority you already are</li>
+          <li>Willing to share the published conversation with your audience</li>
+        </ul>
+        <a href="podcast-guest.html" class="btn-primary fade-up">Apply to be a guest →</a>
+      </div>
+      <div class="fade-up" style="transition-delay:0.15s">
+        <div style="background:var(--dark);padding:2.5rem;border:0.5px solid var(--rule-soft);">
+          <p style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:1.75rem;">What to expect</p>
+          <div style="display:flex;flex-direction:column;gap:1.5rem;">
+            <div>
+              <p style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">The conversation</p>
+              <p style="font-size:13px;font-weight:300;color:rgba(245,240,232,0.5);line-height:1.75;">One hour. Recorded. Edited with care. We focus on your ideas, your story, and the frameworks behind your success.</p>
+            </div>
+            <div>
+              <p style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">The distribution</p>
+              <p style="font-size:13px;font-weight:300;color:rgba(245,240,232,0.5);line-height:1.75;">Published across IndieCo's platforms. Clipped for social. Yours to use as a permanent credibility asset.</p>
+            </div>
+            <div>
+              <p style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">The investment</p>
+              <p style="font-size:13px;font-weight:300;color:rgba(245,240,232,0.5);line-height:1.75;">Complimentary. We believe the right conversations should happen — full stop.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL CAPTURE -->
+<div class="email-capture">
+  <div class="email-capture-inner">
+    <p class="email-capture-eyebrow fade-up">Never miss an episode</p>
+    <h2 class="email-capture-h fade-up">The conversations<br>you can't afford <em>to miss.</em></h2>
+    <p class="email-capture-sub fade-up">New episodes every week. Occasional dispatches on authority, publishing, and the business of ideas.</p>
+    <form class="email-form fade-up" id="podcast-subscribe-form" novalidate>
+      <input type="email" name="email" placeholder="your@email.com" required autocomplete="email"/>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="email-form-note fade-up">No spam. Unsubscribe at any time.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<script src="../js/nav.js"></script>
+<script src="../js/forms.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  attachFormHandler(
+    document.getElementById('podcast-subscribe-form'),
+    {
+      onSuccess: function(data) {
+        const form = document.getElementById('podcast-subscribe-form');
+        form.innerHTML = '<p style="font-size:13px;color:rgba(245,240,232,0.6);letter-spacing:0.06em;font-style:italic;">You\'re on the list.</p>';
+      },
+      onError: function() {
+        alert('Something went wrong. Please try again.');
+      }
+    }
+  );
+});
+</script>
+</body>
+</html>
