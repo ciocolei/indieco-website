@@ -7,7 +7,7 @@
   const NAV_LINKS = [
     { label: 'Home',             href: '/index.html' },
     { label: 'About',            href: '/pages/about.html' },
-    { label: 'Services',         href: '/pages/premier-services.html' },
+    { label: 'Premier',         href: '/pages/premier-services.html' },
     { label: 'Standard',         href: '/pages/standard-services.html' },
     { label: 'Store',            href: '/pages/store.html' },
     { label: 'Work With Us',     href: '/pages/work-with-us.html', cta: true },
