@@ -107,6 +107,206 @@ canvas#ab-canvas {
   color: var(--ink-mute);
 }
 
+/* ══════════════════════════════
+   TEAM / CREDENTIALS SECTION
+══════════════════════════════ */
+.team {
+  background: var(--ink);
+  padding: 8rem 0 7rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.team::before {
+  content: 'TEAM';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-serif);
+  font-size: clamp(10rem, 22vw, 20rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.022);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 0.1em;
+}
+
+.team-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.team-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  padding-bottom: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.team-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  font-weight: 300;
+}
+
+.team-eyebrow.gold { color: var(--gold); }
+
+.team-h {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 300;
+  color: #f5f0e8;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.team-h em { font-style: italic; color: var(--gold); }
+
+.team-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 4.5rem;
+}
+
+/* Member cards */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 0.5px solid rgba(255,255,255,0.08);
+  border-left: 0.5px solid rgba(255,255,255,0.08);
+  margin-bottom: 5rem;
+}
+
+.team-card {
+  border-right: 0.5px solid rgba(255,255,255,0.08);
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.35s;
+}
+
+.team-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+.team-card:hover { background: rgba(255,255,255,0.025); }
+.team-card:hover::after { transform: scaleX(1); }
+
+.team-card-role {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.team-card-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 300;
+  color: #f5f0e8;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.team-card-bio {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.team-creds {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.team-cred {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 300;
+  line-height: 1.4;
+  transition: color 0.3s;
+}
+
+.team-card:hover .team-cred { color: rgba(255,255,255,0.45); }
+
+.team-cred::before {
+  content: '';
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.team-cred .hl {
+  color: rgba(255,255,255,0.55);
+  font-weight: 300;
+}
+
+/* Credential bar — horizontal strip below the cards */
+.team-cred-bar {
+  border-top: 0.5px solid rgba(255,255,255,0.08);
+  padding-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.team-cred-stat {
+  padding: 0 2rem 0 0;
+  border-right: 0.5px solid rgba(255,255,255,0.08);
+}
+.team-cred-stat:last-child { border-right: none; padding-left: 2rem; padding-right: 0; }
+.team-cred-stat:nth-child(2),
+.team-cred-stat:nth-child(3) { padding: 0 2rem; }
+
+.team-cred-stat-num {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.team-cred-stat-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
 /* ── FAQ ── */
 .faq-wrap { background: var(--cream); padding: 0 24px; }
 .faq {
@@ -188,19 +388,19 @@ canvas#ab-canvas {
 
 /* ── SUPPORTERS ── */
 .supporters {
-  background: var(--ink);
-  padding: 80px 0;
+  background: var(--cream);
+  border-top: 0.5px solid var(--rule);
+  padding: 60px 0;
   text-align: center;
   overflow: hidden;
 }
 .supporters-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
-  font-weight: 300;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.25em;
+  font-size: 10px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  margin-bottom: 3rem;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  margin-bottom: 2.5rem;
 }
 .supporters-marquee { width: 100%; overflow: hidden; position: relative; }
 .supporters-track {
@@ -214,12 +414,12 @@ canvas#ab-canvas {
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: var(--ink-ghost);
   white-space: nowrap;
   font-weight: 300;
   transition: color 0.3s;
 }
-.supporters-track span:hover { color: rgba(255,255,255,0.8); }
+.supporters-track span:hover { color: var(--ink); }
 .supporters-marquee::before,
 .supporters-marquee::after {
   content: '';
@@ -230,10 +430,76 @@ canvas#ab-canvas {
   z-index: 2;
   pointer-events: none;
 }
-.supporters-marquee::before { left: 0; background: linear-gradient(to right, var(--ink), transparent); }
-.supporters-marquee::after  { right: 0; background: linear-gradient(to left, var(--ink), transparent); }
+.supporters-marquee::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+.supporters-marquee::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
 @keyframes scroll-fwd { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
+/* ── CONVICTION STRIP ── */
+.conviction {
+  padding: 5rem 0;
+  background: var(--cream-warm);
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+}
+.conviction-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+.conviction-item {
+  padding: 0 3rem 0 0;
+  border-right: 0.5px solid var(--rule);
+  position: relative;
+  transition: padding-left 0.3s;
+}
+.conviction-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1.5px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.conviction-item:hover { padding-left: 10px; }
+.conviction-item:hover::before { transform: scaleY(1); }
+.conviction-item:last-child { border-right: none; padding-left: 3rem; padding-right: 0; }
+.conviction-item:nth-child(2) { padding-left: 3rem; }
+.conviction-num {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.conviction-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+.conviction-sub {
+  font-size: 12px;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .team-grid { grid-template-columns: 1fr; }
+  .team-cred-bar { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .team-cred-stat { border-right: none; padding: 0 !important; }
+  .conviction-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .conviction-item { border-right: none; padding: 0 0 2rem !important; border-bottom: 0.5px solid var(--rule); }
+  .conviction-item:last-child { border-bottom: none; padding-bottom: 0 !important; }
+}
 @media (max-width: 768px) {
   .ab-body { grid-template-columns: 1fr; gap: 40px; }
 }
@@ -248,7 +514,7 @@ canvas#ab-canvas {
   <canvas id="ab-canvas"></canvas>
   <div class="ab-hero-inner">
     <p class="ab-eyebrow">About Us</p>
-    <h1 class="ab-headline">We do not publish books.We engineer <em>authority<br>ecosystems.</em></h1>
+    <h1 class="ab-headline">We do not publish books.<br>We engineer <em>authority<br>ecosystems.</em></h1>
     <div class="ab-rule"></div>
   </div>
 </div>
@@ -260,8 +526,8 @@ canvas#ab-canvas {
     <h2 class="ab-statement">A public relations and media advisory built for <em>independent authority.</em></h2>
   </div>
   <div class="ab-copy">
-    <p>Founded in 2020, IndieCo IndieCo is AI designed for media and authority. After over 6 years of manually publishing clients, managing casting calls and everything in between, we've built a secure platform that places founders and executives in top-tier press, on marquee stages, and between the covers of their next book. across Manila and New York City. A book is not the goal. A keynote is not the goal. Authority is.</p>
-    <p>We believe that the world's most important ideas live inside people who have not yet been given the stage. Our mission is to change that — by building the infrastructure that turns expertise into influence, and influence into revenue.</p>
+    <p>Founded in 2020, IndieCo is AI designed for media and authority. After over six years of manually publishing clients, managing casting calls and everything in between, we built a secure platform that places founders and executives in top-tier press, on marquee stages, and between the covers of their next book — across Manila and New York City.</p>
+    <p>A book is not the goal. A keynote is not the goal. Authority is. We believe the world's most important ideas live inside people who have not yet been given the stage. Our mission is to change that — by building the infrastructure that turns expertise into influence, and influence into revenue.</p>
     <p>Through fresh strategic thinking, a world-class speaker network, and a transformative peer community, we take the most enthusiastic minds in any field and make them impossible to ignore.</p>
   </div>
 </div>
@@ -285,6 +551,113 @@ canvas#ab-canvas {
     <div class="ab-stat-label">Countries served</div>
   </div>
 </div>
+
+<!-- CONVICTIONS -->
+<div class="conviction">
+  <div class="conviction-inner">
+    <div class="conviction-item fade-up">
+      <span class="conviction-num">I</span>
+      <p class="conviction-text">Authority is an ecosystem, not a single asset.</p>
+      <p class="conviction-sub">A book, a stage, a media record, a community — all of it together or none of it at all.</p>
+    </div>
+    <div class="conviction-item fade-up" style="transition-delay:0.1s">
+      <span class="conviction-num">II</span>
+      <p class="conviction-text">The world's best ideas belong to people, not corporations.</p>
+      <p class="conviction-sub">We exist to give independent thinkers the same infrastructure that institutions take for granted.</p>
+    </div>
+    <div class="conviction-item fade-up" style="transition-delay:0.2s">
+      <span class="conviction-num">III</span>
+      <p class="conviction-text">Visibility that compounds is the only kind worth building.</p>
+      <p class="conviction-sub">We engineer for longevity — media records, speaking reputations, and IP that outlasts any single campaign.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM CREDENTIALS -->
+<section class="team">
+  <div class="team-inner">
+
+    <div class="team-top fade-up">
+      <span class="team-eyebrow">The people behind the platform.</span>
+      <span class="team-eyebrow gold">Three leaders One standard.</span>
+    </div>
+
+    <h2 class="team-h fade-up">Built by people who've<br>earned <em>their own stages.</em></h2>
+    <p class="team-sub fade-up">Every member of our founding team has personally navigated the intersection of publishing, media, and global influence — before helping clients do the same.</p>
+
+    <div class="team-grid">
+
+      <!-- FOUNDER -->
+      <div class="team-card fade-up">
+        <span class="team-card-role">Founder &amp; CEO · Manila</span>
+        <div class="team-card-title">Formally trained at Harvard under Dr. Christina Becker for Non-fiction and Biography Writing.<br>Top 5  Traditionally Published Author.<br>Stanford ASES Alumna.</div>
+        <p class="team-card-bio">The founder of IndieCo built the company from a blank page at the University of the Philippines, where she studied Applied Mathematics while simultaneously writing, producing, and organizing the largest TEDx university event in the country. She was selected from 7,000 global nominations as a Top 50 finalist for the Chegg.org Global Student Prize — the world's most prestigious student award — and carries a debut non-fiction title forthcoming from a regional publisher. </p>
+        <div class="team-creds">
+          <div class="team-cred"><span><span class="hl">Simon & Schuster Author</span> — debut non-fiction, forthcoming </span></div>
+          <div class="team-cred"><span><span class="hl">Top 50 Global Student Prize finalist</span> — Chegg.org / Varkey Foundation, selected from 7,000 nominations across 150 countries</span></div>
+          <div class="team-cred"><span><span class="hl">Stanford ASES Summit</span> — invited participant, pitch competition cohort</span></div>
+          <div class="team-cred"><span><span class="hl">Harvard Pre-College</span> — Creative Writing program</span></div>
+          <div class="team-cred"><span><span class="hl">Academic Conference Lead Organizer</span> — Licensee, one of the largest TEDx events in the Philippines</span></div>
+          <div class="team-cred"><span>Published in <span class="hl">Philippine Daily Inquirer</span>, <span class="hl">Chicken Soup for the Soul</span>, Scarlett Leaf Publishing</span></div>
+          <div class="team-cred"><span><span class="hl">YSEALI</span> — U.S. Embassy–selected fellow, Southeast Asian Leaders Initiative</span></div>
+        </div>
+      </div>
+
+      <!-- COO -->
+      <div class="team-card fade-up" style="transition-delay:0.1s">
+        <span class="team-card-role">Chief Operating Officer · Manila</span>
+        <div class="team-card-title">TEDx speaker.<br>First Harvard Business Publishing–<br>accredited faculty in the Philippines.</div>
+        <p class="team-card-bio">Our COO brings a rare combination of academic rigor and executive reach. Named one of the 100 Most Influential Global Filipinas, she has worked across 30+ countries and with institutions including the US State Department and the Asian Development Bank. A former Ateneo de Manila lecturer, she sits at the intersection of cultural diplomacy, strategic leadership, and international business — and has taken that credential set to stages and boardrooms across Europe, Asia, and the Americas.</p>
+        <div class="team-creds">
+          <div class="team-cred"><span><span class="hl">First Harvard Business Publishing–accredited faculty advisor</span> in the Philippines</span></div>
+          <div class="team-cred"><span><span class="hl">100 Most Influential Global Filipinas</span> — Filipino Women's Network</span></div>
+          <div class="team-cred"><span><span class="hl">TEDx Speaker &amp; Coach</span> — TEDxUPV and international stages</span></div>
+          <div class="team-cred"><span>Clients include <span class="hl">US State Department</span>, <span class="hl">Asian Development Bank</span></span></div>
+          <div class="team-cred"><span>Former lecturer, <span class="hl">Ateneo de Manila University</span></span></div>
+          <div class="team-cred"><span><span class="hl">Executive MBA</span> — international focus; ASEAN market specialist</span></div>
+          <div class="team-cred"><span>Published columnist, <span class="hl">Manila Times</span> &amp; Philippine Daily Mirror; active in 30+ countries</span></div>
+        </div>
+      </div>
+
+      <!-- THAILAND LEAD -->
+      <div class="team-card fade-up" style="transition-delay:0.2s">
+        <span class="team-card-role">Regional Lead · Bangkok</span>
+        <div class="team-card-title">Chulalongkorn University Scholar.<br>UT Austin YSEALI fellow.<br>Harvard HCAP alumna.</div>
+        <p class="team-card-bio">Our Bangkok-based strategist represents IndieCo's Southeast Asian intelligence. A full-scholarship BBA graduate of Chulalongkorn University — Thailand's most prestigious institution — she was selected by the US Embassy as a YSEALI Academic Fellow at the University of Texas at Austin, and attended the HCAP network conference at Harvard University alongside delegates from Tokyo, Hong Kong, and Ewha. She bridges Thai and ASEAN market dynamics with the rigorous strategic thinking of a global operator.</p>
+        <div class="team-creds">
+          <div class="team-cred"><span><span class="hl">YSEALI Academic Fellow</span> — US Embassy full scholarship, UT Austin; represented Thailand among 150 ASEAN alumni</span></div>
+          <div class="team-cred"><span><span class="hl">Harvard HCAP Conference</span> — delegate alongside University of Tokyo, University of Hong Kong, Ewha</span></div>
+          <div class="team-cred"><span><span class="hl">Full BBA Scholarship</span>, Chulalongkorn University — awarded by alumni board</span></div>
+          <div class="team-cred"><span><span class="hl">ASEAN+3 Conference delegate</span> — Taiwan; selected to represent Chulalongkorn University</span></div>
+          <div class="team-cred"><span><span class="hl">PepsiCo Dare to Do More</span> — Top 10 national finalist, Thailand; presented to C-suite leadership</span></div>
+          <div class="team-cred"><span>AFS Intercultural Exchange Scholar — <span class="hl">DKSH (Thailand)</span> full scholarship, United States</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Credential bar -->
+    <div class="team-cred-bar fade-up">
+      <div class="team-cred-stat">
+        <div class="team-cred-stat-num">3</div>
+        <div class="team-cred-stat-label">Countries of active operation</div>
+      </div>
+      <div class="team-cred-stat">
+        <div class="team-cred-stat-num">30+</div>
+        <div class="team-cred-stat-label">Countries worked across</div>
+      </div>
+      <div class="team-cred-stat">
+        <div class="team-cred-stat-num">5</div>
+        <div class="team-cred-stat-label">Ivy League &amp; global university affiliations</div>
+      </div>
+      <div class="team-cred-stat">
+        <div class="team-cred-stat-num">1</div>
+        <div class="team-cred-stat-label">First HBP-accredited faculty in the Philippines</div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- FAQ -->
 <div class="faq-wrap">
@@ -323,7 +696,7 @@ canvas#ab-canvas {
         <span class="faq-icon"></span>
       </button>
       <div class="faq-answer"><div class="faq-answer-inner">
-        <p>Yes — we support clients globally. Our team has worked with clients across multiple continents and coordinate travel and logistics wherever the stage or engagement is. 300+ clients across 25+ countries, backed by over six years of proven publishing and global placement expertise.</p>
+        <p>Yes — we support clients globally. Our team has worked with clients across multiple continents and coordinates travel and logistics wherever the stage or engagement is. 300+ clients across 25+ countries, backed by over six years of proven publishing and global placement expertise.</p>
       </div></div>
     </div>
 
@@ -333,8 +706,8 @@ canvas#ab-canvas {
         <span class="faq-icon"></span>
       </button>
       <div class="faq-answer"><div class="faq-answer-inner">
-        <p>We are not a traditional AI-powered media agency. We don't issue press releases and hope for the best. We build the full infrastructure — the book, the stage, the media record, the credibility ecosystem — that turns your expertise into a durable public presence.</p>
-        <p>Every engagement is bespoke and prospective clients/platform users go through a rigorous process to ensure quality and quantity of placements.</p>
+        <p>We are not a traditional media agency. We don't issue press releases and hope for the best. We build the full infrastructure — the book, the stage, the media record, the credibility ecosystem — that turns your expertise into a durable public presence.</p>
+        <p>Every engagement is bespoke. Prospective clients go through a rigorous process to ensure the quality and quantity of placements we commit to delivering.</p>
       </div></div>
     </div>
   </div>
@@ -403,7 +776,7 @@ canvas#ab-canvas {
 
 /* SUPPORTERS */
 (function(){
-  const names=['National Research Council of the Philippines','Entrepreneurs\' Organization Philippines','Stanford ASES','Young Southeast Asian Leaders Initiative','UPSCale Innovation Hub','Project Urduja','QBO Innovation','Chegg.Org Foundation'];
+  const names=['National Research Council of the Philippines','Entrepreneurs\' Organization Philippines','Stanford ASES','Young Southeast Asian Leaders Initiative','UPSCale Innovation Hub','Project Urduja','QBO Innovation','Chegg.Org Foundation','Harvard HCAP Network','Ateneo de Manila University','Asian Development Bank'];
   const track=document.getElementById('supporters-track');
   [...names,...names].forEach(name=>{
     const s=document.createElement('span');
