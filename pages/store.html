@@ -8,19 +8,12 @@
 <link rel="stylesheet" href="../css/nav.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@800;900&display=swap" rel="stylesheet"/>
 <style>
-/* store.html — page-specific styles only.
-   Tokens, fonts, fade-up, nav, footer all come from base.css / nav.css / nav.js */
-
 :root { --red: #C8372B; }
 
-/* ── STORE HEADER ── */
 .store-header { padding: 140px 0 60px; border-bottom: 0.5px solid var(--rule); }
 .store-header-eyebrow { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 1rem; }
 .store-header h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; }
 
-/* ════════════════════════════════
-   APP HERO
-════════════════════════════════ */
 .app-hero { padding: 5rem 0 4rem; border-bottom: 0.5px solid var(--rule); position: relative; overflow: hidden; }
 .app-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 85% 50%, rgba(184,151,106,0.06) 0%, transparent 70%); pointer-events: none; }
 .app-hero-inner { display: grid; grid-template-columns: 1fr 400px; gap: 60px; align-items: center; }
@@ -47,9 +40,6 @@
 .event-meta { font-size: 10px; color: rgba(255,255,255,0.3); font-weight: 300; }
 .app-panel-tag { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.2); font-weight: 300; border-top: 0.5px solid rgba(255,255,255,0.07); padding-top: 1.25rem; margin-top: 1.25rem; }
 
-/* ════════════════════════════════
-   PRODUCTS GRID
-════════════════════════════════ */
 .products-section { padding: 4rem 0; border-bottom: 0.5px solid var(--rule); }
 .products-section-label { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 2rem; display: block; }
 .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
@@ -62,7 +52,6 @@
 button.btn-product { background: none; border: none; border-bottom: 0.5px solid var(--gold); padding-bottom: 2px; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); cursor: pointer; font-family: var(--font-sans); font-weight: 300; transition: color 0.2s, border-color 0.2s; }
 button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 
-/* Consultation card */
 .product-card--consultation { border-color: var(--ink); }
 .consultation-tag-row { display: flex; align-items: center; gap: 8px; margin-bottom: 0.6rem; }
 .consultation-badge { font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-ghost); font-weight: 300; }
@@ -72,10 +61,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 .btn-consultation { display: block; width: 100%; font-family: var(--font-sans); font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 300; background: var(--ink); color: var(--cream); padding: 13px; border: none; cursor: pointer; transition: background 0.25s; text-align: center; margin-top: 1.5rem; }
 .btn-consultation:hover { background: var(--gold); color: var(--dark); }
 
-/* ════════════════════════════════
-   BOOK SECTION
-════════════════════════════════ */
-.book-section { padding: 5rem 0; }
+.book-section { padding: 5rem 0; border-bottom: 0.5px solid var(--rule); }
 .book-section-label { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 3rem; display: block; }
 .book-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
 .book-visual { display: flex; flex-direction: column; align-items: center; }
@@ -118,9 +104,30 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 .btn-buy { display: inline-block; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 300; background: var(--ink); color: var(--cream); padding: 16px 36px; border: none; cursor: pointer; transition: background 0.25s; text-decoration: none; }
 .btn-buy:hover { background: var(--gold); color: var(--dark); }
 
-/* ════════════════════════════════
-   CONSULTATION MODAL
-════════════════════════════════ */
+/* ── SERIES SECTION ── */
+.series-section { padding: 5rem 0 4rem; border-top: 0.5px solid var(--rule); }
+.series-intro { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem; border-bottom: 0.5px solid var(--rule); padding-bottom: 2.5rem; }
+.series-heading { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; line-height: 1.1; }
+.series-heading em { font-style: italic; }
+.series-stat { margin-top: 0.75rem; text-align: right; }
+.series-stat-num { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 300; color: var(--ink-ghost); line-height: 1; display: block; }
+.series-stat-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-ghost); font-weight: 300; }
+.series-desc { font-size: 13px; font-weight: 300; color: var(--ink-mute); line-height: 1.85; max-width: 48ch; margin-top: 1rem; }
+.books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+.book-card { background: var(--cream-warm); border: 0.5px solid var(--rule-soft); text-decoration: none; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.book-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,0.07); }
+.book-card-cover { width: 100%; aspect-ratio: 2/3; background: var(--sand); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.book-card-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.book-card:hover .book-card-cover img { transform: scale(1.04); }
+.book-card-cover-num { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 300; color: var(--gold); opacity: 0.4; }
+.book-card-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.35rem; }
+.book-card-vol { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 300; }
+.book-card-title { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 300; color: var(--ink); line-height: 1.3; }
+.book-card-cta { font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 300; margin-top: auto; padding-top: 0.6rem; border-top: 0.5px solid var(--rule-soft); }
+.series-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 0.5px solid var(--rule); }
+.series-footer-copy { font-size: 12.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.8; max-width: 42ch; }
+
+/* ── MODALS ── */
 #consult-overlay { display: none; position: fixed; inset: 0; background: rgba(14,13,11,0.55); z-index: 300; align-items: center; justify-content: center; padding: 1.5rem; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 #consult-overlay.open { display: flex; animation: overlayFade 0.25s ease both; }
 @keyframes overlayFade { from{opacity:0} to{opacity:1} }
@@ -155,9 +162,6 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 .btn-book:hover { background: var(--gold); color: var(--dark); }
 .cm-fine { font-size: 10px; color: var(--ink-ghost); text-align: center; margin-top: 0.85rem; letter-spacing: 0.04em; }
 
-/* ════════════════════════════════
-   NOTIFY MODAL
-════════════════════════════════ */
 #notify-overlay { display: none; position: fixed; inset: 0; background: rgba(14,13,11,0.55); z-index: 300; align-items: center; justify-content: center; padding: 1.5rem; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
 #notify-overlay.open { display: flex; animation: overlayFade 0.25s ease both; }
 #notify-modal { background: var(--cream-warm); border: 0.5px solid var(--rule-soft); max-width: 420px; width: 100%; padding: 3rem 2.5rem 2.5rem; position: relative; animation: modalSlide 0.3s cubic-bezier(0.16,1,0.3,1) both; }
@@ -186,9 +190,8 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 #notify-success-body { font-size: 13px; font-weight: 300; color: var(--ink-soft); line-height: 1.8; }
 #notify-success-body strong { color: var(--ink); font-weight: 400; }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 900px) { .app-hero-inner { grid-template-columns: 1fr; } .app-visual-panel { display: none; } }
-@media (max-width: 768px) { .book-layout { grid-template-columns: 1fr; gap: 48px; } .book-visual { margin: 0 auto; } .cm-items { grid-template-columns: 1fr; } .cm-logistics { gap: 1rem; } }
+@media (max-width: 768px) { .book-layout { grid-template-columns: 1fr; gap: 48px; } .book-visual { margin: 0 auto; } .cm-items { grid-template-columns: 1fr; } .cm-logistics { gap: 1rem; } .series-intro { flex-direction: column; } .series-stat { text-align: left; } }
 @media (max-width: 500px) { .cm-header { padding: 2rem 1.5rem 1.5rem; } .cm-body { padding: 1.5rem; } #notify-modal { padding: 2rem 1.5rem; } }
 </style>
 </head>
@@ -201,7 +204,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   <!-- STORE HEADER -->
   <div class="store-header fade-up">
     <p class="store-header-eyebrow">IndieCo Store</p>
-    <h1>Books, courses & resources<br>from the IndieCo family.</h1>
+    <h1>Books, courses &amp; resources<br>from the IndieCo family.</h1>
   </div>
 
   <!-- 1. APP HERO -->
@@ -315,7 +318,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
             </div>
             <div class="face face-back">
               <div class="back-quote">"The best platform talks are great personal essays — told with voice, argument, structure, and above all, vulnerability."</div>
-              <div class="back-label">Leah Cioco · Stage Curator · 5 Events · 55+ Speakers </div>
+              <div class="back-label">Leah Cioco · Stage Curator · 5 Events · 55+ Speakers</div>
             </div>
           </div>
         </div>
@@ -345,78 +348,134 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
     </div>
   </section>
 
-   <!-- 4. SERIES -->
-<section class="series-section" style="padding:4rem 0 2rem;border-top:0.5px solid var(--rule);">
-  <span class="products-section-label">The Indiependent Collective · Series</span>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:3rem;border-bottom:0.5px solid var(--rule);padding-bottom:2.5rem;">
-    <div>
-      <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:300;line-height:1.1;">The Indiependent<br><em>Collective Series.</em></h2>
-      <p style="font-size:13px;font-weight:300;color:var(--ink-mute);line-height:1.85;max-width:48ch;margin-top:1rem;">Twelve books. 300+ contributors who chose to say something worth saying. Each title began as an idea — and found its permanent form on the page.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;">
-      <span class="app-hero-pip">2023 – 2026</span>
-      <div style="margin-top:0.75rem;">
-        <div style="font-family:var(--font-serif);font-size:2.5rem;font-weight:300;color:var(--ink-ghost);line-height:1;">12</div>
-        <div style="font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-ghost);font-weight:300;">Volumes Published</div>
+  <!-- 4. SERIES -->
+  <section class="series-section fade-up">
+    <span class="products-section-label">The Indiependent Collective · Series</span>
+    <div class="series-intro">
+      <div>
+        <h2 class="series-heading">The Indiependent<br><em>Collective Series.</em></h2>
+        <p class="series-desc">Twelve books. Three years. One hundred and five speakers and contributors who chose to say something worth saying. Each title began as a conversation on a stage — and found its permanent form on the page.</p>
+      </div>
+      <div>
+        <span class="app-hero-pip">2023 – 2026</span>
+        <div class="series-stat">
+          <span class="series-stat-num">12</span>
+          <span class="series-stat-label">Volumes Published</span>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- BOOKS GRID -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.5rem;margin-bottom:3rem;">
 
-     <!-- 4. SERIES -->
-<section class="series-section" style="padding:4rem 0 2rem;border-top:0.5px solid var(--rule);">
-  <span class="products-section-label">The Indiependent Collective · Series</span>
-  <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:3rem;border-bottom:0.5px solid var(--rule);padding-bottom:2.5rem;">
-    <div>
-      <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,4vw,2.8rem);font-weight:300;line-height:1.1;">The Indiependent<br><em>Collective Series.</em></h2>
-      <p style="font-size:13px;font-weight:300;color:var(--ink-mute);line-height:1.85;max-width:48ch;margin-top:1rem;">Twelve books. Three years. One hundred and five speakers and contributors who chose to say something worth saying. Each title began as a conversation on a stage — and found its permanent form on the page.</p>
+    <div class="books-grid">
+
+      <a href="https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover"><span class="book-card-cover-num">01</span></div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 01</span>
+          <div class="book-card-title">Silakbo</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GT7D7HSZ?ref_=dbs_mng_crcw_0&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/in-the-shadows.jpg" alt="In the Shadows Where They Lie" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>02</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 02</span>
+          <div class="book-card-title">In the Shadows Where They Lie</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/lucky-im-in-love.jpg" alt="Lucky I'm in Love" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>03</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 03</span>
+          <div class="book-card-title">Lucky I'm in Love</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GRC4BBYK?ref_=dbs_m_mng_rwt_calw_tkin_1&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/forgive-forget.jpg" alt="Forgive &amp; Forget" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>04</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 04</span>
+          <div class="book-card-title">Forgive &amp; Forget</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GT2D6CCD?ref_=dbs_m_mng_rwt_calw_tkin_2&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover"><span class="book-card-cover-num">05</span></div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 05</span>
+          <div class="book-card-title">Silent Nights: Finding Hope in the Horrible</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover"><span class="book-card-cover-num">06</span></div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 06</span>
+          <div class="book-card-title">To Love and Be Loved</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GL4FBW3S?ref_=dbs_mng_crcw_3&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover"><span class="book-card-cover-num">07</span></div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 07</span>
+          <div class="book-card-title">Untold Truths</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GHXB16KP?ref_=dbs_mng_crcw_4&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/meaning-of-me.jpg" alt="The Meaning of Me" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>08</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 08</span>
+          <div class="book-card-title">The Meaning of Me</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GR82QD9L?ref_=dbs_mng_crcw_2&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/whats-next.jpg" alt="What's Next?" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>09</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 09</span>
+          <div class="book-card-title">What's Next?</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="book-card">
+        <div class="book-card-cover" style="background:var(--ink);">
+          <span style="font-family:var(--font-serif);font-size:0.8rem;font-weight:300;color:rgba(250,248,244,0.35);letter-spacing:0.08em;text-align:center;padding:1rem;">+ More in<br>the Series</span>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 10 – 12</span>
+          <div class="book-card-title">View remaining volumes</div>
+          <div class="book-card-cta">Browse on Amazon →</div>
+        </div>
+      </a>
+
     </div>
-    <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;">
-      <span class="app-hero-pip">2023 – 2026</span>
-      <div style="margin-top:0.75rem;">
-        <div style="font-family:var(--font-serif);font-size:2.5rem;font-weight:300;color:var(--ink-ghost);line-height:1;">12</div>
-        <div style="font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-ghost);font-weight:300;">Volumes Published</div>
-      </div>
+
+    <div class="series-footer">
+      <p class="series-footer-copy">The complete Indiependent Collective series — all twelve volumes — is available on Amazon. Each book is sold separately or as part of the full collection.</p>
+      <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="btn-buy">View full series on Amazon →</a>
     </div>
-  </div>
-  <!-- BOOKS GRID -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.5rem;margin-bottom:3rem;">
-    <!-- Vol 01 -->
-    <a href="https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks" target="_blank" class="product-card" style="text-decoration:none;display:flex;flex-direction:column;padding:0;">
-      <div style="width:100%;aspect-ratio:2/3;background:var(--sand);display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:var(--gold);opacity:0.5;">01</span></div>
-      <div style="padding:1rem;flex:1;display:flex;flex-direction:column;gap:0.35rem;">
-        <span style="font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:300;">Vol. 01</span>
-        <div style="font-family:var(--font-serif);font-size:0.95rem;font-weight:300;color:var(--ink);line-height:1.3;">Silakbo</div>
-        <div style="font-size:8.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-top:auto;padding-top:0.5rem;border-top:0.5px solid var(--rule-soft);">Read on Amazon →</div>
-      </div>
-    </a>
-    <!-- Repeat pattern for Vol. 02–09 with respective links, then Vol. 10+ pointing to series page -->
-  </div>
-  <!-- FOOTER -->
-  <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding-top:2rem;border-top:0.5px solid var(--rule);">
-    <p style="font-size:12.5px;font-weight:300;color:var(--ink-soft);line-height:1.8;max-width:42ch;">The complete Indiependent Collective series — all twelve volumes — is available on Amazon. Each book is sold separately or as part of the full collection.</p>
-    <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="btn-buy">View full series on Amazon →</a>
-  </div>
-</section>
-     
-    <!-- Vol 01 -->
-    <a href="https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks" target="_blank" class="product-card" style="text-decoration:none;display:flex;flex-direction:column;padding:0;">
-      <div style="width:100%;aspect-ratio:2/3;background:var(--sand);display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--font-serif);font-size:1.5rem;font-weight:300;color:var(--gold);opacity:0.5;">01</span></div>
-      <div style="padding:1rem;flex:1;display:flex;flex-direction:column;gap:0.35rem;">
-        <span style="font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:300;">Vol. 01</span>
-        <div style="font-family:var(--font-serif);font-size:0.95rem;font-weight:300;color:var(--ink);line-height:1.3;">Silakbo</div>
-        <div style="font-size:8.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-top:auto;padding-top:0.5rem;border-top:0.5px solid var(--rule-soft);">Read on Amazon →</div>
-      </div>
-    </a>
-    <!-- Repeat pattern for Vol. 02–09 with respective links, then Vol. 10+ pointing to series page -->
-  </div>
-  <!-- FOOTER -->
-  <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding-top:2rem;border-top:0.5px solid var(--rule);">
-    <p style="font-size:12.5px;font-weight:300;color:var(--ink-soft);line-height:1.8;max-width:42ch;">The complete Indiependent Collective series — all twelve volumes — is available on Amazon. Each book is sold separately or as part of the full collection.</p>
-    <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="btn-buy">View full series on Amazon →</a>
-  </div>
-</section>
+  </section>
 
 </div><!-- /page-wrap -->
 
@@ -509,7 +568,6 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 <script src="../js/nav.js"></script>
 <script src="../js/forms.js"></script>
 <script>
-/* ── CONSULTATION MODAL ── */
 const consultOverlay = document.getElementById('consult-overlay');
 document.getElementById('open-consult-modal').addEventListener('click', function () {
   consultOverlay.classList.add('open');
@@ -524,7 +582,6 @@ function closeConsult() {
 document.getElementById('consult-close').addEventListener('click', closeConsult);
 consultOverlay.addEventListener('click', function (e) { if (e.target === consultOverlay) closeConsult(); });
 
-/* ── NOTIFY MODAL ── */
 const notifyOverlay = document.getElementById('notify-overlay');
 const form          = document.getElementById('notify-form');
 const emailInput    = document.getElementById('notify-email');
