@@ -1,14 +1,220 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Not Found</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+```
+:root {
+  --cream: #f5f0ea;
+  --blush: #e8d5c4;
+  --nude: #c9a98e;
+  --warm-brown: #7a5c47;
+  --deep: #2e1f14;
+  --soft-pink: #f0e4da;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  color: var(--deep);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Subtle grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* Soft blush blob — top right */
+body::after {
+  content: '';
+  position: fixed;
+  top: -120px;
+  right: -120px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--blush) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+  animation: drift 10s ease-in-out infinite alternate;
+}
+
+.blob-bottom {
+  position: fixed;
+  bottom: -150px;
+  left: -100px;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, var(--soft-pink) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  animation: drift 13s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(20px, 20px) scale(1.04); }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 24px;
+  max-width: 480px;
+  width: 100%;
+  animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-weight: 200;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--nude);
+  margin-bottom: 28px;
+  animation: fadeUp 1s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.number {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(100px, 22vw, 160px);
+  line-height: 0.9;
+  color: var(--deep);
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+  animation: fadeUp 1s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+}
+
+.number::after {
+  content: '404';
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--nude);
+  opacity: 0.18;
+  transform: translate(4px, 4px);
+}
+
+.divider {
+  width: 36px;
+  height: 1px;
+  background: var(--nude);
+  margin: 0 auto 28px;
+  animation: fadeUp 1s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(22px, 5vw, 30px);
+  letter-spacing: 0.02em;
+  color: var(--deep);
+  margin-bottom: 16px;
+  animation: fadeUp 1s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+p {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--warm-brown);
+  line-height: 1.8;
+  margin-bottom: 44px;
+  animation: fadeUp 1s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.btn {
+  display: inline-block;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--cream);
+  background: var(--deep);
+  padding: 16px 36px;
+  transition: background 0.35s ease, color 0.35s ease, transform 0.3s ease;
+  animation: fadeUp 1s 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.btn:hover {
+  background: var(--warm-brown);
+  transform: translateY(-2px);
+}
+
+.flourish {
+  margin-top: 52px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--nude);
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+  animation: fadeUp 1s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+```
+
+  </style>
 </head>
 <body>
+  <div class="blob-bottom"></div>
+
   <div class="container">
+    <p class="eyebrow">Indiecó — Page Not Found</p>
+    <div class="number">404</div>
+    <div class="divider"></div>
     <h1>Not Found</h1>
-    <p>This page doesn’t exist — but the ideas still do.</p>
-    <a href="www.indieco.com.co/pages/store">Go to Store</a>
+    <p>This page doesn't exist —<br>but the ideas still do.</p>
+    <a class="btn" href="www.indieco.com.co/pages/store">Go to Store</a>
+    <p class="flourish">softness, always.</p>
   </div>
 </body>
 </html>
