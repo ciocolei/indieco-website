@@ -16,6 +16,8 @@ indieco/
 │   ├── standard-services.html  ← Standard Services
 │   ├── work-with-us.html       ← Work With Us (full interest form)
 │   └── store.html              ← Store (From Stage to Screen)
+|-- images/
+    |_covers
 ├── css/
 │   ├── base.css                ← Design tokens & shared styles
 │   └── nav.css                 ← Navigation & footer styles
