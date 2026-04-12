@@ -5,13 +5,46 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>About Us — IndieCo</title>
 <meta name="description" content="IndieCo is AI designed for media and authority. A secure platform that places founders and executives in top-tier press, on marquee stages, and between the covers of their next book."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/base.css"/>
 <link rel="stylesheet" href="../css/nav.css"/>
 <style>
+/* ── CSS VARS ── */
+:root {
+  --cream: #f8f5ef;
+  --cream-warm: #f4f0e8;
+  --ink: #1a1814;
+  --ink-soft: #3d3830;
+  --ink-mute: #6b6458;
+  --ink-ghost: #9e9488;
+  --rule: rgba(26,24,20,0.12);
+  --white: #ffffff;
+  --gold: #b8975a;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: var(--font-sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+/* Fade up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── HERO ── */
 .ab-hero {
   position: relative;
-  padding: 140px 24px 100px;
+  padding: 160px 24px 120px;
   text-align: center;
   overflow: hidden;
   background: var(--cream);
@@ -30,27 +63,29 @@ canvas#ab-canvas {
   margin: 0 auto;
 }
 .ab-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.25em;
+  font-size: 10px;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ink-ghost);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  font-weight: 300;
 }
 .ab-headline {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
   line-height: 1.05;
-  font-weight: 400;
+  font-weight: 300;
+  color: var(--ink);
 }
 .ab-headline em { font-style: italic; }
 .ab-rule {
   width: 32px;
   height: 1px;
   background: var(--rule);
-  margin: 32px auto 0;
+  margin: 36px auto 0;
 }
 
-/* ── BODY ── */
+/* ── BODY COPY (WHO WE ARE) ── */
 .ab-body {
   max-width: 1000px;
   margin: 0 auto;
@@ -60,21 +95,24 @@ canvas#ab-canvas {
   gap: 80px;
 }
 .ab-label {
-  font-size: 11px;
-  letter-spacing: 0.25em;
+  font-size: 10px;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ink-ghost);
   margin-bottom: 20px;
+  font-weight: 300;
 }
 .ab-statement {
   font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
   line-height: 1.25;
+  font-weight: 300;
 }
 .ab-copy {
-  font-size: 14px;
-  line-height: 1.9;
+  font-size: 13.5px;
+  line-height: 1.95;
   color: var(--ink-soft);
+  font-weight: 300;
 }
 .ab-copy p + p { margin-top: 1.4em; }
 
@@ -83,32 +121,273 @@ canvas#ab-canvas {
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
   padding: 0 24px 80px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
 }
 .ab-stat {
-  background: var(--white);
-  border: 0.5px solid var(--rule);
-  padding: 36px 28px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--cream);
+  padding: 40px 32px;
+  transition: background 0.3s ease;
 }
-.ab-stat:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+.ab-stat:hover { background: var(--white); }
 .ab-stat-num {
   font-family: var(--font-serif);
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   margin-bottom: 8px;
   color: var(--ink);
+  font-weight: 300;
 }
 .ab-stat-label {
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 10px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink-mute);
+  font-weight: 300;
 }
 
 /* ══════════════════════════════
-   TEAM / CREDENTIALS SECTION
+   MISSION SECTION
+══════════════════════════════ */
+.mission {
+  background: var(--ink);
+  padding: 9rem 0 8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.mission::before {
+  content: 'SEEN & KNOWN';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-serif);
+  font-size: clamp(6rem, 15vw, 14rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.018);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.mission-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.mission-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  display: block;
+}
+
+.mission-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 300;
+  color: #f5f0e8;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+}
+.mission-headline em { font-style: italic; color: var(--gold); }
+
+.mission-rule {
+  width: 40px;
+  height: 0.5px;
+  background: rgba(184,151,90,0.4);
+  margin: 0 auto 2.5rem;
+}
+
+.mission-body {
+  font-size: 15px;
+  line-height: 2;
+  color: rgba(255,255,255,0.45);
+  font-weight: 300;
+  max-width: 660px;
+  margin: 0 auto 3rem;
+}
+
+.mission-pull {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: rgba(245,240,232,0.7);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.4;
+  max-width: 580px;
+  margin: 0 auto;
+  border-left: 1.5px solid var(--gold);
+  padding-left: 2rem;
+  text-align: left;
+}
+
+/* ══════════════════════════════
+   WHAT WE DO (was hero headline)
+══════════════════════════════ */
+.what-we-do {
+  background: var(--cream-warm);
+  padding: 0;
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+}
+
+.wwd-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.wwd-top {
+  padding: 5rem 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.wwd-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.wwd-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.15;
+}
+.wwd-headline em { font-style: italic; }
+
+.wwd-copy {
+  font-size: 13.5px;
+  line-height: 1.95;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+.wwd-copy p + p { margin-top: 1.3em; }
+
+/* Phase cards */
+.wwd-phases {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 0.5px solid var(--rule);
+  border-left: 0.5px solid var(--rule);
+  margin-bottom: 5rem;
+}
+
+.wwd-phase {
+  border-right: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  padding: 2rem 1.75rem;
+  position: relative;
+  transition: background 0.3s;
+}
+.wwd-phase:hover { background: var(--white); }
+
+.phase-num {
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.phase-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+.phase-desc {
+  font-size: 12px;
+  color: var(--ink-ghost);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ── CONVICTIONS ── */
+.conviction {
+  padding: 5rem 0;
+  background: var(--cream);
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+}
+.conviction-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+.conviction-item {
+  padding: 0 3rem 0 0;
+  border-right: 0.5px solid var(--rule);
+  position: relative;
+  transition: padding-left 0.3s;
+}
+.conviction-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1.5px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.conviction-item:hover { padding-left: 10px; }
+.conviction-item:hover::before { transform: scaleY(1); }
+.conviction-item:last-child { border-right: none; padding-left: 3rem; padding-right: 0; }
+.conviction-item:nth-child(2) { padding-left: 3rem; }
+.conviction-num {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.conviction-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+.conviction-sub {
+  font-size: 12px;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════
+   TEAM — GLITCH SECTION
 ══════════════════════════════ */
 .team {
   background: var(--ink);
@@ -117,19 +396,45 @@ canvas#ab-canvas {
   overflow: hidden;
 }
 
-.team::before {
-  content: 'TEAM';
+/* Animated scan lines */
+.team::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.012) 2px,
+    rgba(255,255,255,0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glitch background text */
+.team-glitch-bg {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-serif);
-  font-size: clamp(10rem, 22vw, 20rem);
+  font-size: clamp(8rem, 18vw, 16rem);
   font-weight: 300;
   color: rgba(255,255,255,0.022);
   white-space: nowrap;
   pointer-events: none;
   letter-spacing: 0.1em;
+  animation: glitch-bg 8s infinite;
+}
+
+@keyframes glitch-bg {
+  0%, 90%, 100% { transform: translate(-50%, -50%); clip-path: none; }
+  91% { transform: translate(-50%, -50%) translate(3px, 0); clip-path: inset(20% 0 60% 0); }
+  92% { transform: translate(-50%, -50%) translate(-3px, 0); clip-path: inset(60% 0 10% 0); }
+  93% { transform: translate(-50%, -50%); clip-path: none; }
+  94% { transform: translate(-50%, -50%) translate(2px, -1px); clip-path: inset(40% 0 40% 0); }
+  95% { transform: translate(-50%, -50%); clip-path: none; }
 }
 
 .team-inner {
@@ -156,7 +461,6 @@ canvas#ab-canvas {
   color: rgba(255,255,255,0.2);
   font-weight: 300;
 }
-
 .team-eyebrow.gold { color: var(--gold); }
 
 .team-h {
@@ -167,112 +471,211 @@ canvas#ab-canvas {
   line-height: 1.08;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
 }
 .team-h em { font-style: italic; color: var(--gold); }
+
+/* Glitch headline effect */
+.team-h.glitch {
+  animation: glitch-text 6s infinite;
+}
+.team-h.glitch::before,
+.team-h.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+.team-h.glitch::before {
+  color: rgba(0,255,200,0.3);
+  animation: glitch-before 6s infinite;
+  clip-path: inset(0 0 0 0);
+}
+.team-h.glitch::after {
+  color: rgba(255,0,100,0.25);
+  animation: glitch-after 6s infinite;
+  clip-path: inset(0 0 0 0);
+}
+
+@keyframes glitch-text {
+  0%, 85%, 100% { transform: none; }
+  87% { transform: translate(2px, 0) skew(-1deg); }
+  89% { transform: translate(-2px, 0) skew(1deg); }
+  91% { transform: none; }
+}
+@keyframes glitch-before {
+  0%, 85%, 100% { transform: none; clip-path: inset(50% 0 30% 0); opacity: 0; }
+  87% { transform: translate(-4px, 0); clip-path: inset(20% 0 50% 0); opacity: 1; }
+  89% { transform: translate(4px, 0); clip-path: inset(60% 0 10% 0); opacity: 1; }
+  91% { opacity: 0; }
+}
+@keyframes glitch-after {
+  0%, 85%, 100% { transform: none; clip-path: inset(50% 0 30% 0); opacity: 0; }
+  87% { transform: translate(4px, -1px); clip-path: inset(10% 0 70% 0); opacity: 1; }
+  89% { transform: translate(-4px, 1px); clip-path: inset(70% 0 5% 0); opacity: 1; }
+  91% { opacity: 0; }
+}
 
 .team-sub {
   font-size: 13px;
   color: rgba(255,255,255,0.3);
   font-weight: 300;
   line-height: 1.8;
-  max-width: 520px;
+  max-width: 560px;
   margin-bottom: 4.5rem;
 }
 
-/* Member cards */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 0.5px solid rgba(255,255,255,0.08);
-  border-left: 0.5px solid rgba(255,255,255,0.08);
-  margin-bottom: 5rem;
-}
-
-.team-card {
-  border-right: 0.5px solid rgba(255,255,255,0.08);
-  border-bottom: 0.5px solid rgba(255,255,255,0.08);
-  padding: 2.5rem 2rem;
+/* Unified team card — single card */
+.team-unified {
+  border: 0.5px solid rgba(255,255,255,0.08);
+  padding: 3.5rem 3rem;
   position: relative;
   overflow: hidden;
-  transition: background 0.35s;
+  margin-bottom: 4rem;
+  transition: border-color 0.4s;
 }
 
-.team-card::after {
+.team-unified:hover {
+  border-color: rgba(184,151,90,0.25);
+}
+
+/* Animated corner accents */
+.team-unified::before,
+.team-unified::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1.5px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  width: 20px;
+  height: 20px;
+}
+.team-unified::before {
+  top: 0; left: 0;
+  border-top: 1.5px solid var(--gold);
+  border-left: 1.5px solid var(--gold);
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  transform-origin: top left;
+}
+.team-unified::after {
+  bottom: 0; right: 0;
+  border-bottom: 1.5px solid var(--gold);
+  border-right: 1.5px solid var(--gold);
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1) 0.1s;
+  transform-origin: bottom right;
+}
+.team-unified:hover::before,
+.team-unified:hover::after {
+  transform: scale(1);
 }
 
-.team-card:hover { background: rgba(255,255,255,0.025); }
-.team-card:hover::after { transform: scaleX(1); }
+/* Glitch shimmer overlay */
+.team-unified-glitch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(184,151,90,0.03) 50%,
+    transparent 60%
+  );
+  animation: shimmer-scan 4s ease-in-out infinite;
+}
 
-.team-card-role {
+@keyframes shimmer-scan {
+  0% { opacity: 0; transform: translateX(-100%); }
+  40% { opacity: 1; }
+  60% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* Intermittent glitch flicker on the card */
+.team-unified-glitch-bar {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: rgba(184,151,90,0.3);
+  animation: glitch-bar 7s infinite;
+  pointer-events: none;
+}
+
+@keyframes glitch-bar {
+  0%, 88%, 100% { opacity: 0; top: 30%; }
+  89% { opacity: 1; top: 30%; }
+  90% { opacity: 1; top: 65%; }
+  91% { opacity: 0; }
+  92% { opacity: 1; top: 15%; }
+  93% { opacity: 0; }
+}
+
+.team-role-tag {
   font-size: 9px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 1.25rem;
+  margin-bottom: 2rem;
   display: block;
 }
 
-.team-card-title {
+.team-unified-headline {
   font-family: var(--font-serif);
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
   font-weight: 300;
   color: #f5f0e8;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 1.5rem;
   letter-spacing: -0.01em;
 }
+.team-unified-headline em { font-style: italic; color: var(--gold); }
 
-.team-card-bio {
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.35);
-  line-height: 1.85;
+.team-unified-body {
+  font-size: 13px;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.9;
   font-weight: 300;
-  margin-bottom: 2rem;
+  max-width: 720px;
+  margin-bottom: 3rem;
 }
 
-.team-creds {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+/* Credential grid */
+.team-cred-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 0.5px solid rgba(255,255,255,0.06);
 }
 
-.team-cred {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
+.team-cred-item {
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  border-right: 0.5px solid rgba(255,255,255,0.06);
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
+  transition: background 0.3s;
+}
+.team-cred-item:hover { background: rgba(255,255,255,0.02); }
+.team-cred-item:nth-child(3n) { border-right: none; padding-right: 0; padding-left: 1.5rem; }
+.team-cred-item:nth-child(3n+2) { padding-left: 1.5rem; }
+.team-cred-item:nth-last-child(-n+3) { border-bottom: none; }
+
+.cred-institution {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  margin-bottom: 4px;
+  display: block;
+}
+.cred-detail {
   font-size: 11.5px;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.22);
   font-weight: 300;
-  line-height: 1.4;
-  transition: color 0.3s;
+  line-height: 1.5;
 }
 
-.team-card:hover .team-cred { color: rgba(255,255,255,0.45); }
-
-.team-cred::before {
-  content: '';
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: var(--gold);
-  flex-shrink: 0;
-  margin-top: 6px;
-}
-
-.team-cred .hl {
-  color: rgba(255,255,255,0.55);
-  font-weight: 300;
-}
-
-/* Credential bar — horizontal strip below the cards */
+/* Credential bar */
 .team-cred-bar {
   border-top: 0.5px solid rgba(255,255,255,0.08);
   padding-top: 2.5rem;
@@ -280,7 +683,6 @@ canvas#ab-canvas {
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
 }
-
 .team-cred-stat {
   padding: 0 2rem 0 0;
   border-right: 0.5px solid rgba(255,255,255,0.08);
@@ -288,7 +690,6 @@ canvas#ab-canvas {
 .team-cred-stat:last-child { border-right: none; padding-left: 2rem; padding-right: 0; }
 .team-cred-stat:nth-child(2),
 .team-cred-stat:nth-child(3) { padding: 0 2rem; }
-
 .team-cred-stat-num {
   font-family: var(--font-serif);
   font-size: 2rem;
@@ -297,7 +698,6 @@ canvas#ab-canvas {
   line-height: 1;
   margin-bottom: 6px;
 }
-
 .team-cred-stat-label {
   font-size: 10px;
   letter-spacing: 0.18em;
@@ -434,66 +834,154 @@ canvas#ab-canvas {
 .supporters-marquee::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
 @keyframes scroll-fwd { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-/* ── CONVICTION STRIP ── */
-.conviction {
-  padding: 5rem 0;
+/* ══════════════════════════════
+   NEWSLETTER / EMAIL CAPTURE
+══════════════════════════════ */
+.newsletter {
   background: var(--cream-warm);
   border-top: 0.5px solid var(--rule);
-  border-bottom: 0.5px solid var(--rule);
-}
-.conviction-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
-}
-.conviction-item {
-  padding: 0 3rem 0 0;
-  border-right: 0.5px solid var(--rule);
-  position: relative;
-  transition: padding-left 0.3s;
-}
-.conviction-item::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 1.5px;
-  background: var(--gold);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-}
-.conviction-item:hover { padding-left: 10px; }
-.conviction-item:hover::before { transform: scaleY(1); }
-.conviction-item:last-child { border-right: none; padding-left: 3rem; padding-right: 0; }
-.conviction-item:nth-child(2) { padding-left: 3rem; }
-.conviction-num {
-  font-family: var(--font-serif);
-  font-size: 0.75rem;
-  color: var(--gold);
-  display: block;
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.1em;
-}
-.conviction-text {
-  font-family: var(--font-serif);
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
-  font-weight: 300;
-  color: var(--ink);
-  line-height: 1.35;
-  margin-bottom: 0.75rem;
-}
-.conviction-sub {
-  font-size: 12px;
-  color: var(--ink-ghost);
-  font-weight: 300;
-  line-height: 1.7;
+  padding: 6rem 0;
 }
 
+.newsletter-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.newsletter-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.newsletter-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+.newsletter-headline em { font-style: italic; }
+
+.newsletter-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.9;
+  font-weight: 300;
+  max-width: 480px;
+  margin: 0 auto 3rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  border: 0.5px solid var(--rule);
+  background: var(--white);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.newsletter-form:focus-within {
+  border-color: var(--ink);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.newsletter-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 1.1rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--ink);
+  background: transparent;
+  letter-spacing: 0.02em;
+}
+.newsletter-input::placeholder {
+  color: var(--ink-ghost);
+}
+
+.newsletter-btn {
+  border: none;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 1.1rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, letter-spacing 0.3s;
+  white-space: nowrap;
+}
+.newsletter-btn:hover {
+  background: var(--gold);
+  letter-spacing: 0.25em;
+}
+
+.newsletter-note {
+  font-size: 11px;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.newsletter-tags {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.newsletter-tag {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  padding: 6px 14px;
+  border: 0.5px solid var(--rule);
+  background: transparent;
+}
+
+/* ── SUCCESS STATE ── */
+.newsletter-success {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+}
+.newsletter-success-icon {
+  width: 40px;
+  height: 40px;
+  border: 0.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+.newsletter-success p {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--ink);
+  font-style: italic;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
-  .team-grid { grid-template-columns: 1fr; }
+  .wwd-phases { grid-template-columns: repeat(2, 1fr); }
+  .team-cred-grid { grid-template-columns: repeat(2, 1fr); }
   .team-cred-bar { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .team-cred-stat { border-right: none; padding: 0 !important; }
   .conviction-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -502,6 +990,14 @@ canvas#ab-canvas {
 }
 @media (max-width: 768px) {
   .ab-body { grid-template-columns: 1fr; gap: 40px; }
+  .wwd-top { grid-template-columns: 1fr; gap: 40px; }
+  .wwd-phases { grid-template-columns: 1fr 1fr; }
+  .team-cred-grid { grid-template-columns: 1fr; }
+  .newsletter-form { flex-direction: column; }
+  .newsletter-btn { padding: 1.1rem; text-align: center; }
+}
+@media (max-width: 480px) {
+  .wwd-phases { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -513,22 +1009,22 @@ canvas#ab-canvas {
 <div class="ab-hero">
   <canvas id="ab-canvas"></canvas>
   <div class="ab-hero-inner">
-    <p class="ab-eyebrow">About Us</p>
-    <h1 class="ab-headline">We do not publish books.<br>We engineer <em>authority<br>ecosystems.</em></h1>
+    <p class="ab-eyebrow">About IndieCo</p>
+    <h1 class="ab-headline">We place the world's most important<br><em>ideas where they belong.</em></h1>
     <div class="ab-rule"></div>
   </div>
 </div>
 
-<!-- BODY COPY -->
+<!-- BODY COPY (WHO WE ARE) -->
 <div class="ab-body fade-up">
   <div>
     <p class="ab-label">Who we are</p>
     <h2 class="ab-statement">A public relations and media advisory built for <em>independent authority.</em></h2>
   </div>
   <div class="ab-copy">
-    <p>Founded in 2020, IndieCo is AI designed for media and authority. After over six years of manually publishing clients, managing casting calls and everything in between, we built a secure platform that places founders and executives in top-tier press, on marquee stages, and between the covers of their next book — across Manila and New York City.</p>
+    <p>Founded in 2020, IndieCo is a PR and media advisory built for founders, executives, and experts who are ready to become the recognized name in their space. After over six years of placing clients in top-tier media, on marquee stages, and between the covers of published books — we built the full infrastructure to do it at scale, across Manila and New York City.</p>
     <p>A book is not the goal. A keynote is not the goal. Authority is. We believe the world's most important ideas live inside people who have not yet been given the stage. Our mission is to change that — by building the infrastructure that turns expertise into influence, and influence into revenue.</p>
-    <p>Through fresh strategic thinking, a world-class speaker network, and a transformative peer community, we take the most enthusiastic minds in any field and make them impossible to ignore.</p>
+    <p>Through strategic editorial thinking, a world-class speaker and media network, and a rigorous authority-building process, we take the most capable minds in any field and make them impossible to ignore.</p>
   </div>
 </div>
 
@@ -552,6 +1048,59 @@ canvas#ab-canvas {
   </div>
 </div>
 
+<!-- ══ MISSION SECTION ══ -->
+<section class="mission">
+  <div class="mission-inner">
+    <span class="mission-eyebrow fade-up">A Mission Defined by Possibility</span>
+    <h2 class="mission-headline fade-up">Our goal is simple:<br>to make you <em>Seen</em> and <em>Known.</em></h2>
+    <div class="mission-rule fade-up"></div>
+    <p class="mission-body fade-up">At IndieCo, our mission is energized by a belief that the world's most important work belongs to people, not institutions — and that independent thinkers deserve the same infrastructure that the largest organizations take for granted. Here you will find a place of strategic expansiveness, global perspective, and the freedom to build authority on your own terms. Buzzing with ideas and operating at the highest tier of media and publishing — this is IndieCo.</p>
+    <blockquote class="mission-pull fade-up">
+      "We exist to give independent thinkers the infrastructure to be recognized for what they've already earned the right to say."
+    </blockquote>
+  </div>
+</section>
+
+<!-- ══ WHAT WE DO ══ -->
+<section class="what-we-do">
+  <div class="wwd-inner">
+    <div class="wwd-top fade-up">
+      <div>
+        <span class="wwd-eyebrow">What We Do</span>
+        <h2 class="wwd-headline">We don't publish books.<br>We engineer <em>authority<br>ecosystems.</em></h2>
+      </div>
+      <div class="wwd-copy">
+        <p>IndieCo operates across the full lifecycle of authority-building — from the first word of your book to the final stage of a global conference. Every phase of our work is designed to compound: a book becomes a media record, a media record becomes a speaker credential, and a speaker credential becomes a revenue-generating platform that outlasts any single campaign.</p>
+        <p>Our process mirrors the most rigorous startup growth frameworks — but applied to personal brand and intellectual influence. Clients who work with us don't just get placed. They get positioned. The difference is permanence.</p>
+      </div>
+    </div>
+
+    <!-- Phase cards -->
+    <div class="wwd-phases fade-up">
+      <div class="wwd-phase">
+        <span class="phase-num">Phase 01</span>
+        <div class="phase-title">Creation</div>
+        <p class="phase-desc">Ghostwriting, developmental editing, and full-service publishing across ebook, paperback, hardcover, and audiobook — with global retail distribution in 7–8 months.</p>
+      </div>
+      <div class="wwd-phase">
+        <span class="phase-num">Phase 02</span>
+        <div class="phase-title">Bestseller Campaigns</div>
+        <p class="phase-desc">From Amazon and Barnes & Noble entry campaigns to national placements on USA Today and the New York Times. We engineer the result — we don't hope for it.</p>
+      </div>
+      <div class="wwd-phase">
+        <span class="phase-num">Phase 03</span>
+        <div class="phase-title">Authority Expansion</div>
+        <p class="phase-desc">Podcast interview campaigns (15–60 placements), premium media features in Forbes, Bloomberg, TechCrunch, Wall Street Journal, and global tier-one outlets.</p>
+      </div>
+      <div class="wwd-phase">
+        <span class="phase-num">Phase 04</span>
+        <div class="phase-title">Speaking & Scale</div>
+        <p class="phase-desc">Premier conference placements, United Nations speaking engagements, signature talk development, and monetization systems that turn your book into a sustained revenue funnel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONVICTIONS -->
 <div class="conviction">
   <div class="conviction-inner">
@@ -573,67 +1122,61 @@ canvas#ab-canvas {
   </div>
 </div>
 
-<!-- TEAM CREDENTIALS -->
+<!-- ══ TEAM — GLITCH ══ -->
 <section class="team">
+  <div class="team-glitch-bg">LEADERSHIP</div>
+
   <div class="team-inner">
 
     <div class="team-top fade-up">
       <span class="team-eyebrow">The people behind the platform.</span>
-      <span class="team-eyebrow gold">Three leaders One standard.</span>
+      <span class="team-eyebrow gold">One standard. No exceptions.</span>
     </div>
 
-    <h2 class="team-h fade-up">Built by people who've<br>earned <em>their own stages.</em></h2>
-    <p class="team-sub fade-up">Every member of our founding team has personally navigated the intersection of publishing, media, and global influence — before helping clients do the same.</p>
+    <h2 class="team-h glitch fade-up" data-text="Built by people who've earned their own stages.">Built by people who've<br>earned <em>their own stages.</em></h2>
+    <p class="team-sub fade-up">Every member of our leadership and advisory team has personally navigated the intersection of publishing, media, and global influence — and has successfully helped build and scale businesses from Seed to Acquisition — before helping clients do the same.</p>
 
-    <div class="team-grid">
+    <!-- Unified team card -->
+    <div class="team-unified fade-up">
+      <div class="team-unified-glitch"></div>
+      <div class="team-unified-glitch-bar"></div>
 
-      <!-- FOUNDER -->
-      <div class="team-card fade-up">
-        <span class="team-card-role">Founder &amp; CEO · Leah Angela Cioco </span>
-        <div class="team-card-title">Formally trained at Harvard for Non-fiction and Biography Writing.<br>Top 5  Traditionally Published Author.<br>Stanford ASES Alumna.</div>
-        <p class="team-card-bio">The founder of IndieCo built the company from a blank page at the University of the Philippines, where she studied Applied Mathematics while simultaneously writing, producing, and organizing the foundation of this company. For her work, she was selected from 7,000 global nominations as a Top 50 finalist for the Chegg.org Global Student Prize — the world's most prestigious student award — and carries a debut non-fiction title forthcoming. </p>
-        <div class="team-creds">
-          <div class="team-cred"><span><span class="hl">Simon & Schuster Author</span> — debut non-fiction, forthcoming </span></div>
-          <div class="team-cred"><span><span class="hl">Top 50 Global Student Prize finalist</span> — Chegg.org / Varkey Foundation, selected from 7,000 nominations across 150 countries</span></div>
-          <div class="team-cred"><span><span class="hl">Stanford ASES Summit</span> — Pitched a YC P26 startup (Project X), only one of 2 Filipinos selected with scholarship. </span></div>
-          <div class="team-cred"><span><span class="hl">Harvard Pre-College</span> — Creative Writing program</span></div>
-          <div class="team-cred"><span><span class="hl">TEDx Conference Lead Organizer</span> — Licensee</span></div>
-          <div class="team-cred"><span>Published in <span class="hl">Philippine Daily Inquirer</span>, <span class="hl">Chicken Soup for the Soul</span>, Scarlett Leaf Publishing</span></div>
-          <div class="team-cred"><span><span class="hl">YSEALI</span> — U.S. Embassy–selected fellow, Southeast Asian Leaders Initiative</span></div>
-        </div>
+      <span class="team-role-tag">Our Leadership &amp; Advisory Team</span>
+
+      <div class="team-unified-headline">
+        An experienced leadership team operating<br>at the intersection of <em>media, publishing,</em><br>and global authority.
       </div>
 
-      <!-- COO -->
-      <div class="team-card fade-up" style="transition-delay:0.1s">
-        <span class="team-card-role">Chief Operating Officer · Mary Lou Cunanan </span>
-        <div class="team-card-title">TEDx speaker.<br>First Harvard Business Publishing–<br>accredited faculty in the Philippines.</div>
-        <p class="team-card-bio">Our COO brings a rare combination of academic rigor and executive reach. Named one of the 100 Most Influential Global Filipinas, she has worked across 30+ countries and with institutions including the US State Department and the Asian Development Bank. A former Ateneo de Manila lecturer, she sits at the intersection of cultural diplomacy, strategic leadership, and international business — and has taken that credential set to stages and boardrooms across Europe, Asia, and the Americas.</p>
-        <div class="team-creds">
-          <div class="team-cred"><span><span class="hl">First Harvard Business Publishing–accredited faculty advisor</span> in the Philippines</span></div>
-          <div class="team-cred"><span><span class="hl">100 Most Influential Global Filipinas</span> — Filipino Women's Network</span></div>
-          <div class="team-cred"><span><span class="hl">TEDx Speaker &amp; Coach</span> — TEDxUPV and international stages</span></div>
-          <div class="team-cred"><span>Clients include <span class="hl">US State Department</span>, <span class="hl">Asian Development Bank</span></span></div>
-          <div class="team-cred"><span>Former lecturer, <span class="hl">Ateneo de Manila University</span></span></div>
-          <div class="team-cred"><span><span class="hl">Executive MBA</span> — international focus; ASEAN market specialist</span></div>
-          <div class="team-cred"><span>Published columnist, <span class="hl">Manila Times</span> &amp; Philippine Daily Mirror; active in 30+ countries</span></div>
+      <p class="team-unified-body">
+        Our team brings together over a decade of combined expertise across non-fiction publishing, executive communications, international diplomacy, and platform strategy. Formally trained at leading institutions across North America and Southeast Asia, our principals have worked with clients in 30+ countries — including institutions such as the US State Department and the Asian Development Bank — and carry personal credentials spanning Simon &amp; Schuster authorship, Harvard and Stanford affiliations, TEDx speaking, and recognition among the most influential global leaders in their respective fields. We have been where our clients want to go. That is what makes the difference.
+      </p>
+
+      <div class="team-cred-grid">
+        <div class="team-cred-item">
+          <span class="cred-institution">Simon &amp; Schuster</span>
+          <div class="cred-detail">Author-level publishing relationship — debut non-fiction forthcoming</div>
+        </div>
+        <div class="team-cred-item">
+          <span class="cred-institution">Harvard &amp; Stanford</span>
+          <div class="cred-detail">Pre-College, HCAP Conference, and ASES Summit affiliations across our leadership</div>
+        </div>
+        <div class="team-cred-item">
+          <span class="cred-institution">TEDx</span>
+          <div class="cred-detail">Speaker, coach, and licensed conference organizer credentials across the team</div>
+        </div>
+        <div class="team-cred-item">
+          <span class="cred-institution">Chegg.org / Varkey Foundation</span>
+          <div class="cred-detail">Top 50 Global Student Prize finalist — selected from 7,000 nominations, 150 countries</div>
+        </div>
+        <div class="team-cred-item">
+          <span class="cred-institution">US Embassy — YSEALI</span>
+          <div class="cred-detail">Southeast Asian Leaders Initiative fellows across three countries of operation</div>
+        </div>
+        <div class="team-cred-item">
+          <span class="cred-institution">Harvard Business Publishing</span>
+          <div class="cred-detail">First HBP-accredited faculty advisor in the Philippines on our advisory team</div>
         </div>
       </div>
-
-      <!-- THAILAND LEAD -->
-      <div class="team-card fade-up" style="transition-delay:0.2s">
-        <span class="team-card-role">Chief Technology Officer · Natchita Wanicharoenchai </span>
-        <div class="team-card-title">Chulalongkorn University Scholar.<br>UT Austin YSEALI fellow.<br>Harvard HCAP alumna.</div>
-        <p class="team-card-bio">Our Bangkok/NYC-based strategist represents IndieCo's technical intelligence. A full-scholarship BBA graduate of Chulalongkorn University — Thailand's most prestigious institution — she was selected by the US Embassy as a YSEALI Academic Fellow at the University of Texas at Austin, and attended the HCAP network conference at Harvard University alongside delegates from Tokyo, Hong Kong, and Ewha. She bridges Thai and ASEAN market dynamics with the rigorous strategic thinking of a global operator.</p>
-        <div class="team-creds">
-          <div class="team-cred"><span><span class="hl">YSEALI Academic Fellow</span> — US Embassy full scholarship, UT Austin; represented Thailand among 150 ASEAN alumni</span></div>
-          <div class="team-cred"><span><span class="hl">Harvard HCAP Conference</span> — delegate alongside University of Tokyo, University of Hong Kong, Ewha</span></div>
-          <div class="team-cred"><span><span class="hl">Full BBA Scholarship</span>, Chulalongkorn University — awarded by alumni board</span></div>
-          <div class="team-cred"><span><span class="hl">ASEAN+3 Conference delegate</span> — Taiwan; selected to represent Chulalongkorn University</span></div>
-          <div class="team-cred"><span><span class="hl">PepsiCo Dare to Do More</span> — Top 10 national finalist, Thailand; presented to C-suite leadership</span></div>
-          <div class="team-cred"><span>AFS Intercultural Exchange Scholar — <span class="hl">DKSH (Thailand)</span> full scholarship, United States</span></div>
-        </div>
-      </div>
-
     </div>
 
     <!-- Credential bar -->
@@ -685,7 +1228,7 @@ canvas#ab-canvas {
         <span class="faq-icon"></span>
       </button>
       <div class="faq-answer"><div class="faq-answer-inner">
-        <p>Our fees are deliberately calibrated to the scope, depth, and ambition of each engagement. Individual clients typically invest between US$5,000–$25,000.</p>
+        <p>Our Standard packages begin at US$5,000 and run through US$25,000 — designed for academics, professionals, and those entering the authority-building space. Our Premier packages, designed for founders, executives, and investors who want to become the recognized name in their space, begin at US$150,000.</p>
         <p>For corporate partnerships, investment levels are structured on a bespoke basis, reflecting the scale, complexity, and strategic objectives of the collaboration.</p>
       </div></div>
     </div>
@@ -721,6 +1264,47 @@ canvas#ab-canvas {
   </div>
 </section>
 
+<!-- ══ NEWSLETTER ══ -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <span class="newsletter-eyebrow fade-up">Insider Access</span>
+    <h2 class="newsletter-headline fade-up">Stay <em>inside</em> the room.</h2>
+    <p class="newsletter-sub fade-up">Exclusive updates on community events, insider news, and opportunities open to alumni, supporters, and investors — delivered directly to you.</p>
+
+    <div id="newsletter-form-wrap" class="fade-up">
+      <div class="newsletter-form" id="mc-form">
+        <input
+          type="email"
+          id="mc-email"
+          class="newsletter-input"
+          placeholder="Your email address"
+          autocomplete="email"
+          required
+        />
+        <button class="newsletter-btn" onclick="handleNewsletterSubmit()">Subscribe</button>
+      </div>
+      <p class="newsletter-note">For alumni, supporters &amp; investors. No spam. Unsubscribe any time.</p>
+    </div>
+
+    <div class="newsletter-success" id="newsletter-success">
+      <div class="newsletter-success-icon">
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <path d="M1.5 6L6 10.5L14.5 1.5" stroke="#b8975a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p>You're inside the room now.</p>
+    </div>
+
+    <div class="newsletter-tags fade-up">
+      <span class="newsletter-tag">Alumni</span>
+      <span class="newsletter-tag">Supporters</span>
+      <span class="newsletter-tag">Investors</span>
+      <span class="newsletter-tag">Community Events</span>
+      <span class="newsletter-tag">Insider News</span>
+    </div>
+  </div>
+</section>
+
 <div id="footer-placeholder"></div>
 <script src="../js/nav.js"></script>
 <script>
@@ -731,21 +1315,34 @@ canvas#ab-canvas {
   function resize(){ cv.width=cv.offsetWidth; cv.height=cv.offsetHeight; }
   resize();
   window.addEventListener('resize',resize);
-  const sparkles=Array.from({length:50},()=>({
+  const sparkles=Array.from({length:60},()=>({
     x:Math.random()*cv.width, y:Math.random()*cv.height,
-    r:Math.random()*1.5+0.5, opacity:Math.random(), fade:Math.random()*0.02+0.005
+    r:Math.random()*1.5+0.5, opacity:Math.random(), fade:Math.random()*0.015+0.003
   }));
   function draw(){
     ctx.clearRect(0,0,cv.width,cv.height);
     sparkles.forEach(s=>{
       s.opacity+=s.fade;
       if(s.opacity>=1||s.opacity<=0)s.fade*=-1;
-      ctx.fillStyle=`rgba(0,0,0,${s.opacity*0.12})`;
+      ctx.fillStyle=`rgba(0,0,0,${s.opacity*0.1})`;
       ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
     });
     requestAnimationFrame(draw);
   }
   draw();
+})();
+
+/* FADE UP OBSERVER */
+(function(){
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 })();
 
 /* STAT COUNTUP */
@@ -799,6 +1396,72 @@ function toggleFaq(btn){
     answer.style.maxHeight=answer.scrollHeight+'px';
   }
 }
+
+/* NEWSLETTER — Mailchimp integration */
+function handleNewsletterSubmit() {
+  const emailInput = document.getElementById('mc-email');
+  const email = emailInput.value.trim();
+
+  if (!email || !email.includes('@')) {
+    emailInput.style.borderBottom = '1px solid #c0392b';
+    emailInput.focus();
+    return;
+  }
+
+  /*
+   * ─────────────────────────────────────────────────────────────────
+   * MAILCHIMP INTEGRATION INSTRUCTIONS
+   * ─────────────────────────────────────────────────────────────────
+   * Replace the fetch URL below with your Mailchimp embedded form
+   * action URL. To get it:
+   *   1. Go to Mailchimp → Audience → Signup forms → Embedded forms
+   *   2. Copy the form action URL (it looks like:
+   *      https://yourcompany.us1.list-manage.com/subscribe/post
+   *   3. Add ?u=YOUR_USER_ID&id=YOUR_LIST_ID as query params
+   *
+   * For CORS-safe submission, use Mailchimp's jsonp endpoint by
+   * appending &f=jsonp to the URL and using a script tag injection,
+   * OR use a serverless function / Zapier webhook as a relay.
+   *
+   * Example serverless relay (Vercel/Netlify function):
+   *   POST /api/subscribe  { email }  → calls Mailchimp API
+   * ─────────────────────────────────────────────────────────────────
+   */
+
+  // For now, simulate success (replace with real Mailchimp call)
+  const MAILCHIMP_URL = 'YOUR_MAILCHIMP_URL_HERE'; // ← replace this
+
+  if (MAILCHIMP_URL === 'YOUR_MAILCHIMP_URL_HERE') {
+    // Demo mode: show success state without real submission
+    showNewsletterSuccess();
+    return;
+  }
+
+  // Real Mailchimp submission via JSONP
+  const callbackName = 'mc_callback_' + Date.now();
+  const script = document.createElement('script');
+  window[callbackName] = function(data) {
+    delete window[callbackName];
+    document.body.removeChild(script);
+    if (data.result === 'success') {
+      showNewsletterSuccess();
+    } else {
+      alert(data.msg || 'Something went wrong. Please try again.');
+    }
+  };
+  script.src = MAILCHIMP_URL + '&EMAIL=' + encodeURIComponent(email) + '&c=' + callbackName;
+  document.body.appendChild(script);
+}
+
+function showNewsletterSuccess() {
+  document.getElementById('newsletter-form-wrap').style.display = 'none';
+  const success = document.getElementById('newsletter-success');
+  success.style.display = 'block';
+}
+
+document.getElementById('mc-email').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleNewsletterSubmit();
+});
 </script>
 </body>
 </html>
