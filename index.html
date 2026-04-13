@@ -1333,199 +1333,52 @@
   </div>
 </section>
 
-<!-- ════════════════ USE CASES ════════════════ -->
-<section class="uc">
-  <div class="page-wrap">
-    <div class="uc-header fade-up">
-      <div>
-        <span class="section-eyebrow">Use Cases</span>
-        <h2 class="uc-h">What our clients<br>use IndieCo <em>for.</em></h2>
-      </div>
-      <div class="uc-header-right">
-        <p class="uc-sub-text">From immigration to influence. Tap any use case to learn more.</p>
-      </div>
-    </div>
-    <div class="uc-filter fade-up" style="transition-delay:0.1s">
-      <button class="uc-cat active" onclick="filterTags('all',this)">All</button>
-      <button class="uc-cat" onclick="filterTags('visibility',this)">Visibility</button>
-      <button class="uc-cat" onclick="filterTags('publishing',this)">Publishing</button>
-      <button class="uc-cat" onclick="filterTags('speaking',this)">Speaking</button>
-      <button class="uc-cat" onclick="filterTags('media',this)">Media</button>
-      <button class="uc-cat" onclick="filterTags('legal',this)">Immigration</button>
-      <button class="uc-cat" onclick="filterTags('revenue',this)">Revenue</button>
-    </div>
-    <div class="uc-cloud fade-up" style="transition-delay:0.2s" id="uc-cloud"></div>
-    <div class="uc-detail" id="uc-detail">
-      <p class="uc-detail-label">Use case</p>
-      <p class="uc-detail-text" id="uc-detail-text"></p>
-    </div>
-  </section>
-</div>
-
-<!-- ════════════════ CTA STRIP ════════════════ -->
-<div class="cta-strip">
-  <div class="cta-strip-inner">
-    <div class="cta-strip-left fade-up">
-      <div class="cta-strip-eyebrow">Begin Your Journey</div>
-      <h2 class="cta-strip-h">Turn your story into<br><em>authority, influence,<br>and revenue.</em></h2>
-    </div>
-    <div class="cta-strip-right fade-up" style="transition-delay:0.15s">
-      <a href="pages/work-with-us.html" class="btn-primary"><span>Work With Us →</span></a>
-      <a href="pages/get-started.html" class="btn-ghost">Quick Intake Form</a>
-    </div>
-  </div>
-</div>
-
-<div id="footer-placeholder"></div>
-
-<script src="js/nav.js"></script>
 <script>
+/* ══ AUTO-SCROLLING USE CASES ═══════════════════ */
 
-/* ══ MARQUEE ══════════════════════════════════ */
-(function(){
-  const words = ['Authority','Influence','Legacy','Scale','Revenue','Presence','Impact','Publishing','Media','Speaking'];
-  const track = document.getElementById('mq-track');
-  let html = '';
-  for(let i = 0; i < 8; i++) words.forEach(w => {
-    html += `<span class="mq-item">${w}</span><span class="mq-sep">·</span>`;
-  });
-  track.innerHTML = html;
-})();
-
-/* ══ CYCLE ════════════════════════════════════ */
-(function(){
-  const stages = [
-    { num:'01', name:'Idea',       desc:'Clarifying the concept and authority angle.' },
-    { num:'02', name:'Book',       desc:'Manuscript strategy to finished draft.' },
-    { num:'03', name:'Bestseller', desc:'Launch campaigns that drive coordinated velocity.' },
-    { num:'04', name:'Media',      desc:'Press coverage that compounds credibility.' },
-    { num:'05', name:'Speaking',   desc:'Placement on global conference stages.' },
-    { num:'06', name:'Revenue',    desc:'Monetization architecture that scales.' },
-  ];
-
-  /* List on left */
-  const stageList = document.getElementById('cycle-stages');
-  stages.forEach(s => {
-    const el = document.createElement('div');
-    el.className = 'cycle-stage';
-    el.innerHTML = `<span class="cycle-stage-num">${s.num}</span>
-      <div>
-        <span class="cycle-stage-name">${s.name}</span>
-        <p class="cycle-stage-desc">${s.desc}</p>
-      </div>`;
-    stageList.appendChild(el);
-  });
-
-  /* Orbital ring */
-  const cx=200, cy=200, r=155, n=stages.length;
-  const svg=document.getElementById('cy-svg');
-  const ring=document.getElementById('cy-ring');
-  if(!svg||!ring) return;
-
-  function ns(t){return document.createElementNS('http://www.w3.org/2000/svg',t);}
-  function attr(el,o){Object.entries(o).forEach(([k,v])=>el.setAttribute(k,v));return el;}
-
-  svg.appendChild(attr(ns('circle'),{cx,cy,r,fill:'none',stroke:'rgba(184,36,78,0.2)','stroke-width':'0.5','stroke-dasharray':'4 10'}));
-  svg.appendChild(attr(ns('circle'),{cx,cy,r:52,fill:'none',stroke:'rgba(184,36,78,0.15)','stroke-width':'0.5'}));
-
-  const pts = stages.map((_,i)=>{
-    const a=(i/n)*2*Math.PI-Math.PI/2;
-    return [cx+r*Math.cos(a), cy+r*Math.sin(a)];
-  });
-
-  pts.forEach(([x1,y1],i)=>{
-    const[x2,y2]=pts[(i+1)%n];
-    svg.appendChild(attr(ns('line'),{x1,y1,x2,y2,stroke:'rgba(184,36,78,0.08)','stroke-width':'0.5'}));
-  });
-
-  stages.forEach(([,],i)=>{
-    const a=(i/n)*2*Math.PI-Math.PI/2;
-    const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a);
-    svg.appendChild(attr(ns('circle'),{cx:x,cy:y,r:2.5,fill:'rgba(184,36,78,0.6)'}));
-
-    const node=document.createElement('div');
-    node.className='cy-node';
-    node.style.cssText=`left:${x}px;top:${y}px`;
-    node.innerHTML=`<div class="cy-inner">
-      <span class="cy-num">${stages[i].num}</span>
-      <span class="cy-name">${stages[i].name}</span>
-      <span class="cy-dot"></span>
-    </div>`;
-    ring.appendChild(node);
-  });
-})();
-
-/* ══ USE CASES ════════════════════════════════ */
-const tags=[
-  {label:"O1A Visa Documentation",cat:"legal",desc:"We build comprehensive O1A extraordinary ability portfolios — compiling media coverage, published works, speaking records, and peer recognition into a compelling case file."},
-  {label:"Book Publishing",cat:"publishing",desc:"From manuscript strategy to final print — we guide you through the full publishing process with editorial rigour and market positioning built in from day one."},
-  {label:"Bestseller Strategy",cat:"publishing",desc:"We engineer launch campaigns that drive coordinated sales velocity across key retail windows to achieve bestseller rankings that stick."},
-  {label:"Thought Leadership Positioning",cat:"visibility",desc:"We define, articulate, and amplify the intellectual framework only you can own — giving your expertise a shape the world can recognize."},
-  {label:"Keynote Speaking Placement",cat:"speaking",desc:"We place you on global conference stages, industry summits, and main-stage keynote slots aligned to your field and ambitions."},
-  {label:"Media Feature Campaigns",cat:"media",desc:"We secure editorial features, podcast appearances, and press coverage in publications that compound your credibility over time."},
-  {label:"PR & Press Strategy",cat:"media",desc:"Strategic, not scattershot. We build press narratives that position you as a primary source, not just a comment."},
-  {label:"Personal Brand Architecture",cat:"visibility",desc:"We design the full brand framework — voice, positioning, visual direction, and content strategy — for leaders building a public profile."},
-  {label:"LinkedIn Authority Building",cat:"visibility",desc:"We develop and execute a LinkedIn content and presence strategy that grows your following and converts visibility into inbound opportunities."},
-  {label:"Podcast Tour Strategy",cat:"media",desc:"We book you onto the top podcasts in your industry and prepare you to deliver memorable, shareable conversations."},
-  {label:"Speaking Bio & Kit",cat:"speaking",desc:"We craft speaker bios, one-sheets, and media kits that command the attention of event organizers and booking teams."},
-  {label:"Award & Recognition Submissions",cat:"legal",desc:"We identify and prepare submissions for industry awards, fellowships, and recognition programs that strengthen your authority portfolio."},
-  {label:"Academic & Research Publishing",cat:"publishing",desc:"We assist experts in translating research and expertise into accessible books and published thought pieces that reach mainstream audiences."},
-  {label:"TEDx Application Support",cat:"speaking",desc:"We develop your TED idea worth spreading, write your application narrative, and prepare you for the curation process."},
-  {label:"Executive Visibility Strategy",cat:"visibility",desc:"For C-suite leaders who need a public presence aligned with their business — we build the full platform without the noise."},
-  {label:"Founder Authority Building",cat:"visibility",desc:"We help founders turn company credibility into personal authority — so your story scales beyond your startup."},
-  {label:"Revenue Ecosystem Design",cat:"revenue",desc:"We map and build the monetization architecture behind your authority — courses, advisory roles, speaking fees, licensing, and more."},
-  {label:"Course & IP Monetization",cat:"revenue",desc:"We structure your expertise into scalable digital products — from signature frameworks to online courses and licensing models."},
-  {label:"Speaking Fee Positioning",cat:"revenue",desc:"We help you move from free talks to paid keynotes by building the credibility infrastructure that justifies premium fees."},
-  {label:"Advisory Board Placements",cat:"revenue",desc:"We position you for advisory and board roles with companies and organizations aligned to your expertise and ambitions."},
-  {label:"Book Proposal Writing",cat:"publishing",desc:"We write compelling, market-ready book proposals that open doors with traditional publishers and literary agents."},
-  {label:"Literary Agent Introduction",cat:"publishing",desc:"We connect you with the right literary agents and publishers through warm introductions backed by a polished proposal."},
-  {label:"Media Training",cat:"media",desc:"We prepare you to own every interview — on camera, on stage, or on air — with confidence and message precision."},
-  {label:"Crisis Communication & Reputation",cat:"media",desc:"When your narrative needs protecting or correcting, we craft the strategy and messaging that controls the story."},
-  {label:"Global Conference Strategy",cat:"speaking",desc:"We identify the top-tier global conferences in your field and map a multi-year speaking trajectory that builds your international profile."},
-  {label:"Ghostwriting & Editorial",cat:"publishing",desc:"We write in your voice — articles, op-eds, LinkedIn posts, and book chapters — with the quality and precision your expertise deserves."},
-  {label:"Op-Ed Placement",cat:"media",desc:"We write and place op-eds in major publications — giving your perspective a platform that reaches decision-makers and influencers."},
-  {label:"Immigration Evidence Portfolio",cat:"legal",desc:"We compile and frame the full body of evidence needed for immigration petitions — including critical role letters, peer testimonials, and media records."},
-  {label:"Extraordinary Ability Case Building",cat:"legal",desc:"We work alongside immigration attorneys to build the narrative and evidentiary file that demonstrates extraordinary ability across EB-1A and O1A categories."},
-  {label:"National Interest Waiver Support",cat:"legal",desc:"We document your impact and contributions in a format that supports NIW petitions — making the case for your national and global significance."},
-  {label:"EB-1A Green Card Documentation",cat:"legal",desc:"We build the authority record — publications, media, speaking, awards — that strengthens EB-1A extraordinary ability green card applications."},
-  {label:"Consulting Practice Launch",cat:"revenue",desc:"We help established experts launch consulting practices with a clear positioning, offer structure, and visibility strategy from day one."},
-  {label:"Newsletter & Community Building",cat:"visibility",desc:"We develop the editorial strategy and launch plan for newsletters and online communities that turn an audience into a loyal following."},
-  {label:"Content Strategy & Calendar",cat:"visibility",desc:"We build a 90-day rolling content strategy across platforms — ensuring consistent, on-brand visibility without the burnout."},
-  {label:"Legacy & Impact Documentation",cat:"publishing",desc:"We help senior leaders and retiring executives capture their body of work in published form — memoirs, legacy books, and impact reports."},
-  {label:"Investor & Fundraising Narrative",cat:"visibility",desc:"We help founders and fund managers build the thought leadership presence that attracts LPs, investors, and strategic partners."},
+const tags = [
+  {label:"O1A Visa Documentation",desc:"We build comprehensive O1A extraordinary ability portfolios — compiling media coverage, published works, speaking records, and peer recognition into a compelling case file."},
+  {label:"Book Publishing",desc:"From manuscript strategy to final print — we guide you through the full publishing process with editorial rigour and market positioning built in from day one."},
+  {label:"Bestseller Strategy",desc:"We engineer launch campaigns that drive coordinated sales velocity across key retail windows to achieve bestseller rankings that stick."},
+  {label:"Thought Leadership Positioning",desc:"We define, articulate, and amplify the intellectual framework only you can own — giving your expertise a shape the world can recognize."},
+  {label:"Keynote Speaking Placement",desc:"We place you on global conference stages, industry summits, and main-stage keynote slots aligned to your field and ambitions."},
+  {label:"Media Feature Campaigns",desc:"We secure editorial features, podcast appearances, and press coverage in publications that compound your credibility over time."},
 ];
 
-const cloud=document.getElementById('uc-cloud');
-const detail=document.getElementById('uc-detail');
-const detailText=document.getElementById('uc-detail-text');
+const cloud = document.getElementById('uc-cloud');
+const detailText = document.getElementById('uc-detail-text');
 
-function renderTags(filter){
-  cloud.innerHTML='';
-  tags.forEach(t=>{
-    const el=document.createElement('button');
-    el.className='uc-tag'+(filter!=='all'&&t.cat!==filter?' dim':'');
-    el.innerHTML=`<span class="uc-tag-dot"></span>${t.label}`;
-    el.onclick=()=>selectTag(el,t);
-    cloud.appendChild(el);
-  });
+let index = 0;
+
+function renderLoop() {
+  cloud.innerHTML = '';
+
+  const current = tags[index];
+
+  const el = document.createElement('div');
+  el.className = 'uc-auto-item fade-up active';
+
+  el.innerHTML = `
+    <div class="uc-auto-label">${current.label}</div>
+  `;
+
+  cloud.appendChild(el);
+
+  // fade text update
+  detailText.style.opacity = 0;
+
+  setTimeout(() => {
+    detailText.textContent = current.desc;
+    detailText.style.opacity = 1;
+  }, 300);
+
+  // move to next
+  index = (index + 1) % tags.length;
 }
 
-function selectTag(el,t){
-  document.querySelectorAll('.uc-tag').forEach(x=>x.classList.remove('lit'));
-  el.classList.add('lit');
-  detailText.textContent=t.desc;
-  detail.classList.add('show');
-}
-
-function filterTags(cat,btn){
-  document.querySelectorAll('.uc-cat').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderTags(cat);
-  detail.classList.remove('show');
-}
-
-renderTags('all');
-
+// loop every 3.5s
+renderLoop();
+setInterval(renderLoop, 3500);
 </script>
 </body>
 </html>
