@@ -1,214 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Not Found</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>404 — IndieCo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<style>
 
-    :root {
-      --cream: #f5f0ea;
-      --blush: #e8d5c4;
-      --nude: #c9a98e;
-      --warm-brown: #7a5c47;
-      --deep: #2e1f14;
-      --soft-pink: #f0e4da;
-    }
+:root {
+  --void:      #0A0710;
+  --graphite:  #211B2B;
+  --voltage:   #B8244E;
+  --voltage-dk:#8C1A3A;
+  --orchid:    #5C2475;
+  --bone:      #F4F0EB;
+  --ash:       #9A8FA0;
+  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif:'Cormorant Garamond', Georgia, serif;
+}
 
-    html, body {
-      height: 100%;
-    }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+}
 
-    body {
-      background-color: var(--cream);
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      color: var(--deep);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
+html, body { height: 100%; }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.6;
-    }
+body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
 
-    body::after {
-      content: '';
-      position: fixed;
-      top: -120px;
-      right: -120px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, var(--blush) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.55;
-      animation: drift 10s ease-in-out infinite alternate;
-    }
+/* Geometric accent — brand-aligned */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  background: var(--graphite);
+  clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 0;
+}
 
-    .blob-bottom {
-      position: fixed;
-      bottom: -150px;
-      left: -100px;
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, var(--soft-pink) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-      animation: drift 13s ease-in-out infinite alternate-reverse;
-    }
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 3px;
+  background: var(--voltage);
+  clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+  z-index: 1;
+}
 
-    @keyframes drift {
-      from { transform: translate(0, 0) scale(1); }
-      to   { transform: translate(20px, 20px) scale(1.04); }
-    }
+/* Noise grain */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.02;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
 
-    .container {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 40px 24px;
-      max-width: 480px;
-      width: 100%;
-      animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
+/* Orchid glow */
+.glow {
+  position: fixed;
+  bottom: -200px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(92,36,117,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: drift 12s ease-in-out infinite alternate;
+}
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(30px,20px) scale(1.08); }
+}
 
-    .eyebrow {
-      font-family: 'Jost', sans-serif;
-      font-weight: 200;
-      font-size: 10px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--nude);
-      margin-bottom: 28px;
-      animation: fadeUp 1s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
+/* Vertical rule — brand detail */
+.v-rule {
+  position: fixed;
+  left: 80px;
+  top: 0;
+  width: 0.5px;
+  height: 100vh;
+  background: linear-gradient(to bottom, transparent 10%, rgba(184,36,78,0.3) 40%, rgba(184,36,78,0.3) 60%, transparent 90%);
+  z-index: 2;
+}
 
-    .number {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(100px, 22vw, 160px);
-      line-height: 0.9;
-      color: var(--deep);
-      letter-spacing: -0.03em;
-      margin-bottom: 32px;
-      animation: fadeUp 1s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
-      position: relative;
-    }
+/* Main container */
+.container {
+  position: relative;
+  z-index: 10;
+  text-align: left;
+  padding: 40px 80px;
+  max-width: 600px;
+  width: 100%;
+  animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both;
+}
 
-    .number::after {
-      content: '404';
-      position: absolute;
-      inset: 0;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--nude);
-      opacity: 0.18;
-      transform: translate(4px, 4px);
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-    .divider {
-      width: 36px;
-      height: 1px;
-      background: var(--nude);
-      margin: 0 auto 28px;
-      animation: fadeUp 1s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
+/* Eyebrow */
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--voltage);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  animation: fadeUp 0.9s 0.1s both;
+}
 
-    h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-style: italic;
-      font-size: clamp(22px, 5vw, 30px);
-      letter-spacing: 0.02em;
-      color: var(--deep);
-      margin-bottom: 16px;
-      animation: fadeUp 1s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 0.5px;
+  background: var(--voltage);
+}
 
-    p {
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      color: var(--warm-brown);
-      line-height: 1.8;
-      margin-bottom: 44px;
-      animation: fadeUp 1s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
+/* 404 number */
+.number {
+  font-family: var(--font-serif);
+  font-size: clamp(8rem, 22vw, 14rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--bone);
+  margin-bottom: 32px;
+  animation: fadeUp 0.9s 0.15s both;
+  position: relative;
+  display: inline-block;
+}
 
-    .btn {
-      display: inline-block;
-      font-family: 'Jost', sans-serif;
-      font-weight: 300;
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--cream);
-      background: var(--deep);
-      padding: 16px 36px;
-      transition: background 0.35s ease, color 0.35s ease, transform 0.3s ease;
-      animation: fadeUp 1s 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
+/* Ghost echo */
+.number::after {
+  content: '404';
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: 0.5px rgba(184,36,78,0.3);
+  transform: translate(6px, 6px);
+  pointer-events: none;
+}
 
-    .btn:hover {
-      background: var(--warm-brown);
-      transform: translateY(-2px);
-    }
+/* Divider */
+.rule {
+  width: 48px;
+  height: 0.5px;
+  background: var(--voltage);
+  margin-bottom: 24px;
+  animation: fadeUp 0.9s 0.22s both;
+}
 
-    .flourish {
-      margin-top: 52px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 11px;
-      color: var(--nude);
-      letter-spacing: 0.12em;
-      opacity: 0.7;
-      animation: fadeUp 1s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-  </style>
+/* Headline */
+h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  color: var(--bone);
+  margin-bottom: 12px;
+  animation: fadeUp 0.9s 0.28s both;
+}
+
+/* Body */
+p.body {
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: rgba(244,240,235,0.35);
+  line-height: 1.9;
+  margin-bottom: 44px;
+  animation: fadeUp 0.9s 0.34s both;
+}
+
+/* Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  background: var(--voltage);
+  color: var(--bone);
+  padding: 16px 36px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s;
+  animation: fadeUp 0.9s 0.4s both;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--voltage-dk);
+  transform: translateX(-101%);
+  transition: transform 0.45s cubic-bezier(0.7,0,0.3,1);
+}
+
+.btn:hover::before { transform: translateX(0); }
+.btn span { position: relative; z-index: 1; }
+
+/* Footnote */
+.footnote {
+  margin-top: 48px;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(244,240,235,0.15);
+  animation: fadeUp 0.9s 0.48s both;
+}
+
+</style>
 </head>
 <body>
-  <div class="blob-bottom"></div>
+
+  <div class="grain"></div>
+  <div class="glow"></div>
+  <div class="v-rule"></div>
 
   <div class="container">
-    <p class="eyebrow">Indiecó — Page Not Found</p>
+    <div class="eyebrow">IndieCo — Error</div>
     <div class="number">404</div>
-    <div class="divider"></div>
-    <h1>Not Found</h1>
-    <p>This page doesn't exist —<br>but the ideas still do.</p>
-    <a class="btn" href="https://www.indieco.com.co/pages/store">Go to Store</a>
-    <p class="flourish">www.indieco.com.co</p>
+    <div class="rule"></div>
+    <h1>This page doesn't exist.</h1>
+    <p class="body">The page you're looking for has moved or never existed — but the ideas still do.</p>
+    <a class="btn" href="/"><span>Return Home →</span></a>
+    <div class="footnote">www.indieco.com.co · Manila · New York</div>
   </div>
+
 </body>
 </html>
