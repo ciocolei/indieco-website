@@ -1,157 +1,121 @@
-/* ═══════════════════════════════════════════════
-   INDIECO — SHARED NAVIGATION & FOOTER JS
-   ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   INDIECO — SHARED NAV + FOOTER RENDERER
+   Brand Guide 2025
+═══════════════════════════════════════════ */
 
-(function () {
-  // ── CONFIG ──────────────────────────────────────
-  const NAV_LINKS = [
-    { label: 'Home',             href: '/index.html' },
-    { label: 'About',            href: '/pages/about.html' },
-    { label: 'Premier',         href: '/pages/premier-services.html' },
-    { label: 'Standard',         href: '/pages/standard-services.html' },
-    { label: 'Store',            href: '/pages/store.html' },
-    { label: 'Work With Us',     href: '/pages/work-with-us.html', cta: true },
-  ];
+const NAV_LINKS = [
+  { label: 'About',     href: '/pages/about.html' },
+  { label: 'Services',  href: '/pages/premier-services.html' },
+  { label: 'Store',     href: '/pages/store.html' },
+];
 
-  const FOOTER_LINKS = [
-    { label: 'Web',       href: 'https://www.indieco.com.co',          text: 'www.indieco.com.co' },
-    { label: 'Email',     href: 'mailto:contact@indieco.com.co',       text: 'contact@indieco.com.co' },
-    { label: 'Instagram', href: 'https://instagram.com/the.indie.co',  text: '@the.indie.co' },
-  ];
+const CTA_LINK = { label: 'Work With Us', href: '/pages/work-with-us.html' };
 
-  const FOOTER_COPY = '© 2026 IndieCo Information Technology Solutions, Inc. All rights reserved. IndieCo Information Technology Solutions, Inc. is not affiliated with TED/TEDx, Forbes and/or any media companies we advertise placing clients on. IndieCo Information Technology Solutions, Inc. provides software and services as a third-party platform fostering media profile placement and publication.';
+/* ── Build Nav ───────────────────────────────── */
+(function buildNav() {
+  const nav = document.createElement('nav');
+  nav.id = 'site-nav';
+  nav.setAttribute('aria-label', 'Primary navigation');
 
-  // ── HELPERS ─────────────────────────────────────
-  function currentPage() {
-    const path = window.location.pathname.replace(/\/$/, '');
-    return path || '/index.html';
-  }
-
-  function resolvePath(href) {
-    // If we're in /pages/, adjust root-relative links
-    const inSubdir = window.location.pathname.includes('/pages/');
-    if (!inSubdir) return href;
-    if (href === '/index.html') return '../index.html';
-    return href.replace('/pages/', '');
-  }
-
-  // ── BUILD NAV ───────────────────────────────────
-  function buildNav() {
-    const placeholder = document.getElementById('nav-placeholder');
-    if (!placeholder) return;
-
-    const isDark = placeholder.dataset.dark === 'true';
-    const path = currentPage();
-
-    const linksHTML = NAV_LINKS.map(l => {
-      const href = resolvePath(l.href);
-      const isActive = path.endsWith(l.href.replace('/pages/', '').replace('/', '')) ||
-                       (l.href === '/index.html' && (path === '' || path === '/' || path.endsWith('index.html')));
-      const cls = [isActive ? 'active' : '', l.cta ? 'nav-cta' : ''].filter(Boolean).join(' ');
-      return `<li><a href="${href}" class="${cls}">${l.label}</a></li>`;
-    }).join('');
-
-    const mobileLinksHTML = NAV_LINKS.map(l => {
-      const href = resolvePath(l.href);
-      return `<a href="${href}">${l.label}</a>`;
-    }).join('');
-
-    placeholder.outerHTML = `
-      <nav class="nav${isDark ? ' dark' : ''}" id="main-nav">
-        <a href="${resolvePath('/index.html')}" class="nav-logo">IndieCo</a>
-        <ul class="nav-links">${linksHTML}</ul>
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-      <div class="nav-mobile" id="nav-mobile">
-        ${mobileLinksHTML}
-      </div>
-    `;
-
-    // Hamburger toggle
-    const hamburger = document.getElementById('nav-hamburger');
-    const mobileMenu = document.getElementById('nav-mobile');
-    if (hamburger && mobileMenu) {
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('open');
-        mobileMenu.classList.toggle('open');
-        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-      });
-      mobileMenu.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          hamburger.classList.remove('open');
-          mobileMenu.classList.remove('open');
-          document.body.style.overflow = '';
-        });
-      });
-    }
-
-    // Scroll class
-    const nav = document.getElementById('main-nav');
-    if (nav) {
-      function onScroll() {
-        if (window.scrollY > 40) nav.classList.add('scrolled');
-        else nav.classList.remove('scrolled');
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
-  }
-
-  // ── BUILD FOOTER ─────────────────────────────────
-  function buildFooter() {
-    const placeholder = document.getElementById('footer-placeholder');
-    if (!placeholder) return;
-
-    const isDark = placeholder.dataset.dark === 'true';
-
-    const linksHTML = FOOTER_LINKS.map(l => `
-      <a class="footer-link" href="${l.href}" target="${l.href.startsWith('http') ? '_blank' : '_self'}">
-        <span class="footer-link-label">${l.label}</span>
-        <span class="footer-link-dot"></span>
-        ${l.text}
+  nav.innerHTML = `
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="IndieCo Home">
+        <div class="nav-logo-mark"><span>IC</span></div>
+        IndieCo
       </a>
-    `).join('');
+      <ul class="nav-links">
+        ${NAV_LINKS.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
+      </ul>
+      <a href="${CTA_LINK.href}" class="nav-cta">${CTA_LINK.label}</a>
+      <button class="nav-hamburger" aria-label="Toggle menu" id="nav-toggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="nav-mobile">
+      ${NAV_LINKS.map(l => `<a href="${l.href}">${l.label}</a>`).join('')}
+      <a href="${CTA_LINK.href}" class="btn-primary"><span>${CTA_LINK.label}</span></a>
+    </div>
+  `;
 
-    placeholder.outerHTML = `
-      <div class="footer-wrap${isDark ? ' dark' : ''}">
-        <footer class="footer">
-          <div class="footer-top">
-            <div>
-              <p class="footer-logo">IndieCo</p>
-              <p class="footer-tagline">Authority &bull; Influence &bull; Revenue</p>
-            </div>
-            <div class="footer-links">${linksHTML}</div>
-          </div>
-          <div class="footer-bottom">
-            <span class="footer-copy">${FOOTER_COPY}</span>
-            <span class="footer-locations">Manila &mdash; New York</span>
-          </div>
-        </footer>
-      </div>
-    `;
-  }
+  document.body.prepend(nav);
 
-  // ── INTERSECTION OBSERVER FOR FADE-UP ─────────────
-  function initFadeUp() {
-    const els = document.querySelectorAll('.fade-up');
-    if (!els.length) return;
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    els.forEach(el => obs.observe(el));
-  }
+  /* Scroll state */
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
 
-  // ── INIT ────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    buildNav();
-    buildFooter();
-    initFadeUp();
+  /* Hamburger toggle */
+  const toggle = document.getElementById('nav-toggle');
+  const mobile = document.getElementById('nav-mobile');
+  toggle.addEventListener('click', () => {
+    const open = mobile.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
   });
+
+  /* Close on link click */
+  mobile.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobile.classList.remove('open');
+      toggle.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+
+/* ── Build Footer ────────────────────────────── */
+(function buildFooter() {
+  const placeholder = document.getElementById('footer-placeholder');
+  if (!placeholder) return;
+
+  const footer = document.createElement('footer');
+  footer.id = 'site-footer';
+  footer.innerHTML = `
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-mark">IC</div>
+            IndieCo
+          </div>
+          <p>Authority Architecture · Media Positioning · Executive Publishing</p>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Pages</span>
+          <ul class="footer-links">
+            ${NAV_LINKS.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
+            <li><a href="/pages/work-with-us.html">Work With Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Connect</span>
+          <ul class="footer-links">
+            <li><a href="mailto:contact@indieco.com.co">contact@indieco.com.co</a></li>
+            <li><a href="https://linkedin.com/company/indieco" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="/pages/get-started.html">Get Started</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 IndieCo. All rights reserved.</span>
+        <span class="footer-locations">Manila · New York</span>
+      </div>
+    </div>
+  `;
+
+  placeholder.replaceWith(footer);
+})();
+
+/* ── Scroll Fade-up Observer ─────────────────── */
+(function initScrollObserver() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 })();
