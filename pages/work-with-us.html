@@ -1,521 +1,315 @@
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Work With Us — IndieCo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/base.css"/>
 <link rel="stylesheet" href="../css/nav.css"/>
 <style>
-/* ═══════════════════════════════════════
-   PALETTE OVERRIDE — WARM GRADIENT WORLD
-   ═══════════════════════════════════════ */
 :root {
-  --rose:        #c4a7a0;
-  --rose-mid:    #b8968f;
-  --taupe:       #a89080;
-  --blush:       #d6bdb8;
-  --blush-light: #e8d8d4;
-  --mushroom:    #7d6b65;
-  --glass-bg:    rgba(255,250,248,0.52);
-  --glass-hover: rgba(255,250,248,0.72);
-  --glass-border:rgba(255,255,255,0.45);
-  --ink-on-glass:#2c2220;
-  --ink-soft-g:  #5c4a46;
-  --ink-mute-g:  #8a7470;
-  --gold:        #b8916a;
-  --gold-light:  #d4aa88;
+  --void:#0A0710; --voltage:#B8244E; --voltage-dk:#8C1A3A;
+  --orchid:#5C2475; --bone:#F4F0EB; --graphite:#211B2B;
+  --chrome-rose:#C89AB2; --blush:#EDD5E0; --ash:#9A8FA0;
+  --rule:rgba(244,240,235,0.1);
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-sans:'DM Sans',system-ui,sans-serif;
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{font-family:var(--font-sans);background:var(--void);color:var(--bone);overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");opacity:0.55;}
+a{text-decoration:none;color:inherit;}
+.page-wrap{max-width:1100px;margin:0 auto;padding:0 48px;}
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
+.fade-up.visible{opacity:1;transform:translateY(0);}
 
-/* ── BODY & GRADIENT MESH ── */
-body {
-  background: var(--blush-light);
-  color: var(--ink-on-glass);
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* The lush gradient mesh — mirrors the screenshot */
+/* ── MESH BACKGROUND ── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 15% 10%,  #c9a8a0 0%, transparent 55%),
-    radial-gradient(ellipse 60% 70% at 85% 5%,   #a88880 0%, transparent 50%),
-    radial-gradient(ellipse 70% 50% at 50% 50%,  #d4bdb8 0%, transparent 60%),
-    radial-gradient(ellipse 80% 60% at 10% 90%,  #b09080 0%, transparent 55%),
-    radial-gradient(ellipse 60% 80% at 90% 80%,  #c8b0a8 0%, transparent 50%),
-    linear-gradient(160deg, #d0aca4 0%, #bda098 30%, #c8b5ae 60%, #b09890 100%);
+    radial-gradient(ellipse 70% 60% at 85% 10%,  rgba(92,36,117,0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 5%  30%,  rgba(184,36,78,0.25) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 70% at 50% 80%,  rgba(33,27,43,0.8)  0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 90% 80%,  rgba(92,36,117,0.2)  0%, transparent 55%),
+    var(--void);
   pointer-events: none;
 }
+#nav-placeholder,.ww-hero,.page-wrap,#footer-placeholder{position:relative;z-index:1;}
 
-/* Subtle noise/grain texture */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-/* All content needs z-index to sit above gradient */
-#nav-placeholder, .ww-hero, .page-wrap, #footer-placeholder { position: relative; z-index: 1; }
-
-/* ── NAV OVERRIDE for light gradient bg ── */
-.nav { background: transparent !important; }
-.nav.scrolled {
-  background: rgba(212,189,184,0.7) !important;
-  border-bottom: 0.5px solid rgba(255,255,255,0.3) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-}
-.nav-logo { color: var(--ink-on-glass) !important; }
-.nav-links a { color: var(--ink-soft-g) !important; }
-.nav-links a:hover { color: var(--ink-on-glass) !important; opacity: 1 !important; }
-.nav-cta {
-  background: var(--ink-on-glass) !important;
-  color: #fdf8f6 !important;
-}
-.nav-cta:hover { background: var(--gold) !important; color: #fdf8f6 !important; }
-.nav-hamburger span { background: var(--ink-on-glass) !important; }
+/* ── NAV OVERRIDE ── */
+.nav{background:transparent!important;}
+.nav.scrolled{background:rgba(10,7,16,0.85)!important;backdrop-filter:blur(20px)!important;-webkit-backdrop-filter:blur(20px)!important;border-bottom:0.5px solid var(--rule)!important;}
 
 /* ── HERO ── */
 .ww-hero {
-  padding: 160px 24px 80px;
+  padding: 160px 0 80px;
   text-align: center;
 }
-.ww-hero-inner { max-width: 660px; margin: 0 auto; }
-
+.ww-hero-inner { max-width: 680px; margin: 0 auto; }
 .ww-eyebrow {
   font-size: 9px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
-  font-weight: 300;
-  color: var(--mushroom);
+  font-weight: 400;
+  color: rgba(244,240,235,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  margin-bottom: 28px;
+  gap: 18px;
+  margin-bottom: 2rem;
 }
-.ww-eyebrow::before, .ww-eyebrow::after {
-  content: '';
-  display: block;
-  width: 36px;
-  height: 0.5px;
-  background: rgba(93,70,65,0.35);
-}
-
+.ww-eyebrow::before,.ww-eyebrow::after { content:''; display:block; width:36px; height:0.5px; background:rgba(244,240,235,0.15); }
 .ww-title {
   font-family: var(--font-serif);
-  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-size: clamp(3rem, 7vw, 5rem);
   font-weight: 300;
-  line-height: 1.06;
-  color: var(--ink-on-glass);
-  letter-spacing: -0.01em;
-  margin-bottom: 22px;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  margin-bottom: 1.5rem;
 }
-.ww-title em { font-style: italic; color: var(--mushroom); }
-
+.ww-title em { font-style: italic; color: var(--chrome-rose); }
 .ww-subtitle {
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 300;
-  color: var(--ink-soft-g);
-  letter-spacing: 0.09em;
-  line-height: 1.9;
+  color: rgba(244,240,235,0.45);
+  line-height: 1.85;
+  letter-spacing: 0.03em;
 }
 
-/* ── GLASS CARD UTILITY ── */
-.glass-card {
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  border-radius: 16px;
-  transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
-}
-.glass-card:hover {
-  background: var(--glass-hover);
-  box-shadow: 0 8px 40px rgba(120,80,70,0.12);
-  transform: translateY(-2px);
-}
-
-/* ── PERKS GRID ── */
-.perks-section {
-  padding: 2rem 0 3rem;
-}
-.perks-grid {
+/* ── PERKS ── */
+.ww-perks { padding: 2rem 0 4rem; }
+.ww-perks-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1px;
+  background: var(--rule);
+  border: 0.5px solid var(--rule);
 }
-.perk {
-  padding: 2rem 1.8rem;
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
-  backdrop-filter: blur(18px) saturate(1.4);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  border-radius: 14px;
-  transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+.ww-perk {
+  background: rgba(33,27,43,0.5);
+  padding: 2.5rem 2.25rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.35s;
+  position: relative;
+  overflow: hidden;
 }
-.perk:hover {
-  background: var(--glass-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(120,80,70,0.14);
+.ww-perk::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--voltage), var(--orchid));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
 }
-.perk-num {
-  font-family: var(--font-serif);
-  font-size: 0.8rem;
-  font-weight: 300;
-  color: var(--gold);
-  margin-bottom: 0.7rem;
-  display: block;
-  letter-spacing: 0.06em;
-}
-.perk-title {
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--ink-on-glass);
-  margin-bottom: 6px;
-  letter-spacing: 0.02em;
-}
-.perk-desc {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--ink-soft-g);
-  line-height: 1.7;
-}
+.ww-perk:hover { background: rgba(33,27,43,0.75); }
+.ww-perk:hover::after { transform: scaleX(1); }
+.perk-num { font-family: var(--font-serif); font-size: 0.85rem; font-weight: 300; color: var(--voltage); margin-bottom: 0.85rem; display: block; letter-spacing: 0.06em; }
+.perk-title { font-size: 13.5px; font-weight: 400; color: var(--bone); margin-bottom: 8px; letter-spacing: 0.02em; }
+.perk-desc { font-size: 12.5px; font-weight: 300; color: rgba(244,240,235,0.42); line-height: 1.75; }
 
 /* ── FORM SECTION ── */
-.form-section {
-  padding: 2rem 0 6rem;
+.ww-form-section { padding: 1rem 0 8rem; }
+
+/* Form container */
+.ww-form-container {
+  background: rgba(33,27,43,0.55);
+  border: 0.5px solid var(--rule);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
 }
-.form-header {
-  margin-bottom: 3rem;
-  padding: 3rem 3rem 2.5rem;
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
-  backdrop-filter: blur(20px) saturate(1.3);
-  -webkit-backdrop-filter: blur(20px) saturate(1.3);
-  border-radius: 20px 20px 0 0;
+.ww-form-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--voltage), var(--orchid), transparent);
 }
-.form-header h2 {
+
+.ww-form-header {
+  padding: 3rem 3.5rem 2.5rem;
+  border-bottom: 0.5px solid var(--rule);
+}
+.ww-form-header h2 {
   font-family: var(--font-serif);
-  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
-  line-height: 1.12;
-  color: var(--ink-on-glass);
-  margin-bottom: 0.8rem;
+  line-height: 1.1;
+  color: var(--bone);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.015em;
 }
-.form-header h2 em { font-style: italic; color: var(--mushroom); }
-.form-header p {
-  font-size: 12.5px;
-  font-weight: 300;
-  color: var(--ink-soft-g);
-  line-height: 1.8;
-}
+.ww-form-header h2 em { font-style: italic; color: var(--chrome-rose); }
+.ww-form-header p { font-size: 13px; font-weight: 300; color: rgba(244,240,235,0.42); line-height: 1.85; }
 
-/* ── FORM BODY GLASS WRAPPER ── */
-.form-body-wrap {
-  background: rgba(255,250,248,0.42);
-  border: 0.5px solid var(--glass-border);
-  border-top: none;
-  backdrop-filter: blur(20px) saturate(1.3);
-  -webkit-backdrop-filter: blur(20px) saturate(1.3);
-  border-radius: 0 0 20px 20px;
-  padding: 0 3rem 3rem;
-}
+.ww-form-body { padding: 0 3.5rem 3.5rem; }
 
-/* ── FIELD STYLES ── */
-.field { margin-bottom: 1.4rem; }
-
+/* ── FIELDS ── */
+.field { margin-bottom: 1.5rem; }
 .field-label {
-  display: block;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute-g);
-  margin-bottom: 8px;
+  display: block; font-size: 9px; font-weight: 400;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(244,240,235,0.35); margin-bottom: 9px;
 }
-.field-label sup { color: var(--gold); font-size: 11px; margin-left: 2px; }
-
-input[type="text"],
-input[type="email"],
-textarea,
-select {
+.field-label sup { color: var(--voltage); }
+input[type="text"], input[type="email"], textarea, select {
   width: 100%;
-  background: rgba(255,255,255,0.55);
-  border: 0.5px solid rgba(180,150,140,0.3);
-  color: var(--ink-on-glass);
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.04em;
-  padding: 14px 16px;
-  outline: none;
+  background: rgba(244,240,235,0.05);
+  border: 0.5px solid rgba(244,240,235,0.12);
+  color: var(--bone);
+  font-family: var(--font-sans); font-size: 13.5px; font-weight: 300;
+  letter-spacing: 0.03em; padding: 15px 18px; outline: none;
   transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
-  border-radius: 10px;
-  appearance: none;
+  border-radius: 0; appearance: none;
 }
 input:focus, textarea:focus, select:focus {
-  border-color: rgba(184,145,106,0.7);
-  background: rgba(255,255,255,0.78);
-  box-shadow: 0 0 0 3px rgba(184,145,106,0.12);
+  border-color: rgba(184,36,78,0.55);
+  background: rgba(184,36,78,0.04);
+  box-shadow: 0 0 0 3px rgba(184,36,78,0.06);
 }
-input::placeholder, textarea::placeholder { color: rgba(100,75,70,0.35); }
+input::placeholder, textarea::placeholder { color: rgba(244,240,235,0.16); }
 textarea { resize: vertical; min-height: 100px; line-height: 1.8; }
 select { cursor: pointer; }
-select option { background: #f5eeeb; color: var(--ink-on-glass); }
-
+select option { background: var(--graphite); color: var(--bone); }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.select-wrap { position: relative; }
+.select-wrap::after {
+  content: ''; position: absolute; right: 18px; top: 50%;
+  width: 7px; height: 7px;
+  border-right: 0.5px solid rgba(244,240,235,0.28);
+  border-bottom: 0.5px solid rgba(244,240,235,0.28);
+  transform: translateY(-60%) rotate(45deg); pointer-events: none;
+}
 
-/* ── RADIO & CHECK OPTIONS ── */
+/* ── SECTION DIVIDERS ── */
+.form-divider { border: none; border-top: 0.5px solid var(--rule); margin: 2.5rem 0; }
+.form-section-label {
+  font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase;
+  font-weight: 400; color: rgba(244,240,235,0.35);
+  margin-bottom: 1.5rem; display: flex; align-items: center; gap: 14px; padding-top: 0.5rem;
+}
+.form-section-label::after { content:''; flex:1; height:0.5px; background:rgba(244,240,235,0.08); }
+
+/* ── RADIO OPTIONS ── */
 .radio-group, .check-group { display: flex; flex-direction: column; gap: 6px; }
-
 .radio-opt, .check-opt {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  cursor: pointer;
-  padding: 12px 16px;
-  border: 0.5px solid rgba(180,150,140,0.3);
-  background: rgba(255,255,255,0.42);
-  border-radius: 10px;
-  transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: flex; align-items: flex-start; gap: 14px; cursor: pointer;
+  padding: 13px 16px;
+  border: 0.5px solid rgba(244,240,235,0.1);
+  background: rgba(244,240,235,0.03);
+  transition: border-color 0.22s, background 0.22s, transform 0.2s;
 }
 .radio-opt:hover, .check-opt:hover {
-  border-color: rgba(184,145,106,0.55);
-  background: rgba(255,255,255,0.7);
+  border-color: rgba(184,36,78,0.4);
+  background: rgba(184,36,78,0.04);
   transform: translateX(3px);
-  box-shadow: 0 4px 16px rgba(120,80,70,0.09);
 }
 .radio-opt.selected {
-  border-color: rgba(184,145,106,0.6);
-  background: rgba(255,248,244,0.72);
-  box-shadow: 0 4px 18px rgba(120,80,70,0.11);
+  border-color: rgba(184,36,78,0.55);
+  background: rgba(184,36,78,0.06);
 }
-
 .radio-opt input, .check-opt input { display: none; }
-
 .radio-custom, .check-custom {
-  width: 14px; height: 14px; min-width: 14px;
-  border: 0.5px solid rgba(100,75,70,0.3);
-  margin-top: 2px;
-  position: relative;
-  transition: border-color 0.2s;
-  background: transparent;
-  flex-shrink: 0;
+  width: 15px; height: 15px; min-width: 15px;
+  border: 0.5px solid rgba(244,240,235,0.25); margin-top: 2px;
+  position: relative; transition: border-color 0.2s;
+  background: transparent; flex-shrink: 0;
 }
 .radio-custom { border-radius: 50%; }
+.radio-opt input:checked ~ .radio-custom, .check-opt input:checked ~ .check-custom { border-color: var(--voltage); }
+.radio-opt input:checked ~ .radio-custom::after { content:''; position:absolute; inset:3px; background:var(--voltage); border-radius:50%; }
+.check-opt input:checked ~ .check-custom::after { content:''; position:absolute; top:1px; left:3px; width:6px; height:10px; border-right:1px solid var(--voltage); border-bottom:1px solid var(--voltage); transform:rotate(45deg); }
+.opt-label { font-size: 13px; font-weight: 300; color: rgba(244,240,235,0.48); line-height: 1.6; transition: color 0.2s; }
+.radio-opt input:checked ~ .opt-label, .check-opt input:checked ~ .opt-label { color: var(--bone); }
 
-.radio-opt input:checked ~ .radio-custom,
-.check-opt input:checked ~ .check-custom { border-color: var(--gold); }
-
-.radio-opt input:checked ~ .radio-custom::after {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  background: var(--gold);
-  border-radius: 50%;
-}
-.check-opt input:checked ~ .check-custom::after {
-  content: '';
-  position: absolute;
-  top: 1px; left: 3px;
-  width: 6px; height: 10px;
-  border-right: 1px solid var(--gold);
-  border-bottom: 1px solid var(--gold);
-  transform: rotate(45deg);
-}
-
-.opt-label {
-  font-size: 12.5px;
-  font-weight: 300;
-  color: var(--ink-soft-g);
-  line-height: 1.6;
-  transition: color 0.2s;
-}
-.radio-opt input:checked ~ .opt-label,
-.check-opt input:checked ~ .opt-label { color: var(--ink-on-glass); }
-
-/* ── FORM DIVIDERS & SECTION LABELS ── */
-.form-divider {
-  border: none;
-  border-top: 0.5px solid rgba(180,150,140,0.22);
-  margin: 2.5rem 0;
-}
-
-.form-section-label {
-  font-size: 9px;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  font-weight: 400;
-  color: var(--mushroom);
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding-top: 0.5rem;
-}
-.form-section-label::after {
-  content: '';
-  flex: 1;
-  height: 0.5px;
-  background: rgba(180,150,140,0.25);
-}
-
-/* ── CALENDLY EMBED ── */
+/* ── CALENDLY ── */
 .calendly-inline-widget {
-  border: 0.5px solid rgba(180,150,140,0.3) !important;
-  border-radius: 14px;
+  border: 0.5px solid var(--rule) !important;
+  background: rgba(244,240,235,0.03) !important;
   overflow: hidden;
-  background: rgba(255,255,255,0.5);
 }
 
-/* ── SUBMIT ROW ── */
-.form-submit-row {
+/* ── SUBMIT ── */
+.ww-form-submit-row {
   margin-top: 2.5rem;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  padding-top: 2rem;
-  border-top: 0.5px solid rgba(180,150,140,0.22);
+  display: flex; align-items: flex-end; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+  padding-top: 2.5rem;
+  border-top: 0.5px solid var(--rule);
 }
-
-.form-note {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--ink-mute-g);
-  letter-spacing: 0.03em;
-  line-height: 1.9;
-  max-width: 340px;
-  font-family: var(--font-serif);
-  font-style: italic;
+.ww-form-note {
+  font-size: 12.5px; font-weight: 300; color: rgba(244,240,235,0.3);
+  line-height: 1.85; max-width: 340px;
+  font-family: var(--font-serif); font-style: italic;
 }
-
 .btn-submit {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 400;
-  color: #fdf8f6;
-  background: var(--ink-on-glass);
-  border: none;
-  padding: 17px 44px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background 0.28s, transform 0.2s, box-shadow 0.25s;
-  position: relative;
-  overflow: hidden;
+  font-family: var(--font-sans); font-size: 9.5px; letter-spacing: 0.28em;
+  text-transform: uppercase; font-weight: 400; color: var(--bone);
+  background: var(--voltage); border: none; padding: 18px 48px;
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: background 0.28s, transform 0.2s;
 }
-.btn-submit::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, var(--gold) 0%, #c8a070 100%);
-  opacity: 0;
-  transition: opacity 0.35s cubic-bezier(0.16,1,0.3,1);
-  border-radius: 8px;
-}
-.btn-submit span { position: relative; z-index: 1; }
-.btn-submit:hover::before { opacity: 1; }
-.btn-submit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(120,80,60,0.25);
-}
+.btn-submit::before { content:''; position:absolute; inset:0; background:var(--voltage-dk); opacity:0; transition:opacity 0.3s; }
+.btn-submit span { position:relative; z-index:1; }
+.btn-submit:hover::before { opacity:1; }
+.btn-submit:hover { transform: translateY(-2px); }
 .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 .btn-submit:disabled::before { display: none; }
 
 #form-error {
-  margin-top: 14px;
-  font-size: 11px;
-  color: #8c4040;
-  letter-spacing: 0.06em;
-  display: none;
-  padding: 10px 14px;
-  border-left: 2px solid rgba(180,90,80,0.6);
-  background: rgba(200,120,100,0.1);
-  border-radius: 0 6px 6px 0;
+  margin-top: 14px; font-size: 11.5px; color: rgba(220,120,120,0.9);
+  letter-spacing: 0.06em; display: none;
+  padding: 12px 16px;
+  border-left: 2px solid rgba(184,36,78,0.6);
+  background: rgba(184,36,78,0.06);
 }
 
 /* ── SUCCESS ── */
-.form-success {
-  display: none;
-  text-align: center;
-  padding: 80px 40px;
+.ww-form-success {
+  display: none; text-align: center; padding: 80px 48px;
 }
-.form-success.visible { display: block; }
-
+.ww-form-success.visible { display: block; }
 .success-icon {
   width: 56px; height: 56px;
-  border: 0.5px solid var(--gold);
-  border-radius: 50%;
+  border: 0.5px solid var(--voltage); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2.25rem;
   animation: scaleIn 0.5s ease both;
-  background: rgba(255,255,255,0.5);
+  background: rgba(184,36,78,0.06);
 }
-@keyframes scaleIn { from{transform:scale(0.7);opacity:0} to{transform:scale(1);opacity:1} }
-.success-icon::after {
-  content: '';
-  width: 11px; height: 18px;
-  border-right: 1px solid var(--gold);
-  border-bottom: 1px solid var(--gold);
-  transform: rotate(45deg) translate(-2px,-2px);
-  display: block;
-}
-.success-title {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
-  font-weight: 300;
-  color: var(--ink-on-glass);
-  margin-bottom: 1rem;
-}
-.success-title em { font-style: italic; color: var(--mushroom); }
-.success-body {
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--ink-soft-g);
-  letter-spacing: 0.07em;
-  line-height: 2;
-}
+@keyframes scaleIn{from{transform:scale(0.7);opacity:0}to{transform:scale(1);opacity:1}}
+.success-icon::after{content:'';width:11px;height:18px;border-right:1.5px solid var(--voltage);border-bottom:1.5px solid var(--voltage);transform:rotate(45deg) translate(-2px,-2px);display:block;}
+.success-title{font-family:var(--font-serif);font-size:2.8rem;font-weight:300;color:var(--bone);margin-bottom:1rem;letter-spacing:-0.01em;}
+.success-title em{font-style:italic;color:var(--chrome-rose);}
+.success-body{font-size:13.5px;font-weight:300;color:rgba(244,240,235,0.45);letter-spacing:0.05em;line-height:1.9;}
 
-/* ── FOOTER OVERRIDE ── */
-.footer-wrap {
-  background: rgba(175,140,130,0.35) !important;
-  border-top: 0.5px solid rgba(255,255,255,0.25) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+/* responsive */
+@media(max-width:900px){
+  .ww-perks-grid{grid-template-columns:1fr;}
+  .ww-form-header,.ww-form-body{padding-left:2rem;padding-right:2rem;}
+  .ww-form-submit-row{flex-direction:column;}
 }
-.footer-logo { color: var(--ink-on-glass) !important; }
-.footer-tagline { color: var(--ink-mute-g) !important; }
-.footer-link { color: var(--ink-soft-g) !important; }
-.footer-link:hover { color: var(--ink-on-glass) !important; }
-.footer-copy { color: var(--ink-mute-g) !important; }
-.footer-locations { color: var(--mushroom) !important; }
-.footer-link-label { color: var(--ink-mute-g) !important; }
-.footer-link-dot { background: rgba(100,75,70,0.2) !important; }
-
-/* ── MOBILE ── */
-@media (max-width: 620px) {
-  .two-col { grid-template-columns: 1fr; }
-  .perks-grid { grid-template-columns: 1fr; }
-  .form-submit-row { flex-direction: column; }
-  .form-header, .form-body-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
+@media(max-width:600px){
+  .page-wrap{padding:0 20px;}
+  .ww-hero{padding:120px 0 60px;}
+  .two-col{grid-template-columns:1fr;}
+  .ww-form-header,.ww-form-body{padding-left:1.5rem;padding-right:1.5rem;}
 }
 </style>
 </head>
 <body>
-
 <div id="nav-placeholder"></div>
 
 <!-- HERO -->
@@ -530,24 +324,24 @@ select option { background: #f5eeeb; color: var(--ink-on-glass); }
 <div class="page-wrap">
 
   <!-- PERKS -->
-  <section class="perks-section">
-    <div class="perks-grid">
-      <div class="perk fade-up">
+  <section class="ww-perks">
+    <div class="ww-perks-grid">
+      <div class="ww-perk fade-up">
         <span class="perk-num">I</span>
         <div class="perk-title">30-minute strategy session</div>
         <p class="perk-desc">A focused conversation about your goals, your story, and the platform you want to build.</p>
       </div>
-      <div class="perk fade-up" style="transition-delay:0.1s">
+      <div class="ww-perk fade-up" style="transition-delay:0.1s">
         <span class="perk-num">II</span>
         <div class="perk-title">Tailored positioning audit</div>
         <p class="perk-desc">We identify where you stand today and what it takes to become the name in your field.</p>
       </div>
-      <div class="perk fade-up" style="transition-delay:0.2s">
+      <div class="ww-perk fade-up" style="transition-delay:0.2s">
         <span class="perk-num">III</span>
         <div class="perk-title">Roadmap overview</div>
         <p class="perk-desc">Walk away with a clear sense of the path — from idea to authority ecosystem.</p>
       </div>
-      <div class="perk fade-up" style="transition-delay:0.3s">
+      <div class="ww-perk fade-up" style="transition-delay:0.3s">
         <span class="perk-num">IV</span>
         <div class="perk-title">No obligation</div>
         <p class="perk-desc">This is a conversation, not a sales call. We only work with people we believe in.</p>
@@ -556,235 +350,189 @@ select option { background: #f5eeeb; color: var(--ink-on-glass); }
   </section>
 
   <!-- FORM -->
-  <section class="form-section fade-up">
-    <div class="form-header">
-      <h2>Begin your<br><em>authority journey.</em></h2>
-      <p>Complete the form below and book a private call with our team. We respond within 24 hours.</p>
-    </div>
+  <section class="ww-form-section fade-up">
+    <div class="ww-form-container">
 
-    <div class="form-body-wrap">
-      <form id="ww-form" novalidate>
-
-        <!-- SECTION 1: ABOUT -->
-        <hr class="form-divider" style="margin-top:2rem"/>
-        <div class="form-section-label">01 &nbsp; About you</div>
-        <div class="two-col">
-          <div class="field">
-            <label class="field-label">First Name <sup>*</sup></label>
-            <input type="text" name="first_name" placeholder="Sofia" required/>
-          </div>
-          <div class="field">
-            <label class="field-label">Last Name <sup>*</sup></label>
-            <input type="text" name="last_name" placeholder="Reyes" required/>
-          </div>
-        </div>
-        <div class="field">
-          <label class="field-label">Email Address <sup>*</sup></label>
-          <input type="email" name="email" placeholder="sofia@yourco.com" required/>
-        </div>
-        <div class="two-col">
-          <div class="field">
-            <label class="field-label">Company / Organization</label>
-            <input type="text" name="company" placeholder="If applicable"/>
-          </div>
-          <div class="field">
-            <label class="field-label">Role / Title</label>
-            <input type="text" name="role" placeholder="e.g. Founder, CEO, Author"/>
-          </div>
-        </div>
-        <div class="field">
-          <label class="field-label">Location <sup>*</sup></label>
-          <input type="text" name="location" placeholder="City, Country" required/>
-        </div>
-
-        <hr class="form-divider"/>
-
-        <!-- SECTION 2: EXPERTISE -->
-        <div class="form-section-label">02 &nbsp; Your expertise</div>
-        <div class="field">
-          <label class="field-label">Your field / industry <sup>*</sup></label>
-          <input type="text" name="field" placeholder="e.g. Finance, Health, Technology, Law" required/>
-        </div>
-        <div class="field">
-          <label class="field-label">Professional background & area of expertise <sup>*</sup></label>
-          <textarea name="background" placeholder="What are you known for? What have you spent years thinking or working on?" required></textarea>
-        </div>
-
-        <hr class="form-divider"/>
-
-        <!-- SECTION 3: GOALS -->
-        <div class="form-section-label">03 &nbsp; What brings you here?</div>
-        <div class="field">
-          <label class="field-label">Primary goal <sup>*</sup></label>
-          <select name="goal" required>
-            <option value="" disabled selected>Select your primary goal</option>
-            <option>Book publishing & bestseller strategy</option>
-            <option>Speaking & global stage placement</option>
-            <option>O1A / immigration documentation</option>
-            <option>Media features & PR</option>
-            <option>Thought leadership positioning</option>
-            <option>Brand & revenue strategy</option>
-            <option>Full authority ecosystem</option>
-          </select>
-        </div>
-        <div class="field">
-          <label class="field-label">Which package interests you?</label>
-          <div class="radio-group">
-            <label class="radio-opt">
-              <input type="radio" name="package" value="Legacy Authority System"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">Legacy Authority System — Premier</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="package" value="Industry Authority Engine"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">Industry Authority Engine — Scaled</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="package" value="Lifestyle Author System"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">Lifestyle Author System — Entry</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="package" value="Standard Services"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">Standard Services</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="package" value="Undecided"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">Undecided — I'd like to explore on a call</span>
-            </label>
-          </div>
-        </div>
-
-        <hr class="form-divider"/>
-
-        <!-- SECTION 4: SCHEDULE -->
-        <div class="form-section-label">04 &nbsp; Schedule a call</div>
-        <p style="font-size:12px;color:var(--ink-mute-g);line-height:1.8;margin-bottom:1.5rem;font-style:italic;font-family:var(--font-serif)">Select a time below to secure your 1:1 session with our team.</p>
-        <div class="calendly-inline-widget"
-             data-url="https://calendly.com/indieco/1-1-working-session-with-leah"
-             style="min-width:320px;height:700px;">
-        </div>
-
-        <hr class="form-divider"/>
-
-        <!-- SECTION 5: FINAL -->
-        <div class="form-section-label">05 &nbsp; Anything else?</div>
-        <div class="field">
-          <label class="field-label">Additional notes</label>
-          <textarea name="notes" placeholder="Your story, your goals, your questions — anything relevant."></textarea>
-        </div>
-        <div class="field">
-          <label class="field-label">How did you find us?</label>
-          <div class="radio-group">
-            <label class="radio-opt">
-              <input type="radio" name="referral" value="LinkedIn"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">LinkedIn</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="referral" value="IndieCo reached out"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">IndieCo reached out to me</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="referral" value="Referral"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">Referral from someone I know</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="referral" value="Internet search"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">Internet / search</span>
-            </label>
-            <label class="radio-opt">
-              <input type="radio" name="referral" value="Other"/>
-              <span class="radio-custom"></span>
-              <span class="opt-label">Other</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-submit-row">
-          <p class="form-note">Your responses are confidential and reviewed personally by the IndieCo team. We will be in touch within 24 hours.</p>
-          <button type="submit" class="btn-submit" id="submit-btn"><span>Submit &rarr;</span></button>
-        </div>
-        <div id="form-error">Please complete all required fields before submitting.</div>
-
-      </form>
-
-      <div class="form-success" id="form-success">
-        <div class="success-icon"></div>
-        <h2 class="success-title">Your story is<br><em>in our hands.</em></h2>
-        <p class="success-body">Thank you for reaching out. The IndieCo team will<br>review your submission and be in touch within 24 hours.</p>
+      <div class="ww-form-header">
+        <h2>Begin your<br><em>authority journey.</em></h2>
+        <p>Complete the form below and book a private call with our team. We respond within 24 hours.</p>
       </div>
+
+      <div class="ww-form-body">
+        <form id="ww-form" novalidate>
+
+          <hr class="form-divider" style="margin-top:2.5rem"/>
+          <div class="form-section-label">01 &nbsp; About you</div>
+          <div class="two-col">
+            <div class="field">
+              <label class="field-label">First Name <sup>*</sup></label>
+              <input type="text" name="first_name" placeholder="Sofia" required/>
+            </div>
+            <div class="field">
+              <label class="field-label">Last Name <sup>*</sup></label>
+              <input type="text" name="last_name" placeholder="Reyes" required/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">Email Address <sup>*</sup></label>
+            <input type="email" name="email" placeholder="sofia@yourco.com" required/>
+          </div>
+          <div class="two-col">
+            <div class="field">
+              <label class="field-label">Company / Organization</label>
+              <input type="text" name="company" placeholder="If applicable"/>
+            </div>
+            <div class="field">
+              <label class="field-label">Role / Title</label>
+              <input type="text" name="role" placeholder="e.g. Founder, CEO, Author"/>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">Location <sup>*</sup></label>
+            <input type="text" name="location" placeholder="City, Country" required/>
+          </div>
+
+          <hr class="form-divider"/>
+          <div class="form-section-label">02 &nbsp; Your expertise</div>
+          <div class="field">
+            <label class="field-label">Your field / industry <sup>*</sup></label>
+            <input type="text" name="field" placeholder="e.g. Finance, Health, Technology, Law" required/>
+          </div>
+          <div class="field">
+            <label class="field-label">Professional background &amp; area of expertise <sup>*</sup></label>
+            <textarea name="background" placeholder="What are you known for? What have you spent years thinking or working on?" required></textarea>
+          </div>
+
+          <hr class="form-divider"/>
+          <div class="form-section-label">03 &nbsp; What brings you here?</div>
+          <div class="field">
+            <label class="field-label">Primary goal <sup>*</sup></label>
+            <div class="select-wrap">
+              <select name="goal" required>
+                <option value="" disabled selected>Select your primary goal</option>
+                <option>Book publishing &amp; bestseller strategy</option>
+                <option>Speaking &amp; global stage placement</option>
+                <option>O1A / immigration documentation</option>
+                <option>Media features &amp; PR</option>
+                <option>Thought leadership positioning</option>
+                <option>Brand &amp; revenue strategy</option>
+                <option>Full authority ecosystem</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">Which package interests you?</label>
+            <div class="radio-group">
+              <label class="radio-opt"><input type="radio" name="package" value="Legacy Authority System"/><span class="radio-custom"></span><span class="opt-label">Legacy Authority System — Premier</span></label>
+              <label class="radio-opt"><input type="radio" name="package" value="Industry Authority Engine"/><span class="radio-custom"></span><span class="opt-label">Industry Authority Engine — Scaled</span></label>
+              <label class="radio-opt"><input type="radio" name="package" value="Lifestyle Author System"/><span class="radio-custom"></span><span class="opt-label">Lifestyle Author System — Entry</span></label>
+              <label class="radio-opt"><input type="radio" name="package" value="Standard Services"/><span class="radio-custom"></span><span class="opt-label">Standard Services</span></label>
+              <label class="radio-opt"><input type="radio" name="package" value="Undecided"/><span class="radio-custom"></span><span class="opt-label">Undecided — I'd like to explore on a call</span></label>
+            </div>
+          </div>
+
+          <hr class="form-divider"/>
+          <div class="form-section-label">04 &nbsp; Schedule a call</div>
+          <p style="font-size:13px;color:rgba(244,240,235,0.32);line-height:1.8;margin-bottom:1.5rem;font-style:italic;font-family:var(--font-serif)">Select a time below to secure your 1:1 session with our team.</p>
+          <div class="calendly-inline-widget" data-url="https://calendly.com/indieco/1-1-working-session-with-leah" style="min-width:320px;height:700px;"></div>
+
+          <hr class="form-divider"/>
+          <div class="form-section-label">05 &nbsp; Anything else?</div>
+          <div class="field">
+            <label class="field-label">Additional notes</label>
+            <textarea name="notes" placeholder="Your story, your goals, your questions — anything relevant."></textarea>
+          </div>
+          <div class="field">
+            <label class="field-label">How did you find us?</label>
+            <div class="radio-group">
+              <label class="radio-opt"><input type="radio" name="referral" value="LinkedIn"/><span class="radio-custom"></span><span class="opt-label">LinkedIn</span></label>
+              <label class="radio-opt"><input type="radio" name="referral" value="IndieCo reached out"/><span class="radio-custom"></span><span class="opt-label">IndieCo reached out to me</span></label>
+              <label class="radio-opt"><input type="radio" name="referral" value="Referral"/><span class="radio-custom"></span><span class="opt-label">Referral from someone I know</span></label>
+              <label class="radio-opt"><input type="radio" name="referral" value="Internet search"/><span class="radio-custom"></span><span class="opt-label">Internet / search</span></label>
+              <label class="radio-opt"><input type="radio" name="referral" value="Other"/><span class="radio-custom"></span><span class="opt-label">Other</span></label>
+            </div>
+          </div>
+
+          <div class="ww-form-submit-row">
+            <p class="ww-form-note">Your responses are confidential and reviewed personally by the IndieCo team. We will be in touch within 24 hours.</p>
+            <button type="submit" class="btn-submit" id="submit-btn"><span>Submit &rarr;</span></button>
+          </div>
+          <div id="form-error">Please complete all required fields before submitting.</div>
+        </form>
+
+        <div class="ww-form-success" id="form-success">
+          <div class="success-icon"></div>
+          <h2 class="success-title">Your story is<br><em>in our hands.</em></h2>
+          <p class="success-body">Thank you for reaching out. The IndieCo team will<br>review your submission and be in touch within 24 hours.</p>
+        </div>
+      </div>
+
     </div>
   </section>
-
 </div>
 
 <div id="footer-placeholder"></div>
-
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script src="../js/nav.js"></script>
 <script src="../js/forms.js"></script>
 <script>
-/* RADIO SELECTION VISUAL */
-document.querySelectorAll('.radio-opt').forEach(opt => {
-  opt.addEventListener('click', () => {
-    const input = opt.querySelector('input');
-    if (!input) return;
-    document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => {
+(function(){
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.08});
+  document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
+})();
+
+/* RADIO VISUAL */
+document.querySelectorAll('.radio-opt').forEach(function(opt){
+  opt.addEventListener('click',function(){
+    var input=opt.querySelector('input');
+    if(!input) return;
+    document.querySelectorAll('input[name="'+input.name+'"]').forEach(function(r){
       r.closest('.radio-opt').classList.remove('selected');
     });
     opt.classList.add('selected');
   });
 });
 
-/* CALENDLY BOOKED FLAG */
-var calendlyBooked = false;
-window.addEventListener('message', function(e) {
-  if (e.data && e.data.event && e.data.event.indexOf('calendly.event_scheduled') === 0) {
-    calendlyBooked = true;
+var calendlyBooked=false;
+window.addEventListener('message',function(e){
+  if(e.data&&e.data.event&&e.data.event.indexOf('calendly.event_scheduled')===0){
+    calendlyBooked=true;
   }
 });
 
-/* FORM SUBMIT */
-attachFormHandler(document.getElementById('ww-form'), {
-  validate: function() {
-    const required = ['first_name', 'last_name', 'email', 'location', 'background', 'field'];
-    for (const name of required) {
-      const el = document.querySelector(`[name="${name}"]`);
-      if (!el || !el.value.trim()) {
-        const err = document.getElementById('form-error');
-        err.style.display = 'block';
-        err.textContent = 'Please complete all required fields before submitting.';
-        el && el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+attachFormHandler(document.getElementById('ww-form'),{
+  validate:function(){
+    var required=['first_name','last_name','email','location','background','field'];
+    for(var i=0;i<required.length;i++){
+      var el=document.querySelector('[name="'+required[i]+'"]');
+      if(!el||!el.value.trim()){
+        var err=document.getElementById('form-error');
+        err.style.display='block';
+        err.textContent='Please complete all required fields before submitting.';
+        if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
         return false;
       }
     }
-    if (!calendlyBooked) {
-      const err = document.getElementById('form-error');
-      err.style.display = 'block';
-      err.textContent = 'Please schedule your consultation via the calendar above before submitting.';
-      document.querySelector('.calendly-inline-widget').scrollIntoView({ behavior: 'smooth' });
+    if(!calendlyBooked){
+      var err=document.getElementById('form-error');
+      err.style.display='block';
+      err.textContent='Please schedule your consultation via the calendar above before submitting.';
+      document.querySelector('.calendly-inline-widget').scrollIntoView({behavior:'smooth'});
       return false;
     }
-    document.getElementById('form-error').style.display = 'none';
+    document.getElementById('form-error').style.display='none';
     return true;
   },
-  onSuccess: function() {
-    document.getElementById('ww-form').style.display = 'none';
-    const success = document.getElementById('form-success');
-    success.classList.add('visible');
-    success.scrollIntoView({ behavior: 'smooth' });
+  onSuccess:function(){
+    document.getElementById('ww-form').style.display='none';
+    var s=document.getElementById('form-success');
+    s.classList.add('visible');
+    s.scrollIntoView({behavior:'smooth'});
   },
-  onError: function() {
-    const err = document.getElementById('form-error');
-    err.style.display = 'block';
-    err.textContent = 'Something went wrong. Please try again or email us directly at contact@indieco.com.co';
+  onError:function(){
+    var err=document.getElementById('form-error');
+    err.style.display='block';
+    err.textContent='Something went wrong. Please try again or email us at contact@indieco.com.co';
   }
 });
 </script>
