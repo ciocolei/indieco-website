@@ -4,339 +4,747 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Standard Services — IndieCo</title>
-<link rel="stylesheet" href="../css/base.css"/>
-<link rel="stylesheet" href="../css/nav.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Helvetica+Neue:wght@300;400;500&display=swap" rel="stylesheet"/>
 
 <style>
-/* ── PAGE-SPECIFIC ADDITIONS ONLY ── */
-/* All base tokens (--ink, --gold, --rule, --font-serif etc.) come from base.css */
-/* All .page-wrap, .fade-up, .section-label come from base.css — not redefined here */
+/* ═══════════════════════════════════════════
+   INDIECO — BRAND SYSTEM 2025
+   Standard Services · Redesigned
+═══════════════════════════════════════════ */
 
 :root {
-  --cream-deep:   #e8e0d4;
-  --rule-gold:    rgba(184,147,74,0.3);
-  --font-display: 'Cormorant Garamond', serif; /* base already imports this font */
-  --nav-h:        68px;
+  /* Brand Colors */
+  --void:        #0A0710;
+  --void-2:      #0f0b18;
+  --voltage:     #B8244E;
+  --voltage-dk:  #8C1A3A;
+  --orchid:      #5C2475;
+  --bone:        #F4F0EB;
+  --bone-dim:    rgba(244,240,235,0.55);
+  --bone-ghost:  rgba(244,240,235,0.18);
+  --graphite:    #211B2B;
+  --chrome-rose: #C89AB2;
+  --blush:       #EDD5E0;
+  --ash:         #9A8FA0;
+  --voltage-glow:rgba(184,36,78,0.18);
+
+  /* Type */
+  --serif:  'Cormorant Garamond', Georgia, serif;
+  --sans:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Spacing */
+  --nav-h:  72px;
+  --wrap:   1280px;
+  --gap:    24px;
+
+  /* Motion */
+  --ease:   cubic-bezier(0.16,1,0.3,1);
+  --fast:   150ms;
+  --mid:    350ms;
+  --slow:   600ms;
 }
 
-/* ── HERO — full-bleed, clears fixed nav ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.35;
+}
+
+/* ── LAYOUT ── */
+.page-wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 80px;
+}
+@media(max-width:900px){ .page-wrap { padding: 0 32px; } }
+@media(max-width:600px){ .page-wrap { padding: 0 20px; } }
+
+/* ── NAV (inline, self-contained) ── */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 100;
+  background: rgba(10,7,16,0.85);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 0.5px solid rgba(244,240,235,0.08);
+  display: flex; align-items: center;
+}
+.nav-inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media(max-width:900px){ .nav-inner { padding: 0 32px; } }
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--bone);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo-dot {
+  width: 5px; height: 5px;
+  background: var(--voltage);
+  border-radius: 50%;
+  display: inline-block;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ash);
+  text-decoration: none;
+  transition: color var(--fast);
+}
+.nav-links a:hover { color: var(--bone); }
+.nav-cta {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: var(--voltage);
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: background var(--fast);
+}
+.nav-cta:hover { background: var(--voltage-dk); }
+@media(max-width:768px){
+  .nav-links { display: none; }
+}
+
+/* ── UTILITY ── */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--voltage);
+  margin-bottom: 1.4rem;
+}
+.rule-v {
+  display: inline-block;
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--voltage), transparent);
+  margin-bottom: 2rem;
+  vertical-align: top;
+}
+
+/* ── FADE-UP ANIMATION ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
   padding-top: var(--nav-h);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 55% 45%;
   position: relative;
   overflow: hidden;
 }
+
+/* Left: deep dark, editorial */
 .hero-left {
-  background: var(--ink);
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 4rem 3rem 4rem 3rem;
-  position: relative;
+  padding: 6rem 5rem 5rem;
+  background: var(--void);
+  z-index: 2;
 }
-.hero-left::after {
+.hero-left::before {
   content: '';
   position: absolute;
-  right: -1px; top: 0; bottom: 0;
-  width: 2px;
-  background: var(--gold);
-  opacity: 0.4;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 0% 100%, rgba(184,36,78,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 0%, rgba(92,36,117,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-number {
+  font-family: var(--serif);
+  font-size: 9rem;
+  font-weight: 300;
+  color: rgba(244,240,235,0.04);
+  line-height: 1;
+  position: absolute;
+  top: 4rem; left: 4rem;
+  user-select: none;
+  pointer-events: none;
 }
 .hero-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 9px;
-  letter-spacing: 0.35em;
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 2rem;
-  display: block;
-}
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 4vw, 3.8rem);
-  font-weight: 300;
-  line-height: 1.1;
-  color: #f5f0e8;
+  color: var(--voltage);
   margin-bottom: 1.8rem;
-}
-.hero-title em { font-style: italic; color: var(--gold-light); }
-.hero-sub {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 300;
-  color: rgba(245,240,232,0.5);
-  line-height: 1.9;
-  max-width: 340px;
-}
-.hero-right {
-  position: relative;
-  background: var(--cream-deep);
-  overflow: hidden;
-}
-.hero-photo-placeholder {
-  width: 100%; height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 12px;
 }
-.photo-hint {
-  font-family: var(--font-sans);
-  font-size: 10px;
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 32px; height: 0.5px;
+  background: var(--voltage);
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5vw, 5rem);
   font-weight: 300;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
-  border: 0.5px dashed var(--rule-gold);
-  padding: 1.5rem 2rem;
-  text-align: center;
-  margin: 2rem;
+  line-height: 1.05;
+  color: var(--bone);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
 }
-.photo-hint strong {
+.hero-title em {
+  font-style: italic;
+  color: var(--voltage);
   display: block;
-  font-size: 12px;
-  color: var(--gold);
-  margin-bottom: 0.5rem;
 }
+.hero-title strong {
+  font-weight: 400;
+  color: var(--chrome-rose);
+}
+.hero-sub {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--bone-dim);
+  line-height: 1.9;
+  max-width: 380px;
+  position: relative;
+  z-index: 1;
+  border-left: 1px solid rgba(184,36,78,0.4);
+  padding-left: 1.4rem;
+  margin-bottom: 3rem;
+}
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+.btn-primary {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  background: var(--voltage);
+  color: var(--bone);
+  padding: 14px 32px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background var(--fast), transform var(--fast);
+}
+.btn-primary:hover { background: var(--voltage-dk); transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--bone-dim);
+  padding: 13px 32px;
+  text-decoration: none;
+  border: 0.5px solid rgba(244,240,235,0.18);
+  cursor: pointer;
+  transition: border-color var(--fast), color var(--fast);
+}
+.btn-ghost:hover { border-color: var(--chrome-rose); color: var(--bone); }
+
+/* Right: photo + glass overlay */
+.hero-right {
+  position: relative;
+  background: var(--graphite);
+  overflow: hidden;
+}
+.hero-right img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.7) contrast(1.1);
+}
+.hero-right-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10,7,16,0.6) 0%,
+    rgba(92,36,117,0.15) 50%,
+    rgba(184,36,78,0.12) 100%
+  );
+}
+.hero-stat-card {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10,7,16,0.75);
+  backdrop-filter: blur(16px);
+  border: 0.5px solid rgba(244,240,235,0.12);
+  border-top: 1.5px solid var(--voltage);
+  padding: 1.4rem 2rem;
+  min-width: 200px;
+  text-align: center;
+}
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 300;
+  color: var(--bone);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.hero-stat-lbl {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--voltage);
+}
+
 .hero-scroll {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 6px;
   cursor: pointer;
-  z-index: 2;
+  z-index: 5;
 }
 .hero-scroll span {
-  font-family: var(--font-sans);
-  font-size: 9px;
-  letter-spacing: 0.3em;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--ink-ghost);
+  color: var(--bone-ghost);
 }
 .scroll-line {
-  width: 0.5px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
+  width: 0.5px; height: 44px;
+  background: linear-gradient(to bottom, var(--voltage), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
 }
 @keyframes scrollPulse {
-  0%,100% { opacity: 0.6; }
-  50%      { opacity: 1; }
+  0%,100% { opacity: 0.5; transform: scaleY(1); }
+  50%      { opacity: 1;   transform: scaleY(1.1); }
 }
 
-/* ── SERVICE SECTION ── */
-.ss { padding: 5rem 0 4rem; }
+@media(max-width:860px){
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { min-height: calc(100vh - var(--nav-h)); padding: 4rem 2rem 5rem; }
+  .hero-number { font-size: 5rem; top: 2rem; left: 2rem; }
+}
 
-.ss-intro {
+
+/* ══════════════════════════════════════════
+   MARQUEE STRIP
+══════════════════════════════════════════ */
+.marquee-strip {
+  background: var(--voltage);
+  padding: 12px 0;
+  overflow: hidden;
+  position: relative;
+}
+.marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marqueeScroll 22s linear infinite;
+  white-space: nowrap;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 2.5rem;
+  flex-shrink: 0;
+}
+.marquee-item span {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(244,240,235,0.9);
+}
+.marquee-dot {
+  width: 3px; height: 3px;
+  background: rgba(244,240,235,0.5);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+/* ══════════════════════════════════════════
+   SERVICES SECTION
+══════════════════════════════════════════ */
+.ss {
+  padding: 8rem 0 5rem;
+  position: relative;
+}
+.ss::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--voltage), transparent);
+  opacity: 0.4;
+}
+
+.ss-header {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
-  margin-bottom: 3.5rem;
-  border: 0.5px solid var(--rule);
+  gap: 4rem;
+  margin-bottom: 5rem;
+  align-items: end;
 }
-.ss-intro-left {
-  padding: 2.5rem;
-  border-right: 0.5px solid var(--rule);
-}
-.ss-intro-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+.ss-headline {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
   font-weight: 300;
-  line-height: 1.1;
-  color: var(--ink);
+  line-height: 1.05;
+  color: var(--bone);
 }
-.ss-intro-title em { font-style: italic; color: var(--gold-dark); }
-.ss-intro-right {
-  padding: 2.5rem;
-  display: flex;
-  align-items: center;
-}
-.ss-intro-text {
-  font-family: var(--font-sans);
+.ss-headline em { font-style: italic; color: var(--chrome-rose); }
+.ss-lead {
+  font-family: var(--sans);
   font-size: 13px;
   font-weight: 300;
-  color: var(--ink-soft);
+  color: var(--bone-dim);
   line-height: 1.9;
+  border-left: 1px solid rgba(184,36,78,0.35);
+  padding-left: 1.5rem;
 }
 
-/* Service blocks */
-.ss-block {
-  padding: 2rem 2.2rem;
-  border: 0.5px solid var(--rule);
-  margin-bottom: 1px;
+/* Service blocks — glass morphism cards */
+.service-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(244,240,235,0.06);
+  border: 0.5px solid rgba(244,240,235,0.08);
   position: relative;
   overflow: hidden;
-  background: var(--white);
-  cursor: default;
-  transition: background 0.35s, transform 0.3s, box-shadow 0.35s;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 1.5rem;
 }
-.ss-block::before {
+.service-grid::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(184,36,78,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.ss-block {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2.2rem 2.8rem;
+  background: rgba(15,11,24,0.6);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: background var(--mid) var(--ease);
+}
+.ss-block::after {
   content: '';
   position: absolute;
   left: 0; top: 0; bottom: 0;
   width: 2px;
-  background: var(--gold);
+  background: linear-gradient(to bottom, var(--voltage), var(--orchid));
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  transition: transform 0.5s var(--ease);
 }
-.ss-block:hover { background: var(--cream-warm); box-shadow: 0 6px 28px rgba(0,0,0,0.04); transform: translateY(-1px); }
-.ss-block:hover::before { transform: scaleY(1); }
-.ss-service {
-  font-family: var(--font-display);
-  font-size: 1.55rem;
+.ss-block:hover { background: rgba(33,27,43,0.8); }
+.ss-block:hover::after { transform: scaleY(1); }
+.ss-block:hover .ss-num { color: var(--voltage); }
+.ss-block:hover .ss-arrow { opacity: 1; transform: translateX(0); }
+
+.ss-num {
+  font-family: var(--serif);
+  font-size: 2.8rem;
   font-weight: 300;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
-  transition: letter-spacing 0.4s;
-}
-.ss-block:hover .ss-service { letter-spacing: 0.03em; }
-.ss-desc {
-  font-family: var(--font-sans);
-  font-size: 12.5px;
-  font-weight: 300;
-  color: var(--ink-soft);
-  line-height: 1.85;
-}
-.ss-block-num {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 300;
-  color: var(--rule);
+  color: rgba(244,240,235,0.12);
   line-height: 1;
-  transition: color 0.35s;
   flex-shrink: 0;
-  padding-top: 0.2rem;
+  width: 56px;
+  transition: color var(--mid);
 }
-.ss-block:hover .ss-block-num { color: var(--gold-light); }
-
-/* Photo strip */
-.photo-strip {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 300px;
-  margin: 3rem 0;
-  border: 0.5px solid var(--rule);
-  overflow: hidden;
-}
-.photo-strip-cell {
-  background: var(--cream-deep);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 0.5px solid var(--rule);
-  overflow: hidden;
-}
-.photo-strip-cell:last-child { border-right: none; }
-.photo-strip-cell img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
-}
-.photo-strip-cell:hover img { transform: scale(1.04); }
-
-/* Philosophy band */
-.ss-philosophy {
-  text-align: center;
-  padding: 3rem 2rem;
-  border-top: 0.5px solid var(--rule);
-  border-bottom: 0.5px solid var(--rule);
-  margin: 3rem 0;
-  position: relative;
-  transition: background 0.3s;
-}
-.ss-philosophy::before, .ss-philosophy::after {
-  content: '';
-  position: absolute;
-  left: 50%; transform: translateX(-50%);
-  width: 0; height: 0.5px;
-  background: var(--gold);
-  transition: width 0.5s cubic-bezier(0.16,1,0.3,1);
-}
-.ss-philosophy::before { top: -0.5px; }
-.ss-philosophy::after  { bottom: -0.5px; }
-.ss-philosophy:hover::before,
-.ss-philosophy:hover::after { width: 100%; }
-.ss-philosophy:hover { background: var(--cream-warm); }
-.ss-philosophy blockquote {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2vw, 1.7rem);
+.ss-content { flex: 1; }
+.ss-service-name {
+  font-family: var(--serif);
+  font-size: 1.6rem;
   font-weight: 300;
-  font-style: italic;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  max-width: 600px;
-  margin: 0 auto;
+  color: var(--bone);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+  transition: letter-spacing var(--mid);
 }
-.ss-philosophy cite {
-  display: block;
-  font-family: var(--font-sans);
-  font-style: normal;
-  font-size: 9px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 1.2rem;
+.ss-block:hover .ss-service-name { letter-spacing: 0.03em; }
+.ss-desc {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--bone-dim);
+  line-height: 1.85;
+  max-width: 600px;
+}
+.ss-arrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--voltage);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity var(--mid), transform var(--mid);
+  flex-shrink: 0;
+  letter-spacing: 0.1em;
 }
 
-/* Detail grid */
-.ss-grid {
+@media(max-width:700px){
+  .ss-header { grid-template-columns: 1fr; gap: 2rem; }
+  .ss-block { grid-template-columns: 1fr; padding: 1.8rem 1.5rem; }
+  .ss-num { font-size: 2rem; width: auto; }
+  .ss-arrow { display: none; }
+}
+
+/* ── SERVICE DETAIL GRID ── */
+.ss-detail-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border: 0.5px solid var(--rule);
+  gap: 1px;
+  background: rgba(244,240,235,0.06);
+  border: 0.5px solid rgba(244,240,235,0.08);
+  margin-top: 4rem;
 }
-.ss-grid-cell {
-  padding: 2rem 2.2rem;
-  border-right: 0.5px solid var(--rule);
-  border-bottom: 0.5px solid var(--rule);
+.ss-detail-cell {
+  background: rgba(15,11,24,0.5);
+  padding: 2.2rem 2.5rem;
   position: relative;
   overflow: hidden;
-  transition: background 0.3s;
+  transition: background var(--mid);
 }
-.ss-grid-cell:nth-child(even) { border-right: none; }
-.ss-grid-cell:nth-child(3),
-.ss-grid-cell:nth-child(4) { border-bottom: none; }
-.ss-grid-cell::after {
+.ss-detail-cell::before {
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 0.5px;
-  background: var(--gold);
+  height: 1.5px;
+  background: linear-gradient(to right, var(--voltage), var(--orchid));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  transition: transform 0.5s var(--ease);
 }
-.ss-grid-cell:hover { background: var(--cream-warm); }
-.ss-grid-cell:hover::after { transform: scaleX(1); }
+.ss-detail-cell:hover { background: rgba(33,27,43,0.7); }
+.ss-detail-cell:hover::before { transform: scaleX(1); }
 .ss-mini-title {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 300;
-  margin-bottom: 0.9rem;
-  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--bone);
+  margin-bottom: 1rem;
 }
 .ss-small {
-  font-family: var(--font-sans);
+  font-family: var(--sans);
   font-size: 11.5px;
   font-weight: 300;
-  color: var(--ink-soft);
-  line-height: 1.85;
+  color: var(--bone-dim);
+  line-height: 1.95;
+}
+.ss-tag-line {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 7.5px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--voltage);
+  border: 0.5px solid rgba(184,36,78,0.3);
+  padding: 3px 8px;
+  margin-bottom: 1rem;
 }
 
-/* ── TAROT QUIZ — full-bleed dark section ── */
+@media(max-width:600px){
+  .ss-detail-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ── EDITORIAL STRIP (photo band) ── */
+.editorial-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 340px;
+  margin: 5rem 0;
+  border: 0.5px solid rgba(244,240,235,0.08);
+  overflow: hidden;
+  position: relative;
+}
+.editorial-cell {
+  overflow: hidden;
+  position: relative;
+}
+.editorial-cell + .editorial-cell {
+  border-left: 0.5px solid rgba(244,240,235,0.08);
+}
+.editorial-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75) contrast(1.1) saturate(0.85);
+  transition: transform 0.9s var(--ease), filter 0.6s;
+}
+.editorial-cell:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.85) contrast(1.1);
+}
+.editorial-cell-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,7,16,0.7) 0%, transparent 60%);
+}
+.editorial-label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.8rem;
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(244,240,235,0.5);
+}
+
+@media(max-width:600px){
+  .editorial-strip { height: 220px; }
+}
+
+
+/* ── PHILOSOPHY BAND ── */
+.philosophy-band {
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+  background: rgba(15,11,24,0.4);
+  border-top: 0.5px solid rgba(244,240,235,0.06);
+  border-bottom: 0.5px solid rgba(244,240,235,0.06);
+}
+.philosophy-band::before,
+.philosophy-band::after {
+  content: '';
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  height: 0.5px;
+  width: 0;
+  background: linear-gradient(to right, transparent, var(--voltage), transparent);
+  transition: width 0.7s var(--ease);
+}
+.philosophy-band::before { top: 0; }
+.philosophy-band::after  { bottom: 0; }
+.philosophy-band:hover::before,
+.philosophy-band:hover::after { width: 80%; }
+.philosophy-ornament {
+  font-family: var(--serif);
+  font-size: 5rem;
+  font-weight: 300;
+  color: rgba(184,36,78,0.15);
+  line-height: 0.7;
+  margin-bottom: 1rem;
+}
+.philosophy-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.85rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--bone-dim);
+  max-width: 640px;
+  margin: 0 auto 1.2rem;
+}
+.philosophy-quote strong { color: var(--bone); font-style: normal; font-weight: 400; }
+.philosophy-cite {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--voltage);
+}
+
+
+/* ══════════════════════════════════════════
+   TAROT QUIZ — full-bleed dark section
+══════════════════════════════════════════ */
 .quiz-section {
-  background: var(--dark);
-  padding: 6rem 0;
+  background: var(--graphite);
+  padding: 7rem 0;
   position: relative;
   overflow: hidden;
 }
@@ -345,36 +753,40 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 10% 50%, rgba(184,147,74,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse at 90% 20%, rgba(184,147,74,0.04) 0%, transparent 50%);
+    radial-gradient(ellipse at 15% 50%, rgba(184,36,78,0.1) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(92,36,117,0.08) 0%, transparent 50%);
   pointer-events: none;
 }
 .quiz-wrap { position: relative; z-index: 1; }
-.quiz-header { text-align: center; margin-bottom: 3.5rem; }
+.quiz-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
 .quiz-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 9px;
-  letter-spacing: 0.4em;
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--voltage);
   display: block;
   margin-bottom: 1.2rem;
 }
 .quiz-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
   font-weight: 300;
-  color: #f5f0e8;
+  color: var(--bone);
   line-height: 1.1;
+  margin-bottom: 0.6rem;
 }
-.quiz-title em { font-style: italic; color: var(--gold-light); }
+.quiz-title em { font-style: italic; color: var(--chrome-rose); }
 .quiz-subtitle {
-  font-family: var(--font-sans);
-  font-size: 12px;
+  font-family: var(--sans);
+  font-size: 11.5px;
   font-weight: 300;
-  color: rgba(245,240,232,0.35);
-  margin-top: 0.8rem;
-  letter-spacing: 0.06em;
+  color: var(--bone-ghost);
+  letter-spacing: 0.08em;
 }
 
 .card-stage {
@@ -385,21 +797,21 @@
 .card-deck {
   position: relative;
   width: 320px;
-  height: 460px;
+  height: 480px;
   margin-bottom: 2.5rem;
 }
 .tarot-card {
   position: absolute;
-  width: 300px;
-  height: 440px;
+  width: 300px; height: 460px;
   top: 0; left: 10px;
-  border: 0.5px solid rgba(184,147,74,0.25);
-  background: var(--dark-surface);
-  border-radius: 4px;
+  border: 0.5px solid rgba(244,240,235,0.1);
+  background: rgba(33,27,43,0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  transition: all 0.5s var(--ease);
 }
 .tarot-card.back-card { cursor: pointer; }
 .card-back-pattern {
@@ -407,12 +819,12 @@
   inset: 0;
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(184,147,74,0.03) 0px,
-    rgba(184,147,74,0.03) 1px,
+    rgba(184,36,78,0.04) 0px,
+    rgba(184,36,78,0.04) 1px,
     transparent 1px,
     transparent 18px
   );
-  border-radius: 4px;
+  border-radius: 6px;
 }
 .card-back-ornament {
   position: absolute;
@@ -421,32 +833,30 @@
   text-align: center;
 }
 .card-back-ornament span {
-  font-family: var(--font-display);
-  font-size: 4rem;
+  font-family: var(--serif);
+  font-size: 4.5rem;
   font-weight: 300;
-  color: rgba(184,147,74,0.18);
+  color: rgba(184,36,78,0.15);
   display: block;
   line-height: 1;
 }
 .card-back-ornament p {
-  font-family: var(--font-sans);
+  font-family: var(--sans);
   font-size: 8px;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(184,147,74,0.35);
+  color: rgba(244,240,235,0.2);
   margin-top: 0.8rem;
 }
 .tarot-card:nth-child(2) { transform: rotate(-2deg) translate(-8px, 5px); z-index: 1; }
 .tarot-card:nth-child(3) { transform: rotate(1.5deg) translate(6px, 8px); z-index: 2; }
 .tarot-card.front-card   { z-index: 3; transform: rotate(0); }
 
-/* Question card face */
 .q-card-face {
   position: absolute;
   inset: 0;
-  background: #f5f0e8;
-  border: 0.5px solid rgba(184,147,74,0.25);
-  border-radius: 4px;
+  background: var(--bone);
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   padding: 2.2rem 2rem;
@@ -457,39 +867,34 @@
 }
 .q-card-face.active { opacity: 1; pointer-events: auto; }
 .q-card-number {
-  font-family: var(--font-sans);
-  font-size: 8.5px;
-  letter-spacing: 0.35em;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--voltage);
   margin-bottom: 1rem;
 }
 .q-card-title {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-family: var(--serif);
+  font-size: 1.3rem;
   font-weight: 400;
   font-style: italic;
   line-height: 1.35;
-  color: var(--ink);
+  color: var(--void);
   margin-bottom: 1.5rem;
   flex-shrink: 0;
 }
-.q-divider {
-  width: 36px; height: 0.5px;
-  background: var(--gold);
-  margin-bottom: 1.5rem;
-  flex-shrink: 0;
-}
-.q-options { display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
+.q-divider { width: 32px; height: 1.5px; background: var(--voltage); margin-bottom: 1.4rem; flex-shrink: 0; }
+.q-options { display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
 .q-option {
   padding: 0.75rem 1rem;
-  border: 0.5px solid rgba(26,24,20,0.14);
-  font-family: var(--font-sans);
-  font-size: 11.5px;
+  border: 0.5px solid rgba(10,7,16,0.12);
+  font-family: var(--sans);
+  font-size: 11px;
   font-weight: 300;
-  color: var(--ink-soft);
+  color: rgba(10,7,16,0.7);
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.22s;
   position: relative;
   background: transparent;
   text-align: left;
@@ -500,36 +905,32 @@
   position: absolute;
   left: 0; top: 0; bottom: 0;
   width: 0;
-  background: var(--gold);
-  transition: width 0.25s;
+  background: var(--voltage);
+  transition: width 0.22s;
 }
-.q-option:hover { border-color: var(--gold); color: var(--ink); background: rgba(184,147,74,0.04); }
+.q-option:hover { border-color: var(--voltage); color: var(--void); }
 .q-option:hover::before { width: 2px; }
-.q-option.selected { border-color: var(--gold); color: var(--ink); background: rgba(184,147,74,0.07); }
+.q-option.selected { border-color: var(--voltage); color: var(--void); }
 .q-option.selected::before { width: 2px; }
 .q-card-footer {
-  margin-top: 1.2rem;
+  margin-top: 1rem;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .q-progress { display: flex; gap: 4px; }
-.q-dot {
-  width: 18px; height: 2px;
-  background: rgba(26,24,20,0.1);
-  transition: background 0.3s;
-}
-.q-dot.done    { background: var(--gold); }
-.q-dot.current { background: var(--ink); }
+.q-dot { width: 16px; height: 1.5px; background: rgba(10,7,16,0.1); transition: background 0.25s; }
+.q-dot.done    { background: var(--voltage); }
+.q-dot.current { background: var(--void); }
 
-/* Result card */
 .result-card {
   position: absolute;
   inset: 0;
-  background: var(--dark-surface);
-  border: 0.5px solid rgba(184,147,74,0.4);
-  border-radius: 4px;
+  background: linear-gradient(160deg, var(--graphite) 0%, rgba(92,36,117,0.3) 100%);
+  border: 0.5px solid rgba(184,36,78,0.35);
+  border-top: 1.5px solid var(--voltage);
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   padding: 2.2rem 2rem;
@@ -540,333 +941,535 @@
 }
 .result-card.active { opacity: 1; pointer-events: auto; }
 .result-type {
-  font-family: var(--font-sans);
-  font-size: 8.5px;
-  letter-spacing: 0.35em;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--voltage);
   margin-bottom: 0.6rem;
 }
 .result-name {
-  font-family: var(--font-display);
-  font-size: 1.65rem;
+  font-family: var(--serif);
+  font-size: 1.7rem;
   font-weight: 300;
   font-style: italic;
-  color: #f5f0e8;
+  color: var(--bone);
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 .result-desc {
-  font-family: var(--font-sans);
-  font-size: 11.5px;
+  font-family: var(--sans);
+  font-size: 11px;
   font-weight: 300;
-  color: rgba(245,240,232,0.5);
+  color: var(--bone-dim);
   line-height: 1.85;
   flex: 1;
 }
-.result-services {
-  margin-top: 1.2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
+.result-services { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 5px; }
 .result-tag {
-  font-family: var(--font-sans);
-  font-size: 8px;
-  letter-spacing: 0.2em;
+  font-family: var(--sans);
+  font-size: 7.5px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--gold);
-  border: 0.5px solid rgba(184,147,74,0.28);
-  padding: 3px 9px;
+  color: var(--chrome-rose);
+  border: 0.5px solid rgba(200,154,178,0.3);
+  padding: 3px 8px;
 }
 .result-cta {
   display: block;
   margin-top: 1.2rem;
-  font-family: var(--font-sans);
+  font-family: var(--sans);
   font-size: 9px;
+  font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--dark);
-  background: var(--gold);
-  padding: 10px 16px;
+  color: var(--bone);
+  background: var(--voltage);
+  padding: 11px 16px;
   text-align: center;
   transition: background 0.2s;
   cursor: pointer;
   border: none;
   width: 100%;
 }
-.result-cta:hover { background: var(--gold-light); }
+.result-cta:hover { background: var(--voltage-dk); }
 
 .quiz-nav {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  margin-top: 0.8rem;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 .quiz-btn {
-  font-family: var(--font-sans);
-  font-size: 9.5px;
+  font-family: var(--sans);
+  font-size: 9px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.45);
+  color: var(--bone-dim);
   background: transparent;
-  border: 0.5px solid rgba(184,147,74,0.22);
-  padding: 11px 22px;
+  border: 0.5px solid rgba(244,240,235,0.18);
+  padding: 12px 22px;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.22s;
 }
-.quiz-btn:hover { border-color: var(--gold); color: #f5f0e8; }
-.quiz-btn.primary { border-color: var(--gold); color: var(--gold); }
-.quiz-btn.primary:hover { background: var(--gold); color: var(--dark); }
-.quiz-intro-text {
-  text-align: center;
-  margin-bottom: 2rem;
-}
+.quiz-btn:hover { border-color: var(--voltage); color: var(--bone); }
+.quiz-btn.primary { border-color: var(--voltage); color: var(--voltage); }
+.quiz-btn.primary:hover { background: var(--voltage); color: var(--bone); }
+.quiz-intro-text { text-align: center; margin-bottom: 2rem; }
 .quiz-intro-text p {
-  font-family: var(--font-display);
+  font-family: var(--serif);
   font-size: 1rem;
   font-style: italic;
-  color: rgba(245,240,232,0.35);
+  color: var(--bone-ghost);
   line-height: 1.8;
-  max-width: 380px;
+  max-width: 360px;
   margin: 0 auto;
 }
 .quiz-state-label {
-  font-family: var(--font-sans);
-  font-size: 9.5px;
+  font-family: var(--sans);
+  font-size: 9px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(245,240,232,0.25);
+  color: rgba(244,240,235,0.2);
   text-align: center;
   margin-top: 0.8rem;
   min-height: 18px;
 }
 
-/* ── CLIENT RESULTS ── */
-.cl { padding: 5rem 0; border-top: 0.5px solid var(--rule); }
+
+/* ══════════════════════════════════════════
+   CLIENT RESULTS
+══════════════════════════════════════════ */
+.cl {
+  padding: 8rem 0 5rem;
+  position: relative;
+}
+.cl::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(244,240,235,0.08), transparent);
+}
+
 .cl-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
   font-weight: 300;
   line-height: 1.05;
   letter-spacing: -0.01em;
-  margin-bottom: 0.4rem;
+  color: var(--bone);
+  margin-bottom: 0.5rem;
 }
-.cl-title em { font-style: italic; color: var(--gold-dark); }
+.cl-title em { font-style: italic; color: var(--chrome-rose); }
 .cl-sub {
-  font-family: var(--font-sans);
-  font-size: 10px;
+  font-family: var(--sans);
+  font-size: 9.5px;
   font-weight: 300;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--ink-ghost);
-  margin-bottom: 3rem;
+  color: var(--ash);
+  margin-bottom: 4rem;
 }
 
+/* Pub strip */
 .pubs-strip {
-  display: flex; align-items: center; gap: 2rem;
-  padding: 1.5rem 0;
-  border-top: 0.5px solid var(--rule);
-  border-bottom: 0.5px solid var(--rule);
-  margin-bottom: 3.5rem;
-  overflow-x: auto; scrollbar-width: none;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 1.8rem 0;
+  border-top: 0.5px solid rgba(244,240,235,0.07);
+  border-bottom: 0.5px solid rgba(244,240,235,0.07);
+  margin-bottom: 4rem;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 .pubs-strip::-webkit-scrollbar { display: none; }
 .pub-item {
   display: flex; flex-direction: column;
   align-items: center; gap: 4px;
   flex-shrink: 0; cursor: default;
-  transition: transform 0.3s;
+  transition: transform 0.3s var(--ease);
 }
 .pub-item:hover { transform: translateY(-3px); }
 .pub-name {
-  font-family: var(--font-display);
+  font-family: var(--serif);
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   letter-spacing: 0.04em;
-  color: var(--ink);
+  color: rgba(244,240,235,0.6);
   white-space: nowrap;
+  transition: color 0.25s;
 }
+.pub-item:hover .pub-name { color: var(--bone); }
 .pub-name.wsj { font-size: 2rem; font-weight: 300; letter-spacing: -0.02em; }
-.pub-name.nyt { font-size: 1.4rem; }
+.pub-name.nyt { font-size: 1.45rem; }
 .pub-label {
-  font-family: var(--font-sans);
-  font-size: 8px;
+  font-family: var(--sans);
+  font-size: 7.5px;
   font-weight: 300;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--ink-ghost);
+  color: var(--ash);
 }
-.pub-divider { width: 0.5px; height: 32px; background: var(--rule); flex-shrink: 0; }
+.pub-divider { width: 0.5px; height: 30px; background: rgba(244,240,235,0.1); flex-shrink: 0; }
 
-.stats-row { display: flex; gap: 0; margin-bottom: 3.5rem; }
-.stat {
-  flex: 1;
-  padding-right: 2rem;
-  border-right: 0.5px solid var(--rule);
-  margin-right: 2rem;
-  cursor: default;
-  transition: transform 0.3s;
+/* Stats row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 0.5px solid rgba(244,240,235,0.07);
+  margin-bottom: 4rem;
 }
-.stat:last-child { border-right: none; margin-right: 0; }
-.stat:hover { transform: translateY(-3px); }
+.stat {
+  padding: 2.2rem 2.5rem;
+  border-right: 0.5px solid rgba(244,240,235,0.07);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: background var(--mid);
+}
+.stat::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--voltage), var(--orchid));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+.stat:hover { background: rgba(33,27,43,0.5); }
+.stat:hover::before { transform: scaleX(1); }
+.stat:last-child { border-right: none; }
 .stat-num {
-  font-family: var(--font-display);
+  font-family: var(--serif);
   font-weight: 300;
-  font-size: 2.2rem;
-  color: var(--ink);
+  font-size: 2.4rem;
+  color: var(--bone);
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .stat-lbl {
-  font-family: var(--font-sans);
-  font-size: 9px;
+  font-family: var(--sans);
+  font-size: 8.5px;
   font-weight: 300;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--ink-mute);
+  color: var(--ash);
 }
 
-.clients-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+@media(max-width:700px){
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(2) { border-right: none; }
+}
+
+/* Clients grid */
+.clients-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 0.5px solid rgba(244,240,235,0.07);
+}
 .client-row {
   position: relative;
   display: flex; align-items: center;
   justify-content: space-between;
-  padding: 1.1rem 1.4rem 1.1rem 0;
-  border-bottom: 0.5px solid var(--rule);
-  cursor: default; overflow: hidden;
+  padding: 1.1rem 1.6rem 1.1rem 0;
+  border-bottom: 0.5px solid rgba(244,240,235,0.07);
+  cursor: default;
+  overflow: hidden;
+  transition: background var(--mid);
 }
-.client-row:nth-child(even) { padding-left: 1.4rem; padding-right: 0; border-left: 0.5px solid var(--rule); }
-.client-row::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 0.5px; background: var(--ink); transition: width 0.4s; }
+.client-row:nth-child(even) {
+  padding-left: 1.6rem;
+  padding-right: 0;
+  border-left: 0.5px solid rgba(244,240,235,0.07);
+}
+.client-row:last-child,
+.client-row:nth-last-child(2):nth-child(odd) { border-bottom: none; }
+.client-row::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 0.5px;
+  background: var(--voltage);
+  transition: width 0.45s var(--ease);
+}
+.client-row:hover { background: rgba(33,27,43,0.6); }
 .client-row:hover::before { width: 100%; }
-.client-row:hover { background: var(--cream); }
 .client-row:hover .client-name { letter-spacing: 0.1em; }
-.client-index { font-family: var(--font-display); font-weight: 300; font-size: 0.72rem; color: var(--rule); min-width: 14px; }
-.client-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; color: var(--ink); letter-spacing: 0.01em; transition: letter-spacing 0.35s; margin-left: 10px; }
+.client-index {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 0.7rem;
+  color: rgba(244,240,235,0.2);
+  min-width: 14px;
+}
+.client-name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--bone);
+  letter-spacing: 0.01em;
+  transition: letter-spacing var(--mid);
+  margin-left: 10px;
+}
 .accolade-tags { display: flex; gap: 4px; opacity: 0; transition: opacity 0.3s; }
 .client-row:hover .accolade-tags { opacity: 1; }
-.tag { font-family: var(--font-sans); font-size: 8px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); border: 0.5px solid var(--rule); padding: 2px 7px; white-space: nowrap; }
-.tag.gold { border-color: var(--gold); color: var(--gold-dark); }
+.tag {
+  font-family: var(--sans);
+  font-size: 7.5px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ash);
+  border: 0.5px solid rgba(244,240,235,0.1);
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+.tag.gold { border-color: rgba(184,36,78,0.4); color: var(--chrome-rose); }
+
+@media(max-width:600px){
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-row:nth-child(even) { padding-left: 0; border-left: none; }
+}
 
 /* Photo stage */
 .photo-stage {
-  width: 100%; height: 240px;
-  border: 0.5px solid var(--rule);
+  width: 100%; height: 260px;
+  border: 0.5px solid rgba(244,240,235,0.07);
   overflow: hidden;
-  margin: 3.5rem 0;
+  margin: 4rem 0;
+  position: relative;
 }
-.photo-stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-stage img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  filter: brightness(0.7) contrast(1.1) saturate(0.8);
+}
+.photo-stage-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,7,16,0.5) 0%, transparent 50%, rgba(10,7,16,0.3) 100%);
+}
 
-/* ── TESTIMONIALS ── */
-.tm { padding: 5rem 0; border-top: 0.5px solid var(--rule); }
+
+/* ══════════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════════ */
+.tm { padding: 5rem 0; }
 .tm-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: var(--rule);
-  border: 0.5px solid var(--rule);
+  background: rgba(244,240,235,0.06);
+  border: 0.5px solid rgba(244,240,235,0.08);
+  margin-top: 3rem;
 }
 .tm-card {
-  background: var(--white);
-  padding: 2.2rem 1.8rem;
-  position: relative; overflow: hidden;
+  background: rgba(15,11,24,0.6);
+  backdrop-filter: blur(8px);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
   cursor: default;
-  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-  display: flex; flex-direction: column;
-  justify-content: space-between; gap: 1.5rem;
+  transition: background var(--mid), transform var(--mid);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 .tm-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: var(--gold);
+  background: linear-gradient(to right, var(--voltage), var(--orchid));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  transition: transform 0.5s var(--ease);
 }
-.tm-card:hover { background: var(--cream-warm); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.06); z-index: 1; }
+.tm-card:hover { background: rgba(33,27,43,0.8); transform: translateY(-3px); z-index: 1; }
 .tm-card:hover::before { transform: scaleX(1); }
-.tm-open-quote { font-family: var(--font-display); font-size: 3.2rem; font-weight: 300; color: var(--gold); line-height: 0.6; margin-bottom: 0.4rem; }
-.tm-quote { font-family: var(--font-display); font-size: 1rem; font-weight: 300; font-style: italic; line-height: 1.75; color: var(--ink-soft); flex-grow: 1; }
-.tm-meta { border-top: 0.5px solid var(--rule); padding-top: 1rem; display: flex; flex-direction: column; gap: 3px; }
-.tm-author { font-family: var(--font-display); font-size: 1rem; font-weight: 400; color: var(--ink); }
-.tm-role { font-family: var(--font-sans); font-size: 9px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-ghost); }
+.tm-open-quote {
+  font-family: var(--serif);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: rgba(184,36,78,0.3);
+  line-height: 0.6;
+  margin-bottom: 0.4rem;
+}
+.tm-quote {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.78;
+  color: var(--bone-dim);
+  flex-grow: 1;
+}
+.tm-meta {
+  border-top: 0.5px solid rgba(244,240,235,0.08);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tm-author { font-family: var(--serif); font-size: 1rem; font-weight: 400; color: var(--bone); }
+.tm-role {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
 
-/* ── PUBLISHING PATHWAYS ── */
-.pub-paths { padding: 5rem 0; border-top: 0.5px solid var(--rule); }
-.pub-paths-header { margin-bottom: 3rem; }
+@media(max-width:700px){ .tm-grid { grid-template-columns: 1fr; } }
+
+
+/* ══════════════════════════════════════════
+   PUBLISHING PATHWAYS
+══════════════════════════════════════════ */
+.pub-paths { padding: 6rem 0; }
 .pub-paths-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 300;
   line-height: 1.1;
-  margin-bottom: 0.7rem;
+  color: var(--bone);
+  margin-bottom: 0.8rem;
 }
-.pub-paths-title em { font-style: italic; color: var(--gold-dark); }
+.pub-paths-title em { font-style: italic; color: var(--chrome-rose); }
 .pub-paths-sub {
-  font-family: var(--font-sans);
+  font-family: var(--sans);
   font-size: 12.5px;
   font-weight: 300;
-  color: var(--ink-soft);
+  color: var(--bone-dim);
   max-width: 520px;
-  line-height: 1.8;
+  line-height: 1.85;
+  margin-bottom: 3rem;
 }
 
 .path-tabs {
-  display: flex; gap: 0;
-  border: 0.5px solid var(--rule);
-  margin-bottom: 2.5rem;
-  overflow-x: auto; scrollbar-width: none;
+  display: flex;
+  gap: 0;
+  border: 0.5px solid rgba(244,240,235,0.08);
+  margin-bottom: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 .path-tabs::-webkit-scrollbar { display: none; }
 .path-tab {
   flex: 1; min-width: 110px;
   padding: 1rem 0.8rem;
-  font-family: var(--font-sans);
-  font-size: 9px;
-  font-weight: 300;
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-ghost);
-  border: none; background: transparent;
+  color: var(--ash);
+  border: none;
+  background: rgba(15,11,24,0.5);
   cursor: pointer;
-  border-right: 0.5px solid var(--rule);
-  transition: all 0.25s;
-  white-space: nowrap; text-align: center;
+  border-right: 0.5px solid rgba(244,240,235,0.08);
+  transition: all 0.22s;
+  white-space: nowrap;
+  text-align: center;
 }
 .path-tab:last-child { border-right: none; }
-.path-tab:hover { background: var(--cream-warm); color: var(--ink); }
-.path-tab.active { background: var(--ink); color: var(--gold); }
+.path-tab:hover { background: rgba(33,27,43,0.7); color: var(--bone); }
+.path-tab.active { background: var(--void); color: var(--voltage); border-bottom: 1.5px solid var(--voltage); }
 
 .path-panel { display: none; }
 .path-panel.active {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  border: 0.5px solid var(--rule);
+  border: 0.5px solid rgba(244,240,235,0.08);
+  border-top: none;
   animation: panelIn 0.35s ease;
 }
-@keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.path-info { padding: 2.5rem; border-right: 0.5px solid var(--rule); }
-.path-name { font-family: var(--font-display); font-size: 1.65rem; font-weight: 300; font-style: italic; margin-bottom: 0.4rem; color: var(--ink); }
-.path-tagline { font-family: var(--font-sans); font-size: 9px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
-.path-desc { font-family: var(--font-sans); font-size: 12.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.9; margin-bottom: 1.8rem; }
-.path-meta-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--rule);
-  border: 0.5px solid var(--rule);
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.path-meta-cell { background: var(--white); padding: 1rem 1.1rem; }
-.path-meta-label { font-family: var(--font-sans); font-size: 8px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 0.3rem; }
-.path-meta-val { font-family: var(--font-display); font-size: 0.95rem; color: var(--ink); line-height: 1.4; }
-.path-visual { padding: 2.5rem; background: var(--cream); display: flex; flex-direction: column; gap: 0.8rem; }
+.path-info {
+  padding: 2.8rem;
+  border-right: 0.5px solid rgba(244,240,235,0.08);
+  background: rgba(15,11,24,0.5);
+}
+.path-name {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 0.4rem;
+  color: var(--bone);
+}
+.path-tagline {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--voltage);
+  margin-bottom: 1.4rem;
+}
+.path-desc {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--bone-dim);
+  line-height: 1.9;
+  margin-bottom: 2rem;
+}
+.path-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(244,240,235,0.06);
+  border: 0.5px solid rgba(244,240,235,0.08);
+}
+.path-meta-cell {
+  background: rgba(15,11,24,0.5);
+  padding: 1rem 1.2rem;
+}
+.path-meta-label {
+  font-family: var(--sans);
+  font-size: 7.5px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-bottom: 0.3rem;
+}
+.path-meta-val {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--bone);
+  line-height: 1.4;
+}
+.path-visual {
+  padding: 2.8rem;
+  background: rgba(10,7,16,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 .path-step {
-  display: flex; align-items: flex-start; gap: 0.8rem;
-  padding: 0.8rem 0;
-  border-bottom: 0.5px solid var(--rule);
-  opacity: 0; transform: translateX(10px);
-  transition: opacity 0.35s, transform 0.35s;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 0.5px solid rgba(244,240,235,0.06);
+  opacity: 0;
+  transform: translateX(12px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
 }
 .path-panel.active .path-step { opacity: 1; transform: translateX(0); }
 .path-panel.active .path-step:nth-child(1) { transition-delay: 0.05s; }
@@ -875,120 +1478,318 @@
 .path-panel.active .path-step:nth-child(4) { transition-delay: 0.2s; }
 .path-panel.active .path-step:nth-child(5) { transition-delay: 0.25s; }
 .path-step:last-child { border-bottom: none; }
-.path-step-num { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; color: var(--gold); line-height: 1; flex-shrink: 0; min-width: 22px; }
-.path-step-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 400; color: var(--ink); margin-bottom: 0.15rem; }
-.path-step-note { font-family: var(--font-sans); font-size: 11px; font-weight: 300; color: var(--ink-soft); line-height: 1.6; }
-.path-fit-indicator {
-  margin-top: auto; padding: 1rem 1.1rem;
-  background: var(--ink);
-  display: flex; align-items: center; justify-content: space-between;
+.path-step-num {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: rgba(184,36,78,0.5);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 22px;
 }
-.path-fit-label { font-family: var(--font-sans); font-size: 8.5px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(245,240,232,0.35); }
-.path-fit-value { font-family: var(--font-display); font-size: 0.9rem; color: var(--gold); }
+.path-step-title {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--bone);
+  margin-bottom: 0.15rem;
+}
+.path-step-note {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--bone-dim);
+  line-height: 1.65;
+}
+.path-fit-indicator {
+  margin-top: auto;
+  padding: 1.2rem;
+  background: rgba(184,36,78,0.1);
+  border: 0.5px solid rgba(184,36,78,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.path-fit-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(244,240,235,0.3);
+}
+.path-fit-value {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--chrome-rose);
+}
+
+@media(max-width:760px){
+  .path-panel.active { grid-template-columns: 1fr; }
+  .path-info { border-right: none; border-bottom: 0.5px solid rgba(244,240,235,0.08); }
+  .path-tabs { flex-wrap: wrap; }
+  .path-tab { border-bottom: 0.5px solid rgba(244,240,235,0.08); min-width: 48%; }
+}
 
 /* Flow diagram */
-.pub-flow { margin-top: 3.5rem; }
-.pub-flow-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--ink); margin-bottom: 1.5rem; text-align: center; }
+.pub-flow { margin-top: 4rem; }
+.pub-flow-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--bone-dim);
+  margin-bottom: 2rem;
+  text-align: center;
+}
 .flow-diagram {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 0;
-  border: 0.5px solid var(--rule);
-  padding: 2.5rem 2rem;
-  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  border: 0.5px solid rgba(244,240,235,0.08);
+  padding: 3rem 2.5rem;
+  background: rgba(15,11,24,0.4);
 }
-.flow-row { display: flex; align-items: center; justify-content: center; gap: 0; width: 100%; }
+.flow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+}
 .flow-node {
-  background: var(--white);
-  border: 0.5px solid var(--rule);
+  background: rgba(33,27,43,0.7);
+  border: 0.5px solid rgba(244,240,235,0.1);
   padding: 0.9rem 1.2rem;
-  text-align: center; cursor: default;
+  text-align: center;
+  cursor: default;
   transition: all 0.25s;
-  min-width: 120px; max-width: 160px;
+  min-width: 120px;
+  max-width: 160px;
 }
-.flow-node:hover { background: var(--cream-warm); border-color: var(--gold); transform: translateY(-2px); }
-.flow-node-q { font-family: var(--font-sans); font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 0.25rem; }
-.flow-node-a { font-family: var(--font-display); font-size: 1rem; font-weight: 300; color: var(--ink); }
-.flow-node.start { background: var(--ink); border-color: transparent; }
-.flow-node.start .flow-node-a { color: var(--gold); font-style: italic; }
-.flow-node.outcome { background: var(--cream-deep); border-color: var(--gold); }
+.flow-node:hover {
+  background: rgba(33,27,43,0.9);
+  border-color: rgba(184,36,78,0.5);
+  transform: translateY(-2px);
+}
+.flow-node-q {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-bottom: 0.25rem;
+}
+.flow-node-a {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--bone);
+}
+.flow-node.start { background: var(--void); border-color: rgba(184,36,78,0.3); }
+.flow-node.start .flow-node-a { color: var(--chrome-rose); font-style: italic; }
+.flow-node.outcome { background: rgba(92,36,117,0.2); border-color: rgba(92,36,117,0.4); }
 .flow-node.outcome .flow-node-a { font-style: italic; }
-.flow-connector { width: 0.5px; height: 24px; background: var(--rule); margin: 0 auto; }
-.flow-label { font-family: var(--font-sans); font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-ghost); margin: 4px 0; text-align: center; }
-
-/* ── CTA BANNER ── */
-.cta-banner { background: var(--dark); padding: 5rem 0; text-align: center; }
-.cta-banner h2 { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 300; color: #f5f0e8; margin-bottom: 2.2rem; line-height: 1.1; }
-.cta-banner h2 em { font-style: italic; color: var(--gold-light); }
-.btn-gold {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 9px; letter-spacing: 0.3em;
+.flow-node.highlight {
+  background: rgba(184,36,78,0.12);
+  border-color: rgba(184,36,78,0.45);
+}
+.flow-node.highlight .flow-node-q { color: var(--voltage); }
+.flow-node.highlight .flow-node-a { color: var(--chrome-rose); font-style: italic; }
+.flow-connector {
+  width: 0.5px; height: 24px;
+  background: rgba(244,240,235,0.1);
+  margin: 0 auto;
+}
+.flow-label {
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  background: var(--gold); color: var(--dark);
-  padding: 13px 30px;
-  transition: background 0.2s;
-  cursor: pointer; border: none;
-  margin: 0 0.4rem;
+  color: var(--ash);
+  margin: 4px 0;
+  text-align: center;
 }
-.btn-gold:hover { background: var(--gold-light); }
-.btn-outline {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 9px; letter-spacing: 0.3em;
+.flow-source {
+  margin-top: 2rem;
+  font-family: var(--sans);
+  font-size: 9.5px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  background: transparent;
-  color: rgba(245,240,232,0.45);
-  padding: 12px 30px;
-  border: 0.5px solid rgba(184,147,74,0.28);
-  transition: all 0.2s;
-  cursor: pointer;
-  margin: 0 0.4rem;
+  color: rgba(244,240,235,0.18);
+  text-align: center;
 }
-.btn-outline:hover { border-color: var(--gold); color: #f5f0e8; }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 760px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-right { display: none; }
-  .hero-left { padding: 3rem 1.5rem 4rem; min-height: calc(100vh - var(--nav-h)); }
-  .ss-intro { grid-template-columns: 1fr; }
-  .ss-intro-left { border-right: none; border-bottom: 0.5px solid var(--rule); }
-  .path-panel.active { grid-template-columns: 1fr; }
-  .path-info { border-right: none; border-bottom: 0.5px solid var(--rule); }
-  .tm-grid { grid-template-columns: 1fr; }
-  .ss-grid { grid-template-columns: 1fr; }
-  .ss-grid-cell:nth-child(even) { border-right: none; }
-  .ss-grid-cell:nth-child(3) { border-bottom: 0.5px solid var(--rule); }
-  .clients-grid { grid-template-columns: 1fr; }
-  .client-row:nth-child(even) { padding-left: 0; border-left: none; }
-  .stats-row { flex-wrap: wrap; gap: 1.2rem; }
-  .stat { border-right: none; }
-  .photo-strip { height: 200px; }
-  .path-tabs { flex-wrap: wrap; }
-  .path-tab { border-bottom: 0.5px solid var(--rule); min-width: 48%; }
+
+/* ══════════════════════════════════════════
+   CTA BANNER
+══════════════════════════════════════════ */
+.cta-banner {
+  padding: 8rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--void-2);
 }
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(92,36,117,0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 50%, rgba(184,36,78,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--voltage), transparent);
+  opacity: 0.5;
+}
+.cta-inner { position: relative; z-index: 1; }
+.cta-eyebrow {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--voltage);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.cta-banner h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--bone);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+}
+.cta-banner h2 em { font-style: italic; color: var(--chrome-rose); }
+.cta-sub {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--bone-dim);
+  line-height: 1.8;
+  max-width: 400px;
+  margin: 0 auto 3rem;
+}
+.cta-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+.site-footer {
+  background: var(--void);
+  border-top: 0.5px solid rgba(244,240,235,0.07);
+  padding: 3rem 0;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: rgba(244,240,235,0.4);
+}
+.footer-copy {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244,240,235,0.2);
+}
+.footer-locs {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244,240,235,0.25);
+}
+@media(max-width:600px){
+  .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+}
+
+
+/* ══════════════════════════════════════════
+   SECTION LABEL
+══════════════════════════════════════════ */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--voltage);
+  margin-bottom: 1.2rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 0.5px;
+  background: var(--voltage);
+}
+
 </style>
 </head>
 <body>
 
-<div id="nav-placeholder"></div>
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      IndieCo<span class="nav-logo-dot"></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="standard-services.html">Services</a></li>
+      <li><a href="premier-services.html">Premier</a></li>
+      <li><a href="work-with-us.html">Work With Us</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="get-started.html" class="nav-cta">Get Started →</a>
+  </div>
+</nav>
 
-<!-- ── HERO — full-bleed, sits outside .page-wrap ── -->
+
+<!-- ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-left">
-    <span class="hero-eyebrow">Standard Services — IndieCo</span>
+    <div class="hero-number">SS</div>
+    <div class="hero-eyebrow">Standard Services — IndieCo</div>
     <h1 class="hero-title">
       Structured support for<br>
-      <em>authors, operators</em><br>
-      and emerging authorities.
+      <em>authors, operators</em>
+      <strong>and emerging<br>authorities.</strong>
     </h1>
     <p class="hero-sub">More than publicity. We help you craft authority, impact, and legacy — the kind that opens rooms before you enter them.</p>
+    <div class="hero-cta-row">
+      <a href="get-started.html" class="btn-primary">Start your journey →</a>
+      <a href="premier-services.html" class="btn-ghost">View Premier</a>
+    </div>
   </div>
   <div class="hero-right">
-    <!-- PHOTO: hero — replace inner div with: <img src="../images/covers/hero.jpg" alt="..." style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"> -->
-   <img src="../images/covers/hero.jpg" 
-     alt="IndieCo — authority in practice" 
-     style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+    <img src="../images/covers/hero.jpg" alt="IndieCo — authority in practice">
+    <div class="hero-right-overlay"></div>
+    <div class="hero-stat-card">
+      <div class="hero-stat-num">1,500+</div>
+      <div class="hero-stat-lbl">Campaigns Launched</div>
+    </div>
   </div>
   <div class="hero-scroll" id="hero-scroll">
     <div class="scroll-line"></div>
@@ -996,103 +1797,139 @@
   </div>
 </section>
 
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item"><span>Book Launch &amp; Profile Support</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Bestseller Campaigns</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Keynote Stages</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Media Placements</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Trainings &amp; Workshops</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Authority Architecture</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Book Launch &amp; Profile Support</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Bestseller Campaigns</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Keynote Stages</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Media Placements</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Trainings &amp; Workshops</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Authority Architecture</span><div class="marquee-dot"></div></div>
+  </div>
+</div>
+
+
 <div class="page-wrap">
 
-  <!-- ── SERVICES ── -->
+  <!-- ══════════════════════════════════════
+     SERVICES
+  ══════════════════════════════════════ -->
   <section class="ss">
-    <div class="ss-intro fade-up">
-      <div class="ss-intro-left">
-        <span class="section-label">What we do</span>
-        <h2 class="ss-intro-title">Five pathways to <em>undeniable</em> authority.</h2>
+    <div class="ss-header fade-up">
+      <div>
+        <div class="section-label">What we do</div>
+        <h2 class="ss-headline">Five pathways to <em>undeniable</em> authority.</h2>
       </div>
-      <div class="ss-intro-right">
-        <p class="ss-intro-text">The world rewards those who can prove their authority — not just claim it. These are not just credentials. In the right context, they become leverage: legal evidence, visa documentation, and investor conviction.</p>
+      <p class="ss-lead">The world rewards those who can prove their authority — not just claim it. These are not just credentials. In the right context, they become leverage: legal evidence, visa documentation, and investor conviction.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="ss-block fade-up">
+        <div class="ss-num">01</div>
+        <div class="ss-content">
+          <div class="ss-service-name">Book Launch &amp; Profile Support</div>
+          <p class="ss-desc">Meticulously curated bestseller campaigns and distinguished critic endorsements to a coveted presence on the shelves of Barnes &amp; Noble and Amazon. Bespoke signing events, prestigious festival showcases, and a legacy built to endure.</p>
+        </div>
+        <div class="ss-arrow">→</div>
+      </div>
+      <div class="ss-block fade-up">
+        <div class="ss-num">02</div>
+        <div class="ss-content">
+          <div class="ss-service-name">Book Publishing</div>
+          <p class="ss-desc">End-to-end publishing support for first-time and up-and-coming authors across both independent and traditional pathways.</p>
+        </div>
+        <div class="ss-arrow">→</div>
+      </div>
+      <div class="ss-block fade-up">
+        <div class="ss-num">03</div>
+        <div class="ss-content">
+          <div class="ss-service-name">Keynote Stages</div>
+          <p class="ss-desc">Strategic positioning and placement across conferences, panels, and keynote stages that elevate your voice and expand your influence.</p>
+        </div>
+        <div class="ss-arrow">→</div>
+      </div>
+      <div class="ss-block fade-up">
+        <div class="ss-num">04</div>
+        <div class="ss-content">
+          <div class="ss-service-name">Media Placements</div>
+          <p class="ss-desc">Thoughtful media strategy and editorial placements designed to amplify your ideas across respected publications and platforms.</p>
+        </div>
+        <div class="ss-arrow">→</div>
+      </div>
+      <div class="ss-block fade-up">
+        <div class="ss-num">05</div>
+        <div class="ss-content">
+          <div class="ss-service-name">Trainings &amp; Workshops</div>
+          <p class="ss-desc">Narrative refinement, positioning, and brand development to shape your expertise into a clear, credible public voice.</p>
+        </div>
+        <div class="ss-arrow">→</div>
       </div>
     </div>
 
-    <div class="ss-block fade-up">
-      <div class="ss-block-left">
-        <div class="ss-service">Book Launch & Profile Support</div>
-        <p class="ss-desc">We uphold the highest standards of editorial excellence — from meticulously curated bestseller campaigns and distinguished critic endorsements to a coveted presence on the shelves of Barnes & Noble and Amazon. Every author is guided through a bespoke journey: intimate signing events, prestigious festival showcases, and a legacy built to endure.</p>
+    <!-- Editorial strip -->
+    <div class="editorial-strip fade-up">
+      <div class="editorial-cell">
+        <img src="../images/covers/editorial-left.jpg" alt="Editorial — IndieCo">
+        <div class="editorial-cell-overlay"></div>
+        <span class="editorial-label">Editorial Excellence</span>
       </div>
-      <div class="ss-block-num">01</div>
-    </div>
-
-    <div class="ss-block fade-up">
-      <div class="ss-block-left">
-        <div class="ss-service">Book Publishing</div>
-        <p class="ss-desc">End-to-end publishing support for first-time and up-and-coming authors across both independent and traditional pathways.</p>
-      </div>
-      <div class="ss-block-num">02</div>
-    </div>
-
-    <div class="ss-block fade-up">
-      <div class="ss-block-left">
-        <div class="ss-service">Keynote Stages</div>
-        <p class="ss-desc">Strategic positioning and placement across conferences, panels, and keynote stages that elevate your voice and expand your influence.</p>
-      </div>
-      <div class="ss-block-num">03</div>
-    </div>
-
-    <div class="ss-block fade-up">
-      <div class="ss-block-left">
-        <div class="ss-service">Media Placements</div>
-        <p class="ss-desc">Thoughtful media strategy and editorial placements designed to amplify your ideas across respected publications and platforms.</p>
-      </div>
-      <div class="ss-block-num">04</div>
-    </div>
-
-    <div class="ss-block fade-up">
-      <div class="ss-block-left">
-        <div class="ss-service">Trainings & Workshops</div>
-        <p class="ss-desc">Narrative refinement, positioning, and brand development to shape your expertise into a clear, credible public voice.</p>
-      </div>
-      <div class="ss-block-num">05</div>
-    </div>
-
-    <!-- PHOTO: editorial-grid -->
-    <!-- Replace each .photo-hint div with: <img src="../images/covers/filename.jpg" alt="..." style="width:100%;height:100%;object-fit:cover;display:block;"> -->
-    <div class="photo-strip fade-up">
-      <div class="photo-strip-cell">
-        <img src="../images/covers/editorial-left.jpg" 
-     style="width:100%;height:100%;object-fit:cover;display:block;">
-      </div>
-      <div class="photo-strip-cell">
-       <img src="../images/covers/editorial-right.jpg" 
-     style="width:100%;height:100%;object-fit:cover;display:block;">
+      <div class="editorial-cell">
+        <img src="../images/covers/editorial-right.jpg" alt="Authority — IndieCo">
+        <div class="editorial-cell-overlay"></div>
+        <span class="editorial-label">Authority in Practice</span>
       </div>
     </div>
 
-    <div class="ss-philosophy fade-up">
-      <blockquote>
-        "Not just credentials. In the right context — legal evidence, visa documentation, investor conviction."
+    <!-- Philosophy -->
+    <div class="philosophy-band fade-up">
+      <div class="philosophy-ornament">&ldquo;</div>
+      <blockquote class="philosophy-quote">
+        Not just credentials. In the right context —<br>
+        <strong>legal evidence, visa documentation,<br>investor conviction.</strong>
       </blockquote>
-      <cite>The IndieCo Philosophy</cite>
+      <cite class="philosophy-cite">The IndieCo Philosophy</cite>
     </div>
 
-    <div class="ss-grid">
-      <div class="ss-grid-cell fade-up">
-        <div class="ss-mini-title">Publishing</div>
-        <div class="ss-small">Non-fiction Ghostwriting<br>Developmental Editing<br>Publishing (ebook, paperback, hardcover)<br>Audiobook Production<br><br>Includes: Cover design, Interior formatting, Global distribution, Retail availability (Amazon, Barnes & Noble, Kobo)<br><br>Timeline: 7–8 months</div>
+    <!-- Detail grid -->
+    <div class="ss-detail-grid">
+      <div class="ss-detail-cell fade-up">
+        <div class="ss-tag-line">Publishing</div>
+        <div class="ss-mini-title">End-to-End Publishing</div>
+        <div class="ss-small">Non-fiction Ghostwriting · Developmental Editing<br>Publishing (ebook, paperback, hardcover)<br>Audiobook Production<br><br>Cover design · Interior formatting<br>Global distribution · Retail availability<br>(Amazon, Barnes &amp; Noble, Kobo)<br><br><strong style="color:var(--bone);font-weight:400;">Timeline: 7–8 months</strong></div>
       </div>
-      <div class="ss-grid-cell fade-up">
+      <div class="ss-detail-cell fade-up">
+        <div class="ss-tag-line">Bestseller Campaigns</div>
         <div class="ss-mini-title">Bestseller Campaigns</div>
-        <div class="ss-small">Entry: Kobo, Amazon, Barnes & Noble<br>Expanded: Amazon + B&N + 1,000+ Sales<br>Premium: C-Suite, SUCCESS Magazine<br>National: USA Today, New York Times<br><br>Timeline: 4–6 weeks prep, 3+ months (national)<br>Results: ~24 hours post-launch</div>
+        <div class="ss-small">Entry: Kobo, Amazon, Barnes &amp; Noble<br>Expanded: Amazon + B&amp;N + 1,000+ Sales<br>Premium: C-Suite, SUCCESS Magazine<br>National: USA Today, New York Times<br><br><strong style="color:var(--bone);font-weight:400;">Timeline:</strong> 4–6 weeks prep, 3+ months (national)<br><strong style="color:var(--bone);font-weight:400;">Results:</strong> ~24 hours post-launch</div>
       </div>
-      <div class="ss-grid-cell fade-up">
-        <div class="ss-mini-title">Book Funnels & Lead Systems</div>
-        <div class="ss-small">Light Book Funnel<br>Done-For-You Funnel<br>DIY Program<br><br>Includes: Landing pages, Email automation, Integrations, Product mockups</div>
+      <div class="ss-detail-cell fade-up">
+        <div class="ss-tag-line">Book Funnels</div>
+        <div class="ss-mini-title">Book Funnels &amp; Lead Systems</div>
+        <div class="ss-small">Light Book Funnel<br>Done-For-You Funnel<br>DIY Program<br><br>Includes: Landing pages · Email automation<br>Integrations · Product mockups</div>
       </div>
-      <div class="ss-grid-cell fade-up">
+      <div class="ss-detail-cell fade-up">
+        <div class="ss-tag-line">Simulation Learning</div>
         <div class="ss-mini-title">Simulation-Based Learning</div>
-        <div class="ss-small">Half-day workshop<br>Full-day immersive<br>Multi-day program<br>Ongoing monthly simulations<br>Executive-only cohorts<br><br>Deliverables: Pre-workshop assessment, Facilitated simulation, Debrief reports, Post-training action plan</div>
+        <div class="ss-small">Half-day workshop · Full-day immersive<br>Multi-day program · Monthly simulations<br>Executive-only cohorts<br><br>Deliverables: Pre-workshop assessment<br>Facilitated simulation · Debrief reports<br>Post-training action plan</div>
       </div>
     </div>
   </section>
 
 </div><!-- /page-wrap -->
 
-<!-- ── TAROT QUIZ — full-bleed dark, its own .page-wrap inside ── -->
+
+<!-- ══════════════════════════════════════
+   TAROT QUIZ — full-bleed
+══════════════════════════════════════ -->
 <section class="quiz-section">
   <div class="page-wrap quiz-wrap">
     <div class="quiz-header">
@@ -1115,13 +1952,13 @@
           <div class="q-options" id="q-options"></div>
           <div class="q-card-footer">
             <div class="q-progress" id="q-progress"></div>
-            <span id="quiz-skip-btn" style="font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-ghost);cursor:pointer;font-family:var(--font-sans);">Skip →</span>
+            <span id="quiz-skip-btn" style="font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(10,7,16,0.35);cursor:pointer;font-family:var(--sans);">Skip →</span>
           </div>
         </div>
         <div class="result-card" id="result-face">
           <div class="result-type">Your authority path</div>
           <div class="result-name" id="result-name"></div>
-          <div style="width:36px;height:0.5px;background:var(--gold);margin:0.7rem 0 0.9rem;"></div>
+          <div style="width:32px;height:1.5px;background:var(--voltage);margin:0.7rem 0 0.9rem;"></div>
           <div class="result-desc" id="result-desc"></div>
           <div class="result-services" id="result-services"></div>
           <button class="result-cta" id="result-cta-btn">Begin your authority journey →</button>
@@ -1136,13 +1973,17 @@
   </div>
 </section>
 
+
 <div class="page-wrap">
 
-  <!-- ── CLIENT RESULTS ── -->
+  <!-- ══════════════════════════════════════
+     CLIENT RESULTS
+  ══════════════════════════════════════ -->
   <section class="cl">
-    <span class="section-label">Client Results</span>
+    <div class="section-label">Client Results</div>
     <h2 class="cl-title fade-up">Published. <em>Celebrated.</em><br>Bestselling.</h2>
     <p class="cl-sub">A selection of titles launched through our campaigns</p>
+
     <div class="pubs-strip">
       <div class="pub-item"><span class="pub-name wsj">WSJ</span><span class="pub-label">Wall Street Journal</span></div>
       <div class="pub-divider"></div>
@@ -1150,14 +1991,16 @@
       <div class="pub-divider"></div>
       <div class="pub-item"><span class="pub-name" style="font-size:1.3rem;letter-spacing:0.07em;">USA TODAY</span><span class="pub-label">USA Today</span></div>
       <div class="pub-divider"></div>
-      <div class="pub-item"><span class="pub-name" style="font-size:1rem;letter-spacing:0.1em;">SUCCESS</span><span class="pub-label">Success Magazine</span></div>
+      <div class="pub-item"><span class="pub-name" style="font-size:1rem;letter-spacing:0.12em;">SUCCESS</span><span class="pub-label">Success Magazine</span></div>
     </div>
+
     <div class="stats-row">
-      <div class="stat"><div class="stat-num">1,500+</div><div class="stat-lbl">Successful Campaigns</div></div>
-      <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Major Bestseller Lists</div></div>
-      <div class="stat"><div class="stat-num">5+</div><div class="stat-lbl">Years Launching Titles</div></div>
-      <div class="stat"><div class="stat-num">#1</div><div class="stat-lbl">WSJ Ranked Titles</div></div>
+      <div class="stat fade-up"><div class="stat-num">1,500+</div><div class="stat-lbl">Successful Campaigns</div></div>
+      <div class="stat fade-up" style="transition-delay:0.08s"><div class="stat-num">3</div><div class="stat-lbl">Major Bestseller Lists</div></div>
+      <div class="stat fade-up" style="transition-delay:0.16s"><div class="stat-num">5+</div><div class="stat-lbl">Years Launching Titles</div></div>
+      <div class="stat fade-up" style="transition-delay:0.24s"><div class="stat-num">#1</div><div class="stat-lbl">WSJ Ranked Titles</div></div>
     </div>
+
     <div class="clients-grid">
       <div class="client-row"><div style="display:flex;align-items:center"><span class="client-index">01</span><span class="client-name">Kai-Fu Lee</span></div><div class="accolade-tags"><span class="tag">USA Today</span><span class="tag">WSJ</span><span class="tag">NYT</span></div></div>
       <div class="client-row"><div style="display:flex;align-items:center"><span class="client-index">02</span><span class="client-name">Naomi Whittel</span></div><div class="accolade-tags"><span class="tag">USA Today</span><span class="tag">NYT</span></div></div>
@@ -1168,64 +2011,61 @@
       <div class="client-row"><div style="display:flex;align-items:center"><span class="client-index">07</span><span class="client-name">Mel Robbins</span></div><div class="accolade-tags"><span class="tag">NYT</span><span class="tag">WSJ</span></div></div>
       <div class="client-row"><div style="display:flex;align-items:center"><span class="client-index">08</span><span class="client-name">Angela Lauria</span></div><div class="accolade-tags"><span class="tag gold">#1 USA Today</span></div></div>
     </div>
+
+    <div class="photo-stage fade-up">
+      <img src="../images/covers/stage.jpg" alt="On stage — IndieCo">
+      <div class="photo-stage-overlay"></div>
+    </div>
   </section>
 
-  <!-- PHOTO: strip — replace inner content with <img src="../images/covers/stage.jpg" alt="..." style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"> -->
-  <div class="photo-stage fade-up">
-   
-    <img src="../images/covers/stage.jpg" 
-     alt="On stage" 
-     style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;">
-    
-      <div style="text-align:center;">
-        <strong>Photo Slot D — Stage Strip</strong><br>
-        Wide landscape · keynote or TEDx audience
-      </div>
-    </div>
-  </div>
 
-  <!-- ── TESTIMONIALS ── -->
+  <!-- ══════════════════════════════════════
+     TESTIMONIALS
+  ══════════════════════════════════════ -->
   <section class="tm">
-    <span class="section-label">What Clients Say</span>
+    <div class="section-label">What Clients Say</div>
     <h2 class="cl-title fade-up">Heard from<br><em>those who've worked with us.</em></h2>
-    <br>
     <div class="tm-grid">
       <div class="tm-card fade-up">
         <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">Working with IndieCo completely changed how I'm perceived in my industry. Within weeks of launching our campaign, I had inbound opportunities I hadn't even considered possible.</p></div>
         <div class="tm-meta"><span class="tm-author">Mary Lou Cunanan</span><span class="tm-role">Consultant, MD Consulting</span></div>
       </div>
       <div class="tm-card fade-up" style="transition-delay:0.1s">
-        <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">The team at IndieCo delivered results that exceeded every expectation. Our book hit the WSJ list, and the media placements opened doors at the executive level that would have taken years to access on our own.</p></div>
-        <div class="tm-meta"><span class="tm-author">Daniel R.</span><span class="tm-role">Executive & Investor</span></div>
+        <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">The team at IndieCo delivered results that exceeded every expectation. Our book hit the WSJ list, and the media placements opened doors at the executive level that would have taken years otherwise.</p></div>
+        <div class="tm-meta"><span class="tm-author">Daniel R.</span><span class="tm-role">Executive &amp; Investor</span></div>
       </div>
       <div class="tm-card fade-up" style="transition-delay:0.2s">
-        <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">IndieCo doesn't just help you publish a book — they engineer your authority. The executive network exposure alone was worth the investment. Our credibility in the market has transformed completely.</p></div>
+        <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">IndieCo doesn't just help you publish a book — they engineer your authority. The executive network exposure alone was worth the investment. Our credibility has transformed completely.</p></div>
         <div class="tm-meta"><span class="tm-author">AILabs CX</span><span class="tm-role">Executive Network</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ── PUBLISHING PATHWAYS ── -->
+
+  <!-- ══════════════════════════════════════
+     PUBLISHING PATHWAYS
+  ══════════════════════════════════════ -->
   <section class="pub-paths">
     <div class="pub-paths-header fade-up">
-      <span class="section-label">Publishing Intelligence</span>
+      <div class="section-label">Publishing Intelligence</div>
       <h2 class="pub-paths-title">Know your <em>publishing landscape</em><br>before you choose your path.</h2>
       <p class="pub-paths-sub">Based on Jane Friedman's 2025–2026 publishing paths framework. Understanding the terrain is the first step to navigating it with authority.</p>
     </div>
+
     <div class="path-tabs fade-up">
-      <button class="path-tab active" data-path="bigfive">Big Five & Mid-Size</button>
-      <button class="path-tab" data-path="university">University & Scholarly</button>
-      <button class="path-tab" data-path="professional">Professional & Educational</button>
+      <button class="path-tab active" data-path="bigfive">Big Five &amp; Mid-Size</button>
+      <button class="path-tab" data-path="university">University &amp; Scholarly</button>
+      <button class="path-tab" data-path="professional">Professional &amp; Educational</button>
       <button class="path-tab" data-path="small">Small Presses</button>
       <button class="path-tab" data-path="indie">Independent</button>
-      <button class="path-tab" data-path="hybrid">Hybrid & No-Advance</button>
+      <button class="path-tab" data-path="hybrid">Hybrid &amp; No-Advance</button>
     </div>
 
     <div class="path-panel active" id="path-bigfive">
       <div class="path-info">
-        <div class="path-name">Big Five & Mid-Size</div>
+        <div class="path-name">Big Five &amp; Mid-Size</div>
         <div class="path-tagline">Traditional publishing · Highest prestige</div>
-        <p class="path-desc">Publishers take on financial risk and pay an advance. Royalties are paid once the advance earns out. Physical bookstore distribution is nearly assured, with the best chance of mass media reviews. Authors should have mainstream appeal and national print retail potential.</p>
+        <p class="path-desc">Publishers take on financial risk and pay an advance. Royalties are paid once the advance earns out. Physical bookstore distribution is nearly assured, with the best chance of mass media reviews.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">Paid upfront</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">Almost always</div></div>
@@ -1238,7 +2078,7 @@
           <div class="path-step"><div class="path-step-num">1</div><div class="path-step-content"><div class="path-step-title">Finish manuscript or proposal</div><div class="path-step-note">Novelists need full MS; nonfiction authors need a strong proposal.</div></div></div>
           <div class="path-step"><div class="path-step-num">2</div><div class="path-step-content"><div class="path-step-title">Secure a literary agent</div><div class="path-step-note">Big Five rarely takes unagented submissions.</div></div></div>
           <div class="path-step"><div class="path-step-num">3</div><div class="path-step-content"><div class="path-step-title">Agent submits to editors</div><div class="path-step-note">Can take months; rejections are common even for strong work.</div></div></div>
-          <div class="path-step"><div class="path-step-num">4</div><div class="path-step-content"><div class="path-step-title">Negotiate deal & advance</div><div class="path-step-note">Publisher handles editing, design, distribution.</div></div></div>
+          <div class="path-step"><div class="path-step-num">4</div><div class="path-step-content"><div class="path-step-title">Negotiate deal &amp; advance</div><div class="path-step-note">Publisher handles editing, design, distribution.</div></div></div>
           <div class="path-step"><div class="path-step-num">5</div><div class="path-step-content"><div class="path-step-title">Launch with full PR support</div><div class="path-step-note">Bestseller campaigns amplify this significantly.</div></div></div>
         </div>
         <div class="path-fit-indicator"><span class="path-fit-label">Best for</span><span class="path-fit-value">Platform-ready nonfiction authors &amp; literary novelists</span></div>
@@ -1247,13 +2087,13 @@
 
     <div class="path-panel" id="path-university">
       <div class="path-info">
-        <div class="path-name">University & Scholarly</div>
+        <div class="path-name">University &amp; Scholarly</div>
         <div class="path-tagline">Academic prestige · Peer validation</div>
-        <p class="path-desc">Examples include University of Chicago Press, Princeton University Press, and Cambridge University Press. Advances are minimal; royalties may run lower than New York publishers. Pricing typically runs high for bookstore placement unless the publisher does books for the consumer market.</p>
+        <p class="path-desc">Examples include University of Chicago Press, Princeton University Press, and Cambridge. Advances are minimal; royalties may run lower than New York publishers. Pricing typically runs high for bookstore placement unless the publisher does books for the consumer market.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">Minimal</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">Not required</div></div>
-          <div class="path-meta-cell"><div class="path-meta-label">Distribution</div><div class="path-meta-val">Academic & library</div></div>
+          <div class="path-meta-cell"><div class="path-meta-label">Distribution</div><div class="path-meta-val">Academic &amp; library</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Author Control</div><div class="path-meta-val">Moderate</div></div>
         </div>
       </div>
@@ -1270,9 +2110,9 @@
 
     <div class="path-panel" id="path-professional">
       <div class="path-info">
-        <div class="path-name">Professional & Educational</div>
+        <div class="path-name">Professional &amp; Educational</div>
         <div class="path-tagline">Wiley, Springer, McGraw Hill · Field credibility</div>
-        <p class="path-desc">Publishers like Pearson, Wiley, Springer, Elsevier, and McGraw Hill. Advances are minimal; royalties may be modest. Some require the author to assign all rights. They focus on university systems, libraries, and professional organizations. Loss of copyright is a key risk.</p>
+        <p class="path-desc">Publishers like Pearson, Wiley, Springer, Elsevier, and McGraw Hill. Advances are minimal; royalties may be modest. Some require the author to assign all rights. They focus on university systems, libraries, and professional organizations.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">Minimal</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">Not required</div></div>
@@ -1295,12 +2135,12 @@
       <div class="path-info">
         <div class="path-name">Small(er) Presses</div>
         <div class="path-tagline">Unnamed Press, Coach House, Forest Avenue · Niche reach</div>
-        <p class="path-desc">A broad category — from Unnamed Press to Rose Metal Press and Microcosm Press. Authors receive a small advance; royalty rates are comparable to bigger houses, but contracts may be more negotiable. These presses prioritize the literary, independent bookstore, and niche communities.</p>
+        <p class="path-desc">A broad category from Unnamed Press to Rose Metal Press and Microcosm Press. Authors receive a small advance; royalty rates are comparable to bigger houses, but contracts may be more negotiable. These presses prioritize the literary and independent bookstore communities.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">Small</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">Rarely</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Distribution</div><div class="path-meta-val">Variable</div></div>
-          <div class="path-meta-cell"><div class="path-meta-label">Community</div><div class="path-meta-val">Literary & niche</div></div>
+          <div class="path-meta-cell"><div class="path-meta-label">Community</div><div class="path-meta-val">Literary &amp; niche</div></div>
         </div>
       </div>
       <div class="path-visual">
@@ -1318,7 +2158,7 @@
       <div class="path-info">
         <div class="path-name">Independent (Self-Publishing)</div>
         <div class="path-tagline">KDP, IngramSpark, Draft2Digital · Full control</div>
-        <p class="path-desc">The author retains all rights, all control, and all profit — but also bears all costs and responsibilities. Amazon KDP, IngramSpark, and similar platforms make global distribution accessible. A bestseller campaign can amplify an independently published book just as effectively as a traditionally published one.</p>
+        <p class="path-desc">The author retains all rights, all control, and all profit — but also bears all costs and responsibilities. Amazon KDP, IngramSpark, and similar platforms make global distribution accessible. A bestseller campaign can amplify an independently published book just as effectively.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">None (self-funded)</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">No</div></div>
@@ -1328,8 +2168,8 @@
       </div>
       <div class="path-visual">
         <div class="path-steps">
-          <div class="path-step"><div class="path-step-num">1</div><div class="path-step-content"><div class="path-step-title">Complete manuscript & editing</div><div class="path-step-note">Invest in professional developmental editing and copyediting.</div></div></div>
-          <div class="path-step"><div class="path-step-num">2</div><div class="path-step-content"><div class="path-step-title">Design cover & interior</div><div class="path-step-note">Cover design is your #1 marketing asset. Don't compromise here.</div></div></div>
+          <div class="path-step"><div class="path-step-num">1</div><div class="path-step-content"><div class="path-step-title">Complete manuscript &amp; editing</div><div class="path-step-note">Invest in professional developmental editing and copyediting.</div></div></div>
+          <div class="path-step"><div class="path-step-num">2</div><div class="path-step-content"><div class="path-step-title">Design cover &amp; interior</div><div class="path-step-note">Cover design is your #1 marketing asset. Don't compromise here.</div></div></div>
           <div class="path-step"><div class="path-step-num">3</div><div class="path-step-content"><div class="path-step-title">Choose distribution platform</div><div class="path-step-note">KDP for Amazon dominance; IngramSpark for bookstore placement.</div></div></div>
           <div class="path-step"><div class="path-step-num">4</div><div class="path-step-content"><div class="path-step-title">Launch with a campaign</div><div class="path-step-note">This is where IndieCo adds disproportionate value. Bestseller campaigns work.</div></div></div>
         </div>
@@ -1339,7 +2179,7 @@
 
     <div class="path-panel" id="path-hybrid">
       <div class="path-info">
-        <div class="path-name">Hybrid & No-Advance</div>
+        <div class="path-name">Hybrid &amp; No-Advance</div>
         <div class="path-tagline">Bloom Books, Berrett-Koehler · Middle ground</div>
         <p class="path-desc">Publishers that don't pay an advance but offer higher royalties and more flexible contracts. Some traditional publishers use this model for specific imprints. Rights Sales involves publishers partnering with self-publishing authors to publish or re-publish successful work.</p>
         <div class="path-meta-grid">
@@ -1369,7 +2209,7 @@
         <div class="flow-connector"></div>
         <div class="flow-row" style="gap:0.8rem;align-items:flex-start;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.4rem;flex:1;">
-            <div class="flow-label">Platform & mainstream appeal?</div>
+            <div class="flow-label">Platform &amp; mainstream appeal?</div>
             <div class="flow-connector"></div>
             <div class="flow-node outcome"><div class="flow-node-q">Yes →</div><div class="flow-node-a">Big Five</div></div>
           </div>
@@ -1384,55 +2224,87 @@
             <div class="flow-node outcome"><div class="flow-node-q">Yes →</div><div class="flow-node-a">Professional Press</div></div>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.4rem;flex:1;">
-            <div class="flow-label">Want control & speed?</div>
+            <div class="flow-label">Want control &amp; speed?</div>
             <div class="flow-connector"></div>
-            <div class="flow-node outcome" style="border-color:var(--gold);background:var(--dark);"><div class="flow-node-q" style="color:var(--gold);">Best fit →</div><div class="flow-node-a" style="color:#f5f0e8;">Independent + IndieCo</div></div>
+            <div class="flow-node highlight"><div class="flow-node-q">Best fit →</div><div class="flow-node-a">Independent + IndieCo</div></div>
           </div>
         </div>
-        <p style="margin-top:1.8rem;font-family:var(--font-sans);font-size:10px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-ghost);text-align:center;">Source: Jane Friedman · Key Book Publishing Paths 2025–2026 · janefriedman.com</p>
+        <p class="flow-source">Source: Jane Friedman · Key Book Publishing Paths 2025–2026 · janefriedman.com</p>
       </div>
     </div>
   </section>
 
 </div><!-- /page-wrap -->
 
-<!-- ── CTA BANNER ── -->
+
+<!-- ══════════════════════════════════════
+   CTA BANNER
+══════════════════════════════════════ -->
 <div class="cta-banner">
-  <div class="page-wrap">
+  <div class="page-wrap cta-inner">
+    <span class="cta-eyebrow fade-up">Your Next Move</span>
     <h2 class="fade-up">Begin your<br><em>authority journey.</em></h2>
-    <div>
-      <a href="get-started.html" class="btn-gold fade-up">Get started →</a>
-      <a href="premier-services.html" class="btn-outline fade-up">View premier services</a>
+    <p class="cta-sub fade-up">The world rewards those who can prove their authority — not just claim it. Let's build yours.</p>
+    <div class="cta-actions fade-up">
+      <a href="get-started.html" class="btn-primary">Get started →</a>
+      <a href="premier-services.html" class="btn-ghost">View premier services</a>
     </div>
   </div>
 </div>
 
-<div id="footer-placeholder"></div>
 
-<script src="../js/nav.js"></script>
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="page-wrap footer-inner">
+    <div class="footer-logo">IndieCo</div>
+    <div class="footer-copy">© 2025 IndieCo. All rights reserved.</div>
+    <div class="footer-locs">Manila · New York</div>
+  </div>
+</footer>
+
+
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+/* ══════════════════════════════════════
+   INTERSECTION OBSERVER — fade-up
+══════════════════════════════════════ */
+(function() {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+})();
 
-/* ── PATH TABS — nav.js handles fade-up, just wire tabs ── */
-document.querySelectorAll('.path-tab').forEach(function (tab) {
-  tab.addEventListener('click', function () {
+/* ══════════════════════════════════════
+   HERO SCROLL
+══════════════════════════════════════ */
+var heroScroll = document.getElementById('hero-scroll');
+if (heroScroll) {
+  heroScroll.addEventListener('click', function() {
+    document.querySelector('.ss').scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+/* ══════════════════════════════════════
+   PATH TABS
+══════════════════════════════════════ */
+document.querySelectorAll('.path-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
     var id = this.dataset.path;
-    document.querySelectorAll('.path-panel').forEach(function (p) { p.classList.remove('active'); });
-    document.querySelectorAll('.path-tab').forEach(function (t) { t.classList.remove('active'); });
+    document.querySelectorAll('.path-panel').forEach(function(p) { p.classList.remove('active'); });
+    document.querySelectorAll('.path-tab').forEach(function(t) { t.classList.remove('active'); });
     document.getElementById('path-' + id).classList.add('active');
     this.classList.add('active');
   });
 });
 
-/* ── HERO SCROLL ── */
-var heroScroll = document.getElementById('hero-scroll');
-if (heroScroll) {
-  heroScroll.addEventListener('click', function () {
-    document.querySelector('.ss').scrollIntoView({ behavior: 'smooth' });
-  });
-}
-
-/* ── TAROT QUIZ ── */
+/* ══════════════════════════════════════
+   TAROT QUIZ
+══════════════════════════════════════ */
 var QUESTIONS = [
   { title: "Where does your authority live — on the page, the stage, or in the room?", options: [
     { text: "On the page. I want a book with my name on it.", weight: { book:3, stage:0, media:0 } },
@@ -1488,7 +2360,6 @@ var RESULTS = [
 var ROMAN = ['I','II','III','IV','V','VI','VII'];
 var currentQ = -1;
 var scores = { book:0, stage:0, media:0 };
-var answers = [];
 
 function buildProgress() {
   var prog = document.getElementById('q-progress');
@@ -1524,27 +2395,26 @@ function selectOption(i) {
   scores.book  += w.book;
   scores.stage += w.stage;
   scores.media += w.media;
-  answers.push(i);
   document.querySelectorAll('.q-option').forEach(function(el, idx) { el.classList.toggle('selected', idx === i); });
-  setTimeout(nextQuestion, 480);
+  setTimeout(nextQuestion, 450);
 }
 
-function skipQuestion() { answers.push(-1); nextQuestion(); }
+function skipQuestion() { nextQuestion(); }
 
 function nextQuestion() {
   currentQ++;
   if (currentQ >= QUESTIONS.length) { showResult(); return; }
   document.getElementById('q-face').classList.remove('active');
-  setTimeout(function() { showQuestion(currentQ); }, 200);
+  setTimeout(function() { showQuestion(currentQ); }, 180);
   document.getElementById('quiz-label').textContent = 'Question ' + (currentQ+1) + ' of ' + QUESTIONS.length;
 }
 
 function showResult() {
   document.getElementById('q-face').classList.remove('active');
   var maxVal = Math.max(scores.book, scores.stage, scores.media);
-  var spread = [scores.book, scores.stage, scores.media].filter(function(s){ return s >= maxVal-2; }).length;
+  var spread = [scores.book, scores.stage, scores.media].filter(function(s){ return s >= maxVal - 2; }).length;
   var result;
-  if (spread >= 3 || scores.book+scores.stage+scores.media >= 14) result = RESULTS[3];
+  if (spread >= 3 || scores.book + scores.stage + scores.media >= 14) result = RESULTS[3];
   else if (scores.book >= scores.stage && scores.book >= scores.media) result = RESULTS[0];
   else if (scores.stage >= scores.media) result = RESULTS[1];
   else result = RESULTS[2];
@@ -1565,7 +2435,6 @@ function showResult() {
 
 function startQuiz() {
   scores = { book:0, stage:0, media:0 };
-  answers = [];
   currentQ = 0;
   document.getElementById('quiz-intro').style.display = 'none';
   document.getElementById('quiz-cta-btn').style.display = 'none';
@@ -1579,7 +2448,7 @@ function startQuiz() {
 
 function resetQuiz() {
   scores = { book:0, stage:0, media:0 };
-  answers = []; currentQ = -1;
+  currentQ = -1;
   document.getElementById('q-face').classList.remove('active');
   document.getElementById('result-face').classList.remove('active');
   document.getElementById('quiz-intro').style.display = 'block';
@@ -1601,7 +2470,6 @@ document.getElementById('result-cta-btn').addEventListener('click', function(){
   document.querySelector('.cta-banner').scrollIntoView({ behavior: 'smooth' });
 });
 
-}); // end DOMContentLoaded
 </script>
 </body>
 </html>
