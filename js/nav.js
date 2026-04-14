@@ -22,10 +22,9 @@ const CTA_LINK = { label: 'Apply', href: '/pages/work-with-us.html' };
 
   nav.innerHTML = `
     <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="IndieCo Home">
-        <div class="nav-logo-mark"><span>IC</span></div>
-        IndieCo
-      </a>
+      <a href="/" class="nav-logo" aria-label="IndieCo">
+     <img src="/images/logo.png" alt="IndieCo" class="nav-logo-img">
+       </a>
       <ul class="nav-links">
         ${NAV_LINKS.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
       </ul>
