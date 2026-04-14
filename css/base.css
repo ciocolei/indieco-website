@@ -55,9 +55,7 @@
   --blush:       #EFEAFF;
   --ash:         #8F8AA8;
   --ash-dk:      #5F5A78;
-}
 
-:root {
   --gradient-primary: linear-gradient(
     135deg,
     #7B61FF 0%,
@@ -77,6 +75,7 @@
     transparent 60%
   );
 }
+
 
   /* Utility */
   --ink:         #0A0710;
