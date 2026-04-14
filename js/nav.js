@@ -4,7 +4,6 @@
 ═══════════════════════════════════════════ */
 
 const NAV_LINKS = [
-  { label: 'Home',       href: 'index.html' },
   { label: 'About',       href: '/pages/about.html' },
   { label: 'Get Started', href: '/pages/get-started.html' },
   { label: 'Standard',    href: '/pages/standard-services.html' },
