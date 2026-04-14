@@ -2,171 +2,171 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IndieCo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Your global CSS -->
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/nav.css" />
+  <title>Store</title>
+
+  <!-- GLOBAL CSS -->
+  <link rel="stylesheet" href="/base.css" />
 </head>
 
 <body>
 
-<div id="nav-placeholder"></div>
+  <!-- NAV (GLOBAL INJECTION) -->
+  <div id="nav-placeholder"></div>
 
-<div class="container">
+  <!-- PAGE -->
+  <main class="container">
 
-  <!-- PRODUCTS -->
-  <section class="products-section">
-    <div class="section-head">
+    <!-- PRODUCTS -->
+    <section class="products-section">
+
       <h2 class="section-title">Products</h2>
-    </div>
 
-    <div class="products-grid">
+      <div class="products-grid">
 
-      <div class="product-card">
-        <div class="product-name">Authority Audit</div>
-        <p class="product-desc">1:1 session. Positioning, media, roadmap.</p>
-        <a href="https://calendly.com/indieco/1-1-working-session-with-leah" target="_blank" class="btn-primary">
-          Book →
+        <div class="product-card">
+          <div class="product-name">Authority Audit</div>
+          <p class="product-desc">1:1 Strategy Session. Positioning, media, roadmap.</p>
+          <a href="https://calendly.com/indieco/1-1-working-session-with-leah" target="_blank" class="btn-primary">
+            Book →
+          </a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-name">Authority Blueprint</div>
+          <p class="product-desc">Self-paced system for building public authority.</p>
+          <button class="btn-ghost notify-trigger" data-product="Authority Blueprint">
+            Notify →
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-name">Speak to Power</div>
+          <p class="product-desc">Workshop for structured thinking and stage clarity.</p>
+          <button class="btn-ghost notify-trigger" data-product="Speak to Power">
+            Notify →
+          </button>
+        </div>
+
+        <div class="product-card">
+          <div class="product-name">Press Kit Builder</div>
+          <p class="product-desc">Templates for media, speaking, and O1A cases.</p>
+          <button class="btn-ghost notify-trigger" data-product="Press Kit Builder">
+            Notify →
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section class="series-section">
+
+      <h2 class="section-title">Publications</h2>
+
+      <div class="books-grid">
+
+        <a href="https://www.amazon.com/gp/product/B0G5QWPJ77" target="_blank" class="book-card">
+          <span>Vol. 01</span>
+          <div>Silakbo</div>
+        </a>
+
+        <a href="https://www.amazon.com/gp/product/B0GT7D7HSZ" target="_blank" class="book-card">
+          <span>Vol. 02</span>
+          <div>In the Shadows Where They Lie</div>
+        </a>
+
+        <a href="https://www.amazon.com/gp/product/B0GQW2SSHT" target="_blank" class="book-card">
+          <span>Vol. 03</span>
+          <div>Lucky I'm in Love</div>
+        </a>
+
+      </div>
+
+      <div class="series-footer">
+        <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="btn-primary">
+          View all →
         </a>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Authority Blueprint</div>
-        <p class="product-desc">Self-paced authority system.</p>
-        <button class="btn-ghost notify-trigger" data-product="Authority Blueprint">
-          Notify →
-        </button>
+    </section>
+
+  </main>
+
+  <!-- NOTIFY MODAL -->
+  <div id="notify-overlay" style="display:none;">
+    <div id="notify-modal">
+
+      <button id="notify-close">×</button>
+
+      <h2>Join waitlist</h2>
+      <p id="notify-product-name"></p>
+
+      <form id="notify-form">
+        <input type="hidden" id="notify-product-input"/>
+
+        <input type="email" id="notify-email" placeholder="Email" required/>
+        <input type="text" id="notify-name" placeholder="Name" required/>
+
+        <button type="submit">Submit →</button>
+      </form>
+
+      <div id="notify-success" style="display:none;">
+        <p>You're in.</p>
       </div>
 
-      <div class="product-card">
-        <div class="product-name">Speak to Power</div>
-        <p class="product-desc">Structured thinking + stage clarity.</p>
-        <button class="btn-ghost notify-trigger" data-product="Speak to Power">
-          Notify →
-        </button>
-      </div>
-
-      <div class="product-card">
-        <div class="product-name">Press Kit Builder</div>
-        <p class="product-desc">Media + speaking + O1A templates.</p>
-        <button class="btn-ghost notify-trigger" data-product="Press Kit Builder">
-          Notify →
-        </button>
-      </div>
-
     </div>
-  </section>
-
-  <!-- PUBLICATIONS -->
-  <section class="series-section">
-    <div class="section-head">
-      <h2 class="section-title">Publications</h2>
-    </div>
-
-    <div class="books-grid">
-
-      <a href="https://www.amazon.com/gp/product/B0G5QWPJ77" target="_blank" class="book-card">
-        <div class="book-card-body">
-          <span>01</span>
-          <div>Silakbo</div>
-        </div>
-      </a>
-
-      <a href="https://www.amazon.com/gp/product/B0GT7D7HSZ" target="_blank" class="book-card">
-        <div class="book-card-body">
-          <span>02</span>
-          <div>In the Shadows Where They Lie</div>
-        </div>
-      </a>
-
-      <a href="https://www.amazon.com/gp/product/B0GQW2SSHT" target="_blank" class="book-card">
-        <div class="book-card-body">
-          <span>03</span>
-          <div>Lucky I'm in Love</div>
-        </div>
-      </a>
-
-    </div>
-
-    <div class="series-footer">
-      <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="btn-primary">
-        View all →
-      </a>
-    </div>
-  </section>
-
-</div>
-
-<!-- MODAL -->
-<div id="notify-overlay" style="display:none;">
-  <div id="notify-modal">
-
-    <button id="notify-close">×</button>
-
-    <h2>Join waitlist</h2>
-    <p id="notify-product-name"></p>
-
-    <form id="notify-form">
-      <input type="hidden" id="notify-product-input"/>
-
-      <input type="email" id="notify-email" placeholder="Email" required/>
-      <input type="text" id="notify-name" placeholder="Name" required/>
-
-      <button type="submit">Submit →</button>
-    </form>
-
-    <div id="notify-success" style="display:none;">
-      <p>You're in.</p>
-    </div>
-
   </div>
-</div>
 
-<!-- JS -->
-<script src="js/nav.js"></script>
+  <!-- GLOBAL NAV SCRIPT -->
+  <script>
+    fetch('/components/nav.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
 
-<script>
-(function(){
-  const overlay = document.getElementById('notify-overlay');
-  if (!overlay) return;
+  <!-- PAGE LOGIC -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-  const productInput = document.getElementById('notify-product-input');
-  const productName = document.getElementById('notify-product-name');
-  const form = document.getElementById('notify-form');
-  const success = document.getElementById('notify-success');
-  const closeBtn = document.getElementById('notify-close');
+      const overlay = document.getElementById('notify-overlay');
+      const closeBtn = document.getElementById('notify-close');
+      const productInput = document.getElementById('notify-product-input');
+      const productName = document.getElementById('notify-product-name');
 
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.notify-trigger');
-    if (!btn) return;
+      // OPEN MODAL
+      document.querySelectorAll('.notify-trigger').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const product = btn.dataset.product || '';
+          overlay.style.display = 'flex';
+          productInput.value = product;
+          productName.textContent = product;
+        });
+      });
 
-    const product = btn.dataset.product || '';
+      // CLOSE MODAL
+      closeBtn.addEventListener('click', () => {
+        overlay.style.display = 'none';
+      });
 
-    overlay.style.display = 'flex';
-    productInput.value = product;
-    productName.textContent = product;
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.style.display = 'none';
+        }
+      });
 
-    form.style.display = 'block';
-    success.style.display = 'none';
-    form.reset();
-  });
+      // FORM
+      document.getElementById('notify-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('notify-form').style.display = 'none';
+        document.getElementById('notify-success').style.display = 'block';
+      });
 
-  closeBtn.onclick = () => overlay.style.display = 'none';
-
-  overlay.onclick = (e) => {
-    if (e.target === overlay) overlay.style.display = 'none';
-  };
-
-  form.onsubmit = (e) => {
-    e.preventDefault();
-    form.style.display = 'none';
-    success.style.display = 'block';
-  };
-
-})();
-</script>
+    });
+  </script>
 
 </body>
 </html>
