@@ -79,3 +79,29 @@ function initForm(form, onSuccess, onError) {
 
 // Auto-init all forms with data-form="indieco"
 document.querySelectorAll('[data-form="indieco"]').forEach(f => initForm(f));
+
+// ── ALIAS: pages call attachFormHandler — map it to initForm ──
+function attachFormHandler(form, options) {
+  if (!form) return;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (options.validate && !options.validate()) return;
+
+    const btn = form.querySelector('[type="submit"]');
+    if (btn) { btn.disabled = true; }
+
+    const data = {};
+    new FormData(form).forEach((val, key) => { data[key] = val; });
+    const ok = await submitToSheet(data);
+
+    if (ok) {
+      form.reset();
+      if (options.onSuccess) options.onSuccess();
+    } else {
+      if (options.onError) options.onError();
+    }
+
+    if (btn) { btn.disabled = false; }
+  });
+}
