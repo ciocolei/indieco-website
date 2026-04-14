@@ -1,9 +1,9 @@
 /* ═══════════════════════════════════════════════════
    INDIECO — BASE DESIGN SYSTEM
-   Brand Guide 2025 · Authority · Media · Publishing
+   Brand Guide 2026 · Authority · Media · Publishing
 ═══════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&display=swap');
 
 /* ── DESIGN TOKENS ─────────────────────────────── */
 :root {
@@ -32,8 +32,8 @@
 --rule:         rgba(244,240,235,0.1);  /* default rule = bone-white, matches all pages */
 
   /* Typography */
-  --font-body:   'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-serif:  'Cormorant Garamond', 'Cormorant', Georgia, serif;
+--font-serif: 'Cormorant Garamond', serif;
+--font-body: 'Space Grotesk', sans-serif;
 
   /* Spacing (4px base) */
   --sp-1:  4px;
