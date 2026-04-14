@@ -5,11 +5,13 @@
 
 const NAV_LINKS = [
   { label: 'About',     href: '/pages/about.html' },
-  { label: 'Services',  href: '/pages/premier-services.html' },
+   { label: 'Get Started',  href: '/pages/get-started.html'},
+    { label: 'Standard',  href: '/pages/standard-services.html'},
+  { label: 'Premier',  href: '/pages/premier-services.html' },
   { label: 'Store',     href: '/pages/store.html' },
-];
+   { label : 'Apply', href: '/pages/work-with-us.html'},
 
-const CTA_LINK = { label: 'Work With Us', href: '/pages/work-with-us.html' };
+const CTA_LINK = { label: 'Apply', href: '/pages/work-with-us.html' };
 
 /* ── Build Nav ───────────────────────────────── */
 (function buildNav() {
