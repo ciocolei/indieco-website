@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IndieCo</title>
+
+  <!-- Your global CSS -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+</head>
+
+<body>
+
 <div id="nav-placeholder"></div>
 
 <div class="container">
@@ -110,10 +124,13 @@
   </div>
 </div>
 
+<!-- JS -->
+<script src="js/nav.js"></script>
+
 <script>
 (function(){
   const overlay = document.getElementById('notify-overlay');
-  if (!overlay) return; // safe guard
+  if (!overlay) return;
 
   const productInput = document.getElementById('notify-product-input');
   const productName = document.getElementById('notify-product-name');
@@ -121,7 +138,6 @@
   const success = document.getElementById('notify-success');
   const closeBtn = document.getElementById('notify-close');
 
-  // OPEN (event delegation)
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('.notify-trigger');
     if (!btn) return;
@@ -132,20 +148,17 @@
     productInput.value = product;
     productName.textContent = product;
 
-    // reset state
     form.style.display = 'block';
     success.style.display = 'none';
     form.reset();
   });
 
-  // CLOSE
   closeBtn.onclick = () => overlay.style.display = 'none';
 
   overlay.onclick = (e) => {
     if (e.target === overlay) overlay.style.display = 'none';
   };
 
-  // SUBMIT
   form.onsubmit = (e) => {
     e.preventDefault();
     form.style.display = 'none';
@@ -154,3 +167,6 @@
 
 })();
 </script>
+
+</body>
+</html>
