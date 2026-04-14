@@ -1,46 +1,994 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Services — IndieCo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/base.css"/>
-  <link rel="stylesheet" href="../css/nav.css"/>
-  <style>
-    /* page-specific styles only — no resets, no :root, no nav/footer */
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Standard Services — IndieCo</title>
+<link rel="stylesheet" href="../css/base.css"/>
+<link rel="stylesheet" href="../css/nav.css"/>
+
+<style>
+/* ── PAGE-SPECIFIC ADDITIONS ONLY ── */
+/* All base tokens (--ink, --gold, --rule, --font-serif etc.) come from base.css */
+/* All .page-wrap, .fade-up, .section-label come from base.css — not redefined here */
+
+:root {
+  --cream-deep:   #e8e0d4;
+  --rule-gold:    rgba(184,147,74,0.3);
+  --font-display: 'Cormorant Garamond', serif; /* base already imports this font */
+  --nav-h:        68px;
+}
+
+/* ── HERO — full-bleed, clears fixed nav ── */
+.hero {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4rem 3rem 4rem 3rem;
+  position: relative;
+}
+.hero-left::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  display: block;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #f5f0e8;
+  margin-bottom: 1.8rem;
+}
+.hero-title em { font-style: italic; color: var(--gold-light); }
+.hero-sub {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(245,240,232,0.5);
+  line-height: 1.9;
+  max-width: 340px;
+}
+.hero-right {
+  position: relative;
+  background: var(--cream-deep);
+  overflow: hidden;
+}
+.hero-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-hint {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  border: 0.5px dashed var(--rule-gold);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  margin: 2rem;
+}
+.photo-hint strong {
+  display: block;
+  font-size: 12px;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  z-index: 2;
+}
+.hero-scroll span {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+}
+.scroll-line {
+  width: 0.5px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+/* ── SERVICE SECTION ── */
+.ss { padding: 5rem 0 4rem; }
+
+.ss-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 3.5rem;
+  border: 0.5px solid var(--rule);
+}
+.ss-intro-left {
+  padding: 2.5rem;
+  border-right: 0.5px solid var(--rule);
+}
+.ss-intro-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.ss-intro-title em { font-style: italic; color: var(--gold-dark); }
+.ss-intro-right {
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+.ss-intro-text {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+/* Service blocks */
+.ss-block {
+  padding: 2rem 2.2rem;
+  border: 0.5px solid var(--rule);
+  margin-bottom: 1px;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  cursor: default;
+  transition: background 0.35s, transform 0.3s, box-shadow 0.35s;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 1.5rem;
+}
+.ss-block::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.ss-block:hover { background: var(--cream-warm); box-shadow: 0 6px 28px rgba(0,0,0,0.04); transform: translateY(-1px); }
+.ss-block:hover::before { transform: scaleY(1); }
+.ss-service {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  transition: letter-spacing 0.4s;
+}
+.ss-block:hover .ss-service { letter-spacing: 0.03em; }
+.ss-desc {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.85;
+}
+.ss-block-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--rule);
+  line-height: 1;
+  transition: color 0.35s;
+  flex-shrink: 0;
+  padding-top: 0.2rem;
+}
+.ss-block:hover .ss-block-num { color: var(--gold-light); }
+
+/* Photo strip */
+.photo-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 300px;
+  margin: 3rem 0;
+  border: 0.5px solid var(--rule);
+  overflow: hidden;
+}
+.photo-strip-cell {
+  background: var(--cream-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.5px solid var(--rule);
+  overflow: hidden;
+}
+.photo-strip-cell:last-child { border-right: none; }
+.photo-strip-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.photo-strip-cell:hover img { transform: scale(1.04); }
+
+/* Philosophy band */
+.ss-philosophy {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  margin: 3rem 0;
+  position: relative;
+  transition: background 0.3s;
+}
+.ss-philosophy::before, .ss-philosophy::after {
+  content: '';
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  width: 0; height: 0.5px;
+  background: var(--gold);
+  transition: width 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.ss-philosophy::before { top: -0.5px; }
+.ss-philosophy::after  { bottom: -0.5px; }
+.ss-philosophy:hover::before,
+.ss-philosophy:hover::after { width: 100%; }
+.ss-philosophy:hover { background: var(--cream-warm); }
+.ss-philosophy blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.ss-philosophy cite {
+  display: block;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 1.2rem;
+}
+
+/* Detail grid */
+.ss-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 0.5px solid var(--rule);
+}
+.ss-grid-cell {
+  padding: 2rem 2.2rem;
+  border-right: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.ss-grid-cell:nth-child(even) { border-right: none; }
+.ss-grid-cell:nth-child(3),
+.ss-grid-cell:nth-child(4) { border-bottom: none; }
+.ss-grid-cell::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 0.5px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.ss-grid-cell:hover { background: var(--cream-warm); }
+.ss-grid-cell:hover::after { transform: scaleX(1); }
+.ss-mini-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 0.9rem;
+  color: var(--ink);
+}
+.ss-small {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.85;
+}
+
+/* ── TAROT QUIZ — full-bleed dark section ── */
+.quiz-section {
+  background: var(--dark);
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.quiz-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 50%, rgba(184,147,74,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse at 90% 20%, rgba(184,147,74,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+.quiz-wrap { position: relative; z-index: 1; }
+.quiz-header { text-align: center; margin-bottom: 3.5rem; }
+.quiz-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 1.2rem;
+}
+.quiz-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300;
+  color: #f5f0e8;
+  line-height: 1.1;
+}
+.quiz-title em { font-style: italic; color: var(--gold-light); }
+.quiz-subtitle {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(245,240,232,0.35);
+  margin-top: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.card-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-deck {
+  position: relative;
+  width: 320px;
+  height: 460px;
+  margin-bottom: 2.5rem;
+}
+.tarot-card {
+  position: absolute;
+  width: 300px;
+  height: 440px;
+  top: 0; left: 10px;
+  border: 0.5px solid rgba(184,147,74,0.25);
+  background: var(--dark-surface);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.tarot-card.back-card { cursor: pointer; }
+.card-back-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(184,147,74,0.03) 0px,
+    rgba(184,147,74,0.03) 1px,
+    transparent 1px,
+    transparent 18px
+  );
+  border-radius: 4px;
+}
+.card-back-ornament {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.card-back-ornament span {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 300;
+  color: rgba(184,147,74,0.18);
+  display: block;
+  line-height: 1;
+}
+.card-back-ornament p {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(184,147,74,0.35);
+  margin-top: 0.8rem;
+}
+.tarot-card:nth-child(2) { transform: rotate(-2deg) translate(-8px, 5px); z-index: 1; }
+.tarot-card:nth-child(3) { transform: rotate(1.5deg) translate(6px, 8px); z-index: 2; }
+.tarot-card.front-card   { z-index: 3; transform: rotate(0); }
+
+/* Question card face */
+.q-card-face {
+  position: absolute;
+  inset: 0;
+  background: #f5f0e8;
+  border: 0.5px solid rgba(184,147,74,0.25);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  z-index: 10;
+}
+.q-card-face.active { opacity: 1; pointer-events: auto; }
+.q-card-number {
+  font-family: var(--font-sans);
+  font-size: 8.5px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.q-card-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+.q-divider {
+  width: 36px; height: 0.5px;
+  background: var(--gold);
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+.q-options { display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
+.q-option {
+  padding: 0.75rem 1rem;
+  border: 0.5px solid rgba(26,24,20,0.14);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  background: transparent;
+  text-align: left;
+  line-height: 1.5;
+}
+.q-option::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: var(--gold);
+  transition: width 0.25s;
+}
+.q-option:hover { border-color: var(--gold); color: var(--ink); background: rgba(184,147,74,0.04); }
+.q-option:hover::before { width: 2px; }
+.q-option.selected { border-color: var(--gold); color: var(--ink); background: rgba(184,147,74,0.07); }
+.q-option.selected::before { width: 2px; }
+.q-card-footer {
+  margin-top: 1.2rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.q-progress { display: flex; gap: 4px; }
+.q-dot {
+  width: 18px; height: 2px;
+  background: rgba(26,24,20,0.1);
+  transition: background 0.3s;
+}
+.q-dot.done    { background: var(--gold); }
+.q-dot.current { background: var(--ink); }
+
+/* Result card */
+.result-card {
+  position: absolute;
+  inset: 0;
+  background: var(--dark-surface);
+  border: 0.5px solid rgba(184,147,74,0.4);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+  z-index: 10;
+}
+.result-card.active { opacity: 1; pointer-events: auto; }
+.result-type {
+  font-family: var(--font-sans);
+  font-size: 8.5px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.result-name {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #f5f0e8;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.result-desc {
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 300;
+  color: rgba(245,240,232,0.5);
+  line-height: 1.85;
+  flex: 1;
+}
+.result-services {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.result-tag {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 0.5px solid rgba(184,147,74,0.28);
+  padding: 3px 9px;
+}
+.result-cta {
+  display: block;
+  margin-top: 1.2rem;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--dark);
+  background: var(--gold);
+  padding: 10px 16px;
+  text-align: center;
+  transition: background 0.2s;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+.result-cta:hover { background: var(--gold-light); }
+
+.quiz-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
+}
+.quiz-btn {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.45);
+  background: transparent;
+  border: 0.5px solid rgba(184,147,74,0.22);
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.quiz-btn:hover { border-color: var(--gold); color: #f5f0e8; }
+.quiz-btn.primary { border-color: var(--gold); color: var(--gold); }
+.quiz-btn.primary:hover { background: var(--gold); color: var(--dark); }
+.quiz-intro-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.quiz-intro-text p {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(245,240,232,0.35);
+  line-height: 1.8;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.quiz-state-label {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.25);
+  text-align: center;
+  margin-top: 0.8rem;
+  min-height: 18px;
+}
+
+/* ── CLIENT RESULTS ── */
+.cl { padding: 5rem 0; border-top: 0.5px solid var(--rule); }
+.cl-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+}
+.cl-title em { font-style: italic; color: var(--gold-dark); }
+.cl-sub {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 3rem;
+}
+
+.pubs-strip {
+  display: flex; align-items: center; gap: 2rem;
+  padding: 1.5rem 0;
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  margin-bottom: 3.5rem;
+  overflow-x: auto; scrollbar-width: none;
+}
+.pubs-strip::-webkit-scrollbar { display: none; }
+.pub-item {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  flex-shrink: 0; cursor: default;
+  transition: transform 0.3s;
+}
+.pub-item:hover { transform: translateY(-3px); }
+.pub-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.pub-name.wsj { font-size: 2rem; font-weight: 300; letter-spacing: -0.02em; }
+.pub-name.nyt { font-size: 1.4rem; }
+.pub-label {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+}
+.pub-divider { width: 0.5px; height: 32px; background: var(--rule); flex-shrink: 0; }
+
+.stats-row { display: flex; gap: 0; margin-bottom: 3.5rem; }
+.stat {
+  flex: 1;
+  padding-right: 2rem;
+  border-right: 0.5px solid var(--rule);
+  margin-right: 2rem;
+  cursor: default;
+  transition: transform 0.3s;
+}
+.stat:last-child { border-right: none; margin-right: 0; }
+.stat:hover { transform: translateY(-3px); }
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 2.2rem;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-lbl {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.clients-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.client-row {
+  position: relative;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.4rem 1.1rem 0;
+  border-bottom: 0.5px solid var(--rule);
+  cursor: default; overflow: hidden;
+}
+.client-row:nth-child(even) { padding-left: 1.4rem; padding-right: 0; border-left: 0.5px solid var(--rule); }
+.client-row::before { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 0.5px; background: var(--ink); transition: width 0.4s; }
+.client-row:hover::before { width: 100%; }
+.client-row:hover { background: var(--cream); }
+.client-row:hover .client-name { letter-spacing: 0.1em; }
+.client-index { font-family: var(--font-display); font-weight: 300; font-size: 0.72rem; color: var(--rule); min-width: 14px; }
+.client-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; color: var(--ink); letter-spacing: 0.01em; transition: letter-spacing 0.35s; margin-left: 10px; }
+.accolade-tags { display: flex; gap: 4px; opacity: 0; transition: opacity 0.3s; }
+.client-row:hover .accolade-tags { opacity: 1; }
+.tag { font-family: var(--font-sans); font-size: 8px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); border: 0.5px solid var(--rule); padding: 2px 7px; white-space: nowrap; }
+.tag.gold { border-color: var(--gold); color: var(--gold-dark); }
+
+/* Photo stage */
+.photo-stage {
+  width: 100%; height: 240px;
+  border: 0.5px solid var(--rule);
+  overflow: hidden;
+  margin: 3.5rem 0;
+}
+.photo-stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── TESTIMONIALS ── */
+.tm { padding: 5rem 0; border-top: 0.5px solid var(--rule); }
+.tm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 0.5px solid var(--rule);
+}
+.tm-card {
+  background: var(--white);
+  padding: 2.2rem 1.8rem;
+  position: relative; overflow: hidden;
+  cursor: default;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+  justify-content: space-between; gap: 1.5rem;
+}
+.tm-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.tm-card:hover { background: var(--cream-warm); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.06); z-index: 1; }
+.tm-card:hover::before { transform: scaleX(1); }
+.tm-open-quote { font-family: var(--font-display); font-size: 3.2rem; font-weight: 300; color: var(--gold); line-height: 0.6; margin-bottom: 0.4rem; }
+.tm-quote { font-family: var(--font-display); font-size: 1rem; font-weight: 300; font-style: italic; line-height: 1.75; color: var(--ink-soft); flex-grow: 1; }
+.tm-meta { border-top: 0.5px solid var(--rule); padding-top: 1rem; display: flex; flex-direction: column; gap: 3px; }
+.tm-author { font-family: var(--font-display); font-size: 1rem; font-weight: 400; color: var(--ink); }
+.tm-role { font-family: var(--font-sans); font-size: 9px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-ghost); }
+
+/* ── PUBLISHING PATHWAYS ── */
+.pub-paths { padding: 5rem 0; border-top: 0.5px solid var(--rule); }
+.pub-paths-header { margin-bottom: 3rem; }
+.pub-paths-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 0.7rem;
+}
+.pub-paths-title em { font-style: italic; color: var(--gold-dark); }
+.pub-paths-sub {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  max-width: 520px;
+  line-height: 1.8;
+}
+
+.path-tabs {
+  display: flex; gap: 0;
+  border: 0.5px solid var(--rule);
+  margin-bottom: 2.5rem;
+  overflow-x: auto; scrollbar-width: none;
+}
+.path-tabs::-webkit-scrollbar { display: none; }
+.path-tab {
+  flex: 1; min-width: 110px;
+  padding: 1rem 0.8rem;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  border: none; background: transparent;
+  cursor: pointer;
+  border-right: 0.5px solid var(--rule);
+  transition: all 0.25s;
+  white-space: nowrap; text-align: center;
+}
+.path-tab:last-child { border-right: none; }
+.path-tab:hover { background: var(--cream-warm); color: var(--ink); }
+.path-tab.active { background: var(--ink); color: var(--gold); }
+
+.path-panel { display: none; }
+.path-panel.active {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 0.5px solid var(--rule);
+  animation: panelIn 0.35s ease;
+}
+@keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.path-info { padding: 2.5rem; border-right: 0.5px solid var(--rule); }
+.path-name { font-family: var(--font-display); font-size: 1.65rem; font-weight: 300; font-style: italic; margin-bottom: 0.4rem; color: var(--ink); }
+.path-tagline { font-family: var(--font-sans); font-size: 9px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+.path-desc { font-family: var(--font-sans); font-size: 12.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.9; margin-bottom: 1.8rem; }
+.path-meta-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--rule);
+  border: 0.5px solid var(--rule);
+}
+.path-meta-cell { background: var(--white); padding: 1rem 1.1rem; }
+.path-meta-label { font-family: var(--font-sans); font-size: 8px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 0.3rem; }
+.path-meta-val { font-family: var(--font-display); font-size: 0.95rem; color: var(--ink); line-height: 1.4; }
+.path-visual { padding: 2.5rem; background: var(--cream); display: flex; flex-direction: column; gap: 0.8rem; }
+.path-step {
+  display: flex; align-items: flex-start; gap: 0.8rem;
+  padding: 0.8rem 0;
+  border-bottom: 0.5px solid var(--rule);
+  opacity: 0; transform: translateX(10px);
+  transition: opacity 0.35s, transform 0.35s;
+}
+.path-panel.active .path-step { opacity: 1; transform: translateX(0); }
+.path-panel.active .path-step:nth-child(1) { transition-delay: 0.05s; }
+.path-panel.active .path-step:nth-child(2) { transition-delay: 0.1s; }
+.path-panel.active .path-step:nth-child(3) { transition-delay: 0.15s; }
+.path-panel.active .path-step:nth-child(4) { transition-delay: 0.2s; }
+.path-panel.active .path-step:nth-child(5) { transition-delay: 0.25s; }
+.path-step:last-child { border-bottom: none; }
+.path-step-num { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; color: var(--gold); line-height: 1; flex-shrink: 0; min-width: 22px; }
+.path-step-title { font-family: var(--font-display); font-size: 0.95rem; font-weight: 400; color: var(--ink); margin-bottom: 0.15rem; }
+.path-step-note { font-family: var(--font-sans); font-size: 11px; font-weight: 300; color: var(--ink-soft); line-height: 1.6; }
+.path-fit-indicator {
+  margin-top: auto; padding: 1rem 1.1rem;
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.path-fit-label { font-family: var(--font-sans); font-size: 8.5px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(245,240,232,0.35); }
+.path-fit-value { font-family: var(--font-display); font-size: 0.9rem; color: var(--gold); }
+
+/* Flow diagram */
+.pub-flow { margin-top: 3.5rem; }
+.pub-flow-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; color: var(--ink); margin-bottom: 1.5rem; text-align: center; }
+.flow-diagram {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0;
+  border: 0.5px solid var(--rule);
+  padding: 2.5rem 2rem;
+  background: var(--cream);
+}
+.flow-row { display: flex; align-items: center; justify-content: center; gap: 0; width: 100%; }
+.flow-node {
+  background: var(--white);
+  border: 0.5px solid var(--rule);
+  padding: 0.9rem 1.2rem;
+  text-align: center; cursor: default;
+  transition: all 0.25s;
+  min-width: 120px; max-width: 160px;
+}
+.flow-node:hover { background: var(--cream-warm); border-color: var(--gold); transform: translateY(-2px); }
+.flow-node-q { font-family: var(--font-sans); font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-ghost); margin-bottom: 0.25rem; }
+.flow-node-a { font-family: var(--font-display); font-size: 1rem; font-weight: 300; color: var(--ink); }
+.flow-node.start { background: var(--ink); border-color: transparent; }
+.flow-node.start .flow-node-a { color: var(--gold); font-style: italic; }
+.flow-node.outcome { background: var(--cream-deep); border-color: var(--gold); }
+.flow-node.outcome .flow-node-a { font-style: italic; }
+.flow-connector { width: 0.5px; height: 24px; background: var(--rule); margin: 0 auto; }
+.flow-label { font-family: var(--font-sans); font-size: 8.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-ghost); margin: 4px 0; text-align: center; }
+
+/* ── CTA BANNER ── */
+.cta-banner { background: var(--dark); padding: 5rem 0; text-align: center; }
+.cta-banner h2 { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 300; color: #f5f0e8; margin-bottom: 2.2rem; line-height: 1.1; }
+.cta-banner h2 em { font-style: italic; color: var(--gold-light); }
+.btn-gold {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 9px; letter-spacing: 0.3em;
+  text-transform: uppercase;
+  background: var(--gold); color: var(--dark);
+  padding: 13px 30px;
+  transition: background 0.2s;
+  cursor: pointer; border: none;
+  margin: 0 0.4rem;
+}
+.btn-gold:hover { background: var(--gold-light); }
+.btn-outline {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 9px; letter-spacing: 0.3em;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(245,240,232,0.45);
+  padding: 12px 30px;
+  border: 0.5px solid rgba(184,147,74,0.28);
+  transition: all 0.2s;
+  cursor: pointer;
+  margin: 0 0.4rem;
+}
+.btn-outline:hover { border-color: var(--gold); color: #f5f0e8; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 3rem 1.5rem 4rem; min-height: calc(100vh - var(--nav-h)); }
+  .ss-intro { grid-template-columns: 1fr; }
+  .ss-intro-left { border-right: none; border-bottom: 0.5px solid var(--rule); }
+  .path-panel.active { grid-template-columns: 1fr; }
+  .path-info { border-right: none; border-bottom: 0.5px solid var(--rule); }
+  .tm-grid { grid-template-columns: 1fr; }
+  .ss-grid { grid-template-columns: 1fr; }
+  .ss-grid-cell:nth-child(even) { border-right: none; }
+  .ss-grid-cell:nth-child(3) { border-bottom: 0.5px solid var(--rule); }
+  .clients-grid { grid-template-columns: 1fr; }
+  .client-row:nth-child(even) { padding-left: 0; border-left: none; }
+  .stats-row { flex-wrap: wrap; gap: 1.2rem; }
+  .stat { border-right: none; }
+  .photo-strip { height: 200px; }
+  .path-tabs { flex-wrap: wrap; }
+  .path-tab { border-bottom: 0.5px solid var(--rule); min-width: 48%; }
+}
+</style>
 </head>
 <body>
 
+<div id="nav-placeholder"></div>
 
-<!-- ══════════════════════════════════════
-   HERO
-══════════════════════════════════════ -->
+<!-- ── HERO — full-bleed, sits outside .page-wrap ── -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-number">SS</div>
-    <div class="hero-eyebrow">Standard Services — IndieCo</div>
+    <span class="hero-eyebrow">Standard Services — IndieCo</span>
     <h1 class="hero-title">
       Structured support for<br>
-      <em>authors, operators</em>
-      <strong>and emerging<br>authorities.</strong>
+      <em>authors, operators</em><br>
+      and emerging authorities.
     </h1>
     <p class="hero-sub">More than publicity. We help you craft authority, impact, and legacy — the kind that opens rooms before you enter them.</p>
-    <div class="hero-cta-row">
-      <a href="get-started.html" class="btn-primary">Start your journey →</a>
-      <a href="premier-services.html" class="btn-ghost">View Premier</a>
-    </div>
   </div>
   <div class="hero-right">
-    <img src="../images/covers/hero.jpg" alt="IndieCo — authority in practice">
-    <div class="hero-right-overlay"></div>
-    <div class="hero-stat-card">
-      <div class="hero-stat-num">1,500+</div>
-      <div class="hero-stat-lbl">Campaigns Launched</div>
-    </div>
+    <!-- PHOTO: hero — replace inner div with: <img src="../images/covers/hero.jpg" alt="..." style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"> -->
+   <img src="../images/covers/hero.jpg" 
+     alt="IndieCo — authority in practice" 
+     style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
   </div>
   <div class="hero-scroll" id="hero-scroll">
     <div class="scroll-line"></div>
@@ -48,139 +996,103 @@
   </div>
 </section>
 
-
-<!-- ── MARQUEE ── -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <!-- duplicate for seamless loop -->
-    <div class="marquee-item"><span>Book Launch &amp; Profile Support</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Bestseller Campaigns</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Keynote Stages</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Media Placements</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Trainings &amp; Workshops</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Authority Architecture</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Book Launch &amp; Profile Support</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Bestseller Campaigns</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Keynote Stages</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Media Placements</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Trainings &amp; Workshops</span><div class="marquee-dot"></div></div>
-    <div class="marquee-item"><span>Authority Architecture</span><div class="marquee-dot"></div></div>
-  </div>
-</div>
-
-
 <div class="page-wrap">
 
-  <!-- ══════════════════════════════════════
-     SERVICES
-  ══════════════════════════════════════ -->
+  <!-- ── SERVICES ── -->
   <section class="ss">
-    <div class="ss-header fade-up">
-      <div>
-        <div class="section-label">What we do</div>
-        <h2 class="ss-headline">Five pathways to <em>undeniable</em> authority.</h2>
+    <div class="ss-intro fade-up">
+      <div class="ss-intro-left">
+        <span class="section-label">What we do</span>
+        <h2 class="ss-intro-title">Five pathways to <em>undeniable</em> authority.</h2>
       </div>
-      <p class="ss-lead">The world rewards those who can prove their authority — not just claim it. These are not just credentials. In the right context, they become leverage: legal evidence, visa documentation, and investor conviction.</p>
-    </div>
-
-    <div class="service-grid">
-      <div class="ss-block fade-up">
-        <div class="ss-num">01</div>
-        <div class="ss-content">
-          <div class="ss-service-name">Book Launch &amp; Profile Support</div>
-          <p class="ss-desc">Meticulously curated bestseller campaigns and distinguished critic endorsements to a coveted presence on the shelves of Barnes &amp; Noble and Amazon. Bespoke signing events, prestigious festival showcases, and a legacy built to endure.</p>
-        </div>
-        <div class="ss-arrow">→</div>
-      </div>
-      <div class="ss-block fade-up">
-        <div class="ss-num">02</div>
-        <div class="ss-content">
-          <div class="ss-service-name">Book Publishing</div>
-          <p class="ss-desc">End-to-end publishing support for first-time and up-and-coming authors across both independent and traditional pathways.</p>
-        </div>
-        <div class="ss-arrow">→</div>
-      </div>
-      <div class="ss-block fade-up">
-        <div class="ss-num">03</div>
-        <div class="ss-content">
-          <div class="ss-service-name">Keynote Stages</div>
-          <p class="ss-desc">Strategic positioning and placement across conferences, panels, and keynote stages that elevate your voice and expand your influence.</p>
-        </div>
-        <div class="ss-arrow">→</div>
-      </div>
-      <div class="ss-block fade-up">
-        <div class="ss-num">04</div>
-        <div class="ss-content">
-          <div class="ss-service-name">Media Placements</div>
-          <p class="ss-desc">Thoughtful media strategy and editorial placements designed to amplify your ideas across respected publications and platforms.</p>
-        </div>
-        <div class="ss-arrow">→</div>
-      </div>
-      <div class="ss-block fade-up">
-        <div class="ss-num">05</div>
-        <div class="ss-content">
-          <div class="ss-service-name">Trainings &amp; Workshops</div>
-          <p class="ss-desc">Narrative refinement, positioning, and brand development to shape your expertise into a clear, credible public voice.</p>
-        </div>
-        <div class="ss-arrow">→</div>
+      <div class="ss-intro-right">
+        <p class="ss-intro-text">The world rewards those who can prove their authority — not just claim it. These are not just credentials. In the right context, they become leverage: legal evidence, visa documentation, and investor conviction.</p>
       </div>
     </div>
 
-    <!-- Editorial strip -->
-    <div class="editorial-strip fade-up">
-      <div class="editorial-cell">
-        <img src="../images/covers/editorial-left.jpg" alt="Editorial — IndieCo">
-        <div class="editorial-cell-overlay"></div>
-        <span class="editorial-label">Editorial Excellence</span>
+    <div class="ss-block fade-up">
+      <div class="ss-block-left">
+        <div class="ss-service">Book Launch & Profile Support</div>
+        <p class="ss-desc">We uphold the highest standards of editorial excellence — from meticulously curated bestseller campaigns and distinguished critic endorsements to a coveted presence on the shelves of Barnes & Noble and Amazon. Every author is guided through a bespoke journey: intimate signing events, prestigious festival showcases, and a legacy built to endure.</p>
       </div>
-      <div class="editorial-cell">
-        <img src="../images/covers/editorial-right.jpg" alt="Authority — IndieCo">
-        <div class="editorial-cell-overlay"></div>
-        <span class="editorial-label">Authority in Practice</span>
+      <div class="ss-block-num">01</div>
+    </div>
+
+    <div class="ss-block fade-up">
+      <div class="ss-block-left">
+        <div class="ss-service">Book Publishing</div>
+        <p class="ss-desc">End-to-end publishing support for first-time and up-and-coming authors across both independent and traditional pathways.</p>
+      </div>
+      <div class="ss-block-num">02</div>
+    </div>
+
+    <div class="ss-block fade-up">
+      <div class="ss-block-left">
+        <div class="ss-service">Keynote Stages</div>
+        <p class="ss-desc">Strategic positioning and placement across conferences, panels, and keynote stages that elevate your voice and expand your influence.</p>
+      </div>
+      <div class="ss-block-num">03</div>
+    </div>
+
+    <div class="ss-block fade-up">
+      <div class="ss-block-left">
+        <div class="ss-service">Media Placements</div>
+        <p class="ss-desc">Thoughtful media strategy and editorial placements designed to amplify your ideas across respected publications and platforms.</p>
+      </div>
+      <div class="ss-block-num">04</div>
+    </div>
+
+    <div class="ss-block fade-up">
+      <div class="ss-block-left">
+        <div class="ss-service">Trainings & Workshops</div>
+        <p class="ss-desc">Narrative refinement, positioning, and brand development to shape your expertise into a clear, credible public voice.</p>
+      </div>
+      <div class="ss-block-num">05</div>
+    </div>
+
+    <!-- PHOTO: editorial-grid -->
+    <!-- Replace each .photo-hint div with: <img src="../images/covers/filename.jpg" alt="..." style="width:100%;height:100%;object-fit:cover;display:block;"> -->
+    <div class="photo-strip fade-up">
+      <div class="photo-strip-cell">
+        <img src="../images/covers/editorial-left.jpg" 
+     style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="photo-strip-cell">
+       <img src="../images/covers/editorial-right.jpg" 
+     style="width:100%;height:100%;object-fit:cover;display:block;">
       </div>
     </div>
 
-    <!-- Philosophy -->
-    <div class="philosophy-band fade-up">
-      <div class="philosophy-ornament">&ldquo;</div>
-      <blockquote class="philosophy-quote">
-        Not just credentials. In the right context —<br>
-        <strong>legal evidence, visa documentation,<br>investor conviction.</strong>
+    <div class="ss-philosophy fade-up">
+      <blockquote>
+        "Not just credentials. In the right context — legal evidence, visa documentation, investor conviction."
       </blockquote>
-      <cite class="philosophy-cite">The IndieCo Philosophy</cite>
+      <cite>The IndieCo Philosophy</cite>
     </div>
 
-    <!-- Detail grid -->
-    <div class="ss-detail-grid">
-      <div class="ss-detail-cell fade-up">
-        <div class="ss-tag-line">Publishing</div>
-        <div class="ss-mini-title">End-to-End Publishing</div>
-        <div class="ss-small">Non-fiction Ghostwriting · Developmental Editing<br>Publishing (ebook, paperback, hardcover)<br>Audiobook Production<br><br>Cover design · Interior formatting<br>Global distribution · Retail availability<br>(Amazon, Barnes &amp; Noble, Kobo)<br><br><strong style="color:var(--bone);font-weight:400;">Timeline: 7–8 months</strong></div>
+    <div class="ss-grid">
+      <div class="ss-grid-cell fade-up">
+        <div class="ss-mini-title">Publishing</div>
+        <div class="ss-small">Non-fiction Ghostwriting<br>Developmental Editing<br>Publishing (ebook, paperback, hardcover)<br>Audiobook Production<br><br>Includes: Cover design, Interior formatting, Global distribution, Retail availability (Amazon, Barnes & Noble, Kobo)<br><br>Timeline: 7–8 months</div>
       </div>
-      <div class="ss-detail-cell fade-up">
-        <div class="ss-tag-line">Bestseller Campaigns</div>
+      <div class="ss-grid-cell fade-up">
         <div class="ss-mini-title">Bestseller Campaigns</div>
-        <div class="ss-small">Entry: Kobo, Amazon, Barnes &amp; Noble<br>Expanded: Amazon + B&amp;N + 1,000+ Sales<br>Premium: C-Suite, SUCCESS Magazine<br>National: USA Today, New York Times<br><br><strong style="color:var(--bone);font-weight:400;">Timeline:</strong> 4–6 weeks prep, 3+ months (national)<br><strong style="color:var(--bone);font-weight:400;">Results:</strong> ~24 hours post-launch</div>
+        <div class="ss-small">Entry: Kobo, Amazon, Barnes & Noble<br>Expanded: Amazon + B&N + 1,000+ Sales<br>Premium: C-Suite, SUCCESS Magazine<br>National: USA Today, New York Times<br><br>Timeline: 4–6 weeks prep, 3+ months (national)<br>Results: ~24 hours post-launch</div>
       </div>
-      <div class="ss-detail-cell fade-up">
-        <div class="ss-tag-line">Book Funnels</div>
-        <div class="ss-mini-title">Book Funnels &amp; Lead Systems</div>
-        <div class="ss-small">Light Book Funnel<br>Done-For-You Funnel<br>DIY Program<br><br>Includes: Landing pages · Email automation<br>Integrations · Product mockups</div>
+      <div class="ss-grid-cell fade-up">
+        <div class="ss-mini-title">Book Funnels & Lead Systems</div>
+        <div class="ss-small">Light Book Funnel<br>Done-For-You Funnel<br>DIY Program<br><br>Includes: Landing pages, Email automation, Integrations, Product mockups</div>
       </div>
-      <div class="ss-detail-cell fade-up">
-        <div class="ss-tag-line">Simulation Learning</div>
+      <div class="ss-grid-cell fade-up">
         <div class="ss-mini-title">Simulation-Based Learning</div>
-        <div class="ss-small">Half-day workshop · Full-day immersive<br>Multi-day program · Monthly simulations<br>Executive-only cohorts<br><br>Deliverables: Pre-workshop assessment<br>Facilitated simulation · Debrief reports<br>Post-training action plan</div>
+        <div class="ss-small">Half-day workshop<br>Full-day immersive<br>Multi-day program<br>Ongoing monthly simulations<br>Executive-only cohorts<br><br>Deliverables: Pre-workshop assessment, Facilitated simulation, Debrief reports, Post-training action plan</div>
       </div>
     </div>
   </section>
 
 </div><!-- /page-wrap -->
 
-
-<!-- ══════════════════════════════════════
-   TAROT QUIZ — full-bleed
-══════════════════════════════════════ -->
+<!-- ── TAROT QUIZ — full-bleed dark, its own .page-wrap inside ── -->
 <section class="quiz-section">
   <div class="page-wrap quiz-wrap">
     <div class="quiz-header">
@@ -203,13 +1115,13 @@
           <div class="q-options" id="q-options"></div>
           <div class="q-card-footer">
             <div class="q-progress" id="q-progress"></div>
-            <span id="quiz-skip-btn" style="font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(10,7,16,0.35);cursor:pointer;font-family:var(--font-body);">Skip →</span>
+            <span id="quiz-skip-btn" style="font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-ghost);cursor:pointer;font-family:var(--font-sans);">Skip →</span>
           </div>
         </div>
         <div class="result-card" id="result-face">
           <div class="result-type">Your authority path</div>
           <div class="result-name" id="result-name"></div>
-          <div style="width:32px;height:1.5px;background:var(--voltage);margin:0.7rem 0 0.9rem;"></div>
+          <div style="width:36px;height:0.5px;background:var(--gold);margin:0.7rem 0 0.9rem;"></div>
           <div class="result-desc" id="result-desc"></div>
           <div class="result-services" id="result-services"></div>
           <button class="result-cta" id="result-cta-btn">Begin your authority journey →</button>
@@ -224,17 +1136,13 @@
   </div>
 </section>
 
-
 <div class="page-wrap">
 
-  <!-- ══════════════════════════════════════
-     CLIENT RESULTS
-  ══════════════════════════════════════ -->
+  <!-- ── CLIENT RESULTS ── -->
   <section class="cl">
-    <div class="section-label">Client Results</div>
+    <span class="section-label">Client Results</span>
     <h2 class="cl-title fade-up">Published. <em>Celebrated.</em><br>Bestselling.</h2>
     <p class="cl-sub">A selection of titles launched through our campaigns</p>
-
     <div class="pubs-strip">
       <div class="pub-item"><span class="pub-name wsj">WSJ</span><span class="pub-label">Wall Street Journal</span></div>
       <div class="pub-divider"></div>
@@ -242,16 +1150,14 @@
       <div class="pub-divider"></div>
       <div class="pub-item"><span class="pub-name" style="font-size:1.3rem;letter-spacing:0.07em;">USA TODAY</span><span class="pub-label">USA Today</span></div>
       <div class="pub-divider"></div>
-      <div class="pub-item"><span class="pub-name" style="font-size:1rem;letter-spacing:0.12em;">SUCCESS</span><span class="pub-label">Success Magazine</span></div>
+      <div class="pub-item"><span class="pub-name" style="font-size:1rem;letter-spacing:0.1em;">SUCCESS</span><span class="pub-label">Success Magazine</span></div>
     </div>
-
     <div class="stats-row">
-      <div class="stat fade-up"><div class="stat-num">1,500+</div><div class="stat-lbl">Successful Campaigns</div></div>
-      <div class="stat fade-up" style="transition-delay:0.08s"><div class="stat-num">3</div><div class="stat-lbl">Major Bestseller Lists</div></div>
-      <div class="stat fade-up" style="transition-delay:0.16s"><div class="stat-num">5+</div><div class="stat-lbl">Years Launching Titles</div></div>
-      <div class="stat fade-up" style="transition-delay:0.24s"><div class="stat-num">#1</div><div class="stat-lbl">WSJ Ranked Titles</div></div>
+      <div class="stat"><div class="stat-num">1,500+</div><div class="stat-lbl">Successful Campaigns</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Major Bestseller Lists</div></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-lbl">Years Launching Titles</div></div>
+      <div class="stat"><div class="stat-num">#1</div><div class="stat-lbl">WSJ Ranked Titles</div></div>
     </div>
-
     <div class="clients-grid">
       <div class="client-row"><div style="display:flex;align-items:center"><span class="client-index">01</span><span class="client-name">Kai-Fu Lee</span></div><div class="accolade-tags"><span class="tag">USA Today</span><span class="tag">WSJ</span><span class="tag">NYT</span></div></div>
       <div class="client-row"><div style="display:flex;align-items:center"><span class="client-index">02</span><span class="client-name">Naomi Whittel</span></div><div class="accolade-tags"><span class="tag">USA Today</span><span class="tag">NYT</span></div></div>
@@ -262,61 +1168,64 @@
       <div class="client-row"><div style="display:flex;align-items:center"><span class="client-index">07</span><span class="client-name">Mel Robbins</span></div><div class="accolade-tags"><span class="tag">NYT</span><span class="tag">WSJ</span></div></div>
       <div class="client-row"><div style="display:flex;align-items:center"><span class="client-index">08</span><span class="client-name">Angela Lauria</span></div><div class="accolade-tags"><span class="tag gold">#1 USA Today</span></div></div>
     </div>
-
-    <div class="photo-stage fade-up">
-      <img src="../images/covers/stage.jpg" alt="On stage — IndieCo">
-      <div class="photo-stage-overlay"></div>
-    </div>
   </section>
 
+  <!-- PHOTO: strip — replace inner content with <img src="../images/covers/stage.jpg" alt="..." style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"> -->
+  <div class="photo-stage fade-up">
+   
+    <img src="../images/covers/stage.jpg" 
+     alt="On stage" 
+     style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;">
+    
+      <div style="text-align:center;">
+        <strong>Photo Slot D — Stage Strip</strong><br>
+        Wide landscape · keynote or TEDx audience
+      </div>
+    </div>
+  </div>
 
-  <!-- ══════════════════════════════════════
-     TESTIMONIALS
-  ══════════════════════════════════════ -->
+  <!-- ── TESTIMONIALS ── -->
   <section class="tm">
-    <div class="section-label">What Clients Say</div>
+    <span class="section-label">What Clients Say</span>
     <h2 class="cl-title fade-up">Heard from<br><em>those who've worked with us.</em></h2>
+    <br>
     <div class="tm-grid">
       <div class="tm-card fade-up">
         <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">Working with IndieCo completely changed how I'm perceived in my industry. Within weeks of launching our campaign, I had inbound opportunities I hadn't even considered possible.</p></div>
         <div class="tm-meta"><span class="tm-author">Mary Lou Cunanan</span><span class="tm-role">Consultant, MD Consulting</span></div>
       </div>
       <div class="tm-card fade-up" style="transition-delay:0.1s">
-        <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">The team at IndieCo delivered results that exceeded every expectation. Our book hit the WSJ list, and the media placements opened doors at the executive level that would have taken years otherwise.</p></div>
-        <div class="tm-meta"><span class="tm-author">Daniel R.</span><span class="tm-role">Executive &amp; Investor</span></div>
+        <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">The team at IndieCo delivered results that exceeded every expectation. Our book hit the WSJ list, and the media placements opened doors at the executive level that would have taken years to access on our own.</p></div>
+        <div class="tm-meta"><span class="tm-author">Daniel R.</span><span class="tm-role">Executive & Investor</span></div>
       </div>
       <div class="tm-card fade-up" style="transition-delay:0.2s">
-        <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">IndieCo doesn't just help you publish a book — they engineer your authority. The executive network exposure alone was worth the investment. Our credibility has transformed completely.</p></div>
+        <div><div class="tm-open-quote">&ldquo;</div><p class="tm-quote">IndieCo doesn't just help you publish a book — they engineer your authority. The executive network exposure alone was worth the investment. Our credibility in the market has transformed completely.</p></div>
         <div class="tm-meta"><span class="tm-author">AILabs CX</span><span class="tm-role">Executive Network</span></div>
       </div>
     </div>
   </section>
 
-
-  <!-- ══════════════════════════════════════
-     PUBLISHING PATHWAYS
-  ══════════════════════════════════════ -->
+  <!-- ── PUBLISHING PATHWAYS ── -->
   <section class="pub-paths">
     <div class="pub-paths-header fade-up">
-      <div class="section-label">Publishing Intelligence</div>
+      <span class="section-label">Publishing Intelligence</span>
       <h2 class="pub-paths-title">Know your <em>publishing landscape</em><br>before you choose your path.</h2>
       <p class="pub-paths-sub">Based on Jane Friedman's 2025–2026 publishing paths framework. Understanding the terrain is the first step to navigating it with authority.</p>
     </div>
-
     <div class="path-tabs fade-up">
-      <button class="path-tab active" data-path="bigfive">Big Five &amp; Mid-Size</button>
-      <button class="path-tab" data-path="university">University &amp; Scholarly</button>
-      <button class="path-tab" data-path="professional">Professional &amp; Educational</button>
+      <button class="path-tab active" data-path="bigfive">Big Five & Mid-Size</button>
+      <button class="path-tab" data-path="university">University & Scholarly</button>
+      <button class="path-tab" data-path="professional">Professional & Educational</button>
       <button class="path-tab" data-path="small">Small Presses</button>
       <button class="path-tab" data-path="indie">Independent</button>
-      <button class="path-tab" data-path="hybrid">Hybrid &amp; No-Advance</button>
+      <button class="path-tab" data-path="hybrid">Hybrid & No-Advance</button>
     </div>
 
     <div class="path-panel active" id="path-bigfive">
       <div class="path-info">
-        <div class="path-name">Big Five &amp; Mid-Size</div>
+        <div class="path-name">Big Five & Mid-Size</div>
         <div class="path-tagline">Traditional publishing · Highest prestige</div>
-        <p class="path-desc">Publishers take on financial risk and pay an advance. Royalties are paid once the advance earns out. Physical bookstore distribution is nearly assured, with the best chance of mass media reviews.</p>
+        <p class="path-desc">Publishers take on financial risk and pay an advance. Royalties are paid once the advance earns out. Physical bookstore distribution is nearly assured, with the best chance of mass media reviews. Authors should have mainstream appeal and national print retail potential.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">Paid upfront</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">Almost always</div></div>
@@ -329,7 +1238,7 @@
           <div class="path-step"><div class="path-step-num">1</div><div class="path-step-content"><div class="path-step-title">Finish manuscript or proposal</div><div class="path-step-note">Novelists need full MS; nonfiction authors need a strong proposal.</div></div></div>
           <div class="path-step"><div class="path-step-num">2</div><div class="path-step-content"><div class="path-step-title">Secure a literary agent</div><div class="path-step-note">Big Five rarely takes unagented submissions.</div></div></div>
           <div class="path-step"><div class="path-step-num">3</div><div class="path-step-content"><div class="path-step-title">Agent submits to editors</div><div class="path-step-note">Can take months; rejections are common even for strong work.</div></div></div>
-          <div class="path-step"><div class="path-step-num">4</div><div class="path-step-content"><div class="path-step-title">Negotiate deal &amp; advance</div><div class="path-step-note">Publisher handles editing, design, distribution.</div></div></div>
+          <div class="path-step"><div class="path-step-num">4</div><div class="path-step-content"><div class="path-step-title">Negotiate deal & advance</div><div class="path-step-note">Publisher handles editing, design, distribution.</div></div></div>
           <div class="path-step"><div class="path-step-num">5</div><div class="path-step-content"><div class="path-step-title">Launch with full PR support</div><div class="path-step-note">Bestseller campaigns amplify this significantly.</div></div></div>
         </div>
         <div class="path-fit-indicator"><span class="path-fit-label">Best for</span><span class="path-fit-value">Platform-ready nonfiction authors &amp; literary novelists</span></div>
@@ -338,13 +1247,13 @@
 
     <div class="path-panel" id="path-university">
       <div class="path-info">
-        <div class="path-name">University &amp; Scholarly</div>
+        <div class="path-name">University & Scholarly</div>
         <div class="path-tagline">Academic prestige · Peer validation</div>
-        <p class="path-desc">Examples include University of Chicago Press, Princeton University Press, and Cambridge. Advances are minimal; royalties may run lower than New York publishers. Pricing typically runs high for bookstore placement unless the publisher does books for the consumer market.</p>
+        <p class="path-desc">Examples include University of Chicago Press, Princeton University Press, and Cambridge University Press. Advances are minimal; royalties may run lower than New York publishers. Pricing typically runs high for bookstore placement unless the publisher does books for the consumer market.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">Minimal</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">Not required</div></div>
-          <div class="path-meta-cell"><div class="path-meta-label">Distribution</div><div class="path-meta-val">Academic &amp; library</div></div>
+          <div class="path-meta-cell"><div class="path-meta-label">Distribution</div><div class="path-meta-val">Academic & library</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Author Control</div><div class="path-meta-val">Moderate</div></div>
         </div>
       </div>
@@ -361,9 +1270,9 @@
 
     <div class="path-panel" id="path-professional">
       <div class="path-info">
-        <div class="path-name">Professional &amp; Educational</div>
+        <div class="path-name">Professional & Educational</div>
         <div class="path-tagline">Wiley, Springer, McGraw Hill · Field credibility</div>
-        <p class="path-desc">Publishers like Pearson, Wiley, Springer, Elsevier, and McGraw Hill. Advances are minimal; royalties may be modest. Some require the author to assign all rights. They focus on university systems, libraries, and professional organizations.</p>
+        <p class="path-desc">Publishers like Pearson, Wiley, Springer, Elsevier, and McGraw Hill. Advances are minimal; royalties may be modest. Some require the author to assign all rights. They focus on university systems, libraries, and professional organizations. Loss of copyright is a key risk.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">Minimal</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">Not required</div></div>
@@ -386,12 +1295,12 @@
       <div class="path-info">
         <div class="path-name">Small(er) Presses</div>
         <div class="path-tagline">Unnamed Press, Coach House, Forest Avenue · Niche reach</div>
-        <p class="path-desc">A broad category from Unnamed Press to Rose Metal Press and Microcosm Press. Authors receive a small advance; royalty rates are comparable to bigger houses, but contracts may be more negotiable. These presses prioritize the literary and independent bookstore communities.</p>
+        <p class="path-desc">A broad category — from Unnamed Press to Rose Metal Press and Microcosm Press. Authors receive a small advance; royalty rates are comparable to bigger houses, but contracts may be more negotiable. These presses prioritize the literary, independent bookstore, and niche communities.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">Small</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">Rarely</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Distribution</div><div class="path-meta-val">Variable</div></div>
-          <div class="path-meta-cell"><div class="path-meta-label">Community</div><div class="path-meta-val">Literary &amp; niche</div></div>
+          <div class="path-meta-cell"><div class="path-meta-label">Community</div><div class="path-meta-val">Literary & niche</div></div>
         </div>
       </div>
       <div class="path-visual">
@@ -409,7 +1318,7 @@
       <div class="path-info">
         <div class="path-name">Independent (Self-Publishing)</div>
         <div class="path-tagline">KDP, IngramSpark, Draft2Digital · Full control</div>
-        <p class="path-desc">The author retains all rights, all control, and all profit — but also bears all costs and responsibilities. Amazon KDP, IngramSpark, and similar platforms make global distribution accessible. A bestseller campaign can amplify an independently published book just as effectively.</p>
+        <p class="path-desc">The author retains all rights, all control, and all profit — but also bears all costs and responsibilities. Amazon KDP, IngramSpark, and similar platforms make global distribution accessible. A bestseller campaign can amplify an independently published book just as effectively as a traditionally published one.</p>
         <div class="path-meta-grid">
           <div class="path-meta-cell"><div class="path-meta-label">Advance</div><div class="path-meta-val">None (self-funded)</div></div>
           <div class="path-meta-cell"><div class="path-meta-label">Agent Required</div><div class="path-meta-val">No</div></div>
@@ -419,8 +1328,8 @@
       </div>
       <div class="path-visual">
         <div class="path-steps">
-          <div class="path-step"><div class="path-step-num">1</div><div class="path-step-content"><div class="path-step-title">Complete manuscript &amp; editing</div><div class="path-step-note">Invest in professional developmental editing and copyediting.</div></div></div>
-          <div class="path-step"><div class="path-step-num">2</div><div class="path-step-content"><div class="path-step-title">Design cover &amp; interior</div><div class="path-step-note">Cover design is your #1 marketing asset. Don't compromise here.</div></div></div>
+          <div class="path-step"><div class="path-step-num">1</div><div class="path-step-content"><div class="path-step-title">Complete manuscript & editing</div><div class="path-step-note">Invest in professional developmental editing and copyediting.</div></div></div>
+          <div class="path-step"><div class="path-step-num">2</div><div class="path-step-content"><div class="path-step-title">Design cover & interior</div><div class="path-step-note">Cover design is your #1 marketing asset. Don't compromise here.</div></div></div>
           <div class="path-step"><div class="path-step-num">3</div><div class="path-step-content"><div class="path-step-title">Choose distribution platform</div><div class="path-step-note">KDP for Amazon dominance; IngramSpark for bookstore placement.</div></div></div>
           <div class="path-step"><div class="path-step-num">4</div><div class="path-step-content"><div class="path-step-title">Launch with a campaign</div><div class="path-step-note">This is where IndieCo adds disproportionate value. Bestseller campaigns work.</div></div></div>
         </div>
@@ -430,7 +1339,7 @@
 
     <div class="path-panel" id="path-hybrid">
       <div class="path-info">
-        <div class="path-name">Hybrid &amp; No-Advance</div>
+        <div class="path-name">Hybrid & No-Advance</div>
         <div class="path-tagline">Bloom Books, Berrett-Koehler · Middle ground</div>
         <p class="path-desc">Publishers that don't pay an advance but offer higher royalties and more flexible contracts. Some traditional publishers use this model for specific imprints. Rights Sales involves publishers partnering with self-publishing authors to publish or re-publish successful work.</p>
         <div class="path-meta-grid">
@@ -460,7 +1369,7 @@
         <div class="flow-connector"></div>
         <div class="flow-row" style="gap:0.8rem;align-items:flex-start;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.4rem;flex:1;">
-            <div class="flow-label">Platform &amp; mainstream appeal?</div>
+            <div class="flow-label">Platform & mainstream appeal?</div>
             <div class="flow-connector"></div>
             <div class="flow-node outcome"><div class="flow-node-q">Yes →</div><div class="flow-node-a">Big Five</div></div>
           </div>
@@ -475,81 +1384,55 @@
             <div class="flow-node outcome"><div class="flow-node-q">Yes →</div><div class="flow-node-a">Professional Press</div></div>
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:0.4rem;flex:1;">
-            <div class="flow-label">Want control &amp; speed?</div>
+            <div class="flow-label">Want control & speed?</div>
             <div class="flow-connector"></div>
-            <div class="flow-node highlight"><div class="flow-node-q">Best fit →</div><div class="flow-node-a">Independent + IndieCo</div></div>
+            <div class="flow-node outcome" style="border-color:var(--gold);background:var(--dark);"><div class="flow-node-q" style="color:var(--gold);">Best fit →</div><div class="flow-node-a" style="color:#f5f0e8;">Independent + IndieCo</div></div>
           </div>
         </div>
-        <p class="flow-source">Source: Jane Friedman · Key Book Publishing Paths 2025–2026 · janefriedman.com</p>
+        <p style="margin-top:1.8rem;font-family:var(--font-sans);font-size:10px;font-weight:300;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-ghost);text-align:center;">Source: Jane Friedman · Key Book Publishing Paths 2025–2026 · janefriedman.com</p>
       </div>
     </div>
   </section>
 
 </div><!-- /page-wrap -->
 
-
-<!-- ══════════════════════════════════════
-   CTA BANNER
-══════════════════════════════════════ -->
+<!-- ── CTA BANNER ── -->
 <div class="cta-banner">
-  <div class="page-wrap cta-inner">
-    <span class="cta-eyebrow fade-up">Your Next Move</span>
+  <div class="page-wrap">
     <h2 class="fade-up">Begin your<br><em>authority journey.</em></h2>
-    <p class="cta-sub fade-up">The world rewards those who can prove their authority — not just claim it. Let's build yours.</p>
-    <div class="cta-actions fade-up">
-      <a href="get-started.html" class="btn-primary">Get started →</a>
-      <a href="premier-services.html" class="btn-ghost">View premier services</a>
+    <div>
+      <a href="get-started.html" class="btn-gold fade-up">Get started →</a>
+      <a href="premier-services.html" class="btn-outline fade-up">View premier services</a>
     </div>
   </div>
 </div>
 
-
-<!-- ── FOOTER ── -->
 <div id="footer-placeholder"></div>
 
-
+<script src="../js/nav.js"></script>
 <script>
-/* ══════════════════════════════════════
-   INTERSECTION OBSERVER — fade-up
-══════════════════════════════════════ */
-(function() {
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
-})();
+document.addEventListener('DOMContentLoaded', function () {
 
-/* ══════════════════════════════════════
-   HERO SCROLL
-══════════════════════════════════════ */
-var heroScroll = document.getElementById('hero-scroll');
-if (heroScroll) {
-  heroScroll.addEventListener('click', function() {
-    document.querySelector('.ss').scrollIntoView({ behavior: 'smooth' });
-  });
-}
-
-/* ══════════════════════════════════════
-   PATH TABS
-══════════════════════════════════════ */
-document.querySelectorAll('.path-tab').forEach(function(tab) {
-  tab.addEventListener('click', function() {
+/* ── PATH TABS — nav.js handles fade-up, just wire tabs ── */
+document.querySelectorAll('.path-tab').forEach(function (tab) {
+  tab.addEventListener('click', function () {
     var id = this.dataset.path;
-    document.querySelectorAll('.path-panel').forEach(function(p) { p.classList.remove('active'); });
-    document.querySelectorAll('.path-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.path-panel').forEach(function (p) { p.classList.remove('active'); });
+    document.querySelectorAll('.path-tab').forEach(function (t) { t.classList.remove('active'); });
     document.getElementById('path-' + id).classList.add('active');
     this.classList.add('active');
   });
 });
 
-/* ══════════════════════════════════════
-   TAROT QUIZ
-══════════════════════════════════════ */
+/* ── HERO SCROLL ── */
+var heroScroll = document.getElementById('hero-scroll');
+if (heroScroll) {
+  heroScroll.addEventListener('click', function () {
+    document.querySelector('.ss').scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+/* ── TAROT QUIZ ── */
 var QUESTIONS = [
   { title: "Where does your authority live — on the page, the stage, or in the room?", options: [
     { text: "On the page. I want a book with my name on it.", weight: { book:3, stage:0, media:0 } },
@@ -605,6 +1488,7 @@ var RESULTS = [
 var ROMAN = ['I','II','III','IV','V','VI','VII'];
 var currentQ = -1;
 var scores = { book:0, stage:0, media:0 };
+var answers = [];
 
 function buildProgress() {
   var prog = document.getElementById('q-progress');
@@ -640,26 +1524,27 @@ function selectOption(i) {
   scores.book  += w.book;
   scores.stage += w.stage;
   scores.media += w.media;
+  answers.push(i);
   document.querySelectorAll('.q-option').forEach(function(el, idx) { el.classList.toggle('selected', idx === i); });
-  setTimeout(nextQuestion, 450);
+  setTimeout(nextQuestion, 480);
 }
 
-function skipQuestion() { nextQuestion(); }
+function skipQuestion() { answers.push(-1); nextQuestion(); }
 
 function nextQuestion() {
   currentQ++;
   if (currentQ >= QUESTIONS.length) { showResult(); return; }
   document.getElementById('q-face').classList.remove('active');
-  setTimeout(function() { showQuestion(currentQ); }, 180);
+  setTimeout(function() { showQuestion(currentQ); }, 200);
   document.getElementById('quiz-label').textContent = 'Question ' + (currentQ+1) + ' of ' + QUESTIONS.length;
 }
 
 function showResult() {
   document.getElementById('q-face').classList.remove('active');
   var maxVal = Math.max(scores.book, scores.stage, scores.media);
-  var spread = [scores.book, scores.stage, scores.media].filter(function(s){ return s >= maxVal - 2; }).length;
+  var spread = [scores.book, scores.stage, scores.media].filter(function(s){ return s >= maxVal-2; }).length;
   var result;
-  if (spread >= 3 || scores.book + scores.stage + scores.media >= 14) result = RESULTS[3];
+  if (spread >= 3 || scores.book+scores.stage+scores.media >= 14) result = RESULTS[3];
   else if (scores.book >= scores.stage && scores.book >= scores.media) result = RESULTS[0];
   else if (scores.stage >= scores.media) result = RESULTS[1];
   else result = RESULTS[2];
@@ -680,6 +1565,7 @@ function showResult() {
 
 function startQuiz() {
   scores = { book:0, stage:0, media:0 };
+  answers = [];
   currentQ = 0;
   document.getElementById('quiz-intro').style.display = 'none';
   document.getElementById('quiz-cta-btn').style.display = 'none';
@@ -693,7 +1579,7 @@ function startQuiz() {
 
 function resetQuiz() {
   scores = { book:0, stage:0, media:0 };
-  currentQ = -1;
+  answers = []; currentQ = -1;
   document.getElementById('q-face').classList.remove('active');
   document.getElementById('result-face').classList.remove('active');
   document.getElementById('quiz-intro').style.display = 'block';
@@ -715,6 +1601,7 @@ document.getElementById('result-cta-btn').addEventListener('click', function(){
   document.querySelector('.cta-banner').scrollIntoView({ behavior: 'smooth' });
 });
 
+}); // end DOMContentLoaded
 </script>
 </body>
 </html>
