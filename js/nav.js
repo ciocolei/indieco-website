@@ -139,9 +139,18 @@ const CTA_LINK = { label: 'Work With Us', href: '/pages/work-with-us.html' };
 
   // Books for the Products column — update hrefs when store page is live
   const BOOKS = [
-    { title: 'The Authority Blueprint',      href: '/pages/store.html' },
-    { title: 'Positioned',                   href: '/pages/store.html' },
-    { title: 'The Executive\'s Byline',      href: '/pages/store.html' },
+    { title: 'Silakbo',      href: 'https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks' },
+    { title: 'In the Shadows Where They Lie',                   href: 'https://www.amazon.com/gp/product/B0GT7D7HSZ?ref_=dbs_mng_crcw_0&storeType=ebooks' },
+    { title: 'Lucky In Love',      href: 'https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks' },
+    { title: 'Forgive & Forget',      href: 'https://www.amazon.com/gp/product/B0GRC4BBYK?ref_=dbs_m_mng_rwt_calw_tkin_1&storeType=ebooks' },
+    { title: 'Silent Nights',                   href: 'https://www.amazon.com/gp/product/B0GT2D6CCD?ref_=dbs_m_mng_rwt_calw_tkin_2&storeType=ebooks' },
+    { title: 'To Love and Be Loved',      href: 'https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks' },
+    { title: 'Untold Truths',      href: 'https://www.amazon.com/gp/product/B0GL4FBW3S?ref_=dbs_mng_crcw_3&storeType=ebooks' },
+    { title: 'The Meaning of Me',                   href: 'https://www.amazon.com/gp/product/B0GHXB16KP?ref_=dbs_mng_crcw_4&storeType=ebooks' },
+    { title: 'Whats Next',      href: 'https://www.amazon.com/gp/product/B0GR82QD9L?ref_=dbs_mng_crcw_2&storeType=ebooks' },
+    { title: 'What Do You Live For',      href: 'https://www.amazon.com/gp/product/B0GWV8DVM9?ref_=dbs_m_mng_rwt_calw_tkin_3&storeType=ebooks' },
+    { title: 'Reflections',                   href: 'https://www.amazon.com/gp/product/B0GWVFNG73?ref_=dbs_mng_crcw_5&storeType=ebooks' },
+    { title: 'From Stage to Screen',      href: 'https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB' },
   ];
 
   const footer = document.createElement('footer');
