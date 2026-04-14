@@ -76,12 +76,11 @@
   );
 }
 
-
   /* Utility */
-  --ink:         #0A0710;
+  --ink:          #0A0710;
   --rule-voltage: rgba(184,36,78,0.2);
---rule-bone:    rgba(244,240,235,0.1);
---rule:         rgba(244,240,235,0.1);  /* default rule = bone-white, matches all pages */
+  --rule-bone:    rgba(244,240,235,0.1);
+  --rule:         rgba(244,240,235,0.65);  /* default rule = bone-white, matches all pages */
 
   /* Typography */
 --font-serif: 'Cormorant Garamond', serif;
@@ -104,6 +103,7 @@
   --gutter-sm: 40px;
   --gutter-xs: 20px;
 }
+
 
 /* ── RESET ──────────────────────────────────────── */
 *, *::before, *::after {
