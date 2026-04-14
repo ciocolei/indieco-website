@@ -6,24 +6,77 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&display=swap');
 
 /* ── DESIGN TOKENS ─────────────────────────────── */
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.nav-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Optional: make it feel more "tech luxury" */
+.nav-logo-img {
+  filter: brightness(1.1) contrast(1.05);
+  transition: opacity 0.25s ease;
+}
+
+.nav-logo:hover .nav-logo-img {
+  opacity: 0.8;
+}
+
+/* edited here */
 :root {
-  /* Primary Palette */
-  --void:        #0A0710;
-  --void-rich:   #0d0b14;
-  --graphite:    #211B2B;
-  --voltage:     #B8244E;
-  --voltage-dk:  #8C1A3A;
-  --voltage-lt:  #d4375f;
-  --orchid:      #5C2475;
-  --orchid-lt:   #7a3299;
-  --bone:        #F4F0EB;
-  --bone-dim:    #d8d0c8;
+  /* Primary Palette (Refined Tech Violet System) */
+  --void:        #0B0A12;
+  --void-rich:   #0F0D1A;
+  --graphite:    #1E1A2B;
+
+  /* Core Brand (shifted from red → violet/indigo) */
+  --voltage:     #7B61FF;   /* primary brand (Stripe-like violet) */
+  --voltage-dk:  #5B45D6;
+  --voltage-lt:  #9A84FF;
+
+  /* Secondary Accent (cool orchid, less red) */
+  --orchid:      #6E5BFF;
+  --orchid-lt:   #A79BFF;
+
+  /* Light Surfaces */
+  --bone:        #F6F4FF;
+  --bone-dim:    #E6E1FF;
 
   /* Secondary Palette */
-  --chrome-rose: #C89AB2;
-  --blush:       #EDD5E0;
-  --ash:         #9A8FA0;
-  --ash-dk:      #6b6078;
+  --chrome-rose: #C7C2FF;  /* repurposed → soft lavender chrome */
+  --blush:       #EFEAFF;
+  --ash:         #8F8AA8;
+  --ash-dk:      #5F5A78;
+}
+
+:root {
+  --gradient-primary: linear-gradient(
+    135deg,
+    #7B61FF 0%,
+    #9A84FF 40%,
+    #6E5BFF 100%
+  );
+
+  --gradient-soft: linear-gradient(
+    135deg,
+    #F6F4FF 0%,
+    #EDE9FF 100%
+  );
+
+  --gradient-glow: radial-gradient(
+    circle at 20% 30%,
+    rgba(123, 97, 255, 0.25),
+    transparent 60%
+  );
+}
 
   /* Utility */
   --ink:         #0A0710;
