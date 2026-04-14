@@ -1,172 +1,2115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Store</title>
+<link rel="stylesheet" href="../css/base.css"/>
+<link rel="stylesheet" href="../css/nav.css"/>
+<style>
 
-  <title>Store</title>
+/* ═══════════════════════════════════
+   STORE HEADER
+   ═══════════════════════════════════ */
+.store-header {
+  padding: 160px 0 70px;
+  border-bottom: 0.5px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
 
-  <!-- GLOBAL CSS -->
-  <link rel="stylesheet" href="/css/base.css" />
+.store-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 110% -10%, rgba(201,164,154,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at -5% 100%, rgba(184,151,106,0.07) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Ghost numeral */
+.store-header-deco {
+  position: absolute;
+  top: 60px;
+  right: -10px;
+  font-family: var(--font-serif);
+  font-size: clamp(12rem, 20vw, 20rem);
+  font-weight: 300;
+  color: transparent;
+  -webkit-text-stroke: 0.5px rgba(201,164,154,0.15);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
+}
+
+.store-header-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: storeReveal 0.9s ease 0.1s both;
+}
+.store-header-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 0.5px;
+  background: var(--rose);
+  flex-shrink: 0;
+}
+
+.store-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: storeReveal 1s ease 0.22s both;
+}
+
+.store-header h1 em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+@keyframes storeReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════
+   MARQUEE STRIP
+   ═══════════════════════════════════ */
+.store-marquee {
+  border-bottom: 0.5px solid var(--rule);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(201,164,154,0.04) 0%, rgba(184,151,106,0.03) 100%);
+}
+
+.store-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.store-marquee:hover .store-marquee-track { animation-play-state: paused; }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.store-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 3rem;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  white-space: nowrap;
+  border-right: 0.5px solid var(--rule);
+}
+.store-marquee-item .pip {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--rose);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════
+   APP HERO
+   ═══════════════════════════════════ */
+.app-hero {
+  padding: 5.5rem 0 4.5rem;
+  border-bottom: 0.5px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 70% at 90% 50%, rgba(201,164,154,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 40% at 5% 80%, rgba(184,151,106,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.app-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: center;
+}
+
+.app-hero-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.app-hero-badge {
+  background: var(--ink);
+  color: var(--cream);
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  font-weight: 300;
+}
+
+.app-hero-pip {
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  border: 0.5px solid var(--rose-border);
+  padding: 4px 10px;
+  font-weight: 300;
+}
+
+.app-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin-bottom: 1.25rem;
+  color: var(--ink);
+}
+.app-hero-title em { font-style: italic; color: var(--rose); }
+
+.app-hero-desc {
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  max-width: 48ch;
+  margin-bottom: 2rem;
+}
+
+.app-perks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 2.5rem;
+}
+
+.app-perk {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+.app-perk::before {
+  content: '—';
+  color: var(--rose);
+  flex-shrink: 0;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* Primary CTA — rose gradient hover */
+.btn-app-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 300;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 16px 40px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: gap 0.3s;
+}
+.btn-app-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.btn-app-hero:hover::before { opacity: 1; }
+.btn-app-hero:hover { color: var(--cream); gap: 16px; }
+.btn-app-hero span { position: relative; z-index: 1; }
+.btn-app-hero .arrow { position: relative; z-index: 1; transition: transform 0.3s; }
+.btn-app-hero:hover .arrow { transform: translateX(4px); }
+
+/* App visual panel */
+.app-visual-panel {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 2.5rem 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top edge in rose */
+.app-visual-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 60%, transparent 100%);
+}
+
+/* Diagonal texture */
+.app-visual-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 18px,
+    rgba(255,255,255,0.012) 18px,
+    rgba(255,255,255,0.012) 19px
+  );
+  pointer-events: none;
+}
+
+.app-panel-eyebrow {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  font-weight: 300;
+  margin-bottom: 1.75rem;
+}
+
+.app-panel-city {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.15;
+  color: rgba(255,255,255,0.9);
+  border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.app-panel-event {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1.25rem;
+}
+.app-panel-event + .app-panel-event {
+  padding-top: 1.1rem;
+  border-top: 0.5px solid rgba(255,255,255,0.07);
+}
+
+.event-label {
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+}
+.event-name {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.88);
+}
+.event-meta {
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  font-weight: 300;
+}
+
+.app-panel-tag {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  font-weight: 300;
+  border-top: 0.5px solid rgba(255,255,255,0.07);
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+/* ═══════════════════════════════════
+   PRODUCTS SECTION
+   ═══════════════════════════════════ */
+.products-section {
+  padding: 5rem 0;
+  border-bottom: 0.5px solid var(--rule);
+}
+
+.products-section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+.products-section-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 0.5px;
+  background: var(--rose);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5px;
+  background: var(--rule);
+  border: 0.5px solid var(--rule);
+}
+
+/* ── PRODUCT CARD ── */
+.product-card {
+  background: var(--cream-warm);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rose bloom on hover */
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,164,154,0.13) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+  transform: scale(0.5);
+  pointer-events: none;
+}
+.product-card:hover::after { opacity: 1; transform: scale(1); }
+.product-card:hover { background: var(--cream); }
+
+.product-badge {
+  font-size: 8.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 1rem;
+  display: block;
+  font-weight: 300;
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+
+.product-desc {
+  font-size: 12.5px;
+  color: var(--ink-mute);
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+  font-weight: 300;
+  flex: 1;
+}
+
+button.btn-product {
+  background: none;
+  border: none;
+  border-bottom: 0.5px solid var(--rose-border);
+  padding-bottom: 2px;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  transition: color 0.25s, border-color 0.25s;
+  align-self: flex-start;
+  position: relative;
+  z-index: 1;
+}
+button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
+
+/* ── CONSULTATION CARD ── */
+.product-card--consultation {
+  border-color: var(--ink);
+}
+
+.consultation-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.consultation-badge {
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  font-weight: 300;
+}
+
+.consultation-featured {
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose);
+  border: 0.5px solid var(--rose-border);
+  padding: 2px 8px;
+  font-weight: 300;
+}
+
+.consultation-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.consultation-pill {
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: var(--sand);
+  padding: 4px 10px;
+  font-weight: 300;
+}
+
+.btn-consultation {
+  display: block;
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 300;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+.btn-consultation::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.btn-consultation:hover::before { opacity: 1; }
+.btn-consultation span { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════
+   BOOK SECTION
+   ═══════════════════════════════════ */
+.book-section {
+  padding: 6rem 0;
+  border-bottom: 0.5px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+}
+
+.book-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,164,154,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.book-section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+  margin-bottom: 3.5rem;
+}
+.book-section-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 0.5px;
+  background: var(--rose);
+}
+
+.book-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.book-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 3D Book */
+.scene {
+  width: 260px;
+  height: 360px;
+  perspective: 900px;
+  perspective-origin: 50% 45%;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+.book {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate3d 8s ease-in-out infinite;
+}
+.scene:hover .book { animation-play-state: paused; }
+
+@keyframes rotate3d {
+  0%   { transform: rotateY(-25deg) rotateX(4deg); }
+  25%  { transform: rotateY(15deg) rotateX(-2deg); }
+  50%  { transform: rotateY(35deg) rotateX(4deg); }
+  75%  { transform: rotateY(15deg) rotateX(-2deg); }
+  100% { transform: rotateY(-25deg) rotateX(4deg); }
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.face-front {
+  transform: translateZ(14px);
+  background: var(--red);
+  display: flex;
+  flex-direction: column;
+  padding: 18px 18px 16px;
+  box-shadow: 6px 6px 30px rgba(0,0,0,0.35);
+  position: relative;
+}
+.face-front::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 14px; right: 14px;
+  height: 0.5px;
+  background: rgba(255,255,255,0.25);
+}
+
+.cover-word {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #fff;
+  font-size: 2.85rem;
+  display: block;
+  line-height: 0.88;
+}
+.cover-desc-block {
+  border-left: 2px solid rgba(255,255,255,0.55);
+  padding-left: 7px;
+  margin: 10px 0 6px;
+}
+.cover-desc-block p {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.36rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.9;
+}
+.cover-word-dark {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #1a1412;
+  display: block;
+  line-height: 0.88;
+}
+.cover-word-to { font-size: 2.85rem; }
+.cover-word-screen { font-size: 2.1rem; }
+
+.face-back {
+  transform: rotateY(180deg) translateZ(14px);
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  box-shadow: -6px 6px 30px rgba(0,0,0,0.35);
+}
+.face-back .back-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: #e8e0d5;
+  line-height: 1.7;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.face-back .back-label {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.55rem;
+  color: var(--rose);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+
+.face-spine {
+  width: 28px;
+  height: 100%;
+  position: absolute;
+  left: -14px;
+  top: 0;
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+  background: linear-gradient(to right, #900, var(--red));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.4);
+}
+.face-spine .spine-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.75rem;
+  color: #fff;
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  opacity: 0.9;
+}
+.face-top {
+  width: 100%; height: 28px;
+  position: absolute; top: -14px; left: 0;
+  transform-origin: center bottom;
+  transform: rotateX(90deg);
+  background: linear-gradient(to bottom, #ccc, #e8e0d5);
+}
+.face-bottom {
+  width: 100%; height: 28px;
+  position: absolute; bottom: -14px; left: 0;
+  transform-origin: center top;
+  transform: rotateX(-90deg);
+  background: linear-gradient(to top, #aaa, #d5cfc6);
+}
+.face-pages {
+  width: 14px; height: 100%;
+  position: absolute; right: -14px; top: 0;
+  transform-origin: left center;
+  transform: rotateY(90deg);
+  background: repeating-linear-gradient(to right, #e8e0d5, #e8e0d5 1px, #d4ccc2 1px, #d4ccc2 2px);
+}
+
+.book-shadow {
+  width: 260px;
+  height: 30px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.14) 0%, transparent 70%);
+  margin-top: -10px;
+  animation: shadowPulse 8s ease-in-out infinite;
+}
+@keyframes shadowPulse {
+  0%,100% { transform: scaleX(0.85); opacity: 0.6; }
+  50%      { transform: scaleX(1.1);  opacity: 0.3; }
+}
+
+.book-hint {
+  font-size: 0.62rem;
+  color: var(--ink-ghost);
+  letter-spacing: 0.12em;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* Book info */
+.book-info { padding-top: 1rem; }
+
+.book-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--rose);
+  margin-bottom: 0.85rem;
+}
+.book-eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 0.5px;
+  background: var(--rose);
+}
+
+.book-title {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 400;
+  line-height: 1.06;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.book-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--ink-mute);
+  margin-bottom: 2rem;
+}
+
+.book-rule {
+  width: 36px;
+  height: 1px;
+  background: var(--rose);
+  margin-bottom: 1.75rem;
+  opacity: 0.55;
+}
+
+.book-copy {
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}
+.book-copy p + p { margin-top: 1.2em; }
+
+.book-pull {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--ink);
+  border-left: 2px solid var(--rose);
+  padding: 4px 0 4px 18px;
+  margin: 1.75rem 0;
+  line-height: 1.55;
+}
+
+.book-meta {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  margin-bottom: 2rem;
+}
+.book-meta-label {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  margin-bottom: 4px;
+}
+.book-meta-value {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.buy-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.buy-label {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+}
+
+.btn-buy {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 300;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 16px 36px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: gap 0.3s;
+}
+.btn-buy::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.btn-buy:hover::before { opacity: 1; }
+.btn-buy:hover { color: var(--cream); gap: 16px; }
+.btn-buy span { position: relative; z-index: 1; }
+.btn-buy .arrow { position: relative; z-index: 1; transition: transform 0.3s; }
+.btn-buy:hover .arrow { transform: translateX(4px); }
+
+/* ═══════════════════════════════════
+   SERIES SECTION
+   ═══════════════════════════════════ */
+.series-section {
+  padding: 6rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.series-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 100% 0%, rgba(201,164,154,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.series-intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  border-bottom: 0.5px solid var(--rule);
+  padding-bottom: 2.5rem;
+}
+
+.series-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+.series-heading em { font-style: italic; color: var(--rose); }
+
+.series-stat { margin-top: 0.75rem; text-align: right; }
+.series-stat-num {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--ink-ghost);
+  line-height: 1;
+  display: block;
+}
+.series-stat-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  font-weight: 300;
+}
+
+.series-pip {
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  border: 0.5px solid var(--rose-border);
+  padding: 4px 10px;
+  font-weight: 300;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.series-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-mute);
+  line-height: 1.85;
+  max-width: 48ch;
+  margin-top: 1rem;
+}
+
+/* Books grid */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.book-card {
+  background: var(--cream-warm);
+  border: 0.5px solid var(--rule-soft);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.book-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.book-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); }
+.book-card:hover::after { opacity: 1; }
+
+.book-card-cover {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: var(--sand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.book-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.book-card:hover .book-card-cover img { transform: scale(1.05); }
+.book-card-cover-num {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--rose);
+  opacity: 0.4;
+}
+
+.book-card-body {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.book-card-vol {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+}
+.book-card-title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.book-card-cta {
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 0.5px solid var(--rule-soft);
+  transition: color 0.25s;
+}
+.book-card:hover .book-card-cta { color: var(--ink); }
+
+.series-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 0.5px solid var(--rule);
+}
+.series-footer-copy {
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  max-width: 42ch;
+}
+
+/* ═══════════════════════════════════
+   MODALS — shared base
+   ═══════════════════════════════════ */
+#consult-overlay,
+#notify-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(14,13,11,0.55);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+#consult-overlay.open,
+#notify-overlay.open {
+  display: flex;
+  animation: overlayFade 0.25s ease both;
+}
+@keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalSlide {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── CONSULTATION MODAL ── */
+#consult-modal {
+  background: var(--cream-warm);
+  border: 0.5px solid var(--rule-soft);
+  max-width: 580px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlide 0.32s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* Rose gradient top bar */
+#consult-modal::before {
+  content: '';
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 60%, transparent 100%);
+  display: block;
+  flex-shrink: 0;
+}
+
+#consult-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--ink-ghost);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+  padding: 4px;
+  z-index: 2;
+}
+#consult-close:hover { color: var(--rose); }
+
+.cm-header {
+  padding: 2.5rem 2.5rem 2rem;
+  border-bottom: 0.5px solid var(--rule);
+}
+.cm-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+  margin-bottom: 0.85rem;
+}
+.cm-eyebrow::before {
+  content: '';
+  width: 16px;
+  height: 0.5px;
+  background: var(--rose);
+}
+.cm-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--ink);
+}
+.cm-title em { font-style: italic; color: var(--rose); }
+
+.cm-meta-strip {
+  display: flex;
+  gap: 8px;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+.cm-meta-chip {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  background: var(--sand);
+  padding: 5px 12px;
+  font-weight: 300;
+}
+
+.cm-body { padding: 2rem 2.5rem; }
+.cm-intro {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin-bottom: 2rem;
+}
+.cm-label {
+  font-size: 8.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  display: block;
+  margin-bottom: 1rem;
+}
+.cm-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 0.5px solid var(--rule);
+  margin-bottom: 2rem;
+}
+.cm-item {
+  background: var(--cream-warm);
+  padding: 1.1rem 1.25rem;
+  transition: background 0.2s;
+}
+.cm-item:hover { background: var(--cream); }
+.cm-item-num {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--rose);
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 4px;
+}
+.cm-item-name {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.cm-item-desc {
+  font-size: 11px;
+  color: var(--ink-mute);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.cm-credit {
+  background: rgba(201,164,154,0.07);
+  border-left: 2px solid var(--rose);
+  padding: 1rem 1.25rem;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+.cm-credit strong { color: var(--ink); font-weight: 400; }
+
+.cm-logistics {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.25rem 0;
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+  margin-bottom: 2rem;
+}
+.cm-log-label {
+  font-size: 8.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+.cm-log-value {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+.cm-prepare { margin-bottom: 2rem; }
+.cm-prepare-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cm-prepare-list li {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  font-weight: 300;
+  line-height: 1.65;
+  padding-left: 16px;
+  position: relative;
+}
+.cm-prepare-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--rose);
+  font-size: 10px;
+}
+
+.btn-book {
+  display: block;
+  width: 100%;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 300;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 17px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+.btn-book::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.btn-book:hover::before { opacity: 1; }
+.btn-book span { position: relative; z-index: 1; }
+
+.cm-fine {
+  font-size: 10px;
+  color: var(--ink-ghost);
+  text-align: center;
+  margin-top: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── NOTIFY MODAL ── */
+#notify-modal {
+  background: var(--cream-warm);
+  border: 0.5px solid var(--rule-soft);
+  max-width: 420px;
+  width: 100%;
+  padding: 3rem 2.5rem 2.5rem;
+  position: relative;
+  animation: modalSlide 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* Rose top bar */
+#notify-modal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 60%, transparent 100%);
+}
+
+#notify-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--ink-ghost);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+  padding: 4px;
+}
+#notify-close:hover { color: var(--rose); }
+
+#notify-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#notify-eyebrow::before {
+  content: '';
+  width: 16px;
+  height: 0.5px;
+  background: var(--rose);
+}
+
+#notify-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 0.85rem;
+}
+#notify-title em { font-style: italic; color: var(--rose); }
+
+#notify-subtitle {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+.notify-field { margin-bottom: 1.1rem; }
+.notify-label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--ink-mute);
+  margin-bottom: 7px;
+}
+.notify-label sup { color: var(--rose); }
+
+#notify-modal input[type="email"],
+#notify-modal input[type="text"] {
+  width: 100%;
+  background: rgba(255,255,255,0.65);
+  border: 0.5px solid var(--rule-soft);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  padding: 13px 14px;
+  outline: none;
+  border-radius: 0;
+  appearance: none;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+#notify-modal input:focus {
+  border-color: var(--rose);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(201,164,154,0.08);
+}
+#notify-modal input.invalid { border-color: #b05a45; }
+#notify-modal input::placeholder { color: var(--ink-ghost); }
+
+.notify-field-error {
+  font-size: 10.5px;
+  color: #b05a45;
+  margin-top: 5px;
+  min-height: 14px;
+}
+.notify-submit-error {
+  font-size: 11px;
+  color: #b05a45;
+  padding: 9px 12px;
+  border-left: 1.5px solid #b05a45;
+  background: rgba(176,90,69,0.04);
+  margin-bottom: 1rem;
+  display: none;
+}
+
+#notify-submit {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 14px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--cream);
+  background: var(--ink);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, opacity 0.2s;
+}
+#notify-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+#notify-submit:hover::before { opacity: 1; }
+#notify-submit span { position: relative; z-index: 1; }
+#notify-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+#notify-submit:disabled::before { display: none; }
+
+.notify-fine {
+  font-size: 10px;
+  color: var(--ink-ghost);
+  text-align: center;
+  margin-top: 0.85rem;
+  letter-spacing: 0.06em;
+}
+
+#notify-success {
+  display: none;
+  text-align: center;
+  padding: 1rem 0 0.5rem;
+}
+.notify-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+#notify-success-title {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 0.85rem;
+}
+#notify-success-body {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+#notify-success-body strong { color: var(--ink); font-weight: 400; }
+
+/* ═══════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════ */
+@media (max-width: 900px) {
+  .app-hero-inner { grid-template-columns: 1fr; }
+  .app-visual-panel { display: none; }
+  .store-header-deco { display: none; }
+}
+@media (max-width: 768px) {
+  .book-layout { grid-template-columns: 1fr; gap: 48px; }
+  .book-visual { margin: 0 auto; }
+  .cm-items { grid-template-columns: 1fr; }
+  .cm-logistics { gap: 1rem; }
+  .series-intro { flex-direction: column; }
+  .series-stat { text-align: left; }
+  .products-grid { gap: 1rem; background: none; border: none; }
+  .product-card { border: 0.5px solid var(--rule-soft); }
+}
+@media (max-width: 500px) {
+  .cm-header { padding: 2rem 1.5rem 1.5rem; }
+  .cm-body { padding: 1.5rem; }
+  #notify-modal { padding: 2.5rem 1.5rem 2rem; }
+  .store-header { padding: 130px 0 55px; }
+}
+</style>
 </head>
-
 <body>
 
-  <!-- NAV (GLOBAL INJECTION) -->
-  <div id="nav-placeholder"></div>
+<div id="nav-placeholder"></div>
 
-  <!-- PAGE -->
-  <main class="container">
+<div class="page-wrap">
 
-    <!-- PRODUCTS -->
-    <section class="products-section">
+  <!-- ═══════ STORE HEADER ═══════ -->
+  <div class="store-header fade-up">
+    <div class="store-header-deco" aria-hidden="true">S</div>
+    <p class="store-header-eyebrow">IndieCo Store</p>
+    <h1>Resources and Products</em></h1>
+  </div>
 
-      <h2 class="section-title">Products</h2>
+</div><!-- /page-wrap -->
 
-      <div class="products-grid">
+<!-- ═══════ MARQUEE ═══════ -->
+<div class="store-marquee" aria-hidden="true">
+  <div class="store-marquee-track">
+    <div class="store-marquee-item"><span class="pip"></span>The IndieCo App</div>
+    <div class="store-marquee-item"><span class="pip"></span>Authority Blueprint</div>
+    <div class="store-marquee-item"><span class="pip"></span>Speak to Power</div>
+    <div class="store-marquee-item"><span class="pip"></span>Press Kit Builder</div>
+    <div class="store-marquee-item"><span class="pip"></span>From Stage to Screen</div>
+    <div class="store-marquee-item"><span class="pip"></span>12 Volumes</div>
+    <div class="store-marquee-item"><span class="pip"></span>Strategy Sessions</div>
+    <div class="store-marquee-item"><span class="pip"></span>300+ Writers</div>
+    <div class="store-marquee-item"><span class="pip"></span>Manila · New York</div>
+    <div class="store-marquee-item"><span class="pip"></span>IndieCo Collective</div>
+    <div class="store-marquee-item"><span class="pip"></span>The IndieCo App</div>
+    <div class="store-marquee-item"><span class="pip"></span>Authority Blueprint</div>
+    <div class="store-marquee-item"><span class="pip"></span>Speak to Power</div>
+    <div class="store-marquee-item"><span class="pip"></span>Press Kit Builder</div>
+    <div class="store-marquee-item"><span class="pip"></span>From Stage to Screen</div>
+    <div class="store-marquee-item"><span class="pip"></span>12 Volumes</div>
+    <div class="store-marquee-item"><span class="pip"></span>Strategy Sessions</div>
+    <div class="store-marquee-item"><span class="pip"></span>300+ Writers</div>
+    <div class="store-marquee-item"><span class="pip"></span>Manila · New York</div>
+    <div class="store-marquee-item"><span class="pip"></span>IndieCo Collective</div>
+  </div>
+</div>
 
-        <div class="product-card">
-          <div class="product-name">Authority Audit</div>
-          <p class="product-desc">1:1 Strategy Session. Positioning, media, roadmap.</p>
-          <a href="https://calendly.com/indieco/1-1-working-session-with-leah" target="_blank" class="btn-primary">
-            Book →
-          </a>
+<div class="page-wrap">
+
+  <!-- ═══════ 1. APP HERO ═══════ -->
+  <section class="app-hero">
+    <div class="app-hero-inner">
+      <div class="fade-up">
+        <div class="app-hero-badge-row">
+          <span class="app-hero-badge">Platform</span>
+          <span class="app-hero-pip">Early Access</span>
         </div>
-
-        <div class="product-card">
-          <div class="product-name">Authority Blueprint</div>
-          <p class="product-desc">Self-paced system for building public authority.</p>
-          <button class="btn-ghost notify-trigger" data-product="Authority Blueprint">
-            Notify →
-          </button>
+        <h2 class="app-hero-title">The IndieCo<br><em>App.</em></h2>
+        <p class="app-hero-desc">Join the waitlist and gain access to exclusive events, resources, and a curated network of founders and professionals across Manila and New York.</p>
+        <div class="app-perks-grid">
+          <div class="app-perk">Member resources and events</div>
+          <div class="app-perk">Manila &amp; New York</div>
+          <div class="app-perk">Authority tools &amp; resources</div>
+          <div class="app-perk">Curated network</div>
+          <div class="app-perk">Early access to releases</div>
+          <div class="app-perk">Paid Speaker &amp; Media Opportunities</div>
         </div>
-
-        <div class="product-card">
-          <div class="product-name">Speak to Power</div>
-          <p class="product-desc">Workshop for structured thinking and stage clarity.</p>
-          <button class="btn-ghost notify-trigger" data-product="Speak to Power">
-            Notify →
-          </button>
-        </div>
-
-        <div class="product-card">
-          <div class="product-name">Press Kit Builder</div>
-          <p class="product-desc">Templates for media, speaking, and O1A cases.</p>
-          <button class="btn-ghost notify-trigger" data-product="Press Kit Builder">
-            Notify →
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- PUBLICATIONS -->
-    <section class="series-section">
-
-      <h2 class="section-title">Publications</h2>
-
-      <div class="books-grid">
-
-        <a href="https://www.amazon.com/gp/product/B0G5QWPJ77" target="_blank" class="book-card">
-          <span>Vol. 01</span>
-          <div>Silakbo</div>
-        </a>
-
-        <a href="https://www.amazon.com/gp/product/B0GT7D7HSZ" target="_blank" class="book-card">
-          <span>Vol. 02</span>
-          <div>In the Shadows Where They Lie</div>
-        </a>
-
-        <a href="https://www.amazon.com/gp/product/B0GQW2SSHT" target="_blank" class="book-card">
-          <span>Vol. 03</span>
-          <div>Lucky I'm in Love</div>
-        </a>
-
+        <button class="btn-app-hero notify-trigger" data-product="IndieCo App &amp; Platform">
+          <span>Join the waitlist</span>
+          <span class="arrow">→</span>
+        </button>
       </div>
 
-      <div class="series-footer">
-        <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="btn-primary">
-          View all →
-        </a>
+      <div class="app-visual-panel fade-up" style="transition-delay:0.1s">
+        <p class="app-panel-eyebrow">IndieCo · Member Events · 2026 – 2027</p>
+        <div class="app-panel-city">Manila<br>&amp; New York.</div>
+        <div class="app-panel-event">
+          <span class="event-label">Upcoming · Manila</span>
+          <span class="event-name">Authority Dinner — Makati</span>
+          <span class="event-meta">Members only · Q3 2026</span>
+        </div>
+        <div class="app-panel-event">
+          <span class="event-label">Upcoming · New York</span>
+          <span class="event-name">Founder Salon — Soho</span>
+          <span class="event-meta">Members only · Q4 2026</span>
+        </div>
+        <p class="app-panel-tag">Access reserved for IndieCo App members</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ 2. PRODUCTS ═══════ -->
+  <section class="products-section">
+    <div class="products-section-eyebrow">Services &amp; Resources</div>
+    <div class="products-grid">
+
+      <!-- Consultation — featured -->
+      <div class="product-card product-card--consultation fade-up">
+        <div class="consultation-tag-row">
+          <span class="consultation-badge">Private Consultation</span>
+          <span class="consultation-featured">Featured</span>
+        </div>
+        <div class="product-name">Authority Strategy Session</div>
+        <div class="consultation-pills">
+          <span class="consultation-pill">90 minutes</span>
+          <span class="consultation-pill">With an Expert</span>
+          <span class="consultation-pill">Google Meet</span>
+        </div>
+        <p class="product-desc">A private session with one of IndieCo's advisors. We'll map your positioning, narrative, and the most strategic path to media and authority at scale.</p>
+        <button class="btn-consultation" id="open-consult-modal"><span>Learn more &amp; book →</span></button>
       </div>
 
-    </section>
+      <!-- Authority Blueprint -->
+      <div class="product-card fade-up" style="transition-delay:0.08s">
+        <span class="product-badge">Course</span>
+        <div class="product-name">Authority Blueprint</div>
+        <p class="product-desc">A self-paced course for professionals who want to build a credible public profile without a full agency engagement.</p>
+        <button class="btn-product notify-trigger" data-product="Authority Blueprint">Notify me →</button>
+      </div>
 
-  </main>
+      <!-- Speak to Power -->
+      <div class="product-card fade-up" style="transition-delay:0.16s">
+        <span class="product-badge">Workshop</span>
+        <div class="product-name">Speak to Power</div>
+        <p class="product-desc">An intensive week-long workshop on narrative structure, idea articulation, and stage presence — for first-time speakers ready to command curated, high-caliber rooms.</p>
+        <button class="btn-product notify-trigger" data-product="Speak to Power Workshop">Notify me →</button>
+      </div>
 
-  <!-- NOTIFY MODAL -->
-  <div id="notify-overlay" style="display:none;">
-    <div id="notify-modal">
-
-      <button id="notify-close">×</button>
-
-      <h2>Join waitlist</h2>
-      <p id="notify-product-name"></p>
-
-      <form id="notify-form">
-        <input type="hidden" id="notify-product-input"/>
-
-        <input type="email" id="notify-email" placeholder="Email" required/>
-        <input type="text" id="notify-name" placeholder="Name" required/>
-
-        <button type="submit">Submit →</button>
-      </form>
-
-      <div id="notify-success" style="display:none;">
-        <p>You're in.</p>
+      <!-- Press Kit Builder -->
+      <div class="product-card fade-up" style="transition-delay:0.24s">
+        <span class="product-badge">Template Kit</span>
+        <div class="product-name">Press Kit Builder</div>
+        <p class="product-desc">A curated collection of templates for speaker bios, media one-sheets, and O1A immigration evidence portfolios.</p>
+        <button class="btn-product notify-trigger" data-product="Press Kit Builder">Notify me →</button>
       </div>
 
     </div>
+  </section>
+
+  <!-- ═══════ 3. BOOK ═══════ -->
+  <section class="book-section">
+    <div class="book-section-eyebrow">From the IndieCo Library</div>
+    <div class="book-layout">
+
+      <div class="book-visual">
+        <div class="scene">
+          <div class="book">
+            <div class="face-pages"></div>
+            <div class="face-spine"><span class="spine-text">FROM STAGE TO SCREEN &nbsp;·&nbsp; LEAH CIOCO</span></div>
+            <div class="face-top"></div>
+            <div class="face-bottom"></div>
+            <div class="face face-front">
+              <div style="line-height:0.88;margin-top:6px">
+                <span class="cover-word">FROM</span>
+                <span class="cover-word">STAGE</span>
+              </div>
+              <div class="cover-desc-block">
+                <p>A COLLECTION OF HEARTFELT ESSAYS THAT</p>
+                <p>JOURNEYED FROM PERSONAL REFLECTION</p>
+                <p>ON THE LOCAL TEDx STAGE TO THE</p>
+                <p>GLOBAL TEDx PLATFORM</p>
+              </div>
+              <div style="line-height:0.88;margin-top:2px">
+                <span class="cover-word-dark cover-word-to">TO</span>
+                <span class="cover-word-dark cover-word-screen">SCREEN</span>
+              </div>
+            </div>
+            <div class="face face-back">
+              <div class="back-quote">"The best talks are great personal essays — told with voice, argument, structure, and above all, vulnerability."</div>
+              <div class="back-label">Leah Cioco · Stage Curator · 5 Events · 55+ Speakers</div>
+            </div>
+          </div>
+        </div>
+        <div class="book-shadow"></div>
+        <p class="book-hint">Hover to pause · click to explore</p>
+      </div>
+
+      <div class="book-info fade-up">
+        <p class="book-eyebrow">Leah Cioco · TEDx Stage Curator &amp; Event Organizer</p>
+        <h2 class="book-title">From Stage<br>to Screen</h2>
+        <p class="book-subtitle">An anthology, 2023–2026</p>
+        <div class="book-rule"></div>
+        <div class="book-copy">
+          <p>The most enduring ideas don't live in boardrooms. They belong on stages — spoken aloud, in front of people willing to listen. Independent speaking platforms, built and run by local communities, were created on a single premise: that great ideas should not be confined to any one city, institution, or industry.</p>
+          <div class="book-pull">"The best platform talks are great personal essays."</div>
+          <p>I've organized and/or been part of five independent TEDx events over five years. This anthology gathers 55 talks delivered between 2023 and 2026, written by those I've personally worked with — scientists, artists, entrepreneurs, educators, activists, and simply people with something to say.</p>
+        </div>
+        <div class="book-meta">
+          <div class="book-meta-item">
+            <div class="book-meta-label">Author</div>
+            <div class="book-meta-value">Leah Cioco</div>
+          </div>
+          <div class="book-meta-item">
+            <div class="book-meta-label">Format</div>
+            <div class="book-meta-value">Paperback + Digital</div>
+          </div>
+          <div class="book-meta-item">
+            <div class="book-meta-label">Talks</div>
+            <div class="book-meta-value">55 Essays</div>
+          </div>
+        </div>
+        <div class="buy-section">
+          <span class="buy-label">Get your copy</span>
+          <a href="https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB" target="_blank" class="btn-buy">
+            <span>Buy on Amazon</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════ 4. SERIES ═══════ -->
+  <section class="series-section fade-up">
+    <div class="series-intro">
+      <div>
+        <h2 class="series-heading">The Indiependent<br><em>Collective Series.</em></h2>
+        <p class="series-desc">12 books. 300+ writers. Each title found its permanent form on the page.</p>
+      </div>
+      <div>
+        <span class="series-pip">2023 – 2026</span>
+        <div class="series-stat">
+          <span class="series-stat-num">12</span>
+          <span class="series-stat-label">Volumes Published</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="books-grid">
+
+      <a href="https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/silakbo.jpg" alt="Silakbo" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>01</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 01</span>
+          <div class="book-card-title">Silakbo</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GT7D7HSZ?ref_=dbs_mng_crcw_0&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/shadows.png" alt="In the Shadows Where They Lie" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>02</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 02</span>
+          <div class="book-card-title">In the Shadows Where They Lie</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/luckylove.png" alt="Lucky I'm in Love" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>03</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 03</span>
+          <div class="book-card-title">Lucky I'm in Love</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GRC4BBYK?ref_=dbs_m_mng_rwt_calw_tkin_1&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/forgive.jpeg" alt="Forgive &amp; Forget" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>04</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 04</span>
+          <div class="book-card-title">Forgive &amp; Forget</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GT2D6CCD?ref_=dbs_m_mng_rwt_calw_tkin_2&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/silent.png" alt="Silent Nights" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>05</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 05</span>
+          <div class="book-card-title">Silent Nights: Finding Hope in the Horrible</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/love.png" alt="To Love and Be Loved" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>06</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 06</span>
+          <div class="book-card-title">To Love and Be Loved</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GL4FBW3S?ref_=dbs_mng_crcw_3&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/untold.png" alt="Untold Truths" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>07</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 07</span>
+          <div class="book-card-title">Untold Truths</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GHXB16KP?ref_=dbs_mng_crcw_4&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/meaning.png" alt="The Meaning of Me" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>08</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 08</span>
+          <div class="book-card-title">The Meaning of Me</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/gp/product/B0GR82QD9L?ref_=dbs_mng_crcw_2&storeType=ebooks" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/next.png" alt="What's Next?" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>09</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 09</span>
+          <div class="book-card-title">What's Next?</div>
+          <div class="book-card-cta">Read on Amazon →</div>
+        </div>
+      </a>
+
+      <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="book-card">
+        <div class="book-card-cover">
+          <img src="../images/covers/relfections.png" alt="More in the Series"
+            onerror="this.style.display='none';this.parentNode.style.background='var(--ink)';this.parentNode.innerHTML='<span style=\'font-family:var(--font-serif);font-size:0.8rem;font-weight:300;color:rgba(201,164,154,0.4);letter-spacing:0.08em;text-align:center;padding:1rem;\'>+ More in<br>the Series</span>'"/>
+        </div>
+        <div class="book-card-body">
+          <span class="book-card-vol">Vol. 10 – 12</span>
+          <div class="book-card-title">View remaining volumes</div>
+          <div class="book-card-cta">Browse on Amazon →</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="series-footer">
+      <p class="series-footer-copy">The complete Indiependent Collective series — all twelve volumes — is available on Amazon. Each book is sold separately or as part of the full collection.</p>
+      <a href="https://www.amazon.com/dp/B0G5T1F984" target="_blank" class="btn-buy">
+        <span>View full series on Amazon</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+</div><!-- /page-wrap -->
+
+<!-- ═══════ CONSULTATION MODAL ═══════ -->
+<div id="consult-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div id="consult-modal">
+    <button id="consult-close" aria-label="Close">&times;</button>
+    <div class="cm-header">
+      <p class="cm-eyebrow">IndieCo · Private Consultation</p>
+      <h2 class="cm-title">Authority Strategy<br><em>Session.</em></h2>
+      <div class="cm-meta-strip">
+        <span class="cm-meta-chip">90 minutes</span>
+        <span class="cm-meta-chip">With an IndieCo Expert</span>
+        <span class="cm-meta-chip">Google Meet</span>
+        <span class="cm-meta-chip">Confidential · 1-on-1</span>
+      </div>
+    </div>
+    <div class="cm-body">
+      <p class="cm-intro">Welcome to your private consultation with IndieCo. In this session, we'll break down your ideas, expertise, and visibility goals — and map out the most strategic path to position you for global media, high-impact platforms, and authority at scale.</p>
+      <span class="cm-label">What's included</span>
+      <div class="cm-items">
+        <div class="cm-item"><span class="cm-item-num">01</span><div class="cm-item-name">Authority Audit</div><div class="cm-item-desc">We assess your current positioning, story, and credibility assets.</div></div>
+        <div class="cm-item"><span class="cm-item-num">02</span><div class="cm-item-name">Narrative &amp; Positioning</div><div class="cm-item-desc">Clear direction on your core idea, narrative, and how to frame your expertise.</div></div>
+        <div class="cm-item"><span class="cm-item-num">03</span><div class="cm-item-name">Media &amp; Authority Roadmap</div><div class="cm-item-desc">A focused overview of IndieCo's Advisory and how it applies to you.</div></div>
+        <div class="cm-item"><span class="cm-item-num">04</span><div class="cm-item-name">Honest Package Guidance</div><div class="cm-item-desc">Which IndieCo package fits your goals — with no pressure.</div></div>
+        <div class="cm-item"><span class="cm-item-num">05</span><div class="cm-item-name">Recording + Written Notes</div><div class="cm-item-desc">Delivered to your inbox within 24 hours of the session.</div></div>
+        <div class="cm-item"><span class="cm-item-num">06</span><div class="cm-item-name">Session Fee is Creditable</div><div class="cm-item-desc">Fully deductible from whichever IndieCo package you choose.</div></div>
+      </div>
+      <div class="cm-credit">
+        <strong>Fully creditable &amp; deductible.</strong> Your consultation fee is applied in full toward whichever IndieCo package you choose to move forward with. If you proceed, you pay nothing extra for this session.
+      </div>
+      <div class="cm-logistics">
+        <div class="cm-log-item"><div class="cm-log-label">Duration</div><div class="cm-log-value">90 minutes</div></div>
+        <div class="cm-log-item"><div class="cm-log-label">Format</div><div class="cm-log-value">Google Meet</div></div>
+        <div class="cm-log-item"><div class="cm-log-label">Link sent</div><div class="cm-log-value">Upon confirmation</div></div>
+        <div class="cm-log-item"><div class="cm-log-label">Notes</div><div class="cm-log-value">Within 24 hrs</div></div>
+      </div>
+      <span class="cm-label">Please prepare</span>
+      <div class="cm-prepare">
+        <ul class="cm-prepare-list">
+          <li>A short overview of your background or core idea (if available)</li>
+          <li>Any questions around visibility, positioning, or collaboration</li>
+        </ul>
+      </div>
+      <a href="https://calendly.com/indieco/1-1-working-session-with-leah" target="_blank" class="btn-book"><span>Book your session →</span></a>
+      <p class="cm-fine">Payment secured via PayPal · Booking link sent upon confirmation · contact@indieco.com.co</p>
+    </div>
   </div>
+</div>
 
-  <!-- GLOBAL NAV SCRIPT -->
-  <script>
-    fetch('/components/nav.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('nav-placeholder').innerHTML = data;
-      });
-  </script>
+<!-- ═══════ NOTIFY MODAL ═══════ -->
+<div id="notify-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="notify-title">
+  <div id="notify-modal">
+    <button id="notify-close" aria-label="Close">&times;</button>
+    <div id="notify-form-wrap">
+      <p id="notify-eyebrow">Early Access</p>
+      <h2 id="notify-title">You'll be the<br><em>first to know.</em></h2>
+      <p id="notify-subtitle">Leave your email and we'll reach out the moment <span id="notify-product-name"></span> is available.</p>
+      <form id="notify-form" novalidate>
+        <input type="hidden" name="product" id="notify-product-input"/>
+        <div class="notify-field">
+          <label class="notify-label" for="notify-email">Email address <sup>*</sup></label>
+          <input type="email" id="notify-email" name="email" placeholder="you@yourco.com" autocomplete="email" required/>
+          <div id="notify-email-error" class="notify-field-error" aria-live="polite"></div>
+        </div>
+        <div class="notify-field">
+          <label class="notify-label" for="notify-name">Your name <sup>*</sup></label>
+          <input type="text" id="notify-name" name="name" placeholder="Sofia Reyes" autocomplete="name" required/>
+          <div id="notify-name-error" class="notify-field-error" aria-live="polite"></div>
+        </div>
+        <div id="notify-submit-error" class="notify-submit-error" role="alert"></div>
+        <button type="submit" id="notify-submit"><span id="notify-btn-text">Join the waitlist →</span></button>
+        <p class="notify-fine">No spam. One email when it launches.</p>
+      </form>
+    </div>
+    <div id="notify-success" aria-live="polite">
+      <div class="notify-check">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10.5" stroke="var(--rose)"/>
+          <polyline points="6,11 9.5,14.5 16,8" stroke="var(--rose)" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 id="notify-success-title">You're on the list.</h2>
+      <p id="notify-success-body">We'll be in touch when <strong id="notify-success-product"></strong> launches.</p>
+    </div>
+  </div>
+</div>
 
-  <!-- PAGE LOGIC -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
+<div id="footer-placeholder"></div>
+<script src="../js/nav.js"></script>
+<script src="../js/forms.js"></script>
+<script>
+/* ── CONSULTATION MODAL ── */
+const consultOverlay = document.getElementById('consult-overlay');
+document.getElementById('open-consult-modal').addEventListener('click', function () {
+  consultOverlay.classList.add('open');
+  consultOverlay.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+});
+function closeConsult() {
+  consultOverlay.classList.remove('open');
+  consultOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+document.getElementById('consult-close').addEventListener('click', closeConsult);
+consultOverlay.addEventListener('click', function (e) { if (e.target === consultOverlay) closeConsult(); });
 
-      const overlay = document.getElementById('notify-overlay');
-      const closeBtn = document.getElementById('notify-close');
-      const productInput = document.getElementById('notify-product-input');
-      const productName = document.getElementById('notify-product-name');
+/* ── NOTIFY MODAL ── */
+const notifyOverlay = document.getElementById('notify-overlay');
+const form          = document.getElementById('notify-form');
+const emailInput    = document.getElementById('notify-email');
+const nameInput     = document.getElementById('notify-name');
+const productInput  = document.getElementById('notify-product-input');
+const submitBtn     = document.getElementById('notify-submit');
+const btnText       = document.getElementById('notify-btn-text');
+const formWrap      = document.getElementById('notify-form-wrap');
+const successDiv    = document.getElementById('notify-success');
+const emailErr      = document.getElementById('notify-email-error');
+const nameErr       = document.getElementById('notify-name-error');
+const submitErr     = document.getElementById('notify-submit-error');
 
-      // OPEN MODAL
-      document.querySelectorAll('.notify-trigger').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const product = btn.dataset.product || '';
-          overlay.style.display = 'flex';
-          productInput.value = product;
-          productName.textContent = product;
-        });
-      });
+document.querySelectorAll('.notify-trigger').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var p = btn.getAttribute('data-product') || 'this product';
+    productInput.value = p;
+    document.getElementById('notify-product-name').textContent = p;
+    document.getElementById('notify-success-product').textContent = p;
+    formWrap.style.display = '';
+    successDiv.style.display = 'none';
+    emailInput.value = '';
+    nameInput.value = '';
+    clearErrors();
+    submitErr.style.display = 'none';
+    submitBtn.disabled = false;
+    btnText.textContent = 'Join the waitlist →';
+    notifyOverlay.classList.add('open');
+    notifyOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { emailInput.focus(); }, 100);
+  });
+});
 
-      // CLOSE MODAL
-      closeBtn.addEventListener('click', () => {
-        overlay.style.display = 'none';
-      });
+function closeNotify() {
+  notifyOverlay.classList.remove('open');
+  notifyOverlay.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+document.getElementById('notify-close').addEventListener('click', closeNotify);
+notifyOverlay.addEventListener('click', function (e) { if (e.target === notifyOverlay) closeNotify(); });
 
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-          overlay.style.display = 'none';
-        }
-      });
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  if (consultOverlay.classList.contains('open')) closeConsult();
+  if (notifyOverlay.classList.contains('open')) closeNotify();
+});
 
-      // FORM
-      document.getElementById('notify-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        document.getElementById('notify-form').style.display = 'none';
-        document.getElementById('notify-success').style.display = 'block';
-      });
+function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }
+function clearErrors() {
+  emailErr.textContent = '';
+  nameErr.textContent = '';
+  emailInput.classList.remove('invalid');
+  nameInput.classList.remove('invalid');
+}
+function validate() {
+  clearErrors();
+  var ok = true;
+  if (!nameInput.value.trim())  { nameErr.textContent  = 'Please enter your name.';  nameInput.classList.add('invalid');  ok = false; }
+  if (!emailInput.value.trim()) { emailErr.textContent = 'Please enter your email.'; emailInput.classList.add('invalid'); ok = false; }
+  else if (!isValidEmail(emailInput.value)) { emailErr.textContent = 'Please enter a valid email.'; emailInput.classList.add('invalid'); ok = false; }
+  return ok;
+}
 
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
+  if (!validate()) return;
+  submitBtn.disabled = true;
+  btnText.textContent = 'Joining…';
+  submitErr.style.display = 'none';
+  try {
+    await submitToSheets({
+      name:          nameInput.value.trim(),
+      email:         emailInput.value.trim(),
+      product:       productInput.value,
+      _submitted_at: new Date().toISOString(),
+      _page:         window.location.pathname
     });
-  </script>
+    formWrap.style.display = 'none';
+    successDiv.style.display = 'block';
+  } catch (err) {
+    submitBtn.disabled = false;
+    btnText.textContent = 'Join the waitlist →';
+    submitErr.textContent = 'Something went wrong — please email contact@indieco.com.co';
+    submitErr.style.display = 'block';
+  }
+});
 
+emailInput.addEventListener('blur', function () {
+  if (emailInput.value && !isValidEmail(emailInput.value)) {
+    emailErr.textContent = 'Please enter a valid email.';
+    emailInput.classList.add('invalid');
+  } else {
+    emailErr.textContent = '';
+    emailInput.classList.remove('invalid');
+  }
+});
+</script>
 </body>
 </html>
