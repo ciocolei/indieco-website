@@ -4,418 +4,145 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Get Started — IndieCo</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../css/base.css"/>
 <link rel="stylesheet" href="../css/nav.css"/>
 <style>
+body { background: var(--cream); }
 
-  /* KEEP only these page-specific additions */
-:root {
-  --rule: rgba(244,240,235,0.1);  /* page override — fine once base.css is fixed */
-  --font-serif: 'Cormorant Garamond', Georgia, serif;  /* already in base.css as --font-serif, remove */
-}
+.gs-header { padding: 140px 0 60px; border-bottom: 0.5px solid var(--rule); }
+.gs-eyebrow { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+.gs-header h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.1; margin-bottom: 1rem; }
+.gs-header h1 em { font-style: italic; }
+.gs-header p { font-size: 13.5px; color: var(--ink-mute); line-height: 1.8; max-width: 480px; }
 
-
-/* ── HERO HEADER ── */
-.gs-hero {
-  padding: 140px 0 60px;
-  border-bottom: 0.5px solid var(--rule);
-  position: relative;
-  overflow: hidden;
-}
-.gs-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 50% 80% at 100% 0%, rgba(92,36,117,0.4) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 60% at 0% 100%, rgba(184,36,78,0.15) 0%, transparent 60%);
-  pointer-events: none;
-}
-.gs-hero-inner { position: relative; z-index: 1; }
-.gs-eyebrow {
-  font-size: 9px;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  color: var(--voltage);
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.gs-eyebrow::before { content:''; width:28px; height:1px; background:var(--voltage); flex-shrink:0; }
-.gs-hero h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 300;
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  color: var(--bone);
-  margin-bottom: 1.5rem;
-}
-.gs-hero h1 em { font-style: italic; color: var(--chrome-rose); }
-.gs-hero-lead {
-  font-size: 14px;
-  font-weight: 300;
-  color: rgba(244,240,235,0.5);
-  line-height: 1.85;
-  max-width: 440px;
-}
-
-/* ── MAIN LAYOUT ── */
-.gs-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.7fr;
-  gap: 80px;
-  padding: 6rem 0;
-}
-
-/* ── SIDEBAR STEPS ── */
-.gs-sidebar-title {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--bone);
-  margin-bottom: 2.5rem;
-}
+.gs-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; padding: 5rem 0; }
+.gs-sidebar h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; }
 .gs-steps { list-style: none; }
-.gs-step {
-  display: flex;
-  gap: 1.25rem;
-  padding: 1.5rem 0;
-  border-bottom: 0.5px solid var(--rule);
-  position: relative;
-  transition: padding-left 0.3s;
-}
-.gs-step::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 1.5px;
-  background: var(--voltage);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-}
-.gs-step:hover { padding-left: 10px; }
-.gs-step:hover::before { transform: scaleY(1); }
-.gs-step-num {
-  font-family: var(--font-serif);
-  font-size: 0.85rem;
-  color: var(--voltage);
-  min-width: 1.5rem;
-  padding-top: 2px;
-  flex-shrink: 0;
-}
-.gs-step-text strong {
-  display: block;
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--bone);
-  margin-bottom: 4px;
-  letter-spacing: 0.02em;
-}
-.gs-step-text p { font-size: 12px; font-weight: 300; color: rgba(244,240,235,0.4); line-height: 1.65; }
+.gs-step { display: flex; gap: 1.2rem; padding: 1.2rem 0; border-bottom: 0.5px solid var(--rule); }
+.gs-step-num { font-family: var(--font-serif); font-size: 0.8rem; color: var(--gold); min-width: 1.5rem; padding-top: 2px; }
+.gs-step-text strong { display: block; font-size: 13px; font-weight: 400; color: var(--ink); margin-bottom: 3px; }
+.gs-step-text p { font-size: 12px; color: var(--ink-mute); line-height: 1.6; }
 
-/* Cities tag */
-.gs-cities {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 0.5px solid var(--rule);
-}
-.gs-city-label { font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(244,240,235,0.25); font-weight: 300; margin-bottom: 0.75rem; display: block; }
-.gs-city-names { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 300; color: rgba(244,240,235,0.4); }
+/* FORM */
+.gs-form { background: var(--white); border: 0.5px solid var(--rule); padding: 3rem; }
+.form-title { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 300; margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--rule); }
 
-/* ── FORM PANEL ── */
-.gs-form-panel {
-  background: var(--graphite);
-  border: 0.5px solid var(--rule);
-  position: relative;
-  overflow: hidden;
-}
-.gs-form-panel::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--voltage), var(--orchid), transparent);
-}
-.gs-form-inner { padding: 3rem; }
-
-.form-title {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--bone);
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 0.5px solid var(--rule);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-}
-.form-title-arrow { color: var(--voltage); font-family: var(--font-sans); font-size: 1rem; }
-
-/* Fields */
-.field { margin-bottom: 1.5rem; }
-.field-label {
-  display: block;
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 400;
-  color: rgba(244,240,235,0.4);
-  margin-bottom: 9px;
-}
-.field-label sup { color: var(--voltage); }
+.field { margin-bottom: 1.4rem; }
+.field-label { display: block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 300; color: var(--ink-mute); margin-bottom: 8px; }
+.field-label sup { color: var(--gold); }
 input[type="text"], input[type="email"], textarea, select {
-  width: 100%;
-  background: rgba(244,240,235,0.04);
-  border: 0.5px solid rgba(244,240,235,0.12);
-  color: var(--bone);
-  font-family: var(--font-sans);
-  font-size: 13.5px;
-  font-weight: 300;
-  letter-spacing: 0.03em;
-  padding: 15px 18px;
-  outline: none;
-  transition: border-color 0.25s, background 0.25s;
-  border-radius: 0;
-  appearance: none;
+  width: 100%; background: var(--cream); border: 0.5px solid var(--rule);
+  color: var(--ink); font-family: var(--font-sans); font-size: 13px;
+  font-weight: 300; letter-spacing: 0.04em; padding: 14px 16px;
+  outline: none; transition: border-color 0.25s, background 0.25s;
+  border-radius: 0; appearance: none;
 }
-input:focus, textarea:focus, select:focus {
-  border-color: rgba(184,36,78,0.6);
-  background: rgba(184,36,78,0.04);
-}
-input::placeholder, textarea::placeholder { color: rgba(244,240,235,0.18); }
-textarea { resize: vertical; min-height: 100px; line-height: 1.8; }
-select { cursor: pointer; }
-select option { background: var(--graphite); color: var(--bone); }
+input:focus, textarea:focus, select:focus { border-color: var(--gold); background: var(--cream-warm); }
+input::placeholder, textarea::placeholder { color: var(--ink-ghost); }
+textarea { resize: vertical; min-height: 90px; line-height: 1.8; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
 .select-wrap { position: relative; }
-.select-wrap::after {
-  content: '';
-  position: absolute;
-  right: 18px; top: 50%;
-  width: 7px; height: 7px;
-  border-right: 0.5px solid rgba(244,240,235,0.3);
-  border-bottom: 0.5px solid rgba(244,240,235,0.3);
-  transform: translateY(-60%) rotate(45deg);
-  pointer-events: none;
-}
+.select-wrap::after { content: ''; position: absolute; right: 16px; top: 50%; width: 7px; height: 7px; border-right: 0.5px solid var(--ink-mute); border-bottom: 0.5px solid var(--ink-mute); transform: translateY(-60%) rotate(45deg); pointer-events: none; }
 
-/* Submit */
 .btn-submit {
-  width: 100%;
-  margin-top: 1.75rem;
-  padding: 18px;
-  font-family: var(--font-sans);
-  font-size: 9.5px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 400;
-  color: var(--bone);
-  background: var(--voltage);
-  border: none;
-  cursor: pointer;
-  transition: background 0.25s;
-  position: relative;
-  overflow: hidden;
+  width: 100%; margin-top: 1.5rem; padding: 16px;
+  font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.22em;
+  text-transform: uppercase; font-weight: 300; color: var(--dark);
+  background: var(--ink); border: none; cursor: pointer;
+  transition: background 0.25s, opacity 0.2s;
 }
-.btn-submit::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--voltage-dk);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.btn-submit span { position: relative; z-index: 1; }
-.btn-submit:hover::before { opacity: 1; }
+.btn-submit:hover { background: var(--gold); }
 .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
-.btn-submit:disabled::before { display: none; }
 
-#form-error {
-  margin-top: 14px;
-  font-size: 11px;
-  color: #e07070;
-  padding: 10px 16px;
-  border-left: 2px solid rgba(184,36,78,0.6);
-  background: rgba(184,36,78,0.06);
-  display: none;
-}
-.form-note {
-  font-size: 10px;
-  color: rgba(244,240,235,0.2);
-  text-align: center;
-  margin-top: 1.25rem;
-  letter-spacing: 0.08em;
-}
+#form-error { margin-top: 12px; font-size: 11px; color: #b05a45; padding: 10px 14px; border-left: 2px solid #b05a45; background: rgba(176,90,69,0.04); display: none; }
+.form-note { font-size: 10px; color: var(--ink-ghost); text-align: center; margin-top: 1rem; letter-spacing: 0.05em; }
 
-/* Success state */
-.form-success {
-  display: none;
-  text-align: center;
-  padding: 4rem 3rem;
-}
+.form-success { display: none; text-align: center; padding: 3rem; }
 .form-success.visible { display: block; }
-.success-icon {
-  width: 52px; height: 52px;
-  border: 0.5px solid var(--voltage);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 2rem;
-  animation: scaleIn 0.5s ease both;
-}
-@keyframes scaleIn { from{transform:scale(0.7);opacity:0} to{transform:scale(1);opacity:1} }
-.success-icon::after {
-  content: '';
-  width: 11px; height: 18px;
-  border-right: 1.5px solid var(--voltage);
-  border-bottom: 1.5px solid var(--voltage);
-  transform: rotate(45deg) translate(-2px,-2px);
-  display: block;
-}
-.success-word {
-  font-family: var(--font-serif);
-  font-size: 2.8rem;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--voltage);
-  display: block;
-  margin-bottom: 1rem;
-}
-.success-text {
-  font-size: 13.5px;
-  font-weight: 300;
-  color: rgba(244,240,235,0.5);
-  line-height: 1.85;
-}
+.success-check { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 300; font-style: italic; color: var(--gold); margin-bottom: 1rem; }
+.success-text { font-size: 13px; color: var(--ink-mute); line-height: 1.8; }
 
-/* Responsive */
-@media (max-width: 900px) { .gs-layout { grid-template-columns: 1fr; gap: 48px; } }
-@media (max-width: 600px) {
-  .page-wrap { padding: 0 20px; }
-  .gs-hero { padding: 120px 0 48px; }
+@media (max-width: 768px) {
+  .gs-layout { grid-template-columns: 1fr; gap: 40px; }
   .two-col { grid-template-columns: 1fr; }
-  .gs-form-inner { padding: 2rem 1.5rem; }
 }
 </style>
 </head>
 <body>
-<div id="nav-placeholder"></div>
-<div class="page-wrap">
 
-  <!-- HERO -->
-  <header class="gs-hero fade-up">
-    <div class="gs-hero-inner">
-      <p class="gs-eyebrow">Get Started</p>
-      <h1>Tell us your story.<br>We'll build the <em>platform.</em></h1>
-      <p class="gs-hero-lead">Start with a quick intake below. A member of our team will be in touch within 24 hours to discuss your goals and whether IndieCo is the right fit.</p>
-    </div>
+<div id="nav-placeholder"></div>
+
+<div class="page-wrap">
+  <header class="gs-header fade-up">
+    <p class="gs-eyebrow">Get Started</p>
+    <h1>Tell us your story.<br>We'll build the <em>platform.</em></h1>
+    <p>Start with a quick intake below. A member of our team will be in touch within 24 hours to discuss your goals and whether IndieCo is the right fit.</p>
   </header>
 
-  <!-- LAYOUT -->
   <div class="gs-layout">
-
     <!-- SIDEBAR -->
     <div class="gs-sidebar fade-up">
-      <h3 class="gs-sidebar-title">What happens next</h3>
+      <h3>What happens next</h3>
       <ul class="gs-steps">
         <li class="gs-step">
           <span class="gs-step-num">I</span>
-          <div class="gs-step-text">
-            <strong>Submit your intake</strong>
-            <p>Fill out the form with your background and goals.</p>
-          </div>
+          <div class="gs-step-text"><strong>Submit your intake</strong><p>Fill out the form on the right with your background and goals.</p></div>
         </li>
         <li class="gs-step">
           <span class="gs-step-num">II</span>
-          <div class="gs-step-text">
-            <strong>Team review</strong>
-            <p>Our team reviews your submission within 24 hours.</p>
-          </div>
+          <div class="gs-step-text"><strong>Team review</strong><p>Our team reviews your submission within 24 hours.</p></div>
         </li>
         <li class="gs-step">
           <span class="gs-step-num">III</span>
-          <div class="gs-step-text">
-            <strong>Discovery call</strong>
-            <p>We schedule a private 30-minute call to map your strategy.</p>
-          </div>
+          <div class="gs-step-text"><strong>Discovery call</strong><p>We schedule a private 30-minute call to map your strategy.</p></div>
         </li>
         <li class="gs-step">
           <span class="gs-step-num">IV</span>
-          <div class="gs-step-text">
-            <strong>Proposal</strong>
-            <p>If we're a fit, we present a bespoke engagement plan.</p>
-          </div>
+          <div class="gs-step-text"><strong>Proposal</strong><p>If we're a fit, we present a bespoke engagement plan.</p></div>
         </li>
       </ul>
-      <div class="gs-cities">
-        <span class="gs-city-label">Offices</span>
-        <div class="gs-city-names">Manila · New York</div>
-      </div>
     </div>
 
     <!-- FORM -->
-    <div class="gs-form-panel fade-up" style="transition-delay:0.12s">
-      <div class="gs-form-inner">
-        <p class="form-title">Start your intake <span class="form-title-arrow">→</span></p>
+    <div>
+      <div class="gs-form fade-up" style="transition-delay:0.1s">
+        <p class="form-title">Start your intake →</p>
 
         <form id="gs-form" novalidate>
           <div class="two-col">
-            <div class="field">
-              <label class="field-label">First Name <sup>*</sup></label>
-              <input type="text" name="first_name" placeholder="Sofia" required/>
-            </div>
-            <div class="field">
-              <label class="field-label">Last Name <sup>*</sup></label>
-              <input type="text" name="last_name" placeholder="Reyes" required/>
-            </div>
+            <div class="field"><label class="field-label">First Name <sup>*</sup></label><input type="text" name="first_name" placeholder="Sofia" required/></div>
+            <div class="field"><label class="field-label">Last Name <sup>*</sup></label><input type="text" name="last_name" placeholder="Reyes" required/></div>
           </div>
-          <div class="field">
-            <label class="field-label">Email <sup>*</sup></label>
-            <input type="email" name="email" placeholder="sofia@yourco.com" required/>
-          </div>
-          <div class="field">
-            <label class="field-label">Your field / industry <sup>*</sup></label>
-            <input type="text" name="field" placeholder="e.g. Finance, Health, Law, Tech" required/>
-          </div>
-          <div class="field">
-            <label class="field-label">What brings you here? <sup>*</sup></label>
+          <div class="field"><label class="field-label">Email <sup>*</sup></label><input type="email" name="email" placeholder="sofia@yourco.com" required/></div>
+          <div class="field"><label class="field-label">Your field / industry <sup>*</sup></label><input type="text" name="field" placeholder="e.g. Finance, Health, Law, Tech" required/></div>
+          <div class="field"><label class="field-label">What brings you here? <sup>*</sup></label>
             <div class="select-wrap">
               <select name="goal" required>
                 <option value="" disabled selected>Select your primary goal</option>
-                <option>Book publishing &amp; bestseller strategy</option>
-                <option>Speaking &amp; global stage placement</option>
+                <option>Book publishing & bestseller strategy</option>
+                <option>Speaking & global stage placement</option>
                 <option>O1A / immigration documentation</option>
-                <option>Media features &amp; PR</option>
+                <option>Media features & PR</option>
                 <option>Thought leadership positioning</option>
-                <option>Brand &amp; revenue strategy</option>
+                <option>Brand & revenue strategy</option>
                 <option>Full authority ecosystem</option>
               </select>
             </div>
           </div>
-          <div class="field">
-            <label class="field-label">Tell us about yourself <sup>*</sup></label>
-            <textarea name="background" placeholder="What have you built, written, or led? What problem are you trying to solve?" required></textarea>
-          </div>
+          <div class="field"><label class="field-label">Tell us about yourself <sup>*</sup></label><textarea name="background" placeholder="What have you built, written, or led? What problem are you trying to solve?" required></textarea></div>
 
-          <button type="submit" class="btn-submit" id="gs-submit-btn"><span>Submit intake →</span></button>
+          <button type="submit" class="btn-submit" id="gs-submit-btn">Submit intake →</button>
           <div id="form-error">Please complete all required fields.</div>
           <p class="form-note">We respond within 24 hours — Manila · New York</p>
         </form>
 
         <div class="form-success" id="form-success">
-          <div class="success-icon"></div>
-          <span class="success-word">Thank you.</span>
+          <div class="success-check">Thank you.</div>
           <p class="success-text">Your intake has been received.<br>A member of our team will be in touch within 24 hours.</p>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -423,32 +150,27 @@ select option { background: var(--graphite); color: var(--bone); }
 <script src="../js/nav.js"></script>
 <script src="../js/forms.js"></script>
 <script>
-(function(){
-  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.08});
-  document.querySelectorAll('.fade-up').forEach(function(el){obs.observe(el);});
-})();
-
-attachFormHandler(document.getElementById('gs-form'),{
-  validate:function(){
-    var fields=['first_name','last_name','email','field','background'];
-    for(var i=0;i<fields.length;i++){
-      var el=document.querySelector('[name="'+fields[i]+'"]');
-      if(!el||!el.value.trim()){
-        document.getElementById('form-error').style.display='block';
+attachFormHandler(document.getElementById('gs-form'), {
+  validate: function() {
+    const fields = ['first_name','last_name','email','field','background'];
+    for (const name of fields) {
+      const el = document.querySelector(`[name="${name}"]`);
+      if (!el || !el.value.trim()) {
+        document.getElementById('form-error').style.display = 'block';
         return false;
       }
     }
-    document.getElementById('form-error').style.display='none';
+    document.getElementById('form-error').style.display = 'none';
     return true;
   },
-  onSuccess:function(){
-    document.getElementById('gs-form').style.display='none';
+  onSuccess: function() {
+    document.getElementById('gs-form').style.display = 'none';
     document.getElementById('form-success').classList.add('visible');
   },
-  onError:function(){
-    var err=document.getElementById('form-error');
-    err.style.display='block';
-    err.textContent='Something went wrong. Please email us at contact@indieco.com.co';
+  onError: function() {
+    const err = document.getElementById('form-error');
+    err.style.display = 'block';
+    err.textContent = 'Something went wrong. Please email us at contact@indieco.com.co';
   }
 });
 </script>
