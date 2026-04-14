@@ -1,92 +1,67 @@
 /* ═══════════════════════════════════════════════════
-   INDIECO — BASE DESIGN SYSTEM
-   Brand Guide 2026 · Authority · Media · Publishing
+   INDIECO — TECH DESIGN SYSTEM (2026 REBUILD)
 ═══════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
 
-/* ── DESIGN TOKENS ─────────────────────────────── */
+/* ───────────────── DESIGN TOKENS ───────────────── */
 
-.nav-logo {
-  display: flex;
-  align-items: center;
-  height: 40px;
-}
-
-.nav-logo-img {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Optional: make it feel more "tech luxury" */
-.nav-logo-img {
-  filter: brightness(1.1) contrast(1.05);
-  transition: opacity 0.25s ease;
-}
-
-.nav-logo:hover .nav-logo-img {
-  opacity: 0.8;
-}
-
-/* edited here */
 :root {
-  /* Primary Palette (Refined Tech Violet System) */
-  --void:        #0B0A12;
-  --void-rich:   #0F0D1A;
-  --graphite:    #1E1A2B;
 
-  /* Core Brand (shifted from red → violet/indigo) */
-  --voltage:     #7B61FF;   /* primary brand (Stripe-like violet) */
-  --voltage-dk:  #5B45D6;
-  --voltage-lt:  #9A84FF;
+  /* Core Background System (deep tech void) */
+  --void:        #07060D;
+  --void-rich:   #0C0A14;
+  --surface-1:   #121024;
+  --surface-2:   #17132D;
 
-  /* Secondary Accent (cool orchid, less red) */
-  --orchid:      #6E5BFF;
-  --orchid-lt:   #A79BFF;
+  /* Primary Brand (modern indigo-violet SaaS feel) */
+  --primary:     #7C5CFF;
+  --primary-2:   #9A7BFF;
+  --primary-3:   #5A3DFF;
 
-  /* Light Surfaces */
-  --bone:        #F6F4FF;
-  --bone-dim:    #E6E1FF;
+  /* Accent Glow */
+  --accent:      #A78BFF;
+  --accent-soft: rgba(124, 92, 255, 0.25);
 
-  /* Secondary Palette */
-  --chrome-rose: #C7C2FF;  /* repurposed → soft lavender chrome */
-  --blush:       #EFEAFF;
-  --ash:         #8F8AA8;
-  --ash-dk:      #5F5A78;
+  /* Text System */
+  --text:        #F5F3FF;
+  --text-dim:    #B8B3D6;
+  --text-muted:  #7E7A9A;
 
+  /* Borders (glass UI feel) */
+  --border:      rgba(255,255,255,0.08);
+  --border-2:    rgba(255,255,255,0.14);
+
+  /* Gradients (soft SaaS glow) */
   --gradient-primary: linear-gradient(
     135deg,
-    #7B61FF 0%,
-    #9A84FF 40%,
-    #6E5BFF 100%
-  );
-
-  --gradient-soft: linear-gradient(
-    135deg,
-    #F6F4FF 0%,
-    #EDE9FF 100%
+    #7C5CFF 0%,
+    #9A7BFF 45%,
+    #5A3DFF 100%
   );
 
   --gradient-glow: radial-gradient(
-    circle at 20% 30%,
-    rgba(123, 97, 255, 0.25),
-    transparent 60%
+    circle at 20% 20%,
+    rgba(124, 92, 255, 0.35),
+    transparent 55%
   );
-}
 
-  /* Utility */
-  --ink:          #0A0710;
-  --rule-voltage: rgba(184,36,78,0.2);
-  --rule-bone:    rgba(244,240,235,0.1);
-  --rule:         rgba(244,240,235,0.65);  /* default rule = bone-white, matches all pages */
+  --gradient-surface: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.01)
+  );
 
   /* Typography */
---font-serif: 'Cormorant Garamond', serif;
---font-body: 'Space Grotesk', sans-serif;
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 
-  /* Spacing (4px base) */
+  /* Radius System */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  /* Spacing (8pt system) */
   --sp-1:  4px;
   --sp-2:  8px;
   --sp-3:  12px;
@@ -98,15 +73,22 @@
   --sp-24: 96px;
 
   /* Layout */
-  --max-w: 1280px;
-  --gutter: 80px;
+  --max-w: 1200px;
+  --gutter: 72px;
   --gutter-sm: 40px;
   --gutter-xs: 20px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fast: 0.25s;
+  --med: 0.5s;
 }
 
+/* ───────────────── RESET ───────────────── */
 
-/* ── RESET ──────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -114,142 +96,187 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--void);
-  color: var(--bone);
+  background: radial-gradient(circle at top, #0C0A14 0%, #07060D 60%);
+  color: var(--text);
   font-family: var(--font-body);
   font-weight: 300;
-  overflow-x: hidden;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-button { cursor: pointer; font-family: inherit; border: none; background: none; }
+/* ───────────────── BASE ELEMENTS ───────────────── */
 
-/* ── PAGE WRAPPER ───────────────────────────────── */
+a { color: inherit; text-decoration: none; }
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ───────────────── LAYOUT ───────────────── */
+
 .page-wrap {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
 
-/* ── SHARED SECTION TYPOGRAPHY ──────────────────── */
+/* ───────────────── NAV LOGO ───────────────── */
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.nav-logo-img {
+  height: 28px;
+  object-fit: contain;
+  filter: brightness(1.05) contrast(1.05);
+  transition: opacity var(--fast) var(--ease);
+}
+
+.nav-logo:hover .nav-logo-img {
+  opacity: 0.7;
+}
+
+/* ───────────────── TYPOGRAPHY ───────────────── */
+
 .section-eyebrow {
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.32em;
+  font-size: 10px;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--voltage);
-  display: block;
+  color: var(--text-muted);
   margin-bottom: var(--sp-6);
 }
 
 .section-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 5.5vw, 4rem);
-  font-weight: 300;
-  line-height: 1.06;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
   letter-spacing: -0.02em;
-  color: var(--bone);
 }
 
 .section-title em {
   font-style: italic;
-  color: var(--voltage);
+  color: var(--primary);
 }
 
-.section-title-dark {
-  color: var(--void);
-}
+/* ───────────────── BUTTONS ───────────────── */
 
-.section-title-dark em { color: var(--voltage); }
-
-/* ── BUTTONS ────────────────────────────────────── */
 .btn-primary {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 400;
+
+  padding: 14px 34px;
+  border-radius: var(--radius-sm);
+
+  font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  background: var(--voltage);
-  color: var(--bone);
-  padding: 16px 36px;
-  position: relative;
+
+  color: var(--text);
+  background: var(--primary);
+
   overflow: hidden;
-  transition: color 0.3s;
-  cursor: pointer;
+  transition: transform var(--fast) var(--ease);
 }
 
 .btn-primary::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--voltage-dk);
-  transform: translateX(-101%);
-  transition: transform 0.45s cubic-bezier(0.7,0,0.3,1);
+  background: var(--gradient-primary);
+  transform: translateX(-100%);
+  transition: transform 0.5s var(--ease);
 }
 
-.btn-primary:hover::before { transform: translateX(0); }
-.btn-primary span { position: relative; z-index: 1; }
+.btn-primary:hover::before {
+  transform: translateX(0);
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ghost button */
 
 .btn-ghost {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 400;
+
+  padding: 14px 34px;
+  border-radius: var(--radius-sm);
+
+  font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  background: transparent;
-  color: var(--bone-dim);
-  border: 0.5px solid rgba(244,240,235,0.25);
-  padding: 16px 36px;
-  transition: color 0.3s, border-color 0.3s;
-  cursor: pointer;
+
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+
+  transition: all var(--fast) var(--ease);
 }
 
 .btn-ghost:hover {
-  color: var(--bone);
-  border-color: rgba(244,240,235,0.6);
+  color: var(--text);
+  border-color: var(--border-2);
+  background: rgba(255,255,255,0.03);
 }
 
-/* ── DIVIDER RULE ───────────────────────────────── */
+/* ───────────────── DIVIDERS ───────────────── */
+
 .h-rule {
   width: 100%;
-  height: 0.5px;
-   background: var(--rule-bone); }
+  height: 1px;
+  background: var(--border);
 }
 
 .h-rule-voltage {
- background: var(--rule-voltage); 
+  background: var(--accent-soft);
 }
 
-/* ── SCROLL FADE-UP ─────────────────────────────── */
+/* ───────────────── ANIMATIONS ───────────────── */
+
 .fade-up {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  transform: translateY(18px);
+  transition: all 0.7s var(--ease);
 }
+
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── RESPONSIVE ─────────────────────────────────── */
+/* ───────────────── RESPONSIVE ───────────────── */
+
 @media (max-width: 1024px) {
-  .page-wrap { padding: 0 var(--gutter-sm); }
+  .page-wrap {
+    padding: 0 var(--gutter-sm);
+  }
 }
 
 @media (max-width: 640px) {
-  .page-wrap { padding: 0 var(--gutter-xs); }
+  .page-wrap {
+    padding: 0 var(--gutter-xs);
+  }
 }
