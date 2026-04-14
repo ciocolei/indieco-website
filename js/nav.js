@@ -1,84 +1,19 @@
 /* ═══════════════════════════════════════════
    INDIECO — SHARED NAV + FOOTER RENDERER
-   Brand Guide 2025
+   Brand Guide 2026
 ═══════════════════════════════════════════ */
 
 const NAV_LINKS = [
-  { label: 'About',     href: '/pages/about.html' },
-   { label: 'Get Started',  href: '/pages/get-started.html'},
-    { label: 'Standard',  href: '/pages/standard-services.html'},
-  { label: 'Premier',  href: '/pages/premier-services.html' },
-  { label: 'Store',     href: '/pages/store.html' },
-   { label : 'Apply', href: '/pages/work-with-us.html'},
-
-const CTA_LINK = { label: 'Apply', href: '/pages/work-with-us.html' };
-
-/* ── Build Nav ───────────────────────────────── */
-(function buildNav() {
-  const nav = document.createElement('nav');
-  nav.id = 'site-nav';
-  nav.setAttribute('aria-label', 'Primary navigation');
-
-  nav.innerHTML = `
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="IndieCo Home">
-        <div class="nav-logo-mark"><span>IC</span></div>
-        IndieCo
-      </a>
-      <ul class="nav-links">
-        ${NAV_LINKS.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
-      </ul>
-      <a href="${CTA_LINK.href}" class="nav-cta">${CTA_LINK.label}</a>
-      <button class="nav-hamburger" aria-label="Toggle menu" id="nav-toggle">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="nav-mobile" id="nav-mobile">
-      ${NAV_LINKS.map(l => `<a href="${l.href}">${l.label}</a>`).join('')}
-      <a href="${CTA_LINK.href}" class="btn-primary"><span>${CTA_LINK.label}</span></a>
-    </div>
-  `;
-
-  document.body.prepend(nav);
-
-  /* Scroll state */
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 24);
-  }, { passive: true });
-
-  /* Hamburger toggle */
-  const toggle = document.getElementById('nav-toggle');
-  const mobile = document.getElementById('nav-mobile');
-  toggle.addEventListener('click', () => {
-    const open = mobile.classList.toggle('open');
-    toggle.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
-
-  /* Close on link click */
-  mobile.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      mobile.classList.remove('open');
-      toggle.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
-})();
-
-/* ── Build Footer ────────────────────────────── */
-
- /* ═══════════════════════════════════════════
-   INDIECO — SHARED NAV + FOOTER RENDERER
-   Brand Guide 2025
-═══════════════════════════════════════════ */
-
-const NAV_LINKS = [
-  { label: 'About',     href: '/pages/about.html' },
-  { label: 'Services',  href: '/pages/premier-services.html' },
-  { label: 'Store',     href: '/pages/store.html' },
+  { label: 'Home',       href: 'index.html' },
+  { label: 'About',       href: '/pages/about.html' },
+  { label: 'Get Started', href: '/pages/get-started.html' },
+  { label: 'Standard',    href: '/pages/standard-services.html' },
+  { label: 'Premier',     href: '/pages/premier-services.html' },
+  { label: 'Store',       href: '/pages/store.html' },
+  { label: 'Apply',       href: '/pages/work-with-us.html' },
 ];
 
-const CTA_LINK = { label: 'Work With Us', href: '/pages/work-with-us.html' };
+const CTA_LINK = { label: 'Apply', href: '/pages/work-with-us.html' };
 
 /* ── Build Nav ───────────────────────────────── */
 (function buildNav() {
@@ -137,20 +72,19 @@ const CTA_LINK = { label: 'Work With Us', href: '/pages/work-with-us.html' };
   const placeholder = document.getElementById('footer-placeholder');
   if (!placeholder) return;
 
-  // Books for the Products column — update hrefs when store page is live
   const BOOKS = [
-    { title: 'Silakbo',      href: 'https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks' },
-    { title: 'In the Shadows Where They Lie',                   href: 'https://www.amazon.com/gp/product/B0GT7D7HSZ?ref_=dbs_mng_crcw_0&storeType=ebooks' },
-    { title: 'Lucky In Love',      href: 'https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks' },
-    { title: 'Forgive & Forget',      href: 'https://www.amazon.com/gp/product/B0GRC4BBYK?ref_=dbs_m_mng_rwt_calw_tkin_1&storeType=ebooks' },
-    { title: 'Silent Nights',                   href: 'https://www.amazon.com/gp/product/B0GT2D6CCD?ref_=dbs_m_mng_rwt_calw_tkin_2&storeType=ebooks' },
-    { title: 'To Love and Be Loved',      href: 'https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks' },
-    { title: 'Untold Truths',      href: 'https://www.amazon.com/gp/product/B0GL4FBW3S?ref_=dbs_mng_crcw_3&storeType=ebooks' },
-    { title: 'The Meaning of Me',                   href: 'https://www.amazon.com/gp/product/B0GHXB16KP?ref_=dbs_mng_crcw_4&storeType=ebooks' },
-    { title: 'Whats Next',      href: 'https://www.amazon.com/gp/product/B0GR82QD9L?ref_=dbs_mng_crcw_2&storeType=ebooks' },
-    { title: 'What Do You Live For',      href: 'https://www.amazon.com/gp/product/B0GWV8DVM9?ref_=dbs_m_mng_rwt_calw_tkin_3&storeType=ebooks' },
+    { title: 'Silakbo',                      href: 'https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks' },
+    { title: 'In the Shadows Where They Lie', href: 'https://www.amazon.com/gp/product/B0GT7D7HSZ?ref_=dbs_mng_crcw_0&storeType=ebooks' },
+    { title: 'Lucky In Love',                 href: 'https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks' },
+    { title: 'Forgive & Forget',              href: 'https://www.amazon.com/gp/product/B0GRC4BBYK?ref_=dbs_m_mng_rwt_calw_tkin_1&storeType=ebooks' },
+    { title: 'Silent Nights',                 href: 'https://www.amazon.com/gp/product/B0GT2D6CCD?ref_=dbs_m_mng_rwt_calw_tkin_2&storeType=ebooks' },
+    { title: 'To Love and Be Loved',          href: 'https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks' },
+    { title: 'Untold Truths',                 href: 'https://www.amazon.com/gp/product/B0GL4FBW3S?ref_=dbs_mng_crcw_3&storeType=ebooks' },
+    { title: 'The Meaning of Me',             href: 'https://www.amazon.com/gp/product/B0GHXB16KP?ref_=dbs_mng_crcw_4&storeType=ebooks' },
+    { title: 'Whats Next',                    href: 'https://www.amazon.com/gp/product/B0GR82QD9L?ref_=dbs_mng_crcw_2&storeType=ebooks' },
+    { title: 'What Do You Live For',          href: 'https://www.amazon.com/gp/product/B0GWV8DVM9?ref_=dbs_m_mng_rwt_calw_tkin_3&storeType=ebooks' },
     { title: 'Reflections',                   href: 'https://www.amazon.com/gp/product/B0GWVFNG73?ref_=dbs_mng_crcw_5&storeType=ebooks' },
-    { title: 'From Stage to Screen',      href: 'https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB' },
+    { title: 'From Stage to Screen',          href: 'https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB' },
   ];
 
   const footer = document.createElement('footer');
@@ -243,6 +177,7 @@ const CTA_LINK = { label: 'Work With Us', href: '/pages/work-with-us.html' };
 })();
 
 /* ── Scroll Fade-up Observer ─────────────────── */
+/* Runs last so it catches elements injected by both buildNav and buildFooter */
 (function initScrollObserver() {
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
