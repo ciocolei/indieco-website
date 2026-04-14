@@ -1,6 +1,7 @@
+
 /* ═══════════════════════════════════════════
-   INDIECO — SHARED NAV + FOOTER RENDERER
-   Brand Guide 2026
+   INDIECO — NAV + FOOTER SYSTEM (APPLE CLEAN)
+   Production-safe DOM Renderer
 ═══════════════════════════════════════════ */
 
 const NAV_LINKS = [
@@ -14,177 +15,200 @@ const NAV_LINKS = [
 
 const CTA_LINK = { label: 'Apply', href: '/pages/work-with-us.html' };
 
-/* ── Build Nav ───────────────────────────────── */
+/* ───────────────── NAV BUILDER ───────────────── */
+
 (function buildNav() {
+  if (document.getElementById('site-nav')) return;
+
   const nav = document.createElement('nav');
   nav.id = 'site-nav';
   nav.setAttribute('aria-label', 'Primary navigation');
 
   nav.innerHTML = `
     <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="IndieCo">
-     <img src="/images/logo.png" alt="IndieCo" class="nav-logo-img">
-       </a>
+
+      <a href="/" class="nav-logo" aria-label="IndieCo home">
+        <img src="/images/logo.png" alt="IndieCo" class="nav-logo-img" />
+      </a>
+
       <ul class="nav-links">
-        ${NAV_LINKS.map(l => `<li><a href="${l.href}">${l.label}</a></li>`).join('')}
+        ${NAV_LINKS.map(l =>
+          `<li><a href="${l.href}">${l.label}</a></li>`
+        ).join('')}
       </ul>
-      <a href="${CTA_LINK.href}" class="nav-cta">${CTA_LINK.label}</a>
-      <button class="nav-hamburger" aria-label="Toggle menu" id="nav-toggle">
+
+      <a href="${CTA_LINK.href}" class="nav-cta">
+        ${CTA_LINK.label}
+      </a>
+
+      <button class="nav-hamburger"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              id="nav-toggle">
         <span></span><span></span><span></span>
       </button>
+
     </div>
-    <div class="nav-mobile" id="nav-mobile">
-      ${NAV_LINKS.map(l => `<a href="${l.href}">${l.label}</a>`).join('')}
-      <a href="${CTA_LINK.href}" class="btn-primary"><span>${CTA_LINK.label}</span></a>
+
+    <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+      ${NAV_LINKS.map(l =>
+        `<a href="${l.href}">${l.label}</a>`
+      ).join('')}
+
+      <a href="${CTA_LINK.href}" class="btn-primary">
+        <span>${CTA_LINK.label}</span>
+      </a>
     </div>
   `;
 
   document.body.prepend(nav);
 
-  /* Scroll state */
+  /* ── Scroll (Apple smooth + rAF throttle) ── */
+  let lastY = 0;
+  let ticking = false;
+
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 24);
+    lastY = window.scrollY;
+
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        nav.classList.toggle('scrolled', lastY > 24);
+        ticking = false;
+      });
+      ticking = true;
+    }
   }, { passive: true });
 
-  /* Hamburger toggle */
-  const toggle = document.getElementById('nav-toggle');
-  const mobile = document.getElementById('nav-mobile');
-  toggle.addEventListener('click', () => {
-    const open = mobile.classList.toggle('open');
-    toggle.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
+  /* ── Mobile Toggle (safe state handling) ── */
 
-  /* Close on link click */
+  const toggle = nav.querySelector('#nav-toggle');
+  const mobile = nav.querySelector('#nav-mobile');
+
+  let isOpen = false;
+
+  const setState = (state) => {
+    isOpen = state;
+
+    mobile.classList.toggle('open', state);
+    toggle.classList.toggle('open', state);
+
+    toggle.setAttribute('aria-expanded', state);
+    mobile.setAttribute('aria-hidden', !state);
+
+    document.body.style.overflow = state ? 'hidden' : '';
+  };
+
+  toggle?.addEventListener('click', () => setState(!isOpen));
+
   mobile.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      mobile.classList.remove('open');
-      toggle.classList.remove('open');
-      document.body.style.overflow = '';
-    });
+    a.addEventListener('click', () => setState(false));
   });
 })();
 
-/* ── Build Footer ────────────────────────────── */
+
+/* ───────────────── FOOTER BUILDER ───────────────── */
+
 (function buildFooter() {
   const placeholder = document.getElementById('footer-placeholder');
   if (!placeholder) return;
 
   const BOOKS = [
-    { title: 'Silakbo',                      href: 'https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks' },
-    { title: 'In the Shadows Where They Lie', href: 'https://www.amazon.com/gp/product/B0GT7D7HSZ?ref_=dbs_mng_crcw_0&storeType=ebooks' },
-    { title: 'Lucky In Love',                 href: 'https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks' },
-    { title: 'Forgive & Forget',              href: 'https://www.amazon.com/gp/product/B0GRC4BBYK?ref_=dbs_m_mng_rwt_calw_tkin_1&storeType=ebooks' },
-    { title: 'Silent Nights',                 href: 'https://www.amazon.com/gp/product/B0GT2D6CCD?ref_=dbs_m_mng_rwt_calw_tkin_2&storeType=ebooks' },
-    { title: 'To Love and Be Loved',          href: 'https://www.amazon.com/gp/product/B0GQW2SSHT?ref_=dbs_mng_crcw_1&storeType=ebooks' },
-    { title: 'Untold Truths',                 href: 'https://www.amazon.com/gp/product/B0GL4FBW3S?ref_=dbs_mng_crcw_3&storeType=ebooks' },
-    { title: 'The Meaning of Me',             href: 'https://www.amazon.com/gp/product/B0GHXB16KP?ref_=dbs_mng_crcw_4&storeType=ebooks' },
-    { title: 'Whats Next',                    href: 'https://www.amazon.com/gp/product/B0GR82QD9L?ref_=dbs_mng_crcw_2&storeType=ebooks' },
-    { title: 'What Do You Live For',          href: 'https://www.amazon.com/gp/product/B0GWV8DVM9?ref_=dbs_m_mng_rwt_calw_tkin_3&storeType=ebooks' },
-    { title: 'Reflections',                   href: 'https://www.amazon.com/gp/product/B0GWVFNG73?ref_=dbs_mng_crcw_5&storeType=ebooks' },
-    { title: 'From Stage to Screen',          href: 'https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB' },
+    'Silakbo',
+    'In the Shadows Where They Lie',
+    'Lucky In Love',
+    'Forgive & Forget',
+    'Silent Nights',
+    'To Love and Be Loved',
+    'Untold Truths',
+    'The Meaning of Me',
+    'Whats Next',
+    'What Do You Live For',
+    'Reflections',
+    'From Stage to Screen',
   ];
 
   const footer = document.createElement('footer');
   footer.id = 'site-footer';
-  footer.innerHTML = `
-    <div class="footer-bg-word" aria-hidden="true">IndieCo</div>
 
+  footer.innerHTML = `
     <div class="footer-inner">
+
       <div class="footer-top">
 
-        <!-- Brand -->
         <div class="footer-brand">
           <div class="footer-logo">
-            <div class="footer-logo-mark">IC</div>
-            <span class="footer-logo-name">IndieCo</span>
+            <div class="footer-logo-mark"></div>
+            <span>IndieCo</span>
           </div>
-          <p class="footer-tagline">Authority Architecture<br>Media Positioning · Executive Publishing</p>
-          <div class="footer-socials">
-            <a href="https://www.facebook.com/the.indie.co/" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/the.indie.co" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </a>
-            <a href="https://www.linkedin.com/company/indieco/" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
-            <a href="https://open.spotify.com/user/IndieCo" target="_blank" rel="noopener" aria-label="Spotify">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 11.5c2.5-1 5.5-1 8 0"/><path d="M7 15c3-1.2 6-1.2 9 0"/><path d="M9.5 8.5c2-.8 4-.8 6 0"/></svg>
-            </a>
-          </div>
+
+          <p>
+            Authority Architecture<br>
+            Media Positioning · Executive Publishing
+          </p>
         </div>
 
-        <!-- Platform Access -->
         <div class="footer-col">
-          <span class="footer-col-label">Platform Access</span>
+          <span class="footer-col-label">Platform</span>
           <ul class="footer-links">
             <li><a href="/pages/get-started.html">App Waitlist</a></li>
           </ul>
         </div>
 
-        <!-- Products -->
         <div class="footer-col">
           <span class="footer-col-label">Products</span>
-          <ul class="footer-links footer-books">
-            ${BOOKS.map(b => `<li><a href="${b.href}">${b.title}</a></li>`).join('')}
+          <ul class="footer-links">
+            ${BOOKS.map(b => `
+              <li><a href="#">${b}</a></li>
+            `).join('')}
           </ul>
         </div>
 
-        <!-- Company -->
         <div class="footer-col">
           <span class="footer-col-label">Company</span>
           <ul class="footer-links">
-            <li><a href="https://www.linkedin.com/company/indieco/" target="_blank" rel="noopener">Careers</a></li>
-            <li><a href="https://www.facebook.com/the.indie.co/" target="_blank" rel="noopener">Facebook</a></li>
-            <li><a href="https://www.instagram.com/the.indie.co" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://open.spotify.com/user/IndieCo" target="_blank" rel="noopener">Spotify</a></li>
-            <li><a href="https://lu.ma/user/indieco" target="_blank" rel="noopener">Events</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Events</a></li>
           </ul>
         </div>
 
-        <!-- Resources -->
         <div class="footer-col">
           <span class="footer-col-label">Resources</span>
           <ul class="footer-links">
-            <li><a href="https://www.linkedin.com/company/indieco/" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://www.facebook.com/the.indie.co/" target="_blank" rel="noopener">Facebook</a></li>
-            <li><a href="https://www.instagram.com/the.indie.co" target="_blank" rel="noopener">Instagram</a></li>
-            <li><a href="https://open.spotify.com/user/IndieCo" target="_blank" rel="noopener">Spotify</a></li>
-            <li><a href="https://lu.ma/user/indieco" target="_blank" rel="noopener">Events</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Docs</a></li>
+            <li><a href="#">Contact</a></li>
           </ul>
         </div>
 
-      </div><!-- /footer-top -->
-
-      <!-- Disclaimer -->
-      <div class="footer-disclaimer">
-        <p>© 2026 IndieCo Technology Solutions, Inc. All rights reserved.</p>
-        <p>IndieCo Technology Solutions, Inc. is an independent entity and is not affiliated with, endorsed by, or officially connected to TED, TEDx, The Wall Street Journal, or any other media organizations or publications in which our clients may be featured.</p>
-        <p>IndieCo provides software and professional services that support client visibility, strategic positioning, and media placement opportunities. All trademarks, logos, and publication names are the property of their respective owners.</p>
       </div>
 
       <div class="footer-bottom">
-        <span class="footer-locations">Manila · New York</span>
+        <span>© 2026 IndieCo</span>
+        <span>Manila · New York</span>
       </div>
+
     </div>
   `;
 
   placeholder.replaceWith(footer);
 })();
 
-/* ── Scroll Fade-up Observer ─────────────────── */
-/* Runs last so it catches elements injected by both buildNav and buildFooter */
-(function initScrollObserver() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
 
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+/* ───────────────── SCROLL OBSERVER ───────────────── */
+
+(function initScrollObserver() {
+  const els = document.querySelectorAll('.fade-up');
+  if (!els.length) return;
+
+  const obs = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12 });
+
+  els.forEach(el => obs.observe(el));
 })();
