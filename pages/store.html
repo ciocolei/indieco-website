@@ -39,7 +39,6 @@
   pointer-events: none;
 }
 
-/* Ghost numeral */
 .store-header-deco {
   position: absolute;
   top: 60px;
@@ -235,7 +234,6 @@
   margin-top: 2px;
 }
 
-/* Primary CTA — rose gradient hover */
 .btn-app-hero {
   display: inline-flex;
   align-items: center;
@@ -268,7 +266,6 @@
 .btn-app-hero .arrow { position: relative; z-index: 1; transition: transform 0.3s; }
 .btn-app-hero:hover .arrow { transform: translateX(4px); }
 
-/* App visual panel */
 .app-visual-panel {
   background: var(--ink);
   color: var(--cream);
@@ -277,7 +274,6 @@
   overflow: hidden;
 }
 
-/* Subtle top edge in rose */
 .app-visual-panel::before {
   content: '';
   position: absolute;
@@ -286,7 +282,6 @@
   background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 60%, transparent 100%);
 }
 
-/* Diagonal texture */
 .app-visual-panel::after {
   content: '';
   position: absolute;
@@ -396,7 +391,6 @@
   border: 0.5px solid var(--rule);
 }
 
-/* ── PRODUCT CARD ── */
 .product-card {
   background: var(--cream-warm);
   padding: 2rem;
@@ -407,7 +401,6 @@
   flex-direction: column;
 }
 
-/* Rose bloom on hover */
 .product-card::after {
   content: '';
   position: absolute;
@@ -471,7 +464,6 @@ button.btn-product {
 }
 button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 
-/* ── CONSULTATION CARD ── */
 .product-card--consultation {
   border-color: var(--ink);
 }
@@ -549,373 +541,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 .btn-consultation span { position: relative; z-index: 1; }
 
 /* ═══════════════════════════════════
-   BOOK SECTION
-   ═══════════════════════════════════ */
-.book-section {
-  padding: 6rem 0;
-  border-bottom: 0.5px solid var(--rule);
-  position: relative;
-  overflow: hidden;
-}
-
-.book-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(201,164,154,0.05) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.book-section-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 9px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--rose);
-  font-weight: 300;
-  margin-bottom: 3.5rem;
-}
-.book-section-eyebrow::before {
-  content: '';
-  width: 20px;
-  height: 0.5px;
-  background: var(--rose);
-}
-
-.book-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-
-.book-visual {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* 3D Book */
-.scene {
-  width: 260px;
-  height: 360px;
-  perspective: 900px;
-  perspective-origin: 50% 45%;
-  cursor: pointer;
-  margin-bottom: 2rem;
-}
-.book {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  animation: rotate3d 8s ease-in-out infinite;
-}
-.scene:hover .book { animation-play-state: paused; }
-
-@keyframes rotate3d {
-  0%   { transform: rotateY(-25deg) rotateX(4deg); }
-  25%  { transform: rotateY(15deg) rotateX(-2deg); }
-  50%  { transform: rotateY(35deg) rotateX(4deg); }
-  75%  { transform: rotateY(15deg) rotateX(-2deg); }
-  100% { transform: rotateY(-25deg) rotateX(4deg); }
-}
-
-.face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.face-front {
-  transform: translateZ(14px);
-  background: var(--red);
-  display: flex;
-  flex-direction: column;
-  padding: 18px 18px 16px;
-  box-shadow: 6px 6px 30px rgba(0,0,0,0.35);
-  position: relative;
-}
-.face-front::after {
-  content: '';
-  position: absolute;
-  top: 8px; left: 14px; right: 14px;
-  height: 0.5px;
-  background: rgba(255,255,255,0.25);
-}
-
-.cover-word {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: #fff;
-  font-size: 2.85rem;
-  display: block;
-  line-height: 0.88;
-}
-.cover-desc-block {
-  border-left: 2px solid rgba(255,255,255,0.55);
-  padding-left: 7px;
-  margin: 10px 0 6px;
-}
-.cover-desc-block p {
-  font-family: var(--font-sans);
-  font-weight: 300;
-  font-size: 0.36rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.9;
-}
-.cover-word-dark {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: #1a1412;
-  display: block;
-  line-height: 0.88;
-}
-.cover-word-to { font-size: 2.85rem; }
-.cover-word-screen { font-size: 2.1rem; }
-
-.face-back {
-  transform: rotateY(180deg) translateZ(14px);
-  background: #111;
-  display: flex;
-  flex-direction: column;
-  padding: 24px 20px;
-  box-shadow: -6px 6px 30px rgba(0,0,0,0.35);
-}
-.face-back .back-quote {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.8rem;
-  color: #e8e0d5;
-  line-height: 1.7;
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-.face-back .back-label {
-  font-family: var(--font-sans);
-  font-weight: 300;
-  font-size: 0.55rem;
-  color: var(--rose);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-top: 16px;
-}
-
-.face-spine {
-  width: 28px;
-  height: 100%;
-  position: absolute;
-  left: -14px;
-  top: 0;
-  transform-origin: right center;
-  transform: rotateY(-90deg);
-  background: linear-gradient(to right, #900, var(--red));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.4);
-}
-.face-spine .spine-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.75rem;
-  color: #fff;
-  letter-spacing: 0.2em;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  white-space: nowrap;
-  opacity: 0.9;
-}
-.face-top {
-  width: 100%; height: 28px;
-  position: absolute; top: -14px; left: 0;
-  transform-origin: center bottom;
-  transform: rotateX(90deg);
-  background: linear-gradient(to bottom, #ccc, #e8e0d5);
-}
-.face-bottom {
-  width: 100%; height: 28px;
-  position: absolute; bottom: -14px; left: 0;
-  transform-origin: center top;
-  transform: rotateX(-90deg);
-  background: linear-gradient(to top, #aaa, #d5cfc6);
-}
-.face-pages {
-  width: 14px; height: 100%;
-  position: absolute; right: -14px; top: 0;
-  transform-origin: left center;
-  transform: rotateY(90deg);
-  background: repeating-linear-gradient(to right, #e8e0d5, #e8e0d5 1px, #d4ccc2 1px, #d4ccc2 2px);
-}
-
-.book-shadow {
-  width: 260px;
-  height: 30px;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.14) 0%, transparent 70%);
-  margin-top: -10px;
-  animation: shadowPulse 8s ease-in-out infinite;
-}
-@keyframes shadowPulse {
-  0%,100% { transform: scaleX(0.85); opacity: 0.6; }
-  50%      { transform: scaleX(1.1);  opacity: 0.3; }
-}
-
-.book-hint {
-  font-size: 0.62rem;
-  color: var(--ink-ghost);
-  letter-spacing: 0.12em;
-  text-align: center;
-  margin-top: 0.5rem;
-  font-style: italic;
-}
-
-/* Book info */
-.book-info { padding-top: 1rem; }
-
-.book-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 9px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 300;
-  color: var(--rose);
-  margin-bottom: 0.85rem;
-}
-.book-eyebrow::before {
-  content: '';
-  width: 18px;
-  height: 0.5px;
-  background: var(--rose);
-}
-
-.book-title {
-  font-family: var(--font-serif);
-  font-size: 2.8rem;
-  font-weight: 400;
-  line-height: 1.06;
-  margin-bottom: 0.4rem;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-.book-subtitle {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 1rem;
-  color: var(--ink-mute);
-  margin-bottom: 2rem;
-}
-
-.book-rule {
-  width: 36px;
-  height: 1px;
-  background: var(--rose);
-  margin-bottom: 1.75rem;
-  opacity: 0.55;
-}
-
-.book-copy {
-  font-size: 13.5px;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--ink-soft);
-  margin-bottom: 1.5rem;
-}
-.book-copy p + p { margin-top: 1.2em; }
-
-.book-pull {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.15rem;
-  font-weight: 300;
-  color: var(--ink);
-  border-left: 2px solid var(--rose);
-  padding: 4px 0 4px 18px;
-  margin: 1.75rem 0;
-  line-height: 1.55;
-}
-
-.book-meta {
-  display: flex;
-  gap: 2rem;
-  padding: 1.5rem 0;
-  border-top: 0.5px solid var(--rule);
-  border-bottom: 0.5px solid var(--rule);
-  margin-bottom: 2rem;
-}
-.book-meta-label {
-  font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
-  margin-bottom: 4px;
-}
-.book-meta-value {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 300;
-}
-
-.buy-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.buy-label {
-  font-size: 9px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-ghost);
-}
-
-.btn-buy {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 300;
-  background: var(--ink);
-  color: var(--cream);
-  padding: 16px 36px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: gap 0.3s;
-}
-.btn-buy::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
-  opacity: 0;
-  transition: opacity 0.35s;
-}
-.btn-buy:hover::before { opacity: 1; }
-.btn-buy:hover { color: var(--cream); gap: 16px; }
-.btn-buy span { position: relative; z-index: 1; }
-.btn-buy .arrow { position: relative; z-index: 1; transition: transform 0.3s; }
-.btn-buy:hover .arrow { transform: translateX(4px); }
-
-/* ═══════════════════════════════════
-   SERIES SECTION
+   SERIES SECTION (now includes From Stage to Screen)
    ═══════════════════════════════════ */
 .series-section {
   padding: 6rem 0 5rem;
@@ -988,10 +614,318 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   margin-top: 1rem;
 }
 
+/* ── FEATURED BOOK BANNER (From Stage to Screen) ── */
+.featured-book-banner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: center;
+  background: var(--ink);
+  padding: 3rem 3.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-book-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 60%, transparent 100%);
+}
+
+.featured-book-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 18px,
+    rgba(255,255,255,0.008) 18px,
+    rgba(255,255,255,0.008) 19px
+  );
+  pointer-events: none;
+}
+
+/* 3D Book (mini version inside banner) */
+.scene {
+  width: 180px;
+  height: 250px;
+  perspective: 900px;
+  perspective-origin: 50% 45%;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.book {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate3d 8s ease-in-out infinite;
+}
+.scene:hover .book { animation-play-state: paused; }
+
+@keyframes rotate3d {
+  0%   { transform: rotateY(-25deg) rotateX(4deg); }
+  25%  { transform: rotateY(15deg) rotateX(-2deg); }
+  50%  { transform: rotateY(35deg) rotateX(4deg); }
+  75%  { transform: rotateY(15deg) rotateX(-2deg); }
+  100% { transform: rotateY(-25deg) rotateX(4deg); }
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.face-front {
+  transform: translateZ(14px);
+  background: var(--red);
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 12px;
+  box-shadow: 6px 6px 30px rgba(0,0,0,0.35);
+  position: relative;
+}
+.face-front::after {
+  content: '';
+  position: absolute;
+  top: 8px; left: 10px; right: 10px;
+  height: 0.5px;
+  background: rgba(255,255,255,0.25);
+}
+
+.cover-word {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #fff;
+  font-size: 2rem;
+  display: block;
+  line-height: 0.88;
+}
+.cover-desc-block {
+  border-left: 2px solid rgba(255,255,255,0.55);
+  padding-left: 6px;
+  margin: 8px 0 5px;
+}
+.cover-desc-block p {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.3rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.9;
+}
+.cover-word-dark {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #1a1412;
+  display: block;
+  line-height: 0.88;
+}
+.cover-word-to { font-size: 2rem; }
+.cover-word-screen { font-size: 1.5rem; }
+
+.face-back {
+  transform: rotateY(180deg) translateZ(14px);
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  box-shadow: -6px 6px 30px rgba(0,0,0,0.35);
+}
+.face-back .back-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.7rem;
+  color: #e8e0d5;
+  line-height: 1.7;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.face-back .back-label {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.45rem;
+  color: var(--rose);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+.face-spine {
+  width: 28px;
+  height: 100%;
+  position: absolute;
+  left: -14px;
+  top: 0;
+  transform-origin: right center;
+  transform: rotateY(-90deg);
+  background: linear-gradient(to right, #900, var(--red));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.4);
+}
+.face-spine .spine-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.65rem;
+  color: #fff;
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  opacity: 0.9;
+}
+.face-top {
+  width: 100%; height: 28px;
+  position: absolute; top: -14px; left: 0;
+  transform-origin: center bottom;
+  transform: rotateX(90deg);
+  background: linear-gradient(to bottom, #ccc, #e8e0d5);
+}
+.face-bottom {
+  width: 100%; height: 28px;
+  position: absolute; bottom: -14px; left: 0;
+  transform-origin: center top;
+  transform: rotateX(-90deg);
+  background: linear-gradient(to top, #aaa, #d5cfc6);
+}
+.face-pages {
+  width: 14px; height: 100%;
+  position: absolute; right: -14px; top: 0;
+  transform-origin: left center;
+  transform: rotateY(90deg);
+  background: repeating-linear-gradient(to right, #e8e0d5, #e8e0d5 1px, #d4ccc2 1px, #d4ccc2 2px);
+}
+
+/* Banner text content */
+.featured-book-content {
+  position: relative;
+  z-index: 1;
+}
+
+.featured-book-eyebrow {
+  font-size: 8.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.featured-book-eyebrow::before {
+  content: '';
+  width: 16px;
+  height: 0.5px;
+  background: var(--rose);
+}
+
+.featured-book-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.06;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 0.35rem;
+}
+
+.featured-book-subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 1.25rem;
+}
+
+.featured-book-pull {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  border-left: 2px solid var(--rose);
+  padding: 3px 0 3px 14px;
+  margin-bottom: 1.5rem;
+  line-height: 1.55;
+  max-width: 52ch;
+}
+
+.featured-book-meta {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  border-top: 0.5px solid rgba(255,255,255,0.08);
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  margin-bottom: 1.5rem;
+}
+.featured-book-meta-label {
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.2);
+  margin-bottom: 3px;
+}
+.featured-book-meta-value {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+}
+
+.btn-buy-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 300;
+  background: transparent;
+  color: var(--cream);
+  padding: 14px 32px;
+  border: 0.5px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: gap 0.3s, border-color 0.3s;
+}
+.btn-buy-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.btn-buy-banner:hover::before { opacity: 1; }
+.btn-buy-banner:hover { color: var(--cream); gap: 16px; border-color: transparent; }
+.btn-buy-banner span { position: relative; z-index: 1; }
+.btn-buy-banner .arrow { position: relative; z-index: 1; transition: transform 0.3s; }
+.btn-buy-banner:hover .arrow { transform: translateX(4px); }
+
 /* Books grid */
 .books-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
@@ -1096,6 +1030,38 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   max-width: 42ch;
 }
 
+.btn-buy {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 300;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 16px 36px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: gap 0.3s;
+}
+.btn-buy::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.btn-buy:hover::before { opacity: 1; }
+.btn-buy:hover { color: var(--cream); gap: 16px; }
+.btn-buy span { position: relative; z-index: 1; }
+.btn-buy .arrow { position: relative; z-index: 1; transition: transform 0.3s; }
+.btn-buy:hover .arrow { transform: translateX(4px); }
+
 /* ═══════════════════════════════════
    MODALS — shared base
    ═══════════════════════════════════ */
@@ -1135,7 +1101,6 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   animation: modalSlide 0.32s cubic-bezier(0.16,1,0.3,1) both;
 }
 
-/* Rose gradient top bar */
 #consult-modal::before {
   content: '';
   position: sticky;
@@ -1369,7 +1334,6 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   animation: modalSlide 0.3s cubic-bezier(0.16,1,0.3,1) both;
 }
 
-/* Rose top bar */
 #notify-modal::before {
   content: '';
   position: absolute;
@@ -1455,6 +1419,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   border-radius: 0;
   appearance: none;
   transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+  box-sizing: border-box;
 }
 #notify-modal input:focus {
   border-color: var(--rose);
@@ -1551,22 +1516,68 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   .app-hero-inner { grid-template-columns: 1fr; }
   .app-visual-panel { display: none; }
   .store-header-deco { display: none; }
+
+  /* Featured book banner stacks on tablet */
+  .featured-book-banner {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 2rem;
+    gap: 2rem;
+  }
+  .scene {
+    width: 140px;
+    height: 195px;
+    margin: 0 auto;
+  }
 }
+
 @media (max-width: 768px) {
-  .book-layout { grid-template-columns: 1fr; gap: 48px; }
-  .book-visual { margin: 0 auto; }
+  /* Books grid: 2 columns on mobile */
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .featured-book-banner {
+    padding: 2rem 1.5rem;
+  }
+
   .cm-items { grid-template-columns: 1fr; }
   .cm-logistics { gap: 1rem; }
   .series-intro { flex-direction: column; }
   .series-stat { text-align: left; }
-  .products-grid { gap: 1rem; background: none; border: none; }
+
+  /* Products grid on mobile */
+  .products-grid {
+    gap: 1rem;
+    background: none;
+    border: none;
+  }
   .product-card { border: 0.5px solid var(--rule-soft); }
 }
+
 @media (max-width: 500px) {
   .cm-header { padding: 2rem 1.5rem 1.5rem; }
   .cm-body { padding: 1.5rem; }
   #notify-modal { padding: 2.5rem 1.5rem 2rem; }
   .store-header { padding: 130px 0 55px; }
+
+  /* 2 columns maintained on small phones */
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .featured-book-banner {
+    padding: 1.75rem 1.25rem;
+  }
+  .scene {
+    width: 120px;
+    height: 167px;
+  }
+
+  .featured-book-meta {
+    gap: 1rem;
+  }
 }
 </style>
 </head>
@@ -1580,7 +1591,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   <div class="store-header fade-up">
     <div class="store-header-deco" aria-hidden="true">S</div>
     <p class="store-header-eyebrow">IndieCo Store</p>
-    <h1>Resources and Products</em></h1>
+    <h1>Resources and Products</h1>
   </div>
 
 </div><!-- /page-wrap -->
@@ -1703,81 +1714,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
     </div>
   </section>
 
-  <!-- ═══════ 3. BOOK ═══════ -->
-  <section class="book-section">
-    <div class="book-section-eyebrow">From the IndieCo Library</div>
-    <div class="book-layout">
-
-      <div class="book-visual">
-        <div class="scene">
-          <div class="book">
-            <div class="face-pages"></div>
-            <div class="face-spine"><span class="spine-text">FROM STAGE TO SCREEN &nbsp;·&nbsp; LEAH CIOCO</span></div>
-            <div class="face-top"></div>
-            <div class="face-bottom"></div>
-            <div class="face face-front">
-              <div style="line-height:0.88;margin-top:6px">
-                <span class="cover-word">FROM</span>
-                <span class="cover-word">STAGE</span>
-              </div>
-              <div class="cover-desc-block">
-                <p>A COLLECTION OF HEARTFELT ESSAYS THAT</p>
-                <p>JOURNEYED FROM PERSONAL REFLECTION</p>
-                <p>ON THE LOCAL TEDx STAGE TO THE</p>
-                <p>GLOBAL TEDx PLATFORM</p>
-              </div>
-              <div style="line-height:0.88;margin-top:2px">
-                <span class="cover-word-dark cover-word-to">TO</span>
-                <span class="cover-word-dark cover-word-screen">SCREEN</span>
-              </div>
-            </div>
-            <div class="face face-back">
-              <div class="back-quote">"The best talks are great personal essays — told with voice, argument, structure, and above all, vulnerability."</div>
-              <div class="back-label">Leah Cioco · Stage Curator · 5 Events · 55+ Speakers</div>
-            </div>
-          </div>
-        </div>
-        <div class="book-shadow"></div>
-        <p class="book-hint">Hover to pause · click to explore</p>
-      </div>
-
-      <div class="book-info fade-up">
-        <p class="book-eyebrow">Leah Cioco · TEDx Stage Curator &amp; Event Organizer</p>
-        <h2 class="book-title">From Stage<br>to Screen</h2>
-        <p class="book-subtitle">An anthology, 2023–2026</p>
-        <div class="book-rule"></div>
-        <div class="book-copy">
-          <p>The most enduring ideas don't live in boardrooms. They belong on stages — spoken aloud, in front of people willing to listen. Independent speaking platforms, built and run by local communities, were created on a single premise: that great ideas should not be confined to any one city, institution, or industry.</p>
-          <div class="book-pull">"The best platform talks are great personal essays."</div>
-          <p>I've organized and/or been part of five independent TEDx events over five years. This anthology gathers 55 talks delivered between 2023 and 2026, written by those I've personally worked with — scientists, artists, entrepreneurs, educators, activists, and simply people with something to say.</p>
-        </div>
-        <div class="book-meta">
-          <div class="book-meta-item">
-            <div class="book-meta-label">Author</div>
-            <div class="book-meta-value">Leah Cioco</div>
-          </div>
-          <div class="book-meta-item">
-            <div class="book-meta-label">Format</div>
-            <div class="book-meta-value">Paperback + Digital</div>
-          </div>
-          <div class="book-meta-item">
-            <div class="book-meta-label">Talks</div>
-            <div class="book-meta-value">55 Essays</div>
-          </div>
-        </div>
-        <div class="buy-section">
-          <span class="buy-label">Get your copy</span>
-          <a href="https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB" target="_blank" class="btn-buy">
-            <span>Buy on Amazon</span>
-            <span class="arrow">→</span>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═══════ 4. SERIES ═══════ -->
+  <!-- ═══════ 3. SERIES (now includes From Stage to Screen as featured) ═══════ -->
   <section class="series-section fade-up">
     <div class="series-intro">
       <div>
@@ -1793,6 +1730,64 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
       </div>
     </div>
 
+    <!-- Featured book: From Stage to Screen -->
+    <div class="featured-book-banner">
+      <div class="scene">
+        <div class="book">
+          <div class="face-pages"></div>
+          <div class="face-spine"><span class="spine-text">FROM STAGE TO SCREEN &nbsp;·&nbsp; LEAH CIOCO</span></div>
+          <div class="face-top"></div>
+          <div class="face-bottom"></div>
+          <div class="face face-front">
+            <div style="line-height:0.88;margin-top:6px">
+              <span class="cover-word">FROM</span>
+              <span class="cover-word">STAGE</span>
+            </div>
+            <div class="cover-desc-block">
+              <p>A COLLECTION OF HEARTFELT ESSAYS THAT</p>
+              <p>JOURNEYED FROM PERSONAL REFLECTION</p>
+              <p>ON THE LOCAL TEDx STAGE TO THE</p>
+              <p>GLOBAL TEDx PLATFORM</p>
+            </div>
+            <div style="line-height:0.88;margin-top:2px">
+              <span class="cover-word-dark cover-word-to">TO</span>
+              <span class="cover-word-dark cover-word-screen">SCREEN</span>
+            </div>
+          </div>
+          <div class="face face-back">
+            <div class="back-quote">"The best talks are great personal essays — told with voice, argument, structure, and above all, vulnerability."</div>
+            <div class="back-label">Leah Cioco · Stage Curator · 5 Events · 55+ Speakers</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-book-content">
+        <p class="featured-book-eyebrow">Leah Cioco · TEDx Stage Curator &amp; Event Organizer</p>
+        <h2 class="featured-book-title">From Stage to Screen</h2>
+        <p class="featured-book-subtitle">An anthology, 2023–2026</p>
+        <p class="featured-book-pull">"The best platform talks are great personal essays."</p>
+        <div class="featured-book-meta">
+          <div>
+            <div class="featured-book-meta-label">Author</div>
+            <div class="featured-book-meta-value">Leah Cioco</div>
+          </div>
+          <div>
+            <div class="featured-book-meta-label">Format</div>
+            <div class="featured-book-meta-value">Paperback + Digital</div>
+          </div>
+          <div>
+            <div class="featured-book-meta-label">Talks</div>
+            <div class="featured-book-meta-value">55 Essays</div>
+          </div>
+        </div>
+        <a href="https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB" target="_blank" class="btn-buy-banner">
+          <span>Buy on Amazon</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Books grid -->
     <div class="books-grid">
 
       <a href="https://www.amazon.com/gp/product/B0G5QWPJ77?ref_=dbs_m_mng_rwt_calw_tkin_0&storeType=ebooks" target="_blank" class="book-card">
