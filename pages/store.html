@@ -541,7 +541,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 .btn-consultation span { position: relative; z-index: 1; }
 
 /* ═══════════════════════════════════
-   SERIES SECTION (now includes From Stage to Screen)
+   SERIES SECTION
    ═══════════════════════════════════ */
 .series-section {
   padding: 6rem 0 5rem;
@@ -613,6 +613,149 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   max-width: 48ch;
   margin-top: 1rem;
 }
+
+/* ═══════════════════════════════════
+   BOOKS GRID — MISSING STYLES (FIX)
+   ═══════════════════════════════════ */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5px;
+  background: var(--rule);
+  border: 0.5px solid var(--rule);
+  margin-bottom: 3rem;
+}
+
+.book-card,
+.books-grid > a {
+  display: flex;
+  flex-direction: column;
+  background: var(--cream-warm);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.book-card:hover,
+.books-grid > a:hover {
+  background: var(--cream);
+}
+
+.book-card-cover,
+.books-grid > a .book-card-cover {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.book-card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.book-card:hover .book-card-cover img,
+.books-grid > a:hover .book-card-cover img {
+  transform: scale(1.04);
+}
+
+.book-card-cover-num {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: rgba(201,164,154,0.3);
+  letter-spacing: 0.04em;
+}
+
+.book-card-body,
+.books-grid > a .book-card-body {
+  padding: 1.1rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.book-card-vol {
+  font-size: 8.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 300;
+  display: block;
+}
+
+.book-card-title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.book-card-cta {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+  font-weight: 300;
+  margin-top: 6px;
+  transition: color 0.25s;
+}
+
+.book-card:hover .book-card-cta,
+.books-grid > a:hover .book-card-cta {
+  color: var(--rose);
+}
+
+/* ═══════════════════════════════════
+   SERIES FOOTER
+   ═══════════════════════════════════ */
+.series-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-top: 2.5rem;
+  border-top: 0.5px solid var(--rule);
+}
+
+.series-footer-copy {
+  font-size: 12.5px;
+  color: var(--ink-mute);
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 52ch;
+}
+
+.btn-buy {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--rule-soft);
+  padding-bottom: 2px;
+  transition: color 0.25s, border-color 0.25s, gap 0.3s;
+  white-space: nowrap;
+}
+.btn-buy:hover { color: var(--rose); border-color: var(--rose); gap: 16px; }
+.btn-buy .arrow { transition: transform 0.3s; }
+.btn-buy:hover .arrow { transform: translateX(4px); }
 
 /* ═══════════════════════════════════
    MODALS — shared base
@@ -1064,33 +1207,32 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
 /* ═══════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════ */
+@media (max-width: 1100px) {
+  .books-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .app-hero-inner { grid-template-columns: 1fr; }
   .app-visual-panel { display: none; }
   .store-header-deco { display: none; }
 
-  /* Featured book banner stacks on tablet */
-  .featured-book-banner {
-    grid-template-columns: 1fr;
-    padding: 2.5rem 2rem;
-    gap: 2rem;
-  }
-  .scene {
-    width: 140px;
-    height: 195px;
-    margin: 0 auto;
+  .books-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  /* Books grid: 2 columns on mobile */
   .books-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    background: none;
+    border: none;
   }
-
-  .featured-book-banner {
-    padding: 2rem 1.5rem;
+  .book-card,
+  .books-grid > a {
+    border: 0.5px solid var(--rule-soft);
   }
 
   .cm-items { grid-template-columns: 1fr; }
@@ -1098,13 +1240,17 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   .series-intro { flex-direction: column; }
   .series-stat { text-align: left; }
 
-  /* Products grid on mobile */
   .products-grid {
     gap: 1rem;
     background: none;
     border: none;
   }
   .product-card { border: 0.5px solid var(--rule-soft); }
+
+  .series-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 500px) {
@@ -1113,22 +1259,9 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
   #notify-modal { padding: 2.5rem 1.5rem 2rem; }
   .store-header { padding: 130px 0 55px; }
 
-  /* 2 columns maintained on small phones */
   .books-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
-  }
-
-  .featured-book-banner {
-    padding: 1.75rem 1.25rem;
-  }
-  .scene {
-    width: 120px;
-    height: 167px;
-  }
-
-  .featured-book-meta {
-    gap: 1rem;
   }
 }
 </style>
@@ -1266,7 +1399,7 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
     </div>
   </section>
 
-  <!-- ═══════ 3. SERIES (now includes From Stage to Screen as featured) ═══════ -->
+  <!-- ═══════ 3. SERIES ═══════ -->
   <section class="series-section fade-up">
     <div class="series-intro">
       <div>
@@ -1285,12 +1418,12 @@ button.btn-product:hover { color: var(--ink); border-color: var(--ink); }
     <!-- Books grid -->
     <div class="books-grid">
 
-        <a href="https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB">
+      <a href="https://www.amazon.com/Stage-Screen-Collection-Heartfelt-Reflection/dp/B0G5JRRWKB" target="_blank" class="book-card">
         <div class="book-card-cover">
-          <img src="../images/covers/tedx.jpeg" alt="From Stage to Screen" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>08</span>'"/>
+          <img src="../images/covers/tedx.jpeg" alt="From Stage to Screen" onerror="this.parentNode.innerHTML='<span class=\'book-card-cover-num\'>00</span>'"/>
         </div>
         <div class="book-card-body">
-          <span class="book-card-vol">Vol. 00 </span>
+          <span class="book-card-vol">Vol. 00</span>
           <div class="book-card-title">From Stage to Screen</div>
           <div class="book-card-cta">Read on Amazon →</div>
         </div>
