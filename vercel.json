@@ -2,9 +2,9 @@
   "rewrites": [
     { "source": "/about", "destination": "/pages/about.html" },
     { "source": "/get-started", "destination": "/pages/get-started.html" },
-    { "source": "/premier-services", "destination": "/pages/premier-services.html" },
-    { "source": "/standard-services", "destination": "/pages/standard-services.html" },
-    { "source": "/work-with-us", "destination": "/pages/work-with-us.html" },
+    { "source": "/premier", "destination": "/pages/premier-services.html" },
+    { "source": "/standard", "destination": "/pages/standard-services.html" },
+    { "source": "/apply", "destination": "/pages/work-with-us.html" },
     { "source": "/store", "destination": "/pages/store.html" }
   ]
 }
